@@ -25,12 +25,12 @@ const brokerRatings: Record<string, { stars: number; badges: string[] }> = {
     badges: ["手数料無料", "NISA対応", "米国株に強い"],
   },
   "mufg-esmart": {
-    stars: 4,
-    badges: ["手数料無料", "NISA対応", "アプリ完結", "PR"],
+    stars: 5,
+    badges: ["手数料無料", "NISA対応", "アプリで完結", "Pontaポイント", "PR"],
   },
   dmm: {
-    stars: 4,
-    badges: ["手数料無料", "NISA対応", "米国株手数料無料", "PR"],
+    stars: 5,
+    badges: ["手数料無料", "NISA対応", "米国株手数料0円", "最短即日開設", "PR"],
   },
 };
 
