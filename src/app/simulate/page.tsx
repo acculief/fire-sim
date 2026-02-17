@@ -5,7 +5,6 @@ import SimulationForm from "@/components/SimulationForm";
 import ResultDisplay from "@/components/ResultDisplay";
 import SimulationHistory from "@/components/SimulationHistory";
 import ComparePanel from "@/components/ComparePanel";
-import EmailCapture from "@/components/EmailCapture";
 import { runSimulation, inputFromParams, inputToParams } from "@/lib/calculator";
 import { saveHistory, getHistory } from "@/lib/history";
 import { incrementSimulationCount } from "@/lib/counter";
@@ -103,9 +102,6 @@ export default function SimulatePage() {
           )}
 
           <ResultDisplay result={result} shareUrl={shareUrl} />
-
-          {/* メール収集 */}
-          <EmailCapture />
         </div>
       )}
 

@@ -2,7 +2,6 @@ import { Metadata } from "next";
 import Link from "next/link";
 import { guides, getGuideBySlug } from "@/data/guides";
 import Disclaimer from "@/components/Disclaimer";
-import EmailCapture from "@/components/EmailCapture";
 import Breadcrumb from "@/components/Breadcrumb";
 import { autoLinkKeywords } from "@/lib/auto-link";
 
@@ -188,11 +187,6 @@ export default async function GuidePage({
           </div>
         </div>
       )}
-
-      {/* メール登録 */}
-      <div className="mt-12">
-        <EmailCapture />
-      </div>
 
       <Disclaimer />
     </div>
