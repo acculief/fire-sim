@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { prefectures } from "@/data/prefectures";
 import {
   DEFAULTS,
@@ -73,6 +73,28 @@ export default function SimulationForm({ initialInput, onSubmit }: Props) {
   const [inflationRate, setInflationRate] = useState(
     (initialInput?.inflationRate ?? DEFAULTS.inflationRate) * 100,
   );
+
+  // initialInput が変わったらフォーム値を同期
+  useEffect(() => {
+    if (!initialInput) return;
+    if (initialInput.prefecture != null) setPrefecture(initialInput.prefecture);
+    if (initialInput.annualIncome != null) setAnnualIncome(initialInput.annualIncome);
+    if (initialInput.incomeType != null) setIncomeType(initialInput.incomeType);
+    if (initialInput.currentAssets != null) setCurrentAssets(initialInput.currentAssets);
+    if (initialInput.monthlyInvestment != null) setMonthlyInvestment(initialInput.monthlyInvestment);
+    if (initialInput.familyType != null) setFamilyType(initialInput.familyType);
+    if (initialInput.housingType != null) setHousingType(initialInput.housingType);
+    if (initialInput.currentAge != null) setCurrentAge(initialInput.currentAge);
+    if (initialInput.targetAge !== undefined) setTargetAge(initialInput.targetAge);
+    if (initialInput.customMonthlyExpense !== undefined) setCustomMonthlyExpense(initialInput.customMonthlyExpense);
+    if (initialInput.fireStrategy != null) setFireStrategy(initialInput.fireStrategy);
+    if (initialInput.dividendTaxRate != null) setDividendTaxRate(initialInput.dividendTaxRate * 100);
+    if (initialInput.postFireMonthlyCost !== undefined) setPostFireMonthlyCost(initialInput.postFireMonthlyCost);
+    if (initialInput.annualReturnRate != null) setAnnualReturnRate(initialInput.annualReturnRate * 100);
+    if (initialInput.swr != null) setSwr(initialInput.swr * 100);
+    if (initialInput.yieldRate != null) setYieldRate(initialInput.yieldRate * 100);
+    if (initialInput.inflationRate != null) setInflationRate(initialInput.inflationRate * 100);
+  }, [initialInput]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
