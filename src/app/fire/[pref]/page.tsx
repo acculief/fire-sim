@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import { prefectures, getPrefectureByCode } from "@/data/prefectures";
-import { INCOME_LEVELS, FAMILY_TYPES_FOR_SEO } from "@/config/assumptions";
+import { INCOME_LEVELS, FAMILY_TYPES_FOR_SEO, AGE_GROUPS_FOR_SEO, HOUSING_TYPES_FOR_SEO } from "@/config/assumptions";
 import { generateCaseExamples } from "@/lib/seo-helpers";
 import { formatMoney } from "@/lib/format";
 import FAQ, { getDefaultFAQ } from "@/components/FAQ";
@@ -153,6 +153,42 @@ export default async function PrefecturePage({
               className="rounded-lg border border-gray-200 bg-white px-3 py-1.5 text-sm text-gray-700 hover:border-primary-300 hover:bg-primary-50 hover:text-primary-700"
             >
               {ft.label}
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      {/* 年代別リンク */}
+      <section className="mt-8">
+        <h2 className="text-xl font-bold text-gray-900">
+          {prefecture.name} × 年代別
+        </h2>
+        <div className="mt-3 flex flex-wrap gap-2">
+          {AGE_GROUPS_FOR_SEO.map((ag) => (
+            <Link
+              key={ag.slug}
+              href={`/fire/${pref}/age/${ag.slug}/`}
+              className="rounded-lg border border-gray-200 bg-white px-3 py-1.5 text-sm text-gray-700 hover:border-primary-300 hover:bg-primary-50 hover:text-primary-700"
+            >
+              {ag.label}
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      {/* 住宅タイプ別リンク */}
+      <section className="mt-8">
+        <h2 className="text-xl font-bold text-gray-900">
+          {prefecture.name} × 住宅タイプ別
+        </h2>
+        <div className="mt-3 flex flex-wrap gap-2">
+          {HOUSING_TYPES_FOR_SEO.map((ht) => (
+            <Link
+              key={ht.key}
+              href={`/fire/${pref}/housing/${ht.key}/`}
+              className="rounded-lg border border-gray-200 bg-white px-3 py-1.5 text-sm text-gray-700 hover:border-primary-300 hover:bg-primary-50 hover:text-primary-700"
+            >
+              {ht.label}
             </Link>
           ))}
         </div>

@@ -1,6 +1,6 @@
 import { MetadataRoute } from "next";
 import { prefectures } from "@/data/prefectures";
-import { INCOME_LEVELS, FAMILY_TYPES_FOR_SEO } from "@/config/assumptions";
+import { INCOME_LEVELS, FAMILY_TYPES_FOR_SEO, AGE_GROUPS_FOR_SEO, HOUSING_TYPES_FOR_SEO, REGION_SLUGS } from "@/config/assumptions";
 import { guides } from "@/data/guides";
 import { modelCases } from "@/data/model-cases";
 import { longtailPages } from "@/data/longtail-pages";
@@ -120,6 +120,36 @@ export default function sitemap(): MetadataRoute.Sitemap {
         priority: 0.5,
       });
     }
+
+    // 年代別ページ
+    for (const age of AGE_GROUPS_FOR_SEO) {
+      entries.push({
+        url: `${BASE_URL}/fire/${pref.code}/age/${age.slug}/`,
+        lastModified: new Date(),
+        changeFrequency: "monthly",
+        priority: 0.5,
+      });
+    }
+
+    // 住宅タイプ別ページ
+    for (const housing of HOUSING_TYPES_FOR_SEO) {
+      entries.push({
+        url: `${BASE_URL}/fire/${pref.code}/housing/${housing.key}/`,
+        lastModified: new Date(),
+        changeFrequency: "monthly",
+        priority: 0.5,
+      });
+    }
+  }
+
+  // 地方別比較ページ
+  for (const region of REGION_SLUGS) {
+    entries.push({
+      url: `${BASE_URL}/fire/region/${region.slug}/`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.6,
+    });
   }
 
   // モデルケース一覧

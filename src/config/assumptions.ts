@@ -137,3 +137,30 @@ export const FAMILY_TYPES_FOR_SEO = [
   { key: "couple-1child", label: "夫婦＋子1人" },
   { key: "couple-2children", label: "夫婦＋子2人" },
 ];
+
+/** SEO用の年代グループ */
+export const AGE_GROUPS_FOR_SEO = [
+  { slug: "20s", label: "20代", representativeAge: 25, currentAssets: 100, monthlyInvestment: 5 },
+  { slug: "30s", label: "30代", representativeAge: 35, currentAssets: 300, monthlyInvestment: 10 },
+  { slug: "40s", label: "40代", representativeAge: 45, currentAssets: 800, monthlyInvestment: 15 },
+  { slug: "50s", label: "50代", representativeAge: 55, currentAssets: 1500, monthlyInvestment: 15 },
+];
+
+/** SEO用の住宅タイプ */
+export const HOUSING_TYPES_FOR_SEO = [
+  { key: "rent", label: "賃貸" },
+  { key: "own", label: "持ち家（ローン完済）" },
+  { key: "own_loan", label: "持ち家（ローン有）" },
+];
+
+/** 地方のslug↔日本語マッピング */
+export const REGION_SLUGS = [
+  { slug: "hokkaido", label: "北海道" },
+  { slug: "tohoku", label: "東北" },
+  { slug: "kanto", label: "関東" },
+  { slug: "chubu", label: "中部" },
+  { slug: "kinki", label: "近畿" },
+  { slug: "chugoku", label: "中国" },
+  { slug: "shikoku", label: "四国" },
+  { slug: "kyushu", label: "九州" },
+];

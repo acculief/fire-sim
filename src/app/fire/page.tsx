@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import { prefectures } from "@/data/prefectures";
+import { REGION_SLUGS } from "@/config/assumptions";
 import Breadcrumb from "@/components/Breadcrumb";
 
 export const metadata: Metadata = {
@@ -59,6 +60,25 @@ export default function FireIndexPage() {
           );
         })}
       </div>
+
+      {/* 地方別比較リンク */}
+      <section className="mt-10">
+        <h2 className="text-lg font-bold text-gray-800">地方別のFIRE比較</h2>
+        <p className="mt-1 text-sm text-gray-500">
+          地方ごとの都道府県を比較して、FIREに有利な地域を見つけましょう
+        </p>
+        <div className="mt-3 grid gap-2 sm:grid-cols-2 md:grid-cols-4">
+          {REGION_SLUGS.map((r) => (
+            <Link
+              key={r.slug}
+              href={`/fire/region/${r.slug}/`}
+              className="rounded-lg border border-gray-200 bg-white px-4 py-3 text-center font-medium text-gray-700 transition-colors hover:border-primary-300 hover:bg-primary-50 hover:text-primary-700"
+            >
+              {r.label}
+            </Link>
+          ))}
+        </div>
+      </section>
 
       {/* CTA */}
       <div className="mt-12 rounded-lg border-2 border-primary-200 bg-primary-50 p-6 text-center">

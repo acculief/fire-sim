@@ -1,6 +1,14 @@
 import { runSimulation } from "./calculator";
 import type { SimulationInput } from "./types";
-import { DEFAULTS, INCOME_LEVELS, FAMILY_TYPES_FOR_SEO } from "@/config/assumptions";
+import {
+  DEFAULTS,
+  INCOME_LEVELS,
+  FAMILY_TYPES_FOR_SEO,
+  AGE_GROUPS_FOR_SEO,
+  HOUSING_TYPES_FOR_SEO,
+  HOUSING_COEFFICIENTS,
+} from "@/config/assumptions";
+import { prefectures } from "@/data/prefectures";
 
 /** 特定条件でのシミュレーション結果概要 */
 export interface CaseExample {
@@ -108,6 +116,151 @@ export function generateFamilyCases(prefCode: string, familyType: string) {
     return {
       label: il.label,
       annualIncome: il.value,
+      fireNumber: neutral.fireNumber,
+      achievementAge: neutral.achievementAge,
+      monthlyExpense: neutral.monthlyExpense,
+    };
+  });
+}
+
+/** 年代別の初期資産を推定 */
+export function estimateAssetsByAge(ageSlug: string) {
+  const group = AGE_GROUPS_FOR_SEO.find((g) => g.slug === ageSlug);
+  if (!group) return { currentAssets: DEFAULTS.currentAssets, monthlyInvestment: DEFAULTS.monthlyInvestment, currentAge: DEFAULTS.currentAge };
+  return {
+    currentAssets: group.currentAssets,
+    monthlyInvestment: group.monthlyInvestment,
+    currentAge: group.representativeAge,
+  };
+}
+
+/** 年代×都道府県のシミュレーション結果生成（年収別に比較） */
+export function generateAgeCases(prefCode: string, ageSlug: string) {
+  const { currentAssets, monthlyInvestment, currentAge } = estimateAssetsByAge(ageSlug);
+  return INCOME_LEVELS.slice(0, 5).map((il) => {
+    const input: SimulationInput = {
+      prefecture: prefCode,
+      annualIncome: il.value,
+      incomeType: "gross",
+      currentAssets,
+      monthlyInvestment,
+      familyType: "single",
+      housingType: "rent",
+      currentAge,
+      annualReturnRate: DEFAULTS.annualReturnRate,
+      swr: DEFAULTS.swr,
+      inflationRate: DEFAULTS.inflationRate,
+      fireStrategy: DEFAULTS.fireStrategy,
+      yieldRate: DEFAULTS.yieldRate,
+      dividendTaxRate: DEFAULTS.dividendTaxRate,
+    };
+    const result = runSimulation(input);
+    const neutral = result.scenarios.neutral;
+    return {
+      label: il.label,
+      annualIncome: il.value,
+      fireNumber: neutral.fireNumber,
+      achievementAge: neutral.achievementAge,
+      monthlyExpense: neutral.monthlyExpense,
+      currentAge,
+      currentAssets,
+      monthlyInvestment,
+    };
+  });
+}
+
+/** 住宅×都道府県のシミュレーション結果生成（年収別に比較） */
+export function generateHousingCases(prefCode: string, housingType: string) {
+  return INCOME_LEVELS.slice(0, 5).map((il) => {
+    const input: SimulationInput = {
+      prefecture: prefCode,
+      annualIncome: il.value,
+      incomeType: "gross",
+      currentAssets: DEFAULTS.currentAssets,
+      monthlyInvestment: DEFAULTS.monthlyInvestment,
+      familyType: "single",
+      housingType,
+      currentAge: DEFAULTS.currentAge,
+      annualReturnRate: DEFAULTS.annualReturnRate,
+      swr: DEFAULTS.swr,
+      inflationRate: DEFAULTS.inflationRate,
+      fireStrategy: DEFAULTS.fireStrategy,
+      yieldRate: DEFAULTS.yieldRate,
+      dividendTaxRate: DEFAULTS.dividendTaxRate,
+    };
+    const result = runSimulation(input);
+    const neutral = result.scenarios.neutral;
+    return {
+      label: il.label,
+      annualIncome: il.value,
+      fireNumber: neutral.fireNumber,
+      achievementAge: neutral.achievementAge,
+      monthlyExpense: neutral.monthlyExpense,
+    };
+  });
+}
+
+/** 住宅タイプ間のミニ比較（特定年収での3タイプ比較） */
+export function generateHousingComparison(prefCode: string, income: number) {
+  return HOUSING_TYPES_FOR_SEO.map((ht) => {
+    const input: SimulationInput = {
+      prefecture: prefCode,
+      annualIncome: income,
+      incomeType: "gross",
+      currentAssets: DEFAULTS.currentAssets,
+      monthlyInvestment: DEFAULTS.monthlyInvestment,
+      familyType: "single",
+      housingType: ht.key,
+      currentAge: DEFAULTS.currentAge,
+      annualReturnRate: DEFAULTS.annualReturnRate,
+      swr: DEFAULTS.swr,
+      inflationRate: DEFAULTS.inflationRate,
+      fireStrategy: DEFAULTS.fireStrategy,
+      yieldRate: DEFAULTS.yieldRate,
+      dividendTaxRate: DEFAULTS.dividendTaxRate,
+    };
+    const result = runSimulation(input);
+    const neutral = result.scenarios.neutral;
+    return {
+      label: ht.label,
+      housingType: ht.key,
+      coefficient: HOUSING_COEFFICIENTS[ht.key]?.coefficient ?? 1.0,
+      fireNumber: neutral.fireNumber,
+      achievementAge: neutral.achievementAge,
+      monthlyExpense: neutral.monthlyExpense,
+    };
+  });
+}
+
+/** 地方内の都道府県比較データ生成 */
+export function generateRegionComparison(regionLabel: string) {
+  const regionPrefs = prefectures
+    .filter((p) => p.region === regionLabel)
+    .sort((a, b) => a.costIndex - b.costIndex);
+
+  return regionPrefs.map((p) => {
+    const input: SimulationInput = {
+      prefecture: p.code,
+      annualIncome: 500,
+      incomeType: "gross",
+      currentAssets: DEFAULTS.currentAssets,
+      monthlyInvestment: DEFAULTS.monthlyInvestment,
+      familyType: "single",
+      housingType: "rent",
+      currentAge: DEFAULTS.currentAge,
+      annualReturnRate: DEFAULTS.annualReturnRate,
+      swr: DEFAULTS.swr,
+      inflationRate: DEFAULTS.inflationRate,
+      fireStrategy: DEFAULTS.fireStrategy,
+      yieldRate: DEFAULTS.yieldRate,
+      dividendTaxRate: DEFAULTS.dividendTaxRate,
+    };
+    const result = runSimulation(input);
+    const neutral = result.scenarios.neutral;
+    return {
+      code: p.code,
+      name: p.name,
+      costIndex: p.costIndex,
       fireNumber: neutral.fireNumber,
       achievementAge: neutral.achievementAge,
       monthlyExpense: neutral.monthlyExpense,
