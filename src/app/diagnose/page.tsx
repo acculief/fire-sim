@@ -2,6 +2,7 @@
 
 import { useState, useCallback } from "react";
 import Link from "next/link";
+import { brokers } from "@/data/recommend";
 
 /* ------------------------------------------------------------------ */
 /*  定数 & 型                                                          */
@@ -35,6 +36,8 @@ const ASSET_OPTIONS = [
 const FIRE_TARGET = 7500; // 万円
 const ANNUAL_RETURN = 0.04;
 const MAX_YEARS = 100; // 収束しない場合の上限
+
+const affiliateBrokers = brokers.filter((b) => b.isAffiliate);
 
 type Grade = "A" | "B" | "C" | "D";
 
@@ -548,6 +551,65 @@ export default function DiagnosePage() {
               詳細シミュレーションで正確な数字を確認
             </Link>
           </div>
+
+          {/* 証券口座CTA */}
+          {affiliateBrokers.length > 0 && (
+            <div className="mt-6 rounded-xl border-2 border-accent-200 bg-accent-50 p-6">
+              <h3 className="mb-1 text-center text-lg font-bold text-accent-800">
+                {result.grade === "A" || result.grade === "B"
+                  ? "FIRE達成をさらに加速しましょう"
+                  : "まずは証券口座を開設して第一歩を踏み出そう"}
+              </h3>
+              <p className="mb-4 text-center text-xs text-gray-600">
+                {result.grade === "A" || result.grade === "B"
+                  ? "新NISAを活用した非課税投資で、FIRE達成をさらに数年短縮できます"
+                  : "FIREへの第一歩は証券口座の開設。新NISAで非課税の積立投資を始めましょう"}
+              </p>
+              <div className="space-y-3">
+                {affiliateBrokers.map((b) => (
+                  <div
+                    key={b.slug}
+                    className="rounded-lg border border-white bg-white p-4"
+                  >
+                    <div className="flex items-center gap-2">
+                      <h4 className="font-bold text-gray-800">{b.name}</h4>
+                      <span className="rounded bg-accent-500 px-1.5 py-0.5 text-[10px] font-bold leading-none text-white">
+                        おすすめ
+                      </span>
+                    </div>
+                    <p className="mt-1 text-sm text-gray-600">{b.description}</p>
+                    <ul className="mt-2 flex flex-wrap gap-x-3 gap-y-1 text-xs text-gray-500">
+                      {b.features.slice(0, 2).map((f, i) => (
+                        <li key={i} className="flex items-center">
+                          <span className="mr-1 text-accent-500">✓</span>{f}
+                        </li>
+                      ))}
+                    </ul>
+                    <a
+                      href={b.affiliateUrl ?? b.url}
+                      target="_blank"
+                      rel="nofollow noopener noreferrer"
+                      className="mt-3 inline-block rounded-lg bg-accent-600 px-5 py-2 text-sm font-bold text-white transition-colors hover:bg-accent-700"
+                    >
+                      無料で口座開設 <span className="text-xs opacity-75">PR</span>
+                    </a>
+                    {b.trackingPixel && (
+                      /* eslint-disable-next-line @next/next/no-img-element */
+                      <img src={b.trackingPixel} width={1} height={1} alt="" className="inline" />
+                    )}
+                  </div>
+                ))}
+              </div>
+              <div className="mt-4 flex flex-wrap justify-center gap-3 text-xs">
+                <Link href="/recommend/" className="text-accent-700 underline hover:text-accent-600">
+                  おすすめ証券口座をもっと見る
+                </Link>
+                <Link href="/guide/fire-first-steps/" className="text-accent-700 underline hover:text-accent-600">
+                  FIRE初心者ガイドを読む
+                </Link>
+              </div>
+            </div>
+          )}
 
           {/* もう一度 */}
           <div className="mt-6 text-center">
