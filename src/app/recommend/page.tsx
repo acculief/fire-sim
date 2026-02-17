@@ -24,9 +24,13 @@ const brokerRatings: Record<string, { stars: number; badges: string[] }> = {
     stars: 4,
     badges: ["手数料無料", "NISA対応", "米国株に強い"],
   },
-  aukabucom: {
+  "mufg-esmart": {
     stars: 4,
-    badges: ["手数料無料", "NISA対応", "auユーザー優遇"],
+    badges: ["手数料無料", "NISA対応", "アプリ完結", "PR"],
+  },
+  dmm: {
+    stars: 4,
+    badges: ["手数料無料", "NISA対応", "米国株手数料無料", "PR"],
   },
 };
 
@@ -259,7 +263,7 @@ export default function RecommendPage() {
           </table>
         </div>
         <p className="mt-2 text-xs text-gray-400">
-          ※全社とも新NISA・iDeCo対応、投信購入手数料0円
+          ※新NISA対応。iDeCo・投信取扱は証券会社により異なります
         </p>
 
         {/* 証券会社詳細カード */}
@@ -307,13 +311,17 @@ export default function RecommendPage() {
                   ))}
                 </ul>
                 <a
-                  href={b.url}
+                  href={b.affiliateUrl ?? b.url}
                   target="_blank"
-                  rel="noopener noreferrer"
+                  rel={b.isAffiliate ? "nofollow noopener noreferrer" : "noopener noreferrer"}
                   className="btn-primary mt-4 inline-block text-sm"
                 >
-                  {b.name}の詳しく見る
+                  {b.name}を詳しく見る {b.isAffiliate && <span className="text-xs opacity-75">PR</span>}
                 </a>
+                {b.trackingPixel && (
+                  /* eslint-disable-next-line @next/next/no-img-element */
+                  <img src={b.trackingPixel} width={1} height={1} alt="" className="inline" />
+                )}
               </div>
             );
           })}

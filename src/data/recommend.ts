@@ -11,7 +11,10 @@ export interface Broker {
   usStockCount: string;
   idecoCount: string;
   pointType: string;
-  url: string; // 公式サイトURL（後でアフィリエイトURLに差し替え）
+  url: string; // 公式サイトURL
+  affiliateUrl?: string; // アフィリエイトURL（A8.net等）
+  trackingPixel?: string; // アフィリエイト計測用1x1ピクセル
+  isAffiliate?: boolean; // アフィリエイト案件フラグ
 }
 
 export interface Book {
@@ -94,14 +97,14 @@ export const brokers: Broker[] = [
     url: "https://www.monex.co.jp/",
   },
   {
-    name: "auカブコム証券",
-    slug: "aukabucom",
+    name: "三菱UFJ eスマート証券",
+    slug: "mufg-esmart",
     description:
-      "au経済圏との連携が魅力。Pontaポイント投資が可能。auじぶん銀行との連携で金利優遇も。",
+      "旧auカブコム証券がリブランド。投資アプリ「TOSSY」であらゆる取引がアプリひとつで完結。Pontaポイント投資やauじぶん銀行連携も引き続き利用可能。",
     features: [
+      "投資アプリ「TOSSY」で株・投信・FXまで一元管理",
       "au PAYカード積立でPontaポイント還元",
       "auじぶん銀行連携で金利優遇",
-      "Pontaポイントで投資信託が買える",
       "新NISA対応・投信購入手数料無料",
     ],
     nisa: true,
@@ -113,6 +116,37 @@ export const brokers: Broker[] = [
     idecoCount: "27本",
     pointType: "Pontaポイント",
     url: "https://kabu.com/",
+    affiliateUrl:
+      "https://px.a8.net/svt/ejp?a8mat=4AXDCI+D44RHU+1WP2+1HM30Y",
+    trackingPixel:
+      "https://www19.a8.net/0.gif?a8mat=4AXDCI+D44RHU+1WP2+1HM30Y",
+    isAffiliate: true,
+  },
+  {
+    name: "DMM株（DMM.com証券）",
+    slug: "dmm",
+    description:
+      "日本株も米国株もNISAもアプリひとつで取引可能。口座開設が最短即日で完了し、取引手数料も業界最安水準。ポイントを貯めながら投資できる。",
+    features: [
+      "国内株式の取引手数料が業界最安水準",
+      "米国株式の取引手数料が無料",
+      "最短即日で口座開設完了",
+      "新NISA対応・25歳以下は国内株手数料実質無料",
+    ],
+    nisa: true,
+    ideco: false,
+    minFee: "0円",
+    creditCardReturn: "-",
+    fundCount: "-",
+    usStockCount: "2,500銘柄以上",
+    idecoCount: "-",
+    pointType: "DMM株ポイント",
+    url: "https://kabu.dmm.com/",
+    affiliateUrl:
+      "https://px.a8.net/svt/ejp?a8mat=4AXDCI+C4ER76+1WP2+15R4NM",
+    trackingPixel:
+      "https://www18.a8.net/0.gif?a8mat=4AXDCI+C4ER76+1WP2+15R4NM",
+    isAffiliate: true,
   },
 ];
 
