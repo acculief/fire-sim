@@ -1,13 +1,13 @@
 import { Metadata } from "next";
 import Link from "next/link";
-import { brokers, books, funds } from "@/data/recommend";
+import { brokers, funds } from "@/data/recommend";
 import Disclaimer from "@/components/Disclaimer";
 import Breadcrumb from "@/components/Breadcrumb";
 
 export const metadata: Metadata = {
-  title: "FIRE達成におすすめの証券口座・書籍・投資信託",
+  title: "FIRE達成におすすめの証券口座・投資信託【2025年最新】",
   description:
-    "FIRE（経済的自立・早期退職）を目指す方におすすめのネット証券口座比較、投資信託、書籍を厳選紹介。新NISA・iDeCo対応状況も解説。",
+    "FIRE（経済的自立・早期退職）を目指す方におすすめのネット証券口座を徹底比較。新NISA・iDeCo対応状況、手数料、ポイント還元まで解説。",
 };
 
 /** 証券口座のおすすめ度データ */
@@ -35,49 +35,6 @@ const brokerRatings: Record<string, { stars: number; badges: string[] }> = {
   dmm: {
     stars: 5,
     badges: ["手数料無料", "NISA対応", "米国株手数料0円", "最短即日開設", "PR"],
-  },
-};
-
-/** 書籍ごとの追加情報 */
-const bookExtras: Record<
-  string,
-  { target: string; review: string; coverColor: string }
-> = {
-  "FIRE 最強の早期リタイア術": {
-    target: "FIRE初心者・海外事例を学びたい人",
-    review:
-      "カナダでFIREを達成した夫妻のリアルな体験談。具体的なポートフォリオ構築法まで網羅しており、FIRE入門の定番書。",
-    coverColor: "bg-orange-500",
-  },
-  "本気でFIREをめざす人のための資産形成入門": {
-    target: "日本でFIREを目指す人・高配当株に興味がある人",
-    review:
-      "日本の税制や社会保険を踏まえた実践的な内容。高配当株を軸にしたFIRE戦略が具体的に学べる。",
-    coverColor: "bg-blue-600",
-  },
-  "ほったらかし投資術": {
-    target: "投資初心者・手間をかけたくない人",
-    review:
-      "オルカン1本で資産形成する超シンプル戦略。読んだその日から始められる実践性の高さが魅力。",
-    coverColor: "bg-green-600",
-  },
-  "敗者のゲーム": {
-    target: "投資哲学を深く理解したい人",
-    review:
-      "なぜインデックス投資が最適解なのか、論理的に腹落ちさせてくれる名著。長期投資の信念が固まる。",
-    coverColor: "bg-purple-600",
-  },
-  "ウォール街のランダム・ウォーカー": {
-    target: "投資理論を体系的に学びたい人",
-    review:
-      "効率的市場仮説の名著。やや厚いが、これを読めば投資の全体像が掴める。FIRE志向者の教養書。",
-    coverColor: "bg-red-600",
-  },
-  "DIE WITH ZERO": {
-    target: "FIRE後の人生設計を考えたい人",
-    review:
-      "貯めるだけでなく「使い切る」視点が新鮮。FIRE達成後の出口戦略を考えるきっかけになる一冊。",
-    coverColor: "bg-amber-600",
   },
 };
 
@@ -133,9 +90,9 @@ export default function RecommendPage() {
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    name: "FIRE達成におすすめの証券口座・書籍・投資信託",
+    name: "FIRE達成におすすめの証券口座・投資信託",
     description:
-      "FIRE（経済的自立・早期退職）を目指す方におすすめのネット証券口座比較、投資信託、書籍を厳選紹介。",
+      "FIRE（経済的自立・早期退職）を目指す方におすすめのネット証券口座を徹底比較。新NISA・iDeCo対応状況も解説。",
     breadcrumb: {
       "@type": "BreadcrumbList",
       itemListElement: [
@@ -165,10 +122,10 @@ export default function RecommendPage() {
       />
 
       <h1 className="text-2xl font-bold text-gray-900 sm:text-3xl">
-        FIRE達成におすすめのツール・書籍
+        FIRE達成におすすめの証券口座・投資信託
       </h1>
       <p className="mt-2 text-gray-600">
-        FIRE（経済的自立・早期退職）を目指す方に役立つ証券口座・投資信託・書籍を厳選しました。
+        FIRE（経済的自立・早期退職）を目指す方に役立つネット証券口座・投資信託を厳選比較しました。
       </p>
 
       {/* 目次 */}
@@ -188,11 +145,6 @@ export default function RecommendPage() {
           <li>
             <a href="#funds" className="hover:underline">
               おすすめ投資信託
-            </a>
-          </li>
-          <li>
-            <a href="#books" className="hover:underline">
-              おすすめ書籍
             </a>
           </li>
           <li>
@@ -449,74 +401,6 @@ export default function RecommendPage() {
               <p className="mt-2 text-sm text-gray-600">{f.description}</p>
             </div>
           ))}
-        </div>
-      </section>
-
-      {/* ===== 書籍（強化版） ===== */}
-      <section id="books" className="mt-12">
-        <h2 className="text-xl font-bold text-gray-800">
-          FIRE志向者におすすめの書籍
-        </h2>
-        <p className="mt-2 text-sm text-gray-600">
-          FIREの基礎から実践まで、投資哲学を学べる厳選書籍を紹介します。
-        </p>
-        <div className="mt-4 space-y-4">
-          {books.map((b, i) => {
-            const extra = bookExtras[b.title];
-            return (
-              <div
-                key={i}
-                className="rounded-lg border border-gray-200 bg-white p-5"
-              >
-                <div className="flex gap-4">
-                  {/* 書籍カバープレースホルダー */}
-                  <div
-                    className={`${extra?.coverColor ?? "bg-gray-500"} flex h-28 w-20 shrink-0 items-center justify-center rounded-md shadow-sm`}
-                  >
-                    <span className="px-1 text-center text-[10px] font-bold leading-tight text-white">
-                      {b.title}
-                    </span>
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="font-bold text-gray-800">{b.title}</h3>
-                    <p className="mt-0.5 text-sm text-gray-500">{b.author}</p>
-
-                    {/* こんな人におすすめタグ */}
-                    {extra && (
-                      <p className="mt-2 inline-block rounded-full bg-amber-100 px-2.5 py-0.5 text-xs font-medium text-amber-800">
-                        こんな人におすすめ：{extra.target}
-                      </p>
-                    )}
-
-                    <div className="mt-2 flex flex-wrap gap-1">
-                      {b.tags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="rounded-full bg-gray-100 px-2 py-0.5 text-xs text-gray-600"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-
-                {/* レビュー */}
-                <p className="mt-3 text-sm text-gray-600">
-                  {extra?.review ?? b.description}
-                </p>
-
-                <a
-                  href={b.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-3 inline-block text-sm font-medium text-primary-600 hover:text-primary-500 hover:underline"
-                >
-                  書籍を見る →
-                </a>
-              </div>
-            );
-          })}
         </div>
       </section>
 
