@@ -34,25 +34,25 @@ export interface Fund {
 
 export const brokers: Broker[] = [
   {
-    name: "三菱UFJ eスマート証券",
-    slug: "mufg-esmart",
+    name: "TOSSY（DMM.com証券）",
+    slug: "tossy",
     description:
-      "三菱UFJフィナンシャル・グループの信頼感と、投資アプリ「TOSSY」の使いやすさを両立。株・投信・FXまでアプリひとつで完結し、Pontaポイント還元やauじぶん銀行との金利優遇も魅力。",
+      "DMM.com証券が提供するウルトラ投資アプリ。あらゆる取引がアプリひとつで完結し、お得な特典も盛りだくさん。直感的な操作性で初心者でもすぐに始められる。",
     features: [
-      "投資アプリ「TOSSY」で株・投信・FXまでスマホで一元管理",
-      "au PAYカード積立でPontaポイント最大1%還元",
-      "auじぶん銀行連携で普通預金金利が最大年0.31%に優遇",
-      "新NISA対応・投信購入手数料すべて無料",
+      "株・FX・CFDまでアプリひとつで完結",
+      "直感的なUIで初心者でも迷わず操作",
+      "お得なキャンペーン・特典が充実",
+      "新NISA対応・最短即日で取引開始",
     ],
     nisa: true,
-    ideco: true,
+    ideco: false,
     minFee: "0円",
-    creditCardReturn: "最大1%",
-    fundCount: "1,700本以上",
-    usStockCount: "1,800銘柄以上",
-    idecoCount: "27本",
-    pointType: "Pontaポイント",
-    url: "https://kabu.com/",
+    creditCardReturn: "特典充実",
+    fundCount: "アプリ完結",
+    usStockCount: "2,500銘柄以上",
+    idecoCount: "-",
+    pointType: "DMM株ポイント",
+    url: "https://kabu.dmm.com/",
     affiliateUrl:
       "https://px.a8.net/svt/ejp?a8mat=4AXDCI+D44RHU+1WP2+1HM30Y",
     trackingPixel:
@@ -147,6 +147,27 @@ export const brokers: Broker[] = [
     idecoCount: "27本",
     pointType: "dポイント",
     url: "https://www.monex.co.jp/",
+  },
+  {
+    name: "三菱UFJ eスマート証券",
+    slug: "mufg-esmart",
+    description:
+      "旧auカブコム証券。三菱UFJフィナンシャル・グループの安心感。Pontaポイント投資やauじぶん銀行連携による金利優遇が魅力。",
+    features: [
+      "au PAYカード積立でPontaポイント還元",
+      "auじぶん銀行連携で金利優遇",
+      "Pontaポイントで投資信託が買える",
+      "新NISA対応・投信購入手数料無料",
+    ],
+    nisa: true,
+    ideco: true,
+    minFee: "0円",
+    creditCardReturn: "最大1%",
+    fundCount: "1,700本以上",
+    usStockCount: "1,800銘柄以上",
+    idecoCount: "27本",
+    pointType: "Pontaポイント",
+    url: "https://kabu.com/",
   },
 ];
 
