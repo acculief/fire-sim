@@ -162,14 +162,14 @@ export default function TrackerPage() {
       {/* 進捗バー */}
       {goal && entries.length > 0 && (
         <div className="card mt-4">
-          <div className="flex items-end justify-between">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
             <div>
               <p className="text-sm text-gray-500">現在の進捗</p>
               <p className="text-3xl font-bold text-primary-700">
                 {progressPercent}%
               </p>
             </div>
-            <div className="text-right">
+            <div className="sm:text-right">
               <p className="text-sm text-gray-500">現在の資産</p>
               <p className="text-xl font-bold text-gray-800">
                 {latestAssets.toLocaleString()}万円
@@ -200,8 +200,8 @@ export default function TrackerPage() {
       {/* 資産記録フォーム */}
       <div className="card mt-6">
         <h2 className="text-lg font-bold text-gray-800">資産を記録する</h2>
-        <div className="mt-3 flex gap-3">
-          <div className="w-40">
+        <div className="mt-3 grid grid-cols-2 gap-3 sm:flex">
+          <div className="col-span-1 sm:w-40">
             <label htmlFor="entryDate" className="sr-only">年月</label>
             <input
               id="entryDate"
@@ -211,7 +211,7 @@ export default function TrackerPage() {
               onChange={(e) => setInputDate(e.target.value)}
             />
           </div>
-          <div className="flex-1">
+          <div className="col-span-1 sm:flex-1">
             <label htmlFor="entryAssets" className="sr-only">金融資産（万円）</label>
             <input
               id="entryAssets"
@@ -224,7 +224,7 @@ export default function TrackerPage() {
               step={10}
             />
           </div>
-          <button className="btn-primary shrink-0 text-sm" onClick={handleAddEntry}>
+          <button className="btn-primary col-span-2 text-sm sm:shrink-0" onClick={handleAddEntry}>
             記録
           </button>
         </div>
@@ -245,34 +245,36 @@ export default function TrackerPage() {
               const pct = Math.round((entry.assets / maxAssets) * 100);
               const isLatest = entry === entries[entries.length - 1];
               return (
-                <div key={entry.date} className="group flex items-center gap-2">
-                  <span className="w-16 shrink-0 text-xs text-gray-500">
-                    {entry.date}
-                  </span>
-                  <div className="relative flex-1">
-                    <div
-                      className={`h-6 rounded transition-all ${isLatest ? "bg-primary-500" : "bg-primary-300"}`}
-                      style={{ width: `${Math.max(pct, 2)}%` }}
-                    />
-                    {goal && (
+                <div key={entry.date} className="group">
+                  <div className="flex items-center gap-2">
+                    <span className="w-[4.5rem] shrink-0 text-xs text-gray-500">
+                      {entry.date}
+                    </span>
+                    <div className="relative min-w-0 flex-1">
                       <div
-                        className="absolute top-0 h-6 w-px bg-gray-400"
-                        style={{
-                          left: `${Math.round((goal.fireNumber / maxAssets) * 100)}%`,
-                        }}
+                        className={`h-6 rounded transition-all ${isLatest ? "bg-primary-500" : "bg-primary-300"}`}
+                        style={{ width: `${Math.max(pct, 2)}%` }}
                       />
-                    )}
+                      {goal && (
+                        <div
+                          className="absolute top-0 h-6 w-px bg-gray-400"
+                          style={{
+                            left: `${Math.round((goal.fireNumber / maxAssets) * 100)}%`,
+                          }}
+                        />
+                      )}
+                    </div>
+                    <span className="shrink-0 text-right text-xs font-medium text-gray-700">
+                      {entry.assets.toLocaleString()}万
+                    </span>
+                    <button
+                      className="shrink-0 text-xs text-gray-300 opacity-0 transition-opacity hover:text-red-500 group-hover:opacity-100"
+                      onClick={() => handleDeleteEntry(entry.date)}
+                      aria-label={`${entry.date}のデータを削除`}
+                    >
+                      ×
+                    </button>
                   </div>
-                  <span className="w-20 shrink-0 text-right text-xs font-medium text-gray-700">
-                    {entry.assets.toLocaleString()}万
-                  </span>
-                  <button
-                    className="shrink-0 text-xs text-gray-300 opacity-0 transition-opacity hover:text-red-500 group-hover:opacity-100"
-                    onClick={() => handleDeleteEntry(entry.date)}
-                    aria-label={`${entry.date}のデータを削除`}
-                  >
-                    ×
-                  </button>
                 </div>
               );
             })}
