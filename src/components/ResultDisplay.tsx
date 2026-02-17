@@ -11,6 +11,7 @@ import {
   estimateMonthlyExpense,
   calcFireNumber,
   calcEffectiveYieldRate,
+  inputToParams,
 } from "@/lib/calculator";
 
 const affiliateBrokers = brokers.filter((b) => b.isAffiliate);
@@ -584,7 +585,7 @@ export default function ResultDisplay({ result, shareUrl }: Props) {
                     {comp.prefecture.name}のFIRE情報
                   </Link>
                   <Link
-                    href={`/simulate/?pref=${comp.prefecture.code}`}
+                    href={`/simulate/?${inputToParams({ ...result.input, prefecture: comp.prefecture.code })}`}
                     className="inline-block rounded bg-primary-100 px-2.5 py-1 text-xs font-medium text-primary-700 transition-colors hover:bg-primary-200"
                   >
                     移住先でシミュレーション

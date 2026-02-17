@@ -52,9 +52,8 @@ export default function RootLayout({
         </a>
         <header className="border-b border-gray-200 bg-white" role="banner">
           <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-3">
-            <a href="/" className="shrink-0 text-lg font-bold text-primary-700 sm:text-xl">
-              FIREシミュ
-              <span className="hidden sm:inline">レーター</span>
+            <a href="/" className="shrink-0 text-base font-bold text-primary-700 sm:text-xl">
+              FIREシミュレーター
             </a>
             <nav aria-label="メインナビゲーション" className="flex gap-2 text-xs sm:gap-4 sm:text-sm">
               <a
