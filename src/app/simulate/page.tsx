@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { Suspense, useState, useEffect, useCallback } from "react";
+import { useSearchParams } from "next/navigation";
 import SimulationForm from "@/components/SimulationForm";
 import ResultDisplay from "@/components/ResultDisplay";
 import SimulationHistory from "@/components/SimulationHistory";
@@ -11,7 +12,8 @@ import { incrementSimulationCount } from "@/lib/counter";
 import type { SimulationInput, SimulationResult } from "@/lib/types";
 import type { HistoryItem } from "@/lib/history";
 
-export default function SimulatePage() {
+function SimulateContent() {
+  const searchParams = useSearchParams();
   const [result, setResult] = useState<SimulationResult | null>(null);
   const [initialInput, setInitialInput] = useState<Partial<SimulationInput>>({});
   const [shareUrl, setShareUrl] = useState("");
@@ -19,16 +21,15 @@ export default function SimulatePage() {
   const [historyKey, setHistoryKey] = useState(0);
 
   useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    if (params.has("pref")) {
-      const paramsObj = Object.fromEntries(params);
+    if (searchParams.has("pref")) {
+      const paramsObj = Object.fromEntries(searchParams.entries());
       const input = inputFromParams(paramsObj);
       setInitialInput(input);
       const simResult = runSimulation(input);
       setResult(simResult);
       setShareUrl(window.location.origin + "/simulate/?" + inputToParams(input));
     }
-  }, []);
+  }, [searchParams]);
 
   const handleSubmit = useCallback((input: SimulationInput) => {
     const simResult = runSimulation(input);
@@ -72,16 +73,7 @@ export default function SimulatePage() {
   }, []);
 
   return (
-    <div className="mx-auto max-w-3xl px-4 py-8">
-      <div className="mb-8 text-center">
-        <h1 className="text-2xl font-bold text-gray-900 sm:text-3xl">
-          FIREシミュレーション
-        </h1>
-        <p className="mt-2 text-gray-600">
-          あなたの条件でFIRE達成に必要な資産と年数を計算します
-        </p>
-      </div>
-
+    <>
       <SimulationForm initialInput={initialInput} onSubmit={handleSubmit} />
 
       {result && (
@@ -113,6 +105,25 @@ export default function SimulatePage() {
           onCompare={setCompareTarget}
         />
       </div>
+    </>
+  );
+}
+
+export default function SimulatePage() {
+  return (
+    <div className="mx-auto max-w-3xl px-4 py-8">
+      <div className="mb-8 text-center">
+        <h1 className="text-2xl font-bold text-gray-900 sm:text-3xl">
+          FIREシミュレーション
+        </h1>
+        <p className="mt-2 text-gray-600">
+          あなたの条件でFIRE達成に必要な資産と年数を計算します
+        </p>
+      </div>
+
+      <Suspense fallback={<div className="text-center text-sm text-gray-400">読み込み中...</div>}>
+        <SimulateContent />
+      </Suspense>
     </div>
   );
 }
