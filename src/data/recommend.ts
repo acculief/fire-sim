@@ -34,6 +34,58 @@ export interface Fund {
 
 export const brokers: Broker[] = [
   {
+    name: "三菱UFJ eスマート証券",
+    slug: "mufg-esmart",
+    description:
+      "三菱UFJフィナンシャル・グループの信頼感と、投資アプリ「TOSSY」の使いやすさを両立。株・投信・FXまでアプリひとつで完結し、Pontaポイント還元やauじぶん銀行との金利優遇も魅力。",
+    features: [
+      "投資アプリ「TOSSY」で株・投信・FXまでスマホで一元管理",
+      "au PAYカード積立でPontaポイント最大1%還元",
+      "auじぶん銀行連携で普通預金金利が最大年0.31%に優遇",
+      "新NISA対応・投信購入手数料すべて無料",
+    ],
+    nisa: true,
+    ideco: true,
+    minFee: "0円",
+    creditCardReturn: "最大1%",
+    fundCount: "1,700本以上",
+    usStockCount: "1,800銘柄以上",
+    idecoCount: "27本",
+    pointType: "Pontaポイント",
+    url: "https://kabu.com/",
+    affiliateUrl:
+      "https://px.a8.net/svt/ejp?a8mat=4AXDCI+D44RHU+1WP2+1HM30Y",
+    trackingPixel:
+      "https://www19.a8.net/0.gif?a8mat=4AXDCI+D44RHU+1WP2+1HM30Y",
+    isAffiliate: true,
+  },
+  {
+    name: "DMM株（DMM.com証券）",
+    slug: "dmm",
+    description:
+      "米国株の取引手数料が一律0円という圧倒的なコスト優位性。口座開設は最短即日完了で、すぐに取引を始められる。25歳以下なら国内株手数料も実質無料で、若い世代のFIRE志向者に特におすすめ。",
+    features: [
+      "米国株式の取引手数料が一律0円（業界唯一水準）",
+      "国内株式の取引手数料も業界最安水準",
+      "最短即日で口座開設完了・すぐに取引開始",
+      "新NISA対応・25歳以下は国内株手数料実質無料",
+    ],
+    nisa: true,
+    ideco: false,
+    minFee: "0円",
+    creditCardReturn: "米国株0円",
+    fundCount: "個別株特化",
+    usStockCount: "2,500銘柄以上",
+    idecoCount: "-",
+    pointType: "DMM株ポイント",
+    url: "https://kabu.dmm.com/",
+    affiliateUrl:
+      "https://px.a8.net/svt/ejp?a8mat=4AXDCI+C4ER76+1WP2+15R4NM",
+    trackingPixel:
+      "https://www18.a8.net/0.gif?a8mat=4AXDCI+C4ER76+1WP2+15R4NM",
+    isAffiliate: true,
+  },
+  {
     name: "SBI証券",
     slug: "sbi",
     description:
@@ -95,58 +147,6 @@ export const brokers: Broker[] = [
     idecoCount: "27本",
     pointType: "dポイント",
     url: "https://www.monex.co.jp/",
-  },
-  {
-    name: "三菱UFJ eスマート証券",
-    slug: "mufg-esmart",
-    description:
-      "三菱UFJフィナンシャル・グループの信頼感と、投資アプリ「TOSSY」の使いやすさを両立。株・投信・FXまでアプリひとつで完結し、Pontaポイント還元やauじぶん銀行との金利優遇も魅力。",
-    features: [
-      "投資アプリ「TOSSY」で株・投信・FXまでスマホで一元管理",
-      "au PAYカード積立でPontaポイント最大1%還元",
-      "auじぶん銀行連携で普通預金金利が最大年0.31%に優遇",
-      "新NISA対応・投信購入手数料すべて無料",
-    ],
-    nisa: true,
-    ideco: true,
-    minFee: "0円",
-    creditCardReturn: "最大1%",
-    fundCount: "1,700本以上",
-    usStockCount: "1,800銘柄以上",
-    idecoCount: "27本",
-    pointType: "Pontaポイント",
-    url: "https://kabu.com/",
-    affiliateUrl:
-      "https://px.a8.net/svt/ejp?a8mat=4AXDCI+D44RHU+1WP2+1HM30Y",
-    trackingPixel:
-      "https://www19.a8.net/0.gif?a8mat=4AXDCI+D44RHU+1WP2+1HM30Y",
-    isAffiliate: true,
-  },
-  {
-    name: "DMM株（DMM.com証券）",
-    slug: "dmm",
-    description:
-      "米国株の取引手数料が一律0円という圧倒的なコスト優位性。口座開設は最短即日完了で、すぐに取引を始められる。25歳以下なら国内株手数料も実質無料で、若い世代のFIRE志向者に特におすすめ。",
-    features: [
-      "米国株式の取引手数料が一律0円（業界唯一水準）",
-      "国内株式の取引手数料も業界最安水準",
-      "最短即日で口座開設完了・すぐに取引開始",
-      "新NISA対応・25歳以下は国内株手数料実質無料",
-    ],
-    nisa: true,
-    ideco: false,
-    minFee: "0円",
-    creditCardReturn: "-",
-    fundCount: "-",
-    usStockCount: "2,500銘柄以上",
-    idecoCount: "-",
-    pointType: "DMM株ポイント",
-    url: "https://kabu.dmm.com/",
-    affiliateUrl:
-      "https://px.a8.net/svt/ejp?a8mat=4AXDCI+C4ER76+1WP2+15R4NM",
-    trackingPixel:
-      "https://www18.a8.net/0.gif?a8mat=4AXDCI+C4ER76+1WP2+15R4NM",
-    isAffiliate: true,
   },
 ];
 

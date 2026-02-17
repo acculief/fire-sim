@@ -237,9 +237,14 @@ export default function RecommendPage() {
               {brokers.map((b) => {
                 const rating = brokerRatings[b.slug];
                 return (
-                  <tr key={b.slug}>
+                  <tr key={b.slug} className={b.isAffiliate ? "bg-primary-50/50" : ""}>
                     <td className="px-3 py-2 font-medium text-gray-800 whitespace-nowrap">
-                      {b.name}
+                      <span className="flex items-center gap-1">
+                        {b.name}
+                        {b.isAffiliate && (
+                          <span className="rounded bg-accent-500 px-1 py-0.5 text-[10px] font-bold text-white leading-none">おすすめ</span>
+                        )}
+                      </span>
                     </td>
                     <td className="px-3 py-2 text-center font-medium text-primary-700 whitespace-nowrap">
                       {b.creditCardReturn}
