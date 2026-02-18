@@ -136,6 +136,25 @@ function calcScenario(
   };
 }
 
+/** 感度分析アイテムを生成するヘルパー */
+function makeSensitivityItem(
+  label: string,
+  description: string,
+  newYears: number | null,
+  neutralYears: number | null,
+): SensitivityItem {
+  return {
+    label,
+    description,
+    currentYears: neutralYears,
+    newYears,
+    diff:
+      neutralYears !== null && newYears !== null
+        ? newYears - neutralYears
+        : null,
+  };
+}
+
 /** 感度分析 */
 function calcSensitivity(
   baseMonthlyExpense: number,
@@ -152,126 +171,69 @@ function calcSensitivity(
 
   // 積立+1万円
   const extraInvest = calcAchievementYears(
-    input.currentAssets,
-    annualInvestment + 12,
-    input.annualReturnRate,
-    fireNumber,
-    input.inflationRate,
+    input.currentAssets, annualInvestment + 12,
+    input.annualReturnRate, fireNumber, input.inflationRate,
   );
-  items.push({
-    label: "積立 +1万円/月",
-    description: `月${input.monthlyInvestment + 1}万円に増額`,
-    currentYears: neutralYears,
-    newYears: extraInvest.years,
-    diff:
-      neutralYears !== null && extraInvest.years !== null
-        ? extraInvest.years - neutralYears
-        : null,
-  });
+  items.push(makeSensitivityItem(
+    "積立 +1万円/月", `月${input.monthlyInvestment + 1}万円に増額`,
+    extraInvest.years, neutralYears,
+  ));
 
   // 積立+3万円
   const extraInvest3 = calcAchievementYears(
-    input.currentAssets,
-    annualInvestment + 36,
-    input.annualReturnRate,
-    fireNumber,
-    input.inflationRate,
+    input.currentAssets, annualInvestment + 36,
+    input.annualReturnRate, fireNumber, input.inflationRate,
   );
-  items.push({
-    label: "積立 +3万円/月",
-    description: `月${input.monthlyInvestment + 3}万円に増額`,
-    currentYears: neutralYears,
-    newYears: extraInvest3.years,
-    diff:
-      neutralYears !== null && extraInvest3.years !== null
-        ? extraInvest3.years - neutralYears
-        : null,
-  });
+  items.push(makeSensitivityItem(
+    "積立 +3万円/月", `月${input.monthlyInvestment + 3}万円に増額`,
+    extraInvest3.years, neutralYears,
+  ));
 
   // 利回り+1%
   const higherReturn = calcAchievementYears(
-    input.currentAssets,
-    annualInvestment,
-    input.annualReturnRate + 0.01,
-    fireNumber,
-    input.inflationRate,
+    input.currentAssets, annualInvestment,
+    input.annualReturnRate + 0.01, fireNumber, input.inflationRate,
   );
-  items.push({
-    label: "利回り +1%",
-    description: `年率${((input.annualReturnRate + 0.01) * 100).toFixed(0)}%`,
-    currentYears: neutralYears,
-    newYears: higherReturn.years,
-    diff:
-      neutralYears !== null && higherReturn.years !== null
-        ? higherReturn.years - neutralYears
-        : null,
-  });
+  items.push(makeSensitivityItem(
+    "利回り +1%", `年率${((input.annualReturnRate + 0.01) * 100).toFixed(0)}%`,
+    higherReturn.years, neutralYears,
+  ));
 
   // 支出-10%（生活費部分のみ10%削減、社会保険料はそのまま）
   const lowerLivingAnnual = baseMonthlyExpense * 0.9 * 12 + postFireMonthlyCost * 12;
-  const lowerExpenseFireNumber = calcFireNumberForStrategy(
-    lowerLivingAnnual,
-    input,
-  );
+  const lowerExpenseFireNumber = calcFireNumberForStrategy(lowerLivingAnnual, input);
   const lowerExpense = calcAchievementYears(
-    input.currentAssets,
-    annualInvestment,
-    input.annualReturnRate,
-    lowerExpenseFireNumber,
-    input.inflationRate,
+    input.currentAssets, annualInvestment,
+    input.annualReturnRate, lowerExpenseFireNumber, input.inflationRate,
   );
-  items.push({
-    label: "支出 -10%",
-    description: "生活費を10%削減",
-    currentYears: neutralYears,
-    newYears: lowerExpense.years,
-    diff:
-      neutralYears !== null && lowerExpense.years !== null
-        ? lowerExpense.years - neutralYears
-        : null,
-  });
+  items.push(makeSensitivityItem(
+    "支出 -10%", "生活費を10%削減",
+    lowerExpense.years, neutralYears,
+  ));
 
   // ストラテジー切り替え比較
   if (input.fireStrategy === "withdrawal") {
     const yieldInput = { ...input, fireStrategy: "yield" as const };
     const yieldFireNumber = calcFireNumberForStrategy(annualExpense, yieldInput);
     const yieldResult = calcAchievementYears(
-      input.currentAssets,
-      annualInvestment,
-      input.annualReturnRate,
-      yieldFireNumber,
-      input.inflationRate,
+      input.currentAssets, annualInvestment,
+      input.annualReturnRate, yieldFireNumber, input.inflationRate,
     );
-    items.push({
-      label: "利回り運用に変更",
-      description: `元本維持（利回り${(input.yieldRate * 100).toFixed(1)}%）`,
-      currentYears: neutralYears,
-      newYears: yieldResult.years,
-      diff:
-        neutralYears !== null && yieldResult.years !== null
-          ? yieldResult.years - neutralYears
-          : null,
-    });
+    items.push(makeSensitivityItem(
+      "利回り運用に変更", `元本維持（利回り${(input.yieldRate * 100).toFixed(1)}%）`,
+      yieldResult.years, neutralYears,
+    ));
   } else {
     const swrInput = { ...input, fireStrategy: "withdrawal" as const };
     const swrFireNumber = calcFireNumberForStrategy(annualExpense, swrInput);
     const swrResult = calcAchievementYears(
-      input.currentAssets,
-      annualInvestment,
-      input.annualReturnRate,
-      swrFireNumber,
-      input.inflationRate,
+      input.currentAssets, annualInvestment,
+      input.annualReturnRate, swrFireNumber, input.inflationRate,
     );
-    items.push({
-      label: "取り崩しに変更",
-      description: `SWR ${(input.swr * 100).toFixed(1)}%で取り崩し`,
-      currentYears: neutralYears,
-      newYears: swrResult.years,
-      diff:
-        neutralYears !== null && swrResult.years !== null
-          ? swrResult.years - neutralYears
-          : null,
-    });
+    items.push(makeSensitivityItem(
+      "取り崩しに変更", `SWR ${(input.swr * 100).toFixed(1)}%で取り崩し`,
+      swrResult.years, neutralYears,
+    ));
   }
 
   return items;

@@ -7,6 +7,7 @@ import { generateRegionComparison } from "@/lib/seo-helpers";
 import { formatMoney } from "@/lib/format";
 import Disclaimer from "@/components/Disclaimer";
 import Breadcrumb from "@/components/Breadcrumb";
+import RelatedGuides from "@/components/RelatedGuides";
 import JsonLd from "@/components/JsonLd";
 
 export function generateStaticParams() {
@@ -209,6 +210,8 @@ export default async function RegionPage({
           ))}
         </div>
       </section>
+
+      <RelatedGuides category="region" />
 
       <div className="mt-12 rounded-lg border-2 border-primary-200 bg-primary-50 p-6 text-center">
         <p className="text-lg font-bold text-primary-800">

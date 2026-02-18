@@ -7,6 +7,7 @@ import { formatMoney } from "@/lib/format";
 import FAQ, { getDefaultFAQ } from "@/components/FAQ";
 import Disclaimer from "@/components/Disclaimer";
 import Breadcrumb from "@/components/Breadcrumb";
+import RelatedGuides from "@/components/RelatedGuides";
 import JsonLd from "@/components/JsonLd";
 import { SITE_URL, CONTENT_PUBLISHED_DATE } from "@/config/site";
 
@@ -153,6 +154,8 @@ export default async function IncomePage({
           ))}
         </div>
       </section>
+
+      <RelatedGuides category="income" />
 
       <section className="mt-10">
         <FAQ items={faqItems} prefName={prefecture.name} />

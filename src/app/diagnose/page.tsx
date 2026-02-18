@@ -245,6 +245,7 @@ function ShareButtons({ result }: { result: DiagnoseResult }) {
         href={twitterUrl}
         target="_blank"
         rel="noopener noreferrer"
+        aria-label="Xで診断結果を共有"
         className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-black px-5 py-3 text-sm font-semibold text-white transition-opacity hover:opacity-80 sm:w-auto"
       >
         <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -385,7 +386,7 @@ export default function DiagnosePage() {
       {/*  STEP 1 : 年齢                                                   */}
       {/* ================================================================ */}
       {step === 1 && (
-        <div className="animate-fadeIn">
+        <section className="animate-fadeIn" aria-label="質問1: 年齢">
           <ProgressBar step={1} total={3} />
           <h2 className="text-center text-xl font-bold text-gray-900 sm:text-2xl">
             Q1. あなたの年齢は？
@@ -403,14 +404,14 @@ export default function DiagnosePage() {
               />
             ))}
           </div>
-        </div>
+        </section>
       )}
 
       {/* ================================================================ */}
       {/*  STEP 2 : 毎月の貯蓄額                                           */}
       {/* ================================================================ */}
       {step === 2 && (
-        <div className="animate-fadeIn">
+        <section className="animate-fadeIn" aria-label="質問2: 毎月の貯蓄額">
           <ProgressBar step={2} total={3} />
           <h2 className="text-center text-xl font-bold text-gray-900 sm:text-2xl">
             Q2. 毎月の貯蓄額は？
@@ -428,14 +429,14 @@ export default function DiagnosePage() {
               />
             ))}
           </div>
-        </div>
+        </section>
       )}
 
       {/* ================================================================ */}
       {/*  STEP 3 : 金融資産                                               */}
       {/* ================================================================ */}
       {step === 3 && (
-        <div className="animate-fadeIn">
+        <section className="animate-fadeIn" aria-label="質問3: 現在の金融資産">
           <ProgressBar step={3} total={3} />
           <h2 className="text-center text-xl font-bold text-gray-900 sm:text-2xl">
             Q3. 現在の金融資産は？
@@ -453,14 +454,14 @@ export default function DiagnosePage() {
               />
             ))}
           </div>
-        </div>
+        </section>
       )}
 
       {/* ================================================================ */}
       {/*  RESULT                                                          */}
       {/* ================================================================ */}
       {step === 4 && result && (
-        <div className="animate-fadeIn">
+        <section className="animate-fadeIn" aria-label="診断結果" aria-live="polite">
           <h2 className="mb-6 text-center text-xl font-bold text-gray-900 sm:text-2xl">
             診断結果
           </h2>
@@ -609,7 +610,7 @@ export default function DiagnosePage() {
               もう一度診断する
             </button>
           </div>
-        </div>
+        </section>
       )}
 
       {/* ================================================================ */}
