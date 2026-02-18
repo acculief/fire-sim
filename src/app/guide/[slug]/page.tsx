@@ -5,6 +5,7 @@ import { SITE_URL } from "@/config/site";
 import Disclaimer from "@/components/Disclaimer";
 import Breadcrumb from "@/components/Breadcrumb";
 import JsonLd from "@/components/JsonLd";
+import GuideImage from "@/components/GuideImage";
 import { autoLinkKeywords } from "@/lib/auto-link";
 
 export function generateStaticParams() {
@@ -20,6 +21,17 @@ export async function generateMetadata({
   const article = getGuideBySlug(slug);
   if (!article) return { title: "記事が見つかりません" };
 
+  const ogImages = article.heroImage
+    ? [
+        {
+          url: article.heroImage.src,
+          width: article.heroImage.width,
+          height: article.heroImage.height,
+          alt: article.heroImage.alt,
+        },
+      ]
+    : undefined;
+
   return {
     title: article.title,
     description: article.description,
@@ -31,6 +43,7 @@ export async function generateMetadata({
       url: `/guide/${slug}/`,
       siteName: "FIREシミュレーター",
       publishedTime: article.publishedAt,
+      ...(ogImages && { images: ogImages }),
     },
   };
 }
@@ -58,7 +71,9 @@ export default async function GuidePage({
     description: article.description,
     mainEntityOfPage: { "@type": "WebPage", "@id": `${SITE_URL}/guide/${slug}/` },
     url: `${SITE_URL}/guide/${slug}/`,
-    image: `${SITE_URL}/opengraph-image`,
+    image: article.heroImage
+      ? `${SITE_URL}${article.heroImage.src}`
+      : `${SITE_URL}/opengraph-image`,
     datePublished: article.publishedAt,
     dateModified: article.publishedAt,
     inLanguage: "ja",
@@ -98,6 +113,10 @@ export default async function GuidePage({
           {article.publishedAt}
         </time>
 
+        {article.heroImage && (
+          <GuideImage image={article.heroImage} priority />
+        )}
+
         {/* 目次 */}
         <nav className="mt-8 rounded-lg border border-gray-200 bg-gray-50 p-4">
           <p className="mb-2 text-sm font-bold text-gray-700">目次</p>
@@ -122,6 +141,7 @@ export default async function GuidePage({
               <h2 className="text-xl font-bold text-gray-800">
                 {section.heading}
               </h2>
+              {section.image && <GuideImage image={section.image} />}
               <div className="mt-3 max-w-none text-gray-700">
                 {section.body.split("\n\n").map((paragraph, j) => {
                   const trimmed = paragraph.trim();

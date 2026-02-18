@@ -1,9 +1,18 @@
+export interface GuideImage {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+  credit?: string;
+}
+
 export interface GuideArticle {
   slug: string;
   title: string;
   description: string;
   publishedAt: string;
-  sections: { heading: string; body: string }[];
+  heroImage?: GuideImage;
+  sections: { heading: string; body: string; image?: GuideImage }[];
   relatedSlugs: string[];
 }
 
@@ -14,6 +23,13 @@ export const guides: GuideArticle[] = [
     description:
       "FIRE（Financial Independence, Retire Early）の意味、歴史、種類（フルFIRE・サイドFIRE・バリスタFIRE等）を分かりやすく解説します。",
     publishedAt: "2026-02-01",
+    heroImage: {
+      src: "/images/guides/what-is-fire/hero.webp",
+      alt: "山頂から見渡す雄大な景色 — 経済的自立の先にある自由をイメージ",
+      width: 1200,
+      height: 630,
+      credit: "Photo by Bailey Zindel on Unsplash",
+    },
     relatedSlugs: ["4percent-rule", "how-to-calculate-fire-number", "fire-first-steps", "side-fire", "fire-barista"],
     sections: [
       {
@@ -26,6 +42,13 @@ FIREの核心は「自由の獲得」です。必ずしも完全に仕事を辞�
       },
       {
         heading: "FIREの種類",
+        image: {
+          src: "/images/guides/what-is-fire/section-types.webp",
+          alt: "積み上げられたコインと成長する植物 — さまざまなFIREスタイルのイメージ",
+          width: 800,
+          height: 450,
+          credit: "Photo by Alexander Mils on Unsplash",
+        },
         body: `FIREにはいくつかのバリエーションがあります。
 
 **フルFIRE（Fat FIRE）**
@@ -50,6 +73,13 @@ FIREの核心は「自由の獲得」です。必ずしも完全に仕事を辞�
       },
       {
         heading: "日本でFIREを目指す際の注意点",
+        image: {
+          src: "/images/guides/what-is-fire/section-japan.webp",
+          alt: "東京タワーと都市の夜景 — 日本でFIREを目指す際の特有の事情",
+          width: 800,
+          height: 450,
+          credit: "Photo by Jezael Melgoza on Unsplash",
+        },
         body: `日本固有の事情として、以下の点を考慮する必要があります。
 
 - **社会保険料**: 会社を辞めると国民健康保険＋国民年金が全額自己負担に（月3〜6万円）
@@ -66,6 +96,13 @@ FIREの核心は「自由の獲得」です。必ずしも完全に仕事を辞�
     description:
       "FIRE達成後の資産取り崩し戦略「4%ルール」の根拠・メリット・リスク・日本での適用について詳しく解説します。",
     publishedAt: "2026-02-01",
+    heroImage: {
+      src: "/images/guides/4percent-rule/hero.webp",
+      alt: "株式チャートが表示されたモニター — 資産取り崩し戦略のイメージ",
+      width: 1200,
+      height: 630,
+      credit: "Photo by Maxim Hopman on Unsplash",
+    },
     relatedSlugs: ["what-is-fire", "withdrawal-vs-yield", "how-to-calculate-fire-number"],
     sections: [
       {
@@ -78,6 +115,13 @@ FIREの核心は「自由の獲得」です。必ずしも完全に仕事を辞�
       },
       {
         heading: "4%ルールの根拠とデータ",
+        image: {
+          src: "/images/guides/4percent-rule/section-data.webp",
+          alt: "電卓と財務書類 — 4%ルールの根拠となるデータ分析",
+          width: 800,
+          height: 450,
+          credit: "Photo by Kelly Sikkema on Unsplash",
+        },
         body: `トリニティ・スタディのポイントは以下の通りです。
 
 - **対象期間**: 1926年〜1995年の米国市場データ
@@ -122,6 +166,13 @@ FIRE直後に大暴落が来ると、資産が大きく毀損した状態で取�
     description:
       "FIRE達成に必要な資産額（FIREナンバー）の計算方法を、生活費・利回り・SWR・インフレを踏まえて具体例付きで解説します。",
     publishedAt: "2026-02-01",
+    heroImage: {
+      src: "/images/guides/how-to-calculate-fire-number/hero.webp",
+      alt: "グラフと財務データ — FIRE必要資産の計算イメージ",
+      width: 1200,
+      height: 630,
+      credit: "Photo by Isaac Smith on Unsplash",
+    },
     relatedSlugs: ["4percent-rule", "what-is-fire", "fire-savings-rate"],
     sections: [
       {
@@ -139,6 +190,13 @@ FIRE直後に大暴落が来ると、資産が大きく毀損した状態で取�
       },
       {
         heading: "年間生活費の見積もり方",
+        image: {
+          src: "/images/guides/how-to-calculate-fire-number/section-savings.webp",
+          alt: "紙幣と貯金のイメージ — 年間生活費を見積もるための家計管理",
+          width: 800,
+          height: 450,
+          credit: "Photo by Alexander Mils on Unsplash",
+        },
         body: `FIREナンバーの精度は、年間生活費の見積もりで決まります。以下の項目を洗い出しましょう。
 
 **固定費（毎月一定）**
@@ -899,6 +957,13 @@ FIREナンバー8,000万円の場合:
     description:
       "FIREを目指す人がインデックス投資で資産を築くための完全ガイド。おすすめファンド、積立戦略、暴落時の対処法を具体的に解説します。",
     publishedAt: "2026-02-17",
+    heroImage: {
+      src: "/images/guides/fire-index-investing/hero.webp",
+      alt: "株式市場のティッカーボード — インデックス投資で資産形成するイメージ",
+      width: 1200,
+      height: 630,
+      credit: "Photo by Nicholas Cappello on Unsplash",
+    },
     relatedSlugs: ["nisa-ideco-for-fire", "4percent-rule", "withdrawal-vs-yield", "how-to-choose-broker"],
     sections: [
       {
@@ -915,6 +980,13 @@ FIREナンバー8,000万円の場合:
       },
       {
         heading: "FIRE向きのおすすめインデックスファンド",
+        image: {
+          src: "/images/guides/fire-index-investing/section-portfolio.webp",
+          alt: "データ分析のダッシュボード画面 — ポートフォリオ構成と銘柄選びのイメージ",
+          width: 800,
+          height: 450,
+          credit: "Photo by Carlos Muza on Unsplash",
+        },
         body: `2026年時点で、FIRE志向者に最もおすすめのインデックスファンドを紹介します。
 
 **全世界株式（オールカントリー）**
@@ -1770,10 +1842,24 @@ NISA口座で売却した利益は所得にカウントされません。FIRE後
     description:
       "FIREを目指すと決めたら、まず何をすべき？家計の把握・証券口座の開設・インデックス投資の開始という3ステップを具体的に解説します。",
     publishedAt: "2026-02-17",
+    heroImage: {
+      src: "/images/guides/fire-first-steps/hero.webp",
+      alt: "ノートとペンで計画を書き出す様子 — FIRE達成への最初の一歩",
+      width: 1200,
+      height: 630,
+      credit: "Photo by Green Chameleon on Unsplash",
+    },
     relatedSlugs: ["what-is-fire", "how-to-choose-broker", "fire-index-investing"],
     sections: [
       {
         heading: "ステップ1: 家計を把握する",
+        image: {
+          src: "/images/guides/fire-first-steps/section-budget.webp",
+          alt: "ビジネス書類を確認する手元 — 家計の把握と支出管理",
+          width: 800,
+          height: 450,
+          credit: "Photo by Scott Graham on Unsplash",
+        },
         body: `FIREの第一歩は「自分がいくら使っているか」を正確に知ることです。収入が多くても支出を把握していなければ、いつまで経ってもFIREには近づけません。
 
 **まずやること**
@@ -1814,6 +1900,13 @@ FIRE達成スピードを決める最重要指標が**貯蓄率**です。計算
       },
       {
         heading: "ステップ3: インデックス投資を始める",
+        image: {
+          src: "/images/guides/fire-first-steps/section-invest.webp",
+          alt: "成長する植物とコイン — 投資を始めて資産を育てるイメージ",
+          width: 800,
+          height: 450,
+          credit: "Photo by Micheile Henderson on Unsplash",
+        },
         body: `口座を開設したら、いよいよ投資開始です。FIRE志向者の王道は**インデックス投資の積立**です。
 
 **何を買えばいいか**
