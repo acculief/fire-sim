@@ -10,6 +10,7 @@ import {
   estimatePostFireMonthlyCost,
 } from "@/config/assumptions";
 import type { SimulationInput, FireStrategy } from "@/lib/types";
+import NumberInput from "@/components/NumberInput";
 
 interface Props {
   initialInput?: Partial<SimulationInput>;
@@ -132,12 +133,11 @@ export default function SimulationForm({ initialInput, onSubmit }: Props) {
             <label htmlFor="currentAge" className="mb-1 block text-sm font-medium text-gray-700">
               現在の年齢
             </label>
-            <input
+            <NumberInput
               id="currentAge"
-              type="number"
               className="input-field"
               value={currentAge}
-              onChange={(e) => setCurrentAge(Number(e.target.value))}
+              onValueChange={setCurrentAge}
               min={18}
               max={80}
             />
@@ -170,12 +170,11 @@ export default function SimulationForm({ initialInput, onSubmit }: Props) {
             <label htmlFor="annualIncome" className="mb-1 block text-sm font-medium text-gray-700">
               年収（万円）
             </label>
-            <input
+            <NumberInput
               id="annualIncome"
-              type="number"
               className="input-field"
               value={annualIncome}
-              onChange={(e) => setAnnualIncome(Number(e.target.value))}
+              onValueChange={setAnnualIncome}
               min={0}
               step={10}
             />
@@ -209,12 +208,11 @@ export default function SimulationForm({ initialInput, onSubmit }: Props) {
             <label htmlFor="currentAssets" className="mb-1 block text-sm font-medium text-gray-700">
               現在の金融資産（万円）
             </label>
-            <input
+            <NumberInput
               id="currentAssets"
-              type="number"
               className="input-field"
               value={currentAssets}
-              onChange={(e) => setCurrentAssets(Number(e.target.value))}
+              onValueChange={setCurrentAssets}
               min={0}
               step={10}
             />
@@ -223,12 +221,11 @@ export default function SimulationForm({ initialInput, onSubmit }: Props) {
             <label htmlFor="monthlyInvestment" className="mb-1 block text-sm font-medium text-gray-700">
               毎月の積立投資額（万円）
             </label>
-            <input
+            <NumberInput
               id="monthlyInvestment"
-              type="number"
               className="input-field"
               value={monthlyInvestment}
-              onChange={(e) => setMonthlyInvestment(Number(e.target.value))}
+              onValueChange={setMonthlyInvestment}
               min={0}
               step={1}
             />
@@ -377,12 +374,11 @@ export default function SimulationForm({ initialInput, onSubmit }: Props) {
                 <label htmlFor="annualReturnRate" className="mb-1 block text-sm font-medium text-gray-700">
                   想定運用利回り（%）
                 </label>
-                <input
+                <NumberInput
                   id="annualReturnRate"
-                  type="number"
                   className="input-field"
                   value={annualReturnRate}
-                  onChange={(e) => setAnnualReturnRate(Number(e.target.value))}
+                  onValueChange={setAnnualReturnRate}
                   min={0}
                   max={20}
                   step={0.5}
@@ -397,12 +393,11 @@ export default function SimulationForm({ initialInput, onSubmit }: Props) {
                   <label htmlFor="swr" className="mb-1 block text-sm font-medium text-gray-700">
                     取り崩し率 SWR（%）
                   </label>
-                  <input
+                  <NumberInput
                     id="swr"
-                    type="number"
                     className="input-field"
                     value={swr}
-                    onChange={(e) => setSwr(Number(e.target.value))}
+                    onValueChange={setSwr}
                     min={1}
                     max={10}
                     step={0.5}
@@ -417,12 +412,11 @@ export default function SimulationForm({ initialInput, onSubmit }: Props) {
                   <label htmlFor="yieldRate" className="mb-1 block text-sm font-medium text-gray-700">
                     想定配当利回り（%）
                   </label>
-                  <input
+                  <NumberInput
                     id="yieldRate"
-                    type="number"
                     className="input-field"
                     value={yieldRate}
-                    onChange={(e) => setYieldRate(Number(e.target.value))}
+                    onValueChange={setYieldRate}
                     min={0.5}
                     max={10}
                     step={0.5}
@@ -437,12 +431,11 @@ export default function SimulationForm({ initialInput, onSubmit }: Props) {
                 <label htmlFor="inflationRate" className="mb-1 block text-sm font-medium text-gray-700">
                   物価上昇率（%）
                 </label>
-                <input
+                <NumberInput
                   id="inflationRate"
-                  type="number"
                   className="input-field"
                   value={inflationRate}
-                  onChange={(e) => setInflationRate(Number(e.target.value))}
+                  onValueChange={setInflationRate}
                   min={0}
                   max={10}
                   step={0.5}
@@ -460,12 +453,11 @@ export default function SimulationForm({ initialInput, onSubmit }: Props) {
                   <label htmlFor="dividendTaxRate" className="mb-1 block text-sm text-gray-600">
                     運用益の税率（%）
                   </label>
-                  <input
+                  <NumberInput
                     id="dividendTaxRate"
-                    type="number"
                     className="input-field"
                     value={dividendTaxRate}
-                    onChange={(e) => setDividendTaxRate(Number(e.target.value))}
+                    onValueChange={setDividendTaxRate}
                     min={0}
                     max={55}
                     step={0.1}

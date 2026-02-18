@@ -4,6 +4,7 @@ import { useState, useCallback } from "react";
 import Link from "next/link";
 import Breadcrumb from "@/components/Breadcrumb";
 import RelatedContent from "@/components/RelatedContent";
+import NumberInput from "@/components/NumberInput";
 import { formatMoney } from "@/lib/format";
 import { brokers } from "@/data/recommend";
 import BrokerCard from "@/components/BrokerCard";
@@ -154,12 +155,11 @@ export default function WithdrawPage() {
             >
               初期資産（万円）
             </label>
-            <input
+            <NumberInput
               id="initialAssets"
-              type="number"
               className="input-field"
               value={initialAssets}
-              onChange={(e) => setInitialAssets(Number(e.target.value))}
+              onValueChange={setInitialAssets}
               min={100}
               step={100}
             />
@@ -171,12 +171,11 @@ export default function WithdrawPage() {
             >
               毎月の取り崩し額（万円）
             </label>
-            <input
+            <NumberInput
               id="monthlyWithdrawal"
-              type="number"
               className="input-field"
               value={monthlyWithdrawal}
-              onChange={(e) => setMonthlyWithdrawal(Number(e.target.value))}
+              onValueChange={setMonthlyWithdrawal}
               min={1}
               step={1}
             />
@@ -188,12 +187,11 @@ export default function WithdrawPage() {
             >
               想定運用利回り（年率%）
             </label>
-            <input
+            <NumberInput
               id="annualReturn"
-              type="number"
               className="input-field"
               value={annualReturn}
-              onChange={(e) => setAnnualReturn(Number(e.target.value))}
+              onValueChange={setAnnualReturn}
               min={0}
               max={20}
               step={0.5}
@@ -206,12 +204,11 @@ export default function WithdrawPage() {
             >
               インフレ率（年率%）
             </label>
-            <input
+            <NumberInput
               id="inflationRate"
-              type="number"
               className="input-field"
               value={inflationRate}
-              onChange={(e) => setInflationRate(Number(e.target.value))}
+              onValueChange={setInflationRate}
               min={0}
               max={10}
               step={0.5}
@@ -224,12 +221,11 @@ export default function WithdrawPage() {
             >
               現在の年齢
             </label>
-            <input
+            <NumberInput
               id="startAge"
-              type="number"
               className="input-field"
               value={startAge}
-              onChange={(e) => setStartAge(Number(e.target.value))}
+              onValueChange={setStartAge}
               min={20}
               max={80}
             />
