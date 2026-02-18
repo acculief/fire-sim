@@ -149,6 +149,32 @@ export const brokers: Broker[] = [
     url: "https://www.monex.co.jp/",
   },
   {
+    name: "松井証券",
+    slug: "matsui",
+    description:
+      "創業100年超の老舗ネット証券。株式・投資信託・先物など豊富な投資サービスを提供。1日の約定代金50万円まで手数料無料で、少額投資のFIRE初心者に最適。投信残高に応じたポイント還元も魅力。",
+    features: [
+      "1日の約定代金50万円まで手数料無料",
+      "投信残高に応じて松井証券ポイント還元",
+      "老舗ならではの手厚いサポート体制",
+      "新NISA対応・iDeCo取扱あり",
+    ],
+    nisa: true,
+    ideco: true,
+    minFee: "0円",
+    creditCardReturn: "投信残高還元",
+    fundCount: "1,800本以上",
+    usStockCount: "3,800銘柄以上",
+    idecoCount: "40本",
+    pointType: "松井証券ポイント",
+    url: "https://www.matsui.co.jp/",
+    affiliateUrl:
+      "https://px.a8.net/svt/ejp?a8mat=4AXDCI+96FLIQ+3XCC+691UP",
+    trackingPixel:
+      "https://www13.a8.net/0.gif?a8mat=4AXDCI+96FLIQ+3XCC+691UP",
+    isAffiliate: true,
+  },
+  {
     name: "三菱UFJ eスマート証券",
     slug: "mufg-esmart",
     description:
