@@ -105,7 +105,14 @@ export default function HomePage() {
 
       {/* モデルケース・プラン・FAQ */}
       <section className="mt-12">
-        <div className="grid gap-3 sm:grid-cols-3">
+        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          <Link
+            href="/income/"
+            className="rounded-lg border border-gray-200 bg-white p-4 transition-colors hover:border-primary-300 hover:bg-primary-50"
+          >
+            <p className="font-bold text-gray-800">手取り早見表</p>
+            <p className="mt-1 text-xs text-gray-500">年収別の手取り額・税金・社会保険料を一覧で確認</p>
+          </Link>
           <Link
             href="/cases/"
             className="rounded-lg border border-gray-200 bg-white p-4 transition-colors hover:border-primary-300 hover:bg-primary-50"

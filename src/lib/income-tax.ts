@@ -158,15 +158,30 @@ export function calcTakeHome(
   const si = calcSocialInsurance(grossAnnualYen);
 
   // 家族構成に応じた追加控除
-  let familyDedIT = 0;
-  let familyDedRT = 0;
-  if (family === "couple") {
-    familyDedIT = 380_000; // 配偶者控除（所得税）
-    familyDedRT = 330_000; // 配偶者控除（住民税）
-  } else if (family === "couple-child1") {
-    familyDedIT = 380_000 + 380_000; // 配偶者控除 + 一般扶養控除
-    familyDedRT = 330_000 + 330_000;
+  // 配偶者控除は納税者の合計所得金額に応じて段階的に縮小
+  //   900万以下: 満額、900万超950万以下: 26万/22万、950万超1000万以下: 13万/11万、1000万超: 0
+  let spouseDedIT = 0;
+  let spouseDedRT = 0;
+  if (family !== "single") {
+    if (totalIncome <= 9_000_000) {
+      spouseDedIT = 380_000;
+      spouseDedRT = 330_000;
+    } else if (totalIncome <= 9_500_000) {
+      spouseDedIT = 260_000;
+      spouseDedRT = 220_000;
+    } else if (totalIncome <= 10_000_000) {
+      spouseDedIT = 130_000;
+      spouseDedRT = 110_000;
+    }
+    // 1000万超は配偶者控除なし
   }
+
+  // 扶養控除（16歳以上の子）は所得制限なし
+  const dependentDedIT = family === "couple-child1" ? 380_000 : 0;
+  const dependentDedRT = family === "couple-child1" ? 330_000 : 0;
+
+  const familyDedIT = spouseDedIT + dependentDedIT;
+  const familyDedRT = spouseDedRT + dependentDedRT;
 
   // 課税所得（所得税）
   const taxableIT = Math.max(

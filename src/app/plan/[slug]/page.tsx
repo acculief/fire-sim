@@ -15,6 +15,7 @@ import {
 } from "@/config/assumptions";
 import { formatMoney } from "@/lib/format";
 import { SITE_URL } from "@/config/site";
+import { INCOME_LEVELS as TAKE_HOME_LEVELS } from "@/lib/income-tax";
 import Breadcrumb from "@/components/Breadcrumb";
 
 /* ---------- types ---------- */
@@ -285,7 +286,13 @@ export default async function PlanDetailPage({
         <div className="rounded-lg border border-gray-200 bg-gray-50 p-3 text-center">
           <p className="text-xs text-gray-500">年収（額面）</p>
           <p className="mt-1 text-lg font-bold text-gray-800">
-            {page.annualIncome}万円
+            {TAKE_HOME_LEVELS.includes(page.annualIncome as (typeof TAKE_HOME_LEVELS)[number]) ? (
+              <Link href={`/income/${page.annualIncome}/`} className="text-primary-700 hover:underline">
+                {page.annualIncome}万円
+              </Link>
+            ) : (
+              <>{page.annualIncome}万円</>
+            )}
           </p>
         </div>
         <div className="rounded-lg border border-gray-200 bg-gray-50 p-3 text-center">

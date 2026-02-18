@@ -674,6 +674,7 @@ export default function ResultDisplay({ result, shareUrl }: Props) {
             LINE
           </a>
           <button
+            type="button"
             className="btn-secondary text-sm"
             onClick={() => {
               navigator.clipboard.writeText(shareUrl);

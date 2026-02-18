@@ -231,7 +231,7 @@ export default function WithdrawPage() {
             />
           </div>
         </div>
-        <button className="btn-primary mt-6 w-full" onClick={handleSimulate}>
+        <button type="button" className="btn-primary mt-6 w-full" onClick={handleSimulate}>
           シミュレーション開始
         </button>
       </div>

@@ -21,10 +21,6 @@ export const metadata: Metadata = {
   },
 };
 
-function yen(value: number): string {
-  return value.toLocaleString() + "円";
-}
-
 function man(value: number): string {
   const m = Math.round(value / 10_000);
   return m.toLocaleString() + "万円";

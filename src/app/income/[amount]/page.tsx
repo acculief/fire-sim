@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import Link from "next/link";
 import { SITE_URL } from "@/config/site";
 import Breadcrumb from "@/components/Breadcrumb";
+import RelatedContent from "@/components/RelatedContent";
 import {
   INCOME_LEVELS,
   FAMILY_PATTERNS,
@@ -450,6 +451,32 @@ export default async function IncomeDetailPage({
           </div>
         </div>
       </section>
+
+      {/* ---------- 関連コンテンツ ---------- */}
+      <RelatedContent
+        items={[
+          {
+            href: "/recommend/",
+            title: "おすすめ証券口座・投信",
+            description: "FIRE達成に向けた口座開設ならこちら",
+          },
+          {
+            href: "/guide/fire-tax-optimization/",
+            title: "FIRE志向者の節税戦略",
+            description: "手取りを最大化して資産形成を加速する方法",
+          },
+          {
+            href: "/guide/nisa-ideco-for-fire/",
+            title: "新NISA・iDeCoでFIRE加速",
+            description: "非課税枠をフル活用する戦略を解説",
+          },
+          {
+            href: "/plan/",
+            title: "年収×年代別FIREプラン",
+            description: "あなたの年収と年齢に最適なFIRE戦略",
+          },
+        ]}
+      />
 
       {/* ---------- 前後の年収リンク ---------- */}
       <div className="mt-10 flex gap-3">

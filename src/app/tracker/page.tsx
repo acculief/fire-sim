@@ -101,6 +101,7 @@ export default function TrackerPage() {
               </p>
             </div>
             <button
+              type="button"
               className="btn-secondary text-sm"
               onClick={() => setShowGoalForm(true)}
             >
@@ -143,11 +144,12 @@ export default function TrackerPage() {
               </div>
             </div>
             <div className="mt-3 flex gap-2">
-              <button className="btn-primary text-sm" onClick={handleSaveGoal}>
+              <button type="button" className="btn-primary text-sm" onClick={handleSaveGoal}>
                 保存
               </button>
               {goal && (
                 <button
+                  type="button"
                   className="btn-secondary text-sm"
                   onClick={() => setShowGoalForm(false)}
                 >
@@ -231,7 +233,7 @@ export default function TrackerPage() {
               step={10}
             />
           </div>
-          <button className="btn-primary col-span-2 self-end text-sm sm:shrink-0" onClick={handleAddEntry}>
+          <button type="button" className="btn-primary col-span-2 self-end text-sm sm:shrink-0" onClick={handleAddEntry}>
             記録
           </button>
         </div>

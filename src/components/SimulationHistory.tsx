@@ -120,6 +120,7 @@ export default function SimulationHistory({
             );
           })}
           <button
+            type="button"
             className="text-xs text-gray-400 hover:text-red-500"
             onClick={handleClear}
           >

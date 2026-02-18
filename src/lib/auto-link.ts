@@ -27,6 +27,8 @@ const KEYWORD_LINKS: { keyword: string; href: string }[] = [
   { keyword: "シミュレーション", href: "/simulate/" },
   { keyword: "シミュレーター", href: "/simulate/" },
   { keyword: "証券口座", href: "/recommend/#brokers" },
+  { keyword: "手取り早見表", href: "/income/" },
+  { keyword: "手取り額", href: "/income/" },
 ];
 
 /**
