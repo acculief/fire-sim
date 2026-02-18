@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Noto_Sans_JP } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import { SITE_URL } from "@/config/site";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 import Link from "next/link";
@@ -57,6 +58,7 @@ export default function RootLayout({
       </head>
       <body>
         <GoogleAnalytics />
+        <Analytics />
         <a
           href="#main-content"
           className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-primary-600 focus:px-4 focus:py-2 focus:text-white"
