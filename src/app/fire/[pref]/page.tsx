@@ -7,6 +7,7 @@ import { formatMoney } from "@/lib/format";
 import FAQ, { getDefaultFAQ } from "@/components/FAQ";
 import Disclaimer from "@/components/Disclaimer";
 import Breadcrumb from "@/components/Breadcrumb";
+import JsonLd from "@/components/JsonLd";
 import { guides } from "@/data/guides";
 
 export function generateStaticParams() {
@@ -342,15 +343,12 @@ export default async function PrefecturePage({
       </section>
 
       {/* 構造化データ */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebPage",
-            name: `${prefecture.name}のFIREシミュレーション`,
-            description: `${prefecture.name}在住の方向けFIREシミュレーション`,
-          }),
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          name: `${prefecture.name}のFIREシミュレーション`,
+          description: `${prefecture.name}在住の方向けFIREシミュレーション`,
         }}
       />
     </div>

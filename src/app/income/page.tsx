@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import Link from "next/link";
 import { SITE_URL, CONTENT_PUBLISHED_DATE } from "@/config/site";
 import Breadcrumb from "@/components/Breadcrumb";
+import JsonLd from "@/components/JsonLd";
 import RelatedContent from "@/components/RelatedContent";
 import {
   INCOME_LEVELS,
@@ -62,10 +63,7 @@ export default function IncomePage() {
 
   return (
     <div className="mx-auto max-w-5xl px-4 py-8">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      <JsonLd data={jsonLd} />
 
       <Breadcrumb items={[{ label: "ホーム", href: "/" }, { label: "手取り早見表" }]} />
 
@@ -86,7 +84,7 @@ export default function IncomePage() {
           手取り額一覧（独身・扶養なしの場合）
         </h2>
         <div className="mt-4 overflow-x-auto">
-          <table className="w-full min-w-[700px] text-sm">
+          <table className="w-full min-w-[700px] text-sm" aria-label="年収別 手取り額一覧（独身・扶養なし）">
             <thead>
               <tr className="border-b-2 border-gray-200 bg-gray-50">
                 <th className="px-3 py-3 text-left font-medium text-gray-600">年収</th>
@@ -144,7 +142,7 @@ export default function IncomePage() {
           片働き夫婦は配偶者控除（38万円）、子1人は一般扶養控除（38万円、16歳以上）を加算。
         </p>
         <div className="mt-4 overflow-x-auto">
-          <table className="w-full min-w-[600px] text-sm">
+          <table className="w-full min-w-[600px] text-sm" aria-label="家族構成別の手取り比較">
             <thead>
               <tr className="border-b-2 border-gray-200 bg-gray-50">
                 <th className="px-3 py-3 text-left font-medium text-gray-600">年収</th>

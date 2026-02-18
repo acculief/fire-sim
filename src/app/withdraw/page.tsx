@@ -327,7 +327,7 @@ export default function WithdrawPage() {
           {/* 年次データテーブル */}
           <div className="card overflow-x-auto">
             <h2 className="text-lg font-bold text-gray-800">年次データ</h2>
-            <table className="mt-4 w-full text-sm">
+            <table className="mt-4 w-full text-sm" aria-label="取り崩しシミュレーション年次データ">
               <thead>
                 <tr className="border-b border-gray-200 text-left text-gray-500">
                   <th className="pb-2 pr-4">年齢</th>

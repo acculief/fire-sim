@@ -4,6 +4,7 @@ import { guides, getGuideBySlug } from "@/data/guides";
 import { SITE_URL } from "@/config/site";
 import Disclaimer from "@/components/Disclaimer";
 import Breadcrumb from "@/components/Breadcrumb";
+import JsonLd from "@/components/JsonLd";
 import { autoLinkKeywords } from "@/lib/auto-link";
 
 export function generateStaticParams() {
@@ -74,12 +75,7 @@ export default async function GuidePage({
 
   return (
     <div className="mx-auto max-w-3xl px-4 py-8">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(structuredData),
-        }}
-      />
+      <JsonLd data={structuredData} />
 
       <Breadcrumb
         items={[

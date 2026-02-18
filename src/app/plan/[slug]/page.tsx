@@ -17,6 +17,7 @@ import { formatMoney } from "@/lib/format";
 import { SITE_URL, CONTENT_PUBLISHED_DATE } from "@/config/site";
 import { INCOME_LEVELS as TAKE_HOME_LEVELS } from "@/lib/income-tax";
 import Breadcrumb from "@/components/Breadcrumb";
+import JsonLd from "@/components/JsonLd";
 
 /* ---------- types ---------- */
 
@@ -257,10 +258,7 @@ export default async function PlanDetailPage({
 
   return (
     <div className="mx-auto max-w-3xl px-4 py-8">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-      />
+      <JsonLd data={structuredData} />
 
       <Breadcrumb
         items={[
@@ -317,7 +315,7 @@ export default async function PlanDetailPage({
           家族構成別×地域別 FIRE必要資産・達成年齢
         </h2>
         <div className="mt-4 overflow-x-auto">
-          <table className="w-full min-w-[600px] text-sm">
+          <table className="w-full min-w-[600px] text-sm" aria-label={`${page.ageLabel}・年収${page.annualIncome}万円の家族構成別×地域別FIRE比較`}>
             <thead>
               <tr className="border-b-2 border-gray-200 bg-gray-50">
                 <th className="px-3 py-3 text-left font-medium text-gray-600">

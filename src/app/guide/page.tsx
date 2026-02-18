@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import Link from "next/link";
 import { guides } from "@/data/guides";
 import Breadcrumb from "@/components/Breadcrumb";
+import JsonLd from "@/components/JsonLd";
 import RelatedContent from "@/components/RelatedContent";
 
 export const metadata: Metadata = {
@@ -36,10 +37,7 @@ export default function GuidesIndexPage() {
 
   return (
     <div className="mx-auto max-w-3xl px-4 py-8">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-      />
+      <JsonLd data={structuredData} />
       <Breadcrumb
         items={[
           { label: "ホーム", href: "/" },

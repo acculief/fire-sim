@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import Link from "next/link";
 import { ReactNode } from "react";
 import Breadcrumb from "@/components/Breadcrumb";
+import JsonLd from "@/components/JsonLd";
 import RelatedContent from "@/components/RelatedContent";
 
 export const metadata: Metadata = {
@@ -140,10 +141,7 @@ const faqJsonLd = {
 export default function FaqPage() {
   return (
     <div className="mx-auto max-w-3xl px-4 py-8">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
-      />
+      <JsonLd data={faqJsonLd} />
 
       <Breadcrumb items={[{ label: "ホーム", href: "/" }, { label: "よくある質問" }]} />
 

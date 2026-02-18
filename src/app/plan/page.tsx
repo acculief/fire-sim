@@ -5,6 +5,7 @@ import { formatMoney } from "@/lib/format";
 import { estimateMonthlyExpense, calcFireNumber } from "@/lib/calculator";
 import { estimatePostFireMonthlyCost } from "@/config/assumptions";
 import Breadcrumb from "@/components/Breadcrumb";
+import JsonLd from "@/components/JsonLd";
 import RelatedContent from "@/components/RelatedContent";
 
 export const metadata: Metadata = {
@@ -54,10 +55,7 @@ export default function PlanIndexPage() {
 
   return (
     <div className="mx-auto max-w-4xl px-4 py-8">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-      />
+      <JsonLd data={structuredData} />
       <Breadcrumb
         items={[
           { label: "ホーム", href: "/" },

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { brokers, funds } from "@/data/recommend";
 import Disclaimer from "@/components/Disclaimer";
 import Breadcrumb from "@/components/Breadcrumb";
+import JsonLd from "@/components/JsonLd";
 
 export const metadata: Metadata = {
   title: "FIRE達成におすすめの証券口座・投資信託【2026年最新】",
@@ -118,14 +119,8 @@ export default function RecommendPage() {
 
   return (
     <div className="mx-auto max-w-3xl px-4 py-8">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqStructuredData) }}
-      />
+      <JsonLd data={structuredData} />
+      <JsonLd data={faqStructuredData} />
 
       <Breadcrumb
         items={[

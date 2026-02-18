@@ -3,6 +3,7 @@ import Link from "next/link";
 import { modelCases } from "@/data/model-cases";
 import { formatMoney } from "@/lib/format";
 import Breadcrumb from "@/components/Breadcrumb";
+import JsonLd from "@/components/JsonLd";
 import RelatedContent from "@/components/RelatedContent";
 
 export const metadata: Metadata = {
@@ -36,10 +37,7 @@ export default function CasesIndexPage() {
 
   return (
     <div className="mx-auto max-w-3xl px-4 py-8">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-      />
+      <JsonLd data={structuredData} />
       <Breadcrumb
         items={[
           { label: "ホーム", href: "/" },

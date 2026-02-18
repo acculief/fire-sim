@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import { SITE_URL } from "@/config/site";
+import JsonLd from "@/components/JsonLd";
 
 export const metadata: Metadata = {
   title: "FIRE達成度診断 | あなたはFIREまであと何年？",
@@ -31,10 +32,7 @@ export default function DiagnoseLayout({
 }) {
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      <JsonLd data={jsonLd} />
       {children}
     </>
   );

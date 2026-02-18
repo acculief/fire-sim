@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import Link from "next/link";
 import { SITE_URL, CONTENT_PUBLISHED_DATE } from "@/config/site";
 import Breadcrumb from "@/components/Breadcrumb";
+import JsonLd from "@/components/JsonLd";
 import RelatedContent from "@/components/RelatedContent";
 import {
   INCOME_LEVELS,
@@ -143,14 +144,8 @@ export default async function IncomeDetailPage({
 
   return (
     <div className="mx-auto max-w-3xl px-4 py-8">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }}
-      />
+      <JsonLd data={jsonLd} />
+      <JsonLd data={faqLd} />
 
       <Breadcrumb
         items={[
@@ -201,7 +196,7 @@ export default async function IncomeDetailPage({
         </h2>
         <p className="mt-1 text-xs text-gray-500">独身・扶養なしの場合</p>
         <div className="mt-4 overflow-x-auto">
-          <table className="w-full text-sm">
+          <table className="w-full text-sm" aria-label={`年収${level.toLocaleString()}万円の税金・社会保険料の内訳`}>
             <tbody className="divide-y divide-gray-100">
               <tr className="bg-gray-50">
                 <td className="px-4 py-3 font-medium text-gray-700">年収（額面）</td>
@@ -287,7 +282,7 @@ export default async function IncomeDetailPage({
           配偶者控除・扶養控除の適用で同じ年収でも手取りが変わります。
         </p>
         <div className="mt-4 overflow-x-auto">
-          <table className="w-full text-sm">
+          <table className="w-full text-sm" aria-label={`年収${level.toLocaleString()}万円の家族構成別手取り比較`}>
             <thead>
               <tr className="border-b-2 border-gray-200 bg-gray-50">
                 <th className="px-3 py-3 text-left font-medium text-gray-600">項目</th>

@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import { SITE_URL } from "@/config/site";
+import JsonLd from "@/components/JsonLd";
 
 export const metadata: Metadata = {
   title: "FIRE進捗トラッカー | 資産推移を記録して達成度を可視化",
@@ -31,10 +32,7 @@ export default function TrackerLayout({
 }) {
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      <JsonLd data={jsonLd} />
       {children}
     </>
   );

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { prefectures } from "@/data/prefectures";
 import { REGION_SLUGS } from "@/config/assumptions";
 import Breadcrumb from "@/components/Breadcrumb";
+import JsonLd from "@/components/JsonLd";
 import RelatedContent from "@/components/RelatedContent";
 
 export const metadata: Metadata = {
@@ -104,24 +105,21 @@ export default function FireIndexPage() {
       </div>
 
       {/* 構造化データ */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "CollectionPage",
-            name: "地域別FIREシミュレーション",
-            description: "47都道府県の生活費に基づくFIRE必要資産シミュレーション",
-            mainEntity: {
-              "@type": "ItemList",
-              itemListElement: prefectures.map((p, i) => ({
-                "@type": "ListItem",
-                position: i + 1,
-                url: `/fire/${p.code}/`,
-                name: `${p.name}のFIREシミュレーション`,
-              })),
-            },
-          }),
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "CollectionPage",
+          name: "地域別FIREシミュレーション",
+          description: "47都道府県の生活費に基づくFIRE必要資産シミュレーション",
+          mainEntity: {
+            "@type": "ItemList",
+            itemListElement: prefectures.map((p, i) => ({
+              "@type": "ListItem",
+              position: i + 1,
+              url: `/fire/${p.code}/`,
+              name: `${p.name}のFIREシミュレーション`,
+            })),
+          },
         }}
       />
     </div>

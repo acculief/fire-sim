@@ -7,6 +7,7 @@ import { generateRegionComparison } from "@/lib/seo-helpers";
 import { formatMoney } from "@/lib/format";
 import Disclaimer from "@/components/Disclaimer";
 import Breadcrumb from "@/components/Breadcrumb";
+import JsonLd from "@/components/JsonLd";
 
 export function generateStaticParams() {
   return REGION_SLUGS.map((r) => ({ region: r.slug }));
@@ -223,24 +224,21 @@ export default async function RegionPage({
         <Disclaimer />
       </section>
 
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "CollectionPage",
-            name: `${regionInfo.label}地方のFIRE比較`,
-            description: `${regionInfo.label}地方の都道府県別FIRE必要資産比較`,
-            mainEntity: {
-              "@type": "ItemList",
-              itemListElement: comparison.map((c, i) => ({
-                "@type": "ListItem",
-                position: i + 1,
-                url: `${SITE_URL}/fire/${c.code}/`,
-                name: `${c.name}のFIREシミュレーション`,
-              })),
-            },
-          }),
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "CollectionPage",
+          name: `${regionInfo.label}地方のFIRE比較`,
+          description: `${regionInfo.label}地方の都道府県別FIRE必要資産比較`,
+          mainEntity: {
+            "@type": "ItemList",
+            itemListElement: comparison.map((c, i) => ({
+              "@type": "ListItem",
+              position: i + 1,
+              url: `${SITE_URL}/fire/${c.code}/`,
+              name: `${c.name}のFIREシミュレーション`,
+            })),
+          },
         }}
       />
     </div>

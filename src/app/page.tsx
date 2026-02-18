@@ -2,6 +2,7 @@ import Link from "next/link";
 import { prefectures } from "@/data/prefectures";
 import { guides } from "@/data/guides";
 import { SITE_URL } from "@/config/site";
+import JsonLd from "@/components/JsonLd";
 import SimulationCounter from "@/components/SimulationCounter";
 
 const websiteSchema = {
@@ -29,14 +30,8 @@ const orgSchema = {
 export default function HomePage() {
   return (
     <div className="mx-auto max-w-5xl px-4 py-12">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }}
-      />
+      <JsonLd data={websiteSchema} />
+      <JsonLd data={orgSchema} />
       {/* Hero */}
       <section className="text-center">
         <h1 className="text-3xl font-bold text-gray-900 sm:text-4xl">

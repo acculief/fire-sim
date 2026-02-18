@@ -5,6 +5,7 @@ import { FAMILY_COEFFICIENTS, HOUSING_COEFFICIENTS } from "@/config/assumptions"
 import { SITE_URL, CONTENT_PUBLISHED_DATE } from "@/config/site";
 import { formatMoney } from "@/lib/format";
 import Breadcrumb from "@/components/Breadcrumb";
+import JsonLd from "@/components/JsonLd";
 
 export function generateStaticParams() {
   return modelCases.map((c) => ({ slug: c.slug }));
@@ -80,10 +81,7 @@ export default async function CaseDetailPage({
 
   return (
     <div className="mx-auto max-w-3xl px-4 py-8">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-      />
+      <JsonLd data={structuredData} />
 
       <Breadcrumb
         items={[
@@ -133,7 +131,7 @@ export default async function CaseDetailPage({
           シミュレーション条件
         </h2>
         <div className="mt-4 overflow-hidden rounded-lg border border-gray-200">
-          <table className="w-full text-sm">
+          <table className="w-full text-sm" aria-label={`${c.title}のシミュレーション条件`}>
             <tbody className="divide-y divide-gray-100">
               <tr>
                 <td className="bg-gray-50 px-4 py-3 font-medium text-gray-600">
