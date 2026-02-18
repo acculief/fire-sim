@@ -118,13 +118,46 @@ export default async function GuidePage({
               </h2>
               <div className="mt-3 max-w-none text-gray-700">
                 {section.body.split("\n\n").map((paragraph, j) => {
+                  const trimmed = paragraph.trim();
+
+                  // Markdown table detection
+                  if (trimmed.startsWith("|") && trimmed.includes("\n")) {
+                    const rows = trimmed.split("\n").filter((r) => r.trim());
+                    const isSeparator = (r: string) => /^\|[\s\-:|]+\|$/.test(r.trim());
+                    const parseRow = (r: string) =>
+                      r.trim().replace(/^\|/, "").replace(/\|$/, "").split("|").map((c) => c.trim());
+
+                    const headerRow = parseRow(rows[0]);
+                    const dataRows = rows.filter((r, idx) => idx > 0 && !isSeparator(r)).map(parseRow);
+
+                    const tableHtml = `<div class="overflow-x-auto mb-3"><table class="min-w-full border-collapse text-sm"><thead><tr>${headerRow
+                      .map(
+                        (c) =>
+                          `<th class="border border-gray-200 bg-gray-50 px-3 py-2 text-left font-semibold text-gray-700">${c.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")}</th>`,
+                      )
+                      .join("")}</tr></thead><tbody>${dataRows
+                      .map(
+                        (row) =>
+                          `<tr>${row
+                            .map(
+                              (c) =>
+                                `<td class="border border-gray-200 px-3 py-2">${c.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")}</td>`,
+                            )
+                            .join("")}</tr>`,
+                      )
+                      .join("")}</tbody></table></div>`;
+
+                    return (
+                      <div
+                        key={j}
+                        dangerouslySetInnerHTML={{ __html: tableHtml }}
+                      />
+                    );
+                  }
+
                   let html = paragraph
                     .replace(/\n/g, "<br />")
-                    .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
-                    .replace(
-                      /\|(.+)\|/g,
-                      (match) => `<span class="block overflow-x-auto">${match}</span>`,
-                    );
+                    .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
                   html = autoLinkKeywords(html, slug, linkedKeywords);
                   return (
                     <p
