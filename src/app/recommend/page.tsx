@@ -494,6 +494,41 @@ export default function RecommendPage() {
         </div>
       </div>
 
+      {/* 関連ツール */}
+      <div className="mt-10">
+        <h2 className="text-lg font-bold text-gray-800">関連ツール</h2>
+        <div className="mt-3 grid gap-3 sm:grid-cols-2">
+          <Link
+            href="/diagnose/"
+            className="block rounded-lg border border-gray-200 bg-white p-3 text-sm transition-colors hover:border-primary-300 hover:bg-primary-50"
+          >
+            <p className="font-bold text-gray-800">FIRE達成度診断</p>
+            <p className="mt-1 text-xs text-gray-500">30秒であなたのFIRE達成度をチェック</p>
+          </Link>
+          <Link
+            href="/tracker/"
+            className="block rounded-lg border border-gray-200 bg-white p-3 text-sm transition-colors hover:border-primary-300 hover:bg-primary-50"
+          >
+            <p className="font-bold text-gray-800">FIRE進捗トラッカー</p>
+            <p className="mt-1 text-xs text-gray-500">毎月の資産を記録して達成度を可視化</p>
+          </Link>
+          <Link
+            href="/cases/"
+            className="block rounded-lg border border-gray-200 bg-white p-3 text-sm transition-colors hover:border-primary-300 hover:bg-primary-50"
+          >
+            <p className="font-bold text-gray-800">モデルケース</p>
+            <p className="mt-1 text-xs text-gray-500">年代別のFIRE達成プランを参考に</p>
+          </Link>
+          <Link
+            href="/withdraw/"
+            className="block rounded-lg border border-gray-200 bg-white p-3 text-sm transition-colors hover:border-primary-300 hover:bg-primary-50"
+          >
+            <p className="font-bold text-gray-800">取り崩しシミュレーション</p>
+            <p className="mt-1 text-xs text-gray-500">FIRE後に資産が何歳まで持つか計算</p>
+          </Link>
+        </div>
+      </div>
+
       <Disclaimer />
 
       {/* アフィリエイト開示 */}

@@ -4,6 +4,7 @@ import { useState, useCallback } from "react";
 import Link from "next/link";
 import { brokers } from "@/data/recommend";
 import BrokerCard from "@/components/BrokerCard";
+import RelatedContent from "@/components/RelatedContent";
 
 /* ------------------------------------------------------------------ */
 /*  定数 & 型                                                          */
@@ -582,6 +583,15 @@ export default function DiagnosePage() {
               </div>
             </div>
           )}
+
+          <RelatedContent
+            heading="次のステップ"
+            items={[
+              { href: "/tracker/", title: "FIRE進捗トラッカー", description: "毎月の資産を記録してFIRE達成度を可視化" },
+              { href: "/withdraw/", title: "取り崩しシミュレーション", description: "FIRE後に資産が何歳まで持つか計算" },
+              { href: "/cases/", title: "モデルケースを見る", description: "年代別のFIRE達成プランを参考に" },
+            ]}
+          />
 
           {/* もう一度 */}
           <div className="mt-6 text-center">

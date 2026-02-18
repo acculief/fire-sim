@@ -7,7 +7,7 @@ import ResultDisplay from "@/components/ResultDisplay";
 import SimulationHistory from "@/components/SimulationHistory";
 import ComparePanel from "@/components/ComparePanel";
 import { runSimulation, inputFromParams, inputToParams } from "@/lib/calculator";
-import { saveHistory, getHistory } from "@/lib/history";
+import { saveHistory } from "@/lib/history";
 import { incrementSimulationCount } from "@/lib/counter";
 import type { SimulationInput, SimulationResult } from "@/lib/types";
 import type { HistoryItem } from "@/lib/history";

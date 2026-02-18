@@ -202,7 +202,7 @@ export default function TrackerPage() {
         <h2 className="text-lg font-bold text-gray-800">資産を記録する</h2>
         <div className="mt-3 grid grid-cols-2 gap-3 sm:flex">
           <div className="col-span-1 sm:w-40">
-            <label htmlFor="entryDate" className="sr-only">年月</label>
+            <label htmlFor="entryDate" className="mb-1 block text-xs font-medium text-gray-600">年月</label>
             <input
               id="entryDate"
               type="month"
@@ -212,19 +212,19 @@ export default function TrackerPage() {
             />
           </div>
           <div className="col-span-1 sm:flex-1">
-            <label htmlFor="entryAssets" className="sr-only">金融資産（万円）</label>
+            <label htmlFor="entryAssets" className="mb-1 block text-xs font-medium text-gray-600">金融資産（万円）</label>
             <input
               id="entryAssets"
               type="number"
               className="input-field text-sm"
               value={inputAssets}
               onChange={(e) => setInputAssets(e.target.value)}
-              placeholder="金融資産（万円）"
+              placeholder="例: 500"
               min={0}
               step={10}
             />
           </div>
-          <button className="btn-primary col-span-2 text-sm sm:shrink-0" onClick={handleAddEntry}>
+          <button className="btn-primary col-span-2 self-end text-sm sm:shrink-0" onClick={handleAddEntry}>
             記録
           </button>
         </div>
