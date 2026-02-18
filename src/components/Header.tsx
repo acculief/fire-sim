@@ -56,13 +56,8 @@ export default function Header() {
           <a href="/fire/" className="text-gray-600 transition-colors hover:text-primary-600">地域別</a>
         </nav>
 
-        {/* Mobile nav: visible links + hamburger */}
-        <div className="flex items-center gap-3 sm:hidden">
-          <nav aria-label="メインナビゲーション" className="flex gap-2 text-xs">
-            <a href="/simulate/" className="text-gray-600 transition-colors hover:text-primary-600">シミュレーション</a>
-            <a href="/diagnose/" className="text-gray-600 transition-colors hover:text-primary-600">診断</a>
-            <a href="/guide/" className="text-gray-600 transition-colors hover:text-primary-600">ガイド</a>
-          </nav>
+        {/* Mobile hamburger */}
+        <div className="flex items-center sm:hidden">
           <button
             type="button"
             aria-label={open ? "メニューを閉じる" : "メニューを開く"}
