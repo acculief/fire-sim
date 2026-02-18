@@ -14,6 +14,7 @@ import {
   estimatePostFireMonthlyCost,
 } from "@/config/assumptions";
 import { formatMoney } from "@/lib/format";
+import { SITE_URL } from "@/config/site";
 import Breadcrumb from "@/components/Breadcrumb";
 
 /* ---------- types ---------- */
@@ -231,10 +232,23 @@ export default async function PlanDetailPage({
     "@type": "Article",
     headline: page.title,
     description: page.description,
+    url: `${SITE_URL}/plan/${slug}/`,
+    image: `${SITE_URL}/opengraph-image`,
+    datePublished: "2026-01-01",
     dateModified: "2026-02-18",
+    inLanguage: "ja",
+    author: {
+      "@type": "Organization",
+      name: "FIREシミュレーター",
+      url: SITE_URL,
+    },
     publisher: {
       "@type": "Organization",
       name: "FIREシミュレーター",
+      logo: {
+        "@type": "ImageObject",
+        url: `${SITE_URL}/icon-512.png`,
+      },
     },
   };
 

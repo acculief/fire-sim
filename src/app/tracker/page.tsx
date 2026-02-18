@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
+import Breadcrumb from "@/components/Breadcrumb";
 import RelatedContent from "@/components/RelatedContent";
 import {
   getEntries,
@@ -72,6 +73,12 @@ export default function TrackerPage() {
 
   return (
     <div className="mx-auto max-w-3xl px-4 py-8">
+      <Breadcrumb
+        items={[
+          { label: "ホーム", href: "/" },
+          { label: "進捗トラッカー" },
+        ]}
+      />
       <h1 className="text-2xl font-bold text-gray-900 sm:text-3xl">
         FIRE進捗トラッカー
       </h1>

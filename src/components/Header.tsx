@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
+import Link from "next/link";
 
 const menuSections = [
   {
@@ -47,28 +48,28 @@ export default function Header() {
   return (
     <header className="border-b border-gray-200 bg-white" role="banner">
       <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-3">
-        <a
+        <Link
           href="/"
           className="shrink-0 text-base font-bold text-primary-700 sm:text-xl"
         >
           FIREシミュレーター
-        </a>
+        </Link>
 
         {/* PC nav */}
         <nav
           aria-label="メインナビゲーション"
           className="hidden gap-3 text-sm sm:flex"
         >
-          <a href="/simulate/" className="text-gray-600 transition-colors hover:text-primary-600">シミュレーション</a>
-          <a href="/diagnose/" className="text-gray-600 transition-colors hover:text-primary-600">診断</a>
-          <a href="/withdraw/" className="text-gray-600 transition-colors hover:text-primary-600">取り崩し</a>
-          <a href="/tracker/" className="text-gray-600 transition-colors hover:text-primary-600">トラッカー</a>
-          <a href="/guide/" className="text-gray-600 transition-colors hover:text-primary-600">ガイド</a>
-          <a href="/recommend/" className="text-gray-600 transition-colors hover:text-primary-600">おすすめ</a>
-          <a href="/fire/" className="text-gray-600 transition-colors hover:text-primary-600">地域別</a>
-          <a href="/cases/" className="text-gray-600 transition-colors hover:text-primary-600">事例</a>
-          <a href="/plan/" className="text-gray-600 transition-colors hover:text-primary-600">プラン</a>
-          <a href="/faq/" className="text-gray-600 transition-colors hover:text-primary-600">FAQ</a>
+          <Link href="/simulate/" className="text-gray-600 transition-colors hover:text-primary-600">シミュレーション</Link>
+          <Link href="/diagnose/" className="text-gray-600 transition-colors hover:text-primary-600">診断</Link>
+          <Link href="/withdraw/" className="text-gray-600 transition-colors hover:text-primary-600">取り崩し</Link>
+          <Link href="/tracker/" className="text-gray-600 transition-colors hover:text-primary-600">トラッカー</Link>
+          <Link href="/guide/" className="text-gray-600 transition-colors hover:text-primary-600">ガイド</Link>
+          <Link href="/recommend/" className="text-gray-600 transition-colors hover:text-primary-600">おすすめ</Link>
+          <Link href="/fire/" className="text-gray-600 transition-colors hover:text-primary-600">地域別</Link>
+          <Link href="/cases/" className="text-gray-600 transition-colors hover:text-primary-600">事例</Link>
+          <Link href="/plan/" className="text-gray-600 transition-colors hover:text-primary-600">プラン</Link>
+          <Link href="/faq/" className="text-gray-600 transition-colors hover:text-primary-600">FAQ</Link>
         </nav>
 
         {/* Mobile hamburger */}
@@ -131,13 +132,13 @@ export default function Header() {
                   <ul className="space-y-1">
                     {section.links.map((link) => (
                       <li key={link.href}>
-                        <a
+                        <Link
                           href={link.href}
                           onClick={() => setOpen(false)}
                           className="block rounded-md px-3 py-2 text-sm text-gray-700 transition-colors hover:bg-primary-50 hover:text-primary-700"
                         >
                           {link.text}
-                        </a>
+                        </Link>
                       </li>
                     ))}
                   </ul>

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Noto_Sans_JP } from "next/font/google";
 import { SITE_URL } from "@/config/site";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
+import Link from "next/link";
 import Header from "@/components/Header";
 import "./globals.css";
 
@@ -66,36 +67,36 @@ export default function RootLayout({
               <nav aria-label="フッターナビゲーション">
                 <p className="font-bold text-gray-700">コンテンツ</p>
                 <ul className="mt-2 space-y-1 text-gray-500">
-                  <li><a href="/simulate/" className="hover:text-primary-600">シミュレーション</a></li>
-                  <li><a href="/diagnose/" className="hover:text-primary-600">FIRE診断</a></li>
-                  <li><a href="/withdraw/" className="hover:text-primary-600">取り崩しシミュレーション</a></li>
-                  <li><a href="/tracker/" className="hover:text-primary-600">進捗トラッカー</a></li>
-                  <li><a href="/guide/" className="hover:text-primary-600">ガイド記事</a></li>
-                  <li><a href="/recommend/" className="hover:text-primary-600">おすすめツール</a></li>
-                  <li><a href="/fire/" className="hover:text-primary-600">地域別一覧</a></li>
-                  <li><a href="/cases/" className="hover:text-primary-600">モデルケース</a></li>
-                  <li><a href="/plan/" className="hover:text-primary-600">年収×年代別プラン</a></li>
-                  <li><a href="/faq/" className="hover:text-primary-600">よくある質問</a></li>
+                  <li><Link href="/simulate/" className="hover:text-primary-600">シミュレーション</Link></li>
+                  <li><Link href="/diagnose/" className="hover:text-primary-600">FIRE診断</Link></li>
+                  <li><Link href="/withdraw/" className="hover:text-primary-600">取り崩しシミュレーション</Link></li>
+                  <li><Link href="/tracker/" className="hover:text-primary-600">進捗トラッカー</Link></li>
+                  <li><Link href="/guide/" className="hover:text-primary-600">ガイド記事</Link></li>
+                  <li><Link href="/recommend/" className="hover:text-primary-600">おすすめツール</Link></li>
+                  <li><Link href="/fire/" className="hover:text-primary-600">地域別一覧</Link></li>
+                  <li><Link href="/cases/" className="hover:text-primary-600">モデルケース</Link></li>
+                  <li><Link href="/plan/" className="hover:text-primary-600">年収×年代別プラン</Link></li>
+                  <li><Link href="/faq/" className="hover:text-primary-600">よくある質問</Link></li>
                 </ul>
               </nav>
               <nav aria-label="人気の地域">
                 <p className="font-bold text-gray-700">人気の地域</p>
                 <ul className="mt-2 space-y-1 text-gray-500">
-                  <li><a href="/fire/tokyo/" className="hover:text-primary-600">東京都</a></li>
-                  <li><a href="/fire/osaka/" className="hover:text-primary-600">大阪府</a></li>
-                  <li><a href="/fire/kanagawa/" className="hover:text-primary-600">神奈川県</a></li>
-                  <li><a href="/fire/aichi/" className="hover:text-primary-600">愛知県</a></li>
-                  <li><a href="/fire/fukuoka/" className="hover:text-primary-600">福岡県</a></li>
+                  <li><Link href="/fire/tokyo/" className="hover:text-primary-600">東京都</Link></li>
+                  <li><Link href="/fire/osaka/" className="hover:text-primary-600">大阪府</Link></li>
+                  <li><Link href="/fire/kanagawa/" className="hover:text-primary-600">神奈川県</Link></li>
+                  <li><Link href="/fire/aichi/" className="hover:text-primary-600">愛知県</Link></li>
+                  <li><Link href="/fire/fukuoka/" className="hover:text-primary-600">福岡県</Link></li>
                 </ul>
               </nav>
               <nav aria-label="人気のガイド記事">
                 <p className="font-bold text-gray-700">人気のガイド</p>
                 <ul className="mt-2 space-y-1 text-gray-500">
-                  <li><a href="/guide/what-is-fire/" className="hover:text-primary-600">FIREとは？</a></li>
-                  <li><a href="/guide/fire-first-steps/" className="hover:text-primary-600">FIRE初心者の始め方</a></li>
-                  <li><a href="/guide/how-to-choose-broker/" className="hover:text-primary-600">証券口座の選び方</a></li>
-                  <li><a href="/guide/nisa-fire-acceleration/" className="hover:text-primary-600">新NISAでFIRE加速</a></li>
-                  <li><a href="/guide/fire-index-investing/" className="hover:text-primary-600">インデックス投資入門</a></li>
+                  <li><Link href="/guide/what-is-fire/" className="hover:text-primary-600">FIREとは？</Link></li>
+                  <li><Link href="/guide/fire-first-steps/" className="hover:text-primary-600">FIRE初心者の始め方</Link></li>
+                  <li><Link href="/guide/how-to-choose-broker/" className="hover:text-primary-600">証券口座の選び方</Link></li>
+                  <li><Link href="/guide/nisa-fire-acceleration/" className="hover:text-primary-600">新NISAでFIRE加速</Link></li>
+                  <li><Link href="/guide/fire-index-investing/" className="hover:text-primary-600">インデックス投資入門</Link></li>
                 </ul>
               </nav>
             </div>
