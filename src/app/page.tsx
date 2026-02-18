@@ -102,6 +102,26 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* モデルケース・プラン */}
+      <section className="mt-12">
+        <div className="grid gap-3 sm:grid-cols-2">
+          <Link
+            href="/cases/"
+            className="rounded-lg border border-gray-200 bg-white p-4 transition-colors hover:border-primary-300 hover:bg-primary-50"
+          >
+            <p className="font-bold text-gray-800">モデルケース</p>
+            <p className="mt-1 text-xs text-gray-500">年収・家族構成別のFIRE達成事例を紹介</p>
+          </Link>
+          <Link
+            href="/plan/"
+            className="rounded-lg border border-gray-200 bg-white p-4 transition-colors hover:border-primary-300 hover:bg-primary-50"
+          >
+            <p className="font-bold text-gray-800">年収×年代別プラン</p>
+            <p className="mt-1 text-xs text-gray-500">あなたの年収と年齢に最適なFIRE戦略</p>
+          </Link>
+        </div>
+      </section>
+
       {/* 地域別リンク */}
       <section className="mt-12">
         <h2 className="text-center text-xl font-bold text-gray-900">

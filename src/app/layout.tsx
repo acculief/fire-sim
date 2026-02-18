@@ -70,6 +70,7 @@ export default function RootLayout({
                   <li><a href="/recommend/" className="hover:text-primary-600">おすすめツール</a></li>
                   <li><a href="/fire/" className="hover:text-primary-600">地域別一覧</a></li>
                   <li><a href="/cases/" className="hover:text-primary-600">モデルケース</a></li>
+                  <li><a href="/plan/" className="hover:text-primary-600">年収×年代別プラン</a></li>
                   <li><a href="/faq/" className="hover:text-primary-600">よくある質問</a></li>
                 </ul>
               </div>

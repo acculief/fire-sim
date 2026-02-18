@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 
 const menuSections = [
   {
@@ -24,6 +24,7 @@ const menuSections = [
     links: [
       { href: "/fire/", text: "地域別FIRE情報" },
       { href: "/cases/", text: "モデルケース" },
+      { href: "/plan/", text: "年収×年代別プラン" },
       { href: "/faq/", text: "よくある質問" },
     ],
   },
@@ -31,6 +32,17 @@ const menuSections = [
 
 export default function Header() {
   const [open, setOpen] = useState(false);
+
+  const handleEscape = useCallback((e: KeyboardEvent) => {
+    if (e.key === "Escape") setOpen(false);
+  }, []);
+
+  useEffect(() => {
+    if (open) {
+      document.addEventListener("keydown", handleEscape);
+      return () => document.removeEventListener("keydown", handleEscape);
+    }
+  }, [open, handleEscape]);
 
   return (
     <header className="border-b border-gray-200 bg-white" role="banner">
