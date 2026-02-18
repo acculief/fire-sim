@@ -450,19 +450,33 @@ export default function ResultDisplay({ result, shareUrl }: Props) {
         </ul>
       </div>
 
-      {/* 証券口座CTA */}
+      {/* 証券口座CTA — シミュ結果に連動 */}
       {affiliateBrokers.length > 0 && (
-        <div className="card border-accent-200 bg-accent-50">
-          <h3 className="mb-1 text-lg font-bold text-accent-800">
-            まずは証券口座を開設しよう
+        <div className="card border-primary-300 bg-gradient-to-br from-primary-50 to-accent-50">
+          <h3 className="text-lg font-bold text-primary-800">
+            この計画を始めるなら
           </h3>
-          <p className="mb-4 text-xs text-gray-600">
-            FIRE達成の第一歩は証券口座の開設。新NISAを活用した積立投資を今すぐ始められます。
+          <p className="mt-1 text-sm text-gray-700">
+            毎月<strong className="text-primary-700">{result.input.monthlyInvestment}万円</strong>の積立投資で
+            {neutral.achievementAge !== null ? (
+              <>{neutral.achievementAge}歳でのFIRE達成を目指すなら、</>
+            ) : (
+              <>FIRE達成を目指すなら、</>
+            )}
+            まず証券口座の開設から。新NISAなら年間360万円まで非課税で運用できます。
           </p>
-          <div className="space-y-3">
+          <div className="mt-4 space-y-3">
             {affiliateBrokers.map((b) => (
               <BrokerCard key={b.slug} broker={b} />
             ))}
+          </div>
+          <div className="mt-4 text-center">
+            <Link
+              href="/recommend/"
+              className="text-sm font-medium text-primary-600 transition-colors hover:text-primary-800"
+            >
+              他の証券口座・おすすめ書籍も見る →
+            </Link>
           </div>
         </div>
       )}
