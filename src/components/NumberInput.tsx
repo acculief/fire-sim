@@ -43,9 +43,10 @@ export default function NumberInput({
 
   const handleBlur = useCallback(() => {
     if (raw === "" || isNaN(Number(raw))) {
-      setRaw(String(value));
+      setRaw("0");
+      onValueChange(0);
     }
-  }, [raw, value]);
+  }, [raw, onValueChange]);
 
   return (
     <input
