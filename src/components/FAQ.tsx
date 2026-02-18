@@ -1,3 +1,5 @@
+import JsonLd from "@/components/JsonLd";
+
 interface FAQItem {
   question: string;
   answer: string;
@@ -27,21 +29,18 @@ export default function FAQ({ items, prefName }: Props) {
       </div>
 
       {/* 構造化データ (FAQ Schema) */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            mainEntity: items.map((item) => ({
-              "@type": "Question",
-              name: item.question,
-              acceptedAnswer: {
-                "@type": "Answer",
-                text: item.answer,
-              },
-            })),
-          }),
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: items.map((item) => ({
+            "@type": "Question",
+            name: item.question,
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: item.answer,
+            },
+          })),
         }}
       />
     </div>

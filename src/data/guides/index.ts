@@ -66,7 +66,7 @@ FIREの核心は「自由の獲得」です。必ずしも完全に仕事を辞�
     description:
       "FIRE達成後の資産取り崩し戦略「4%ルール」の根拠・メリット・リスク・日本での適用について詳しく解説します。",
     publishedAt: "2026-02-01",
-    relatedSlugs: ["what-is-fire", "withdrawal-vs-yield"],
+    relatedSlugs: ["what-is-fire", "withdrawal-vs-yield", "how-to-calculate-fire-number"],
     sections: [
       {
         heading: "4%ルールとは",
@@ -122,7 +122,7 @@ FIRE直後に大暴落が来ると、資産が大きく毀損した状態で取�
     description:
       "FIRE達成に必要な資産額（FIREナンバー）の計算方法を、生活費・利回り・SWR・インフレを踏まえて具体例付きで解説します。",
     publishedAt: "2026-02-01",
-    relatedSlugs: ["4percent-rule", "what-is-fire"],
+    relatedSlugs: ["4percent-rule", "what-is-fire", "fire-savings-rate"],
     sections: [
       {
         heading: "FIREナンバーとは",
@@ -218,7 +218,7 @@ FIRE直後に大暴落が来ると、資産が大きく毀損した状態で取�
     description:
       "都道府県別の生活費の違いがFIRE必要資産と達成年にどう影響するか、データとともに解説。地方移住によるFIRE加速戦略も紹介。",
     publishedAt: "2026-02-01",
-    relatedSlugs: ["how-to-calculate-fire-number", "fire-with-family"],
+    relatedSlugs: ["how-to-calculate-fire-number", "fire-with-family", "fire-tax-optimization"],
     sections: [
       {
         heading: "住む場所でFIREの難易度が変わる",
@@ -291,7 +291,7 @@ FIRE直後に大暴落が来ると、資産が大きく毀損した状態で取�
     description:
       "独身に比べてハードルが高いと言われる家族持ちのFIRE。夫婦・子育て世帯向けの必要資産・戦略・教育費の考え方を解説します。",
     publishedAt: "2026-02-01",
-    relatedSlugs: ["how-to-calculate-fire-number", "fire-by-region"],
+    relatedSlugs: ["how-to-calculate-fire-number", "fire-by-region", "fire-couple-strategy"],
     sections: [
       {
         heading: "家族構成によるFIREナンバーの違い",
@@ -447,7 +447,7 @@ FIREは家族全員に影響する決断です。「なぜFIREしたいか」「
     description:
       "FIRE後の資産の使い方「取り崩し（SWR）」と「利回り運用（配当生活）」を徹底比較。メリット・デメリット・向いている人を解説。",
     publishedAt: "2026-02-01",
-    relatedSlugs: ["4percent-rule", "nisa-ideco-for-fire"],
+    relatedSlugs: ["4percent-rule", "nisa-ideco-for-fire", "fire-index-investing"],
     sections: [
       {
         heading: "2つの出口戦略",
@@ -532,7 +532,7 @@ FIREナンバー8,000万円の場合:
     description:
       "30代からFIREを目指す場合の現実的なプランを、年収400万〜1000万円のケース別にシミュレーション。30代ならではの戦略と注意点を解説。",
     publishedAt: "2026-02-15",
-    relatedSlugs: ["how-to-calculate-fire-number", "fire-with-family"],
+    relatedSlugs: ["how-to-calculate-fire-number", "fire-with-family", "fire-savings-rate"],
     sections: [
       {
         heading: "30代がFIREを目指す優位性",
@@ -626,7 +626,7 @@ FIREナンバー8,000万円の場合:
     description:
       "完全リタイアより現実的な「サイドFIRE」の全貌。必要資産額の計算方法、おすすめの副業、始め方を具体的に解説します。",
     publishedAt: "2026-02-15",
-    relatedSlugs: ["what-is-fire", "how-to-calculate-fire-number"],
+    relatedSlugs: ["what-is-fire", "how-to-calculate-fire-number", "fire-barista"],
     sections: [
       {
         heading: "サイドFIREとは",
@@ -709,7 +709,7 @@ FIREナンバー8,000万円の場合:
     description:
       "FIRE達成スピードを最も左右するのは年収ではなく貯蓄率。貯蓄率別の達成年シミュレーションと、貯蓄率を上げる具体的な方法を解説。",
     publishedAt: "2026-02-15",
-    relatedSlugs: ["how-to-calculate-fire-number", "fire-by-age-30"],
+    relatedSlugs: ["how-to-calculate-fire-number", "fire-by-age-30", "fire-first-steps"],
     sections: [
       {
         heading: "なぜ年収より貯蓄率が重要なのか",

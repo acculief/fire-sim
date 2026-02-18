@@ -4,6 +4,7 @@ import { useState, useCallback } from "react";
 import Link from "next/link";
 import { brokers } from "@/data/recommend";
 import BrokerCard from "@/components/BrokerCard";
+import Breadcrumb from "@/components/Breadcrumb";
 import RelatedContent from "@/components/RelatedContent";
 import { SITE_URL } from "@/config/site";
 
@@ -319,6 +320,8 @@ export default function DiagnosePage() {
 
   return (
     <div className="mx-auto max-w-2xl px-4 py-8">
+      <Breadcrumb items={[{ label: "ホーム", href: "/" }, { label: "FIRE診断" }]} />
+
       {/* ================================================================ */}
       {/*  INTRO                                                           */}
       {/* ================================================================ */}

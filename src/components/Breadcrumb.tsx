@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { SITE_URL } from "@/config/site";
+import JsonLd from "@/components/JsonLd";
 
 export interface BreadcrumbItem {
   label: string;
@@ -27,21 +28,18 @@ export default function Breadcrumb({ items }: Props) {
           </span>
         ))}
       </nav>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "BreadcrumbList",
-            itemListElement: items.map((item, i) => ({
-              "@type": "ListItem",
-              position: i + 1,
-              name: item.label,
-              ...(item.href
-                ? { item: `${SITE_URL}${item.href}` }
-                : {}),
-            })),
-          }),
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          itemListElement: items.map((item, i) => ({
+            "@type": "ListItem",
+            position: i + 1,
+            name: item.label,
+            ...(item.href
+              ? { item: `${SITE_URL}${item.href}` }
+              : {}),
+          })),
         }}
       />
     </>

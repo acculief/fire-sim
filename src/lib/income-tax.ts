@@ -87,7 +87,7 @@ export function calcSocialInsurance(gross: number): SocialInsuranceBreakdown {
   const pensionCap = 713_700;
   const pension = Math.min(Math.floor(gross * 0.0915), pensionCap);
 
-  // 雇用保険: 0.6%（一般事業 2024-2025年度）
+  // 雇用保険: 0.6%（一般事業 2026年度）
   const employment = Math.floor(gross * 0.006);
 
   return { health, pension, employment, total: health + pension + employment };
@@ -127,7 +127,7 @@ export function calcIncomeTax(taxableIncome: number): number {
 
 export function calcResidentTax(taxableIncome: number): number {
   if (taxableIncome <= 0) return 0;
-  // 所得割 10% ＋ 均等割 5,000円 ＋ 森林環境税 1,000円（2024年〜）
+  // 所得割 10% ＋ 均等割 5,000円 ＋ 森林環境税 1,000円
   return Math.floor(taxableIncome * 0.1) + 6_000;
 }
 
