@@ -268,7 +268,8 @@ export default function TrackerPage() {
                       {entry.assets.toLocaleString()}万
                     </span>
                     <button
-                      className="shrink-0 text-xs text-gray-300 opacity-0 transition-opacity hover:text-red-500 group-hover:opacity-100"
+                      type="button"
+                      className="shrink-0 text-xs text-gray-400 opacity-0 transition-opacity hover:text-red-500 group-hover:opacity-100 focus:opacity-100"
                       onClick={() => handleDeleteEntry(entry.date)}
                       aria-label={`${entry.date}のデータを削除`}
                     >

@@ -52,6 +52,8 @@ export default async function GuidePage({
     headline: article.title,
     description: article.description,
     datePublished: article.publishedAt,
+    dateModified: article.publishedAt,
+    inLanguage: "ja",
     author: {
       "@type": "Organization",
       name: "FIREシミュレーター",

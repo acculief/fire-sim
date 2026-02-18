@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import Breadcrumb from "@/components/Breadcrumb";
+import RelatedContent from "@/components/RelatedContent";
 
 interface Props {
   searchParams: Promise<{
@@ -179,14 +180,15 @@ export default async function ResultPage({ searchParams }: Props) {
         </Link>
       </div>
 
-      <div className="mt-4 text-center">
-        <Link
-          href="/diagnose/"
-          className="text-sm font-medium text-primary-600 hover:underline"
-        >
-          30秒でFIRE診断する
-        </Link>
-      </div>
+      <RelatedContent
+        heading="次のステップ"
+        items={[
+          { href: "/tracker/", title: "FIRE進捗トラッカー", description: "毎月の資産を記録してFIRE達成度を可視化" },
+          { href: "/withdraw/", title: "取り崩しシミュレーション", description: "FIRE後に資産が何歳まで持つか計算" },
+          { href: "/cases/", title: "モデルケースを見る", description: "年代別のFIRE達成プランを参考に" },
+          { href: "/recommend/", title: "おすすめ証券口座", description: "FIRE達成に最適な証券口座を比較" },
+        ]}
+      />
     </div>
   );
 }
