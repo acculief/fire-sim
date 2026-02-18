@@ -14,7 +14,7 @@ export const guides: GuideArticle[] = [
     description:
       "FIRE（Financial Independence, Retire Early）の意味、歴史、種類（フルFIRE・サイドFIRE・バリスタFIRE等）を分かりやすく解説します。",
     publishedAt: "2026-02-01",
-    relatedSlugs: ["4percent-rule", "how-to-calculate-fire-number", "fire-first-steps"],
+    relatedSlugs: ["4percent-rule", "how-to-calculate-fire-number", "fire-first-steps", "side-fire", "fire-barista"],
     sections: [
       {
         heading: "FIREとは何か",
@@ -368,7 +368,7 @@ FIREは家族全員に影響する決断です。「なぜFIREしたいか」「
     sections: [
       {
         heading: "新NISAはFIREの最強ツール",
-        body: `2024年にスタートし定着した新NISAは、FIRE志向者にとって最も重要な制度です。
+        body: `2024年に始まり定着した新NISAは、FIRE志向者にとって最も重要な制度です。
 
 **新NISAの概要**
 - **つみたて投資枠**: 年120万円（対象: インデックスファンド等）

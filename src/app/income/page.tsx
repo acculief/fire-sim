@@ -15,11 +15,13 @@ export const metadata: Metadata = {
   title: "年収別 手取り早見表 | 200万〜2,000万円の税金・社会保険料",
   description:
     "年収200万〜2,000万円の手取り額を一覧表で確認。所得税・住民税・社会保険料の内訳と、独身・夫婦・子ありの家族構成別で比較できます。",
+  alternates: { canonical: "/income/" },
   openGraph: {
     title: "年収別 手取り早見表",
     description:
       "年収200万〜2,000万円の手取り額・税金・社会保険料を一覧表で比較。家族構成別の違いも。",
     type: "article",
+    url: "/income/",
   },
 };
 

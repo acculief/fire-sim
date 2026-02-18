@@ -25,9 +25,11 @@ export async function generateMetadata({
   return {
     title: `${name}のFIREシミュレーション | 必要資産・達成年を計算`,
     description: `${name}在住の方向けFIREシミュレーション。地域の生活費係数（${prefecture?.costIndex}）を反映した必要資産額と達成年を計算できます。`,
+    alternates: { canonical: `/fire/${pref}/` },
     openGraph: {
       title: `${name}のFIREシミュレーション`,
       description: `${name}の生活費に基づくFIRE必要資産と達成年`,
+      url: `/fire/${pref}/`,
     },
   };
 }

@@ -10,10 +10,12 @@ export const metadata: Metadata = {
   title: "年代別FIREモデルケース | 必要資産・達成年シミュレーション",
   description:
     "30代独身・40代子あり・50代夫婦など、年代・家族構成・地域別のFIREモデルケースを紹介。必要資産額と達成年齢をシミュレーション。",
+  alternates: { canonical: "/cases/" },
   openGraph: {
     title: "年代別FIREモデルケース | 必要資産・達成年シミュレーション",
     description:
       "30代独身・40代子あり・50代夫婦など、年代・家族構成・地域別のFIREモデルケースを紹介。必要資産額と達成年齢をシミュレーション。",
+    url: "/cases/",
   },
 };
 

@@ -12,10 +12,12 @@ export const metadata: Metadata = {
   title: "年収×年代別 FIREプラン一覧 | 必要資産シミュレーション",
   description:
     "年収300万〜1000万円、20代〜50代の年代別にFIRE達成に必要な資産額と達成年齢をシミュレーション。あなたに近い条件のプランを確認。",
+  alternates: { canonical: "/plan/" },
   openGraph: {
     title: "年収×年代別 FIREプラン一覧 | 必要資産シミュレーション",
     description:
       "年収300万〜1000万円、20代〜50代の年代別にFIRE達成に必要な資産額と達成年齢をシミュレーション。あなたに近い条件のプランを確認。",
+    url: "/plan/",
   },
 };
 

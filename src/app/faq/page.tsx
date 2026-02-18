@@ -9,10 +9,12 @@ export const metadata: Metadata = {
   title: "よくある質問（FAQ） | FIREの基礎知識",
   description:
     "FIRE（経済的自立・早期退職）に関するよくある質問。4%ルール、必要資産額、新NISA活用法、住む場所の影響など10問に回答。",
+  alternates: { canonical: "/faq/" },
   openGraph: {
     title: "よくある質問（FAQ） | FIREの基礎知識",
     description:
       "FIRE（経済的自立・早期退職）に関するよくある質問。4%ルール、必要資産額、新NISA活用法、住む場所の影響など10問に回答。",
+    url: "/faq/",
   },
 };
 

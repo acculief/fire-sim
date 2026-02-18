@@ -6,10 +6,12 @@ export const metadata: Metadata = {
   title: "取り崩しシミュレーション | FIREシミュレーター",
   description:
     "FIRE達成後、資産を取り崩しながら何歳まで資産が持つかをシミュレーション。取り崩し率・インフレ率・運用利回りを考慮した現実的な計算。",
+  alternates: { canonical: "/withdraw/" },
   openGraph: {
     title: "取り崩しシミュレーション | FIREシミュレーター",
     description:
       "FIRE達成後の資産取り崩しシミュレーション。何歳まで資産が持つかを計算。",
+    url: "/withdraw/",
   },
 };
 

@@ -10,9 +10,11 @@ export const metadata: Metadata = {
   title: "地域別FIREシミュレーション | 47都道府県対応",
   description:
     "47都道府県の生活費係数に基づくFIRE必要資産シミュレーション。お住まいの地域を選んで、FIRE達成に必要な資産と年数を計算できます。",
+  alternates: { canonical: "/fire/" },
   openGraph: {
     title: "地域別FIREシミュレーション",
     description: "47都道府県対応。地域の生活費に基づくFIRE必要資産を計算",
+    url: "/fire/",
   },
 };
 
