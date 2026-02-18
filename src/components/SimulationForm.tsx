@@ -204,7 +204,7 @@ export default function SimulationForm({ initialInput, onSubmit }: Props) {
                 手取り
               </label>
             </fieldset>
-            <p className="mt-1 text-xs text-gray-400">
+            <p className="mt-1 text-xs text-gray-500">
               <Link href="/income/" className="text-primary-500 hover:underline">
                 手取り早見表で確認 →
               </Link>
@@ -303,7 +303,7 @@ export default function SimulationForm({ initialInput, onSubmit }: Props) {
           <div className="sm:col-span-2">
             <label htmlFor="customMonthlyExpense" className="mb-1 block text-sm font-medium text-gray-700">
               毎月の生活費（万円）
-              <span className="ml-1 font-normal text-gray-400">— 任意</span>
+              <span className="ml-1 font-normal text-gray-500">— 任意</span>
             </label>
             <input
               id="customMonthlyExpense"
@@ -320,7 +320,7 @@ export default function SimulationForm({ initialInput, onSubmit }: Props) {
               placeholder="未入力なら地域×家族×住宅から自動推定"
               aria-describedby="customMonthlyExpense-hint"
             />
-            <p id="customMonthlyExpense-hint" className="mt-1 text-xs text-gray-400">
+            <p id="customMonthlyExpense-hint" className="mt-1 text-xs text-gray-500">
               実際の生活費が分かっている場合に入力すると、より正確な結果になります
             </p>
           </div>
@@ -390,7 +390,7 @@ export default function SimulationForm({ initialInput, onSubmit }: Props) {
                   step={0.5}
                   aria-describedby="annualReturnRate-hint"
                 />
-                <p id="annualReturnRate-hint" className="mt-1 text-xs text-gray-400">
+                <p id="annualReturnRate-hint" className="mt-1 text-xs text-gray-500">
                   積立期間中の運用利回り
                 </p>
               </div>
@@ -409,7 +409,7 @@ export default function SimulationForm({ initialInput, onSubmit }: Props) {
                     step={0.5}
                     aria-describedby="swr-hint"
                   />
-                  <p id="swr-hint" className="mt-1 text-xs text-gray-400">
+                  <p id="swr-hint" className="mt-1 text-xs text-gray-500">
                     FIRE後に毎年取り崩す率
                   </p>
                 </div>
@@ -428,7 +428,7 @@ export default function SimulationForm({ initialInput, onSubmit }: Props) {
                     step={0.5}
                     aria-describedby="yieldRate-hint"
                   />
-                  <p id="yieldRate-hint" className="mt-1 text-xs text-gray-400">
+                  <p id="yieldRate-hint" className="mt-1 text-xs text-gray-500">
                     FIRE後に得る配当/利息の年率（税引前）
                   </p>
                 </div>
@@ -469,7 +469,7 @@ export default function SimulationForm({ initialInput, onSubmit }: Props) {
                     step={0.1}
                     aria-describedby="dividendTaxRate-hint"
                   />
-                  <p id="dividendTaxRate-hint" className="mt-1 text-xs text-gray-400">
+                  <p id="dividendTaxRate-hint" className="mt-1 text-xs text-gray-500">
                     通常約20%。NISA活用で0%に近づく
                   </p>
                 </div>
@@ -494,7 +494,7 @@ export default function SimulationForm({ initialInput, onSubmit }: Props) {
                     step={0.1}
                     aria-describedby="postFireMonthlyCost-hint"
                   />
-                  <p id="postFireMonthlyCost-hint" className="mt-1 text-xs text-gray-400">
+                  <p id="postFireMonthlyCost-hint" className="mt-1 text-xs text-gray-500">
                     国民健康保険＋国民年金の概算。家族構成から自動推定
                   </p>
                 </div>

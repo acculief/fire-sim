@@ -27,7 +27,7 @@ export default function BrokerCard({ broker: b }: Props) {
         rel="nofollow noopener noreferrer"
         className="mt-3 inline-block rounded-lg bg-accent-600 px-5 py-2 text-sm font-bold text-white transition-colors hover:bg-accent-700"
       >
-        無料で口座開設 <span className="text-xs opacity-75">PR</span>
+        無料で口座開設 <span className="ml-1 rounded bg-white/20 px-1 text-[10px] font-bold leading-tight">PR</span>
       </a>
       {b.trackingPixel && (
         /* eslint-disable-next-line @next/next/no-img-element */

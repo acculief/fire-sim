@@ -200,7 +200,7 @@ export default async function IncomeDetailPage({
         <h2 className="text-xl font-bold text-gray-900">
           税金・社会保険料の内訳
         </h2>
-        <p className="mt-1 text-xs text-gray-400">独身・扶養なしの場合</p>
+        <p className="mt-1 text-xs text-gray-500">独身・扶養なしの場合</p>
         <div className="mt-4 overflow-x-auto">
           <table className="w-full text-sm">
             <tbody className="divide-y divide-gray-100">
@@ -351,7 +351,7 @@ export default async function IncomeDetailPage({
             </tbody>
           </table>
         </div>
-        <p className="mt-2 text-xs text-gray-400">
+        <p className="mt-2 text-xs text-gray-500">
           ※社会保険料は家族構成に関わらず同額。配偶者は年収103万円以下、子は16歳以上を想定。
         </p>
       </section>

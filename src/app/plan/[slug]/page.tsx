@@ -235,6 +235,7 @@ export default async function PlanDetailPage({
     "@type": "Article",
     headline: page.title,
     description: page.description,
+    mainEntityOfPage: { "@type": "WebPage", "@id": `${SITE_URL}/plan/${slug}/` },
     url: `${SITE_URL}/plan/${slug}/`,
     image: `${SITE_URL}/opengraph-image`,
     datePublished: "2026-01-01",
@@ -364,7 +365,7 @@ export default async function PlanDetailPage({
             </tbody>
           </table>
         </div>
-        <p className="mt-2 text-xs text-gray-400">
+        <p className="mt-2 text-xs text-gray-500">
           ※想定利回り年5%、インフレ率1%、SWR 4%、貯蓄率20%、賃貸住まいで計算。初期資産は年収の50%を想定。
         </p>
       </section>

@@ -219,7 +219,7 @@ export default function RecommendPage() {
             </tbody>
           </table>
         </div>
-        <p className="mt-2 text-xs text-gray-400">
+        <p className="mt-2 text-xs text-gray-500">
           ※新NISA対応。iDeCo・投信取扱は証券会社により異なります
         </p>
 
@@ -273,7 +273,7 @@ export default function RecommendPage() {
                   rel={b.isAffiliate ? "nofollow noopener noreferrer" : "noopener noreferrer"}
                   className="btn-primary mt-4 inline-block text-sm"
                 >
-                  {b.name}を詳しく見る {b.isAffiliate && <span className="text-xs opacity-75">PR</span>}
+                  {b.name}を詳しく見る {b.isAffiliate && <span className="ml-1 rounded bg-white/20 px-1 text-[10px] font-bold leading-tight">PR</span>}
                 </a>
                 {b.trackingPixel && (
                   /* eslint-disable-next-line @next/next/no-img-element */
@@ -529,7 +529,7 @@ export default function RecommendPage() {
       <Disclaimer />
 
       {/* アフィリエイト開示 */}
-      <p className="mt-4 text-center text-xs text-gray-400">
+      <p className="mt-4 text-center text-xs text-gray-500">
         ※当サイトはアフィリエイトプログラムに参加しています
       </p>
     </div>

@@ -21,7 +21,7 @@ const affiliateBrokers = brokers.filter((b) => b.isAffiliate);
 const AssetChart = dynamic(() => import("./AssetChart"), {
   loading: () => (
     <div className="flex h-72 w-full items-center justify-center sm:h-80">
-      <p className="text-sm text-gray-400">グラフを読み込み中...</p>
+      <p className="text-sm text-gray-500">グラフを読み込み中...</p>
     </div>
   ),
   ssr: false,
@@ -221,7 +221,7 @@ export default function ResultDisplay({ result, shareUrl }: Props) {
           </p>
           <p className="mt-1 text-sm text-gray-600">
             月間支出：{neutral.monthlyExpense}万円
-            <span className="ml-1 text-xs text-gray-400">
+            <span className="ml-1 text-xs text-gray-500">
               （生活費{result.baseMonthlyExpense}万円
               {result.input.customMonthlyExpense != null && result.input.customMonthlyExpense > 0
                 ? " 手入力"
@@ -344,7 +344,7 @@ export default function ResultDisplay({ result, shareUrl }: Props) {
                     {formatYearDiff(item.diff)}
                   </span>
                 ) : (
-                  <span className="text-gray-400">ー</span>
+                  <span className="text-gray-500">ー</span>
                 )}
               </div>
             </div>

@@ -105,7 +105,7 @@ export default function RootLayout({
             <p className="text-center text-xs text-gray-500">
               ※本シミュレーションは概算であり、投資助言ではありません。実際の投資判断はご自身の責任で行ってください。
             </p>
-            <p className="mt-2 text-center text-xs text-gray-400">
+            <p className="mt-2 text-center text-xs text-gray-500">
               &copy; 2026 FIREシミュレーター
             </p>
           </div>

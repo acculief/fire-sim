@@ -61,6 +61,7 @@ export default async function CaseDetailPage({
     "@type": "Article",
     headline: `${c.title}のFIREモデルケース`,
     description: c.description,
+    mainEntityOfPage: { "@type": "WebPage", "@id": `${SITE_URL}/cases/${slug}/` },
     url: `${SITE_URL}/cases/${slug}/`,
     image: `${SITE_URL}/opengraph-image`,
     datePublished: "2026-01-01",
@@ -186,7 +187,7 @@ export default async function CaseDetailPage({
             </tbody>
           </table>
         </div>
-        <p className="mt-2 text-xs text-gray-400">
+        <p className="mt-2 text-xs text-gray-500">
           ※想定利回り年5%、インフレ率1%、取り崩し率（SWR）4%で計算
         </p>
       </section>

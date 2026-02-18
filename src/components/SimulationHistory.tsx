@@ -51,7 +51,7 @@ export default function SimulationHistory({
       >
         <h2 className="text-lg font-bold text-gray-800">
           シミュレーション履歴
-          <span className="ml-2 text-sm font-normal text-gray-400">
+          <span className="ml-2 text-sm font-normal text-gray-500">
             ({history.length}件)
           </span>
         </h2>
@@ -79,7 +79,7 @@ export default function SimulationHistory({
                 <div className="min-w-0 flex-1">
                   <p className="text-sm font-medium text-gray-800">
                     {item.summary.prefectureName}・{item.summary.strategyLabel}
-                    <span className="ml-2 text-xs text-gray-400">
+                    <span className="ml-2 text-xs text-gray-500">
                       {dateStr}
                     </span>
                   </p>
@@ -123,7 +123,7 @@ export default function SimulationHistory({
           })}
           <button
             type="button"
-            className="text-xs text-gray-400 hover:text-red-500"
+            className="text-xs text-gray-500 hover:text-red-500"
             onClick={handleClear}
           >
             履歴をすべて削除

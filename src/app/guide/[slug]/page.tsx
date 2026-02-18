@@ -54,6 +54,7 @@ export default async function GuidePage({
     "@type": "Article",
     headline: article.title,
     description: article.description,
+    mainEntityOfPage: { "@type": "WebPage", "@id": `${SITE_URL}/guide/${slug}/` },
     url: `${SITE_URL}/guide/${slug}/`,
     image: `${SITE_URL}/opengraph-image`,
     datePublished: article.publishedAt,
