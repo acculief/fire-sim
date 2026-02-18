@@ -45,6 +45,8 @@ export default function SimulationHistory({
       <button
         type="button"
         className="flex w-full items-center justify-between text-left"
+        aria-expanded={isOpen}
+        aria-controls="history-panel"
         onClick={() => setIsOpen(!isOpen)}
       >
         <h2 className="text-lg font-bold text-gray-800">
@@ -59,7 +61,7 @@ export default function SimulationHistory({
       </button>
 
       {isOpen && (
-        <div className="mt-4 space-y-2">
+        <div id="history-panel" className="mt-4 space-y-2">
           {history.map((item) => {
             const isComparing = compareTarget?.id === item.id;
             const date = new Date(item.timestamp);

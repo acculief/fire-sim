@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Link from "next/link";
 import { prefectures } from "@/data/prefectures";
 import {
   DEFAULTS,
@@ -11,6 +12,9 @@ import {
 } from "@/config/assumptions";
 import type { SimulationInput, FireStrategy } from "@/lib/types";
 import NumberInput from "@/components/NumberInput";
+
+// 静的データなのでモジュールスコープで1回だけ計算
+const regions = Array.from(new Set(prefectures.map((p) => p.region)));
 
 interface Props {
   initialInput?: Partial<SimulationInput>;
@@ -120,9 +124,6 @@ export default function SimulationForm({ initialInput, onSubmit }: Props) {
     });
   };
 
-  // 地域をリージョンごとにグループ化
-  const regions = Array.from(new Set(prefectures.map((p) => p.region)));
-
   return (
     <form onSubmit={handleSubmit} className="space-y-6" aria-label="FIREシミュレーション入力フォーム">
       {/* 基本情報 */}
@@ -203,6 +204,11 @@ export default function SimulationForm({ initialInput, onSubmit }: Props) {
                 手取り
               </label>
             </fieldset>
+            <p className="mt-1 text-xs text-gray-400">
+              <Link href="/income/" className="text-primary-500 hover:underline">
+                手取り早見表で確認 →
+              </Link>
+            </p>
           </div>
           <div>
             <label htmlFor="currentAssets" className="mb-1 block text-sm font-medium text-gray-700">

@@ -137,6 +137,12 @@ export default async function PrefecturePage({
               年収{il.label}
             </Link>
           ))}
+          <Link
+            href="/income/"
+            className="rounded-lg border border-primary-200 bg-primary-50 px-3 py-1.5 text-sm font-medium text-primary-700 hover:bg-primary-100"
+          >
+            手取り早見表で確認 →
+          </Link>
         </div>
       </section>
 

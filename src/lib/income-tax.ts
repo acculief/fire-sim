@@ -127,8 +127,8 @@ export function calcIncomeTax(taxableIncome: number): number {
 
 export function calcResidentTax(taxableIncome: number): number {
   if (taxableIncome <= 0) return 0;
-  // 所得割 10% ＋ 均等割 5,000円
-  return Math.floor(taxableIncome * 0.1) + 5_000;
+  // 所得割 10% ＋ 均等割 5,000円 ＋ 森林環境税 1,000円（2024年〜）
+  return Math.floor(taxableIncome * 0.1) + 6_000;
 }
 
 /* ------------------------------------------------------------------ */

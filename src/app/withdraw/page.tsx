@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useMemo } from "react";
 import Link from "next/link";
 import Breadcrumb from "@/components/Breadcrumb";
 import RelatedContent from "@/components/RelatedContent";
@@ -119,14 +119,19 @@ export default function WithdrawPage() {
   }, [initialAssets, monthlyWithdrawal, annualReturn, inflationRate, startAge]);
 
   // 5年ごとのバーチャート用データ
-  const chartData = result
-    ? result.records.filter(
-        (r, i) => i === 0 || (r.age - startAge) % 5 === 0 || r.assets === 0,
-      )
-    : [];
-  const maxChartAssets = result
-    ? Math.max(...result.records.map((r) => r.assets), 1)
-    : 1;
+  const chartData = useMemo(
+    () =>
+      result
+        ? result.records.filter(
+            (r, i) => i === 0 || (r.age - startAge) % 5 === 0 || r.assets === 0,
+          )
+        : [],
+    [result, startAge],
+  );
+  const maxChartAssets = useMemo(
+    () => (result ? Math.max(...result.records.map((r) => r.assets), 1) : 1),
+    [result],
+  );
 
   return (
     <div className="mx-auto max-w-3xl px-4 py-8">
