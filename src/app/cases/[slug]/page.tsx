@@ -59,7 +59,11 @@ export default async function CaseDetailPage({
     "@type": "Article",
     headline: `${c.title}のFIREモデルケース`,
     description: c.description,
+    url: `${SITE_URL}/cases/${slug}/`,
+    image: `${SITE_URL}/opengraph-image`,
+    datePublished: "2026-01-01",
     dateModified: "2026-02-18",
+    inLanguage: "ja",
     author: {
       "@type": "Organization",
       name: "FIREシミュレーター",
@@ -68,6 +72,7 @@ export default async function CaseDetailPage({
     publisher: {
       "@type": "Organization",
       name: "FIREシミュレーター",
+      logo: { "@type": "ImageObject", url: `${SITE_URL}/icon-512.png` },
     },
   };
 

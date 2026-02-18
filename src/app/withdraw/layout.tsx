@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import { SITE_URL } from "@/config/site";
 
 export const metadata: Metadata = {
   title: "取り崩しシミュレーション | FIREシミュレーター",
@@ -11,10 +12,30 @@ export const metadata: Metadata = {
   },
 };
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  name: "取り崩しシミュレーション",
+  url: `${SITE_URL}/withdraw/`,
+  applicationCategory: "FinanceApplication",
+  operatingSystem: "All",
+  offers: { "@type": "Offer", price: "0", priceCurrency: "JPY" },
+  description:
+    "FIRE達成後の資産取り崩しシミュレーション。何歳まで資産が持つかを計算。",
+};
+
 export default function WithdrawLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  return children;
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      {children}
+    </>
+  );
 }

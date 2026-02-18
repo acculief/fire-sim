@@ -52,6 +52,8 @@ export default async function GuidePage({
     "@type": "Article",
     headline: article.title,
     description: article.description,
+    url: `${SITE_URL}/guide/${slug}/`,
+    image: `${SITE_URL}/opengraph-image`,
     datePublished: article.publishedAt,
     dateModified: article.publishedAt,
     inLanguage: "ja",
@@ -63,6 +65,7 @@ export default async function GuidePage({
     publisher: {
       "@type": "Organization",
       name: "FIREシミュレーター",
+      logo: { "@type": "ImageObject", url: `${SITE_URL}/icon-512.png` },
     },
   };
 

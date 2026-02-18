@@ -57,7 +57,7 @@ export default function Header() {
         {/* PC nav */}
         <nav
           aria-label="メインナビゲーション"
-          className="hidden gap-4 text-sm sm:flex"
+          className="hidden gap-3 text-sm sm:flex"
         >
           <a href="/simulate/" className="text-gray-600 transition-colors hover:text-primary-600">シミュレーション</a>
           <a href="/diagnose/" className="text-gray-600 transition-colors hover:text-primary-600">診断</a>
@@ -66,6 +66,9 @@ export default function Header() {
           <a href="/guide/" className="text-gray-600 transition-colors hover:text-primary-600">ガイド</a>
           <a href="/recommend/" className="text-gray-600 transition-colors hover:text-primary-600">おすすめ</a>
           <a href="/fire/" className="text-gray-600 transition-colors hover:text-primary-600">地域別</a>
+          <a href="/cases/" className="text-gray-600 transition-colors hover:text-primary-600">事例</a>
+          <a href="/plan/" className="text-gray-600 transition-colors hover:text-primary-600">プラン</a>
+          <a href="/faq/" className="text-gray-600 transition-colors hover:text-primary-600">FAQ</a>
         </nav>
 
         {/* Mobile hamburger */}

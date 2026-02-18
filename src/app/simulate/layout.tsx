@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import { SITE_URL } from "@/config/site";
 
 export const metadata: Metadata = {
   title: "FIREシミュレーション | 必要資産・達成年を計算",
@@ -11,10 +12,30 @@ export const metadata: Metadata = {
   },
 };
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  name: "FIREシミュレーション",
+  url: `${SITE_URL}/simulate/`,
+  applicationCategory: "FinanceApplication",
+  operatingSystem: "All",
+  offers: { "@type": "Offer", price: "0", priceCurrency: "JPY" },
+  description:
+    "地域・年収・家族構成からFIRE必要資産と達成年をシミュレーション。3シナリオ比較・感度分析対応。",
+};
+
 export default function SimulateLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  return children;
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      {children}
+    </>
+  );
 }
