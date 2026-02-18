@@ -93,6 +93,7 @@ export default function SimulationHistory({
                 </div>
                 <div className="ml-3 flex shrink-0 gap-1.5">
                   <button
+                    type="button"
                     aria-label={`${item.summary.prefectureName}・${item.summary.strategyLabel}を読み込む`}
                     className="rounded bg-primary-100 px-2.5 py-1 text-xs font-medium text-primary-700 hover:bg-primary-200"
                     onClick={() => onLoad(item)}
@@ -100,6 +101,7 @@ export default function SimulationHistory({
                     読込
                   </button>
                   <button
+                    type="button"
                     aria-label={`${item.summary.prefectureName}・${item.summary.strategyLabel}と比較`}
                     className={`rounded px-2.5 py-1 text-xs font-medium ${
                       isComparing
@@ -111,6 +113,7 @@ export default function SimulationHistory({
                     比較
                   </button>
                   <button
+                    type="button"
                     aria-label={`${item.summary.prefectureName}・${item.summary.strategyLabel}を削除`}
                     className="rounded bg-gray-200 px-2 py-1 text-xs text-gray-500 hover:bg-red-100 hover:text-red-600"
                     onClick={() => handleDelete(item.id)}

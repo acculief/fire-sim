@@ -5,6 +5,7 @@ import { formatMoney } from "@/lib/format";
 import { estimateMonthlyExpense, calcFireNumber } from "@/lib/calculator";
 import { estimatePostFireMonthlyCost } from "@/config/assumptions";
 import Breadcrumb from "@/components/Breadcrumb";
+import RelatedContent from "@/components/RelatedContent";
 
 export const metadata: Metadata = {
   title: "年収×年代別 FIREプラン一覧 | 必要資産シミュレーション",
@@ -101,6 +102,15 @@ export default function PlanIndexPage() {
           </div>
         </section>
       ))}
+
+      <RelatedContent
+        items={[
+          { href: "/cases/", title: "モデルケース", description: "実例で学ぶFIRE達成プラン" },
+          { href: "/income/", title: "手取り早見表", description: "年収別の手取り額・税金を確認" },
+          { href: "/guide/nisa-ideco-for-fire/", title: "NISA・iDeCo活用法", description: "税制優遇をフル活用する戦略" },
+          { href: "/diagnose/", title: "30秒でFIRE診断", description: "あなたのFIREグレードを判定" },
+        ]}
+      />
 
       <div className="mt-12 rounded-lg border-2 border-primary-200 bg-primary-50 p-6 text-center">
         <p className="text-lg font-bold text-primary-800">

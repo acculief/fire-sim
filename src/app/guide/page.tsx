@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import Link from "next/link";
 import { guides } from "@/data/guides";
 import Breadcrumb from "@/components/Breadcrumb";
+import RelatedContent from "@/components/RelatedContent";
 
 export const metadata: Metadata = {
   title: "FIREガイド | 経済的自立・早期退職の完全ガイド",
@@ -71,6 +72,15 @@ export default function GuidesIndexPage() {
           </Link>
         ))}
       </div>
+
+      <RelatedContent
+        items={[
+          { href: "/simulate/", title: "FIREシミュレーション", description: "条件に合わせて必要資産を計算" },
+          { href: "/diagnose/", title: "30秒でFIRE診断", description: "3つの質問でFIREグレードを判定" },
+          { href: "/cases/", title: "モデルケース", description: "年代別のFIRE達成プランを参考に" },
+          { href: "/faq/", title: "よくある質問", description: "FIREに関する疑問をまとめて解説" },
+        ]}
+      />
 
       <div className="mt-12 text-center">
         <Link href="/simulate/" className="btn-primary inline-block text-lg">

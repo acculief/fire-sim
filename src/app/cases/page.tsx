@@ -3,6 +3,7 @@ import Link from "next/link";
 import { modelCases } from "@/data/model-cases";
 import { formatMoney } from "@/lib/format";
 import Breadcrumb from "@/components/Breadcrumb";
+import RelatedContent from "@/components/RelatedContent";
 
 export const metadata: Metadata = {
   title: "年代別FIREモデルケース | 必要資産・達成年シミュレーション",
@@ -85,6 +86,15 @@ export default function CasesIndexPage() {
           </Link>
         ))}
       </div>
+
+      <RelatedContent
+        items={[
+          { href: "/guide/fire-first-steps/", title: "FIRE達成の第一歩", description: "具体的なアクションプランを解説" },
+          { href: "/guide/fire-savings-rate/", title: "貯蓄率とFIRE達成年", description: "貯蓄率がFIRE達成を左右する理由" },
+          { href: "/diagnose/", title: "30秒でFIRE診断", description: "あなたのFIREグレードを判定" },
+          { href: "/plan/", title: "年収×年代別プラン", description: "年収帯ごとのFIRE達成プランを確認" },
+        ]}
+      />
 
       {/* CTA */}
       <div className="mt-12 rounded-lg border-2 border-primary-200 bg-primary-50 p-6 text-center">

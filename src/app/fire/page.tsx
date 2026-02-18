@@ -3,6 +3,7 @@ import Link from "next/link";
 import { prefectures } from "@/data/prefectures";
 import { REGION_SLUGS } from "@/config/assumptions";
 import Breadcrumb from "@/components/Breadcrumb";
+import RelatedContent from "@/components/RelatedContent";
 
 export const metadata: Metadata = {
   title: "地域別FIREシミュレーション | 47都道府県対応",
@@ -79,6 +80,15 @@ export default function FireIndexPage() {
           ))}
         </div>
       </section>
+
+      <RelatedContent
+        items={[
+          { href: "/guide/fire-by-region/", title: "地域別FIRE戦略", description: "地方移住とFIREの関係を解説" },
+          { href: "/guide/side-fire/", title: "サイドFIREとは", description: "完全リタイアではない柔軟なFIRE" },
+          { href: "/cases/", title: "モデルケース", description: "年代別のFIRE達成プランを参考に" },
+          { href: "/income/", title: "手取り早見表", description: "年収別の手取り額・税金を確認" },
+        ]}
+      />
 
       {/* CTA */}
       <div className="mt-12 rounded-lg border-2 border-primary-200 bg-primary-50 p-6 text-center">
