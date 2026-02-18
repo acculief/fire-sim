@@ -5,6 +5,9 @@ import Link from "next/link";
 import Breadcrumb from "@/components/Breadcrumb";
 import RelatedContent from "@/components/RelatedContent";
 import { formatMoney } from "@/lib/format";
+import { brokers } from "@/data/recommend";
+
+const affiliateBrokers = brokers.filter((b) => b.isAffiliate);
 
 /* ------------------------------------------------------------------ */
 /*  型定義                                                              */
@@ -405,6 +408,61 @@ export default function WithdrawPage() {
           FIREシミュレーションへ
         </Link>
       </div>
+
+      {/* 証券口座CTA */}
+      {affiliateBrokers.length > 0 && (
+        <div className="mt-6 rounded-xl border-2 border-accent-200 bg-accent-50 p-6">
+          <h3 className="mb-1 text-center text-lg font-bold text-accent-800">
+            FIRE後の取り崩しに備えて証券口座を準備しよう
+          </h3>
+          <p className="mb-4 text-center text-xs text-gray-600">
+            新NISAを活用すれば取り崩し時も非課税。まずは口座開設から始めましょう
+          </p>
+          <div className="space-y-3">
+            {affiliateBrokers.map((b) => (
+              <div
+                key={b.slug}
+                className="rounded-lg border border-white bg-white p-4"
+              >
+                <div className="flex items-center gap-2">
+                  <h4 className="font-bold text-gray-800">{b.name}</h4>
+                  <span className="rounded bg-accent-500 px-1.5 py-0.5 text-[10px] font-bold leading-none text-white">
+                    おすすめ
+                  </span>
+                </div>
+                <p className="mt-1 text-sm text-gray-600">{b.description}</p>
+                <ul className="mt-2 flex flex-wrap gap-x-3 gap-y-1 text-xs text-gray-500">
+                  {b.features.slice(0, 2).map((f, i) => (
+                    <li key={i} className="flex items-center">
+                      <span className="mr-1 text-accent-500">✓</span>{f}
+                    </li>
+                  ))}
+                </ul>
+                <a
+                  href={b.affiliateUrl ?? b.url}
+                  target="_blank"
+                  rel="nofollow noopener noreferrer"
+                  className="mt-3 inline-block rounded-lg bg-accent-600 px-5 py-2 text-sm font-bold text-white transition-colors hover:bg-accent-700"
+                >
+                  無料で口座開設 <span className="text-xs opacity-75">PR</span>
+                </a>
+                {b.trackingPixel && (
+                  /* eslint-disable-next-line @next/next/no-img-element */
+                  <img src={b.trackingPixel} width={1} height={1} alt="" className="inline" />
+                )}
+              </div>
+            ))}
+          </div>
+          <div className="mt-4 flex flex-wrap justify-center gap-3 text-xs">
+            <Link href="/guide/how-to-choose-broker/" className="text-accent-700 underline hover:text-accent-600">
+              証券口座の選び方ガイド
+            </Link>
+            <Link href="/guide/nisa-fire-acceleration/" className="text-accent-700 underline hover:text-accent-600">
+              新NISAでFIRE加速
+            </Link>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

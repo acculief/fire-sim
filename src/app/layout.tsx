@@ -124,9 +124,10 @@ export default function RootLayout({
                 <p className="font-bold text-gray-700">人気のガイド</p>
                 <ul className="mt-2 space-y-1 text-gray-500">
                   <li><a href="/guide/what-is-fire/" className="hover:text-primary-600">FIREとは？</a></li>
-                  <li><a href="/guide/4percent-rule/" className="hover:text-primary-600">4%ルール解説</a></li>
+                  <li><a href="/guide/fire-first-steps/" className="hover:text-primary-600">FIRE初心者の始め方</a></li>
+                  <li><a href="/guide/how-to-choose-broker/" className="hover:text-primary-600">証券口座の選び方</a></li>
+                  <li><a href="/guide/nisa-fire-acceleration/" className="hover:text-primary-600">新NISAでFIRE加速</a></li>
                   <li><a href="/guide/fire-index-investing/" className="hover:text-primary-600">インデックス投資入門</a></li>
-                  <li><a href="/guide/nisa-ideco-for-fire/" className="hover:text-primary-600">新NISA活用法</a></li>
                 </ul>
               </div>
             </div>

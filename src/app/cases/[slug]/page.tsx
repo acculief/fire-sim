@@ -213,6 +213,43 @@ export default async function CaseDetailPage({
         </Link>
       </div>
 
+      {/* 関連ガイド */}
+      <section className="mt-12">
+        <h2 className="text-lg font-bold text-gray-800">
+          関連ガイド記事
+        </h2>
+        <div className="mt-4 grid gap-3 sm:grid-cols-2">
+          <Link
+            href="/guide/fire-first-steps/"
+            className="block rounded-lg border border-gray-200 bg-white p-4 transition-colors hover:border-primary-300 hover:bg-primary-50"
+          >
+            <p className="font-bold text-gray-800">FIRE初心者が最初にやるべき3つのこと</p>
+            <p className="mt-1 text-xs text-gray-500">家計把握・口座開設・投資開始の3ステップ</p>
+          </Link>
+          <Link
+            href="/guide/how-to-choose-broker/"
+            className="block rounded-lg border border-gray-200 bg-white p-4 transition-colors hover:border-primary-300 hover:bg-primary-50"
+          >
+            <p className="font-bold text-gray-800">ネット証券口座の選び方</p>
+            <p className="mt-1 text-xs text-gray-500">主要6社比較＆タイプ別おすすめ</p>
+          </Link>
+          <Link
+            href="/guide/fire-index-investing/"
+            className="block rounded-lg border border-gray-200 bg-white p-4 transition-colors hover:border-primary-300 hover:bg-primary-50"
+          >
+            <p className="font-bold text-gray-800">インデックス投資入門</p>
+            <p className="mt-1 text-xs text-gray-500">銘柄選びから出口戦略まで</p>
+          </Link>
+          <Link
+            href="/guide/nisa-fire-acceleration/"
+            className="block rounded-lg border border-gray-200 bg-white p-4 transition-colors hover:border-primary-300 hover:bg-primary-50"
+          >
+            <p className="font-bold text-gray-800">新NISAでFIRE達成を加速</p>
+            <p className="mt-1 text-xs text-gray-500">非課税枠の活用で2〜3年短縮</p>
+          </Link>
+        </div>
+      </section>
+
       {/* 他のモデルケース */}
       <section className="mt-12">
         <h2 className="text-lg font-bold text-gray-800">
