@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import Link from "next/link";
-import { SITE_URL } from "@/config/site";
+import { SITE_URL, CONTENT_PUBLISHED_DATE } from "@/config/site";
 import Breadcrumb from "@/components/Breadcrumb";
 import RelatedContent from "@/components/RelatedContent";
 import {
@@ -96,8 +96,7 @@ export default async function IncomeDetailPage({
     description: `年収${level.toLocaleString()}万円の手取りは約${man(r.takeHomeAnnual)}。税金・保険料の内訳と家族構成別比較。`,
     url: `${SITE_URL}/income/${level}/`,
     image: `${SITE_URL}/opengraph-image`,
-    datePublished: "2026-02-01",
-    dateModified: "2026-02-18",
+    datePublished: CONTENT_PUBLISHED_DATE,
     inLanguage: "ja",
     author: {
       "@type": "Organization",

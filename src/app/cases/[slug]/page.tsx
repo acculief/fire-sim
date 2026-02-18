@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import Link from "next/link";
 import { modelCases, getModelCaseBySlug } from "@/data/model-cases";
 import { FAMILY_COEFFICIENTS, HOUSING_COEFFICIENTS } from "@/config/assumptions";
-import { SITE_URL } from "@/config/site";
+import { SITE_URL, CONTENT_PUBLISHED_DATE } from "@/config/site";
 import { formatMoney } from "@/lib/format";
 import Breadcrumb from "@/components/Breadcrumb";
 
@@ -64,8 +64,7 @@ export default async function CaseDetailPage({
     mainEntityOfPage: { "@type": "WebPage", "@id": `${SITE_URL}/cases/${slug}/` },
     url: `${SITE_URL}/cases/${slug}/`,
     image: `${SITE_URL}/opengraph-image`,
-    datePublished: "2026-01-01",
-    dateModified: "2026-02-18",
+    datePublished: CONTENT_PUBLISHED_DATE,
     inLanguage: "ja",
     author: {
       "@type": "Organization",

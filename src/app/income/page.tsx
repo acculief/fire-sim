@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import Link from "next/link";
-import { SITE_URL } from "@/config/site";
+import { SITE_URL, CONTENT_PUBLISHED_DATE } from "@/config/site";
 import Breadcrumb from "@/components/Breadcrumb";
 import RelatedContent from "@/components/RelatedContent";
 import {
@@ -46,8 +46,7 @@ export default function IncomePage() {
       "年収200万〜2,000万円の手取り額・税金・社会保険料を一覧で確認。家族構成別の比較も。",
     url: `${SITE_URL}/income/`,
     image: `${SITE_URL}/opengraph-image`,
-    datePublished: "2026-02-01",
-    dateModified: "2026-02-18",
+    datePublished: CONTENT_PUBLISHED_DATE,
     inLanguage: "ja",
     author: {
       "@type": "Organization",
