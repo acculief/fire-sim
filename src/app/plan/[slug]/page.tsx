@@ -354,7 +354,7 @@ export default async function PlanDetailPage({
         <ul className="mt-4 space-y-3">
           {insights.map((insight, i) => (
             <li
-              key={i}
+              key={insight}
               className="flex gap-3 rounded-lg border border-gray-100 bg-gray-50 p-4 text-sm text-gray-700"
             >
               <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-primary-100 text-xs font-bold text-primary-700">

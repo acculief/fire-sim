@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import { guides, getGuideBySlug } from "@/data/guides";
+import { SITE_URL } from "@/config/site";
 import Disclaimer from "@/components/Disclaimer";
 import Breadcrumb from "@/components/Breadcrumb";
 import { autoLinkKeywords } from "@/lib/auto-link";
@@ -57,7 +58,7 @@ export default async function GuidePage({
     author: {
       "@type": "Organization",
       name: "FIREシミュレーター",
-      url: "https://fire-sim-phi.vercel.app",
+      url: SITE_URL,
     },
     publisher: {
       "@type": "Organization",
@@ -99,7 +100,7 @@ export default async function GuidePage({
           <p className="mb-2 text-sm font-bold text-gray-700">目次</p>
           <ol className="list-inside list-decimal space-y-1 text-sm text-primary-700">
             {article.sections.map((section, i) => (
-              <li key={i}>
+              <li key={section.heading}>
                 <a
                   href={`#section-${i}`}
                   className="hover:text-primary-500 hover:underline"
@@ -114,7 +115,7 @@ export default async function GuidePage({
         {/* 本文セクション */}
         <div className="mt-8 space-y-10">
           {article.sections.map((section, i) => (
-            <section key={i} id={`section-${i}`}>
+            <section key={section.heading} id={`section-${i}`}>
               <h2 className="text-xl font-bold text-gray-800">
                 {section.heading}
               </h2>

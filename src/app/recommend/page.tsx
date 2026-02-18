@@ -93,18 +93,6 @@ export default function RecommendPage() {
     name: "FIRE達成におすすめの証券口座・投資信託",
     description:
       "FIRE（経済的自立・早期退職）を目指す方におすすめのネット証券口座を徹底比較。新NISA・iDeCo対応状況も解説。",
-    breadcrumb: {
-      "@type": "BreadcrumbList",
-      itemListElement: [
-        { "@type": "ListItem", position: 1, name: "ホーム", item: "/" },
-        {
-          "@type": "ListItem",
-          position: 2,
-          name: "おすすめ",
-          item: "/recommend/",
-        },
-      ],
-    },
   };
 
   return (
@@ -261,9 +249,9 @@ export default function RecommendPage() {
                 )}
 
                 <ul className="mt-3 space-y-1">
-                  {b.features.map((f, i) => (
+                  {b.features.map((f) => (
                     <li
-                      key={i}
+                      key={f}
                       className="flex items-start text-sm text-gray-700"
                     >
                       <span className="mr-2 mt-0.5 text-primary-500">✓</span>
@@ -382,9 +370,9 @@ export default function RecommendPage() {
           長期積立に適した低コストインデックスファンドを厳選。新NISAのつみたて投資枠で購入可能です。
         </p>
         <div className="mt-4 space-y-3">
-          {funds.map((f, i) => (
+          {funds.map((f) => (
             <div
-              key={i}
+              key={f.name}
               className="rounded-lg border border-gray-200 bg-white p-4"
             >
               <div className="flex items-start justify-between">
@@ -415,7 +403,7 @@ export default function RecommendPage() {
         <div className="mt-4 space-y-3">
           {faqs.map((faq, i) => (
             <details
-              key={i}
+              key={faq.question}
               className="group rounded-lg border border-gray-200 bg-white"
               open={i === 0}
             >

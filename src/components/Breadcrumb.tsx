@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { SITE_URL } from "@/config/site";
 
 export interface BreadcrumbItem {
   label: string;
@@ -14,7 +15,7 @@ export default function Breadcrumb({ items }: Props) {
     <>
       <nav aria-label="パンくずリスト" className="mb-6 text-sm text-gray-500">
         {items.map((item, i) => (
-          <span key={i}>
+          <span key={item.label}>
             {i > 0 && <span className="mx-1">/</span>}
             {item.href ? (
               <Link href={item.href} className="hover:text-primary-600">
@@ -37,7 +38,7 @@ export default function Breadcrumb({ items }: Props) {
               position: i + 1,
               name: item.label,
               ...(item.href
-                ? { item: `https://fire-sim-phi.vercel.app${item.href}` }
+                ? { item: `${SITE_URL}${item.href}` }
                 : {}),
             })),
           }),

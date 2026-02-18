@@ -15,8 +15,8 @@ export default function BrokerCard({ broker: b }: Props) {
       </div>
       <p className="mt-1 text-sm text-gray-600">{b.description}</p>
       <ul className="mt-2 flex flex-wrap gap-x-3 gap-y-1 text-xs text-gray-500">
-        {b.features.slice(0, 2).map((f, i) => (
-          <li key={i} className="flex items-center">
+        {b.features.slice(0, 2).map((f) => (
+          <li key={f} className="flex items-center">
             <span className="mr-1 text-accent-500">✓</span>{f}
           </li>
         ))}

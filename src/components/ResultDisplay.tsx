@@ -321,9 +321,9 @@ export default function ResultDisplay({ result, shareUrl }: Props) {
           感度分析（もし〇〇したら？）
         </h3>
         <div className="space-y-3">
-          {sensitivity.map((item, i) => (
+          {sensitivity.map((item) => (
             <div
-              key={i}
+              key={item.label}
               className="flex items-center justify-between rounded-lg border border-gray-100 bg-gray-50 p-3"
             >
               <div>

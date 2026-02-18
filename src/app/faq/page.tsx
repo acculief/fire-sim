@@ -106,7 +106,7 @@ export default function FaqPage() {
       <div className="mt-8 space-y-6">
         {faqs.map((faq, i) => (
           <details
-            key={i}
+            key={faq.question}
             className="group rounded-lg border border-gray-200 bg-white"
             open={i === 0}
           >

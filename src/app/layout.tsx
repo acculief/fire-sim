@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Noto_Sans_JP } from "next/font/google";
+import { SITE_URL } from "@/config/site";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 import Header from "@/components/Header";
 import "./globals.css";
@@ -12,7 +13,7 @@ const notoSansJP = Noto_Sans_JP({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://fire-sim-phi.vercel.app"),
+  metadataBase: new URL(SITE_URL),
   title: {
     default: "FIREシミュレーター | 地域別・年収別で達成年を計算",
     template: "%s | FIREシミュレーター",
@@ -62,7 +63,7 @@ export default function RootLayout({
         <footer className="mt-16 border-t border-gray-200 bg-white" role="contentinfo">
           <div className="mx-auto max-w-5xl px-4 py-8">
             <div className="grid gap-6 text-sm sm:grid-cols-3">
-              <div>
+              <nav aria-label="フッターナビゲーション">
                 <p className="font-bold text-gray-700">コンテンツ</p>
                 <ul className="mt-2 space-y-1 text-gray-500">
                   <li><a href="/simulate/" className="hover:text-primary-600">シミュレーション</a></li>
@@ -76,8 +77,8 @@ export default function RootLayout({
                   <li><a href="/plan/" className="hover:text-primary-600">年収×年代別プラン</a></li>
                   <li><a href="/faq/" className="hover:text-primary-600">よくある質問</a></li>
                 </ul>
-              </div>
-              <div>
+              </nav>
+              <nav aria-label="人気の地域">
                 <p className="font-bold text-gray-700">人気の地域</p>
                 <ul className="mt-2 space-y-1 text-gray-500">
                   <li><a href="/fire/tokyo/" className="hover:text-primary-600">東京都</a></li>
@@ -86,8 +87,8 @@ export default function RootLayout({
                   <li><a href="/fire/aichi/" className="hover:text-primary-600">愛知県</a></li>
                   <li><a href="/fire/fukuoka/" className="hover:text-primary-600">福岡県</a></li>
                 </ul>
-              </div>
-              <div>
+              </nav>
+              <nav aria-label="人気のガイド記事">
                 <p className="font-bold text-gray-700">人気のガイド</p>
                 <ul className="mt-2 space-y-1 text-gray-500">
                   <li><a href="/guide/what-is-fire/" className="hover:text-primary-600">FIREとは？</a></li>
@@ -96,7 +97,7 @@ export default function RootLayout({
                   <li><a href="/guide/nisa-fire-acceleration/" className="hover:text-primary-600">新NISAでFIRE加速</a></li>
                   <li><a href="/guide/fire-index-investing/" className="hover:text-primary-600">インデックス投資入門</a></li>
                 </ul>
-              </div>
+              </nav>
             </div>
             <hr className="my-6 border-gray-200" />
             <p className="text-center text-xs text-gray-500">

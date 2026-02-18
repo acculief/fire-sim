@@ -13,9 +13,9 @@ export default function FAQ({ items, prefName }: Props) {
     <div className="space-y-4">
       <h2 className="text-xl font-bold text-gray-900">よくある質問</h2>
       <div className="space-y-3">
-        {items.map((item, i) => (
+        {items.map((item) => (
           <details
-            key={i}
+            key={item.question}
             className="group rounded-lg border border-gray-200 bg-white"
           >
             <summary className="cursor-pointer px-4 py-3 font-medium text-gray-800 marker:text-primary-500">

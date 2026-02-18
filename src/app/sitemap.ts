@@ -4,8 +4,9 @@ import { INCOME_LEVELS, FAMILY_TYPES_FOR_SEO, AGE_GROUPS_FOR_SEO, HOUSING_TYPES_
 import { guides } from "@/data/guides";
 import { modelCases } from "@/data/model-cases";
 import { longtailPages } from "@/data/longtail-pages";
+import { SITE_URL } from "@/config/site";
 
-const BASE_URL = "https://fire-sim-phi.vercel.app";
+const BASE_URL = SITE_URL;
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const entries: MetadataRoute.Sitemap = [];

@@ -1,18 +1,19 @@
 import Link from "next/link";
 import { prefectures } from "@/data/prefectures";
 import { guides } from "@/data/guides";
+import { SITE_URL } from "@/config/site";
 import SimulationCounter from "@/components/SimulationCounter";
 
 const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
   name: "FIREシミュレーター",
-  url: "https://fire-sim-phi.vercel.app",
+  url: SITE_URL,
   description:
     "あなたの地域・年収・家族構成に合わせたFIRE達成シミュレーション。必要資産額と達成年を簡単計算。",
   potentialAction: {
     "@type": "SearchAction",
-    target: "https://fire-sim-phi.vercel.app/fire/{search_term_string}/",
+    target: `${SITE_URL}/fire/{search_term_string}/`,
     "query-input": "required name=search_term_string",
   },
 };
@@ -21,8 +22,8 @@ const orgSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
   name: "FIREシミュレーター",
-  url: "https://fire-sim-phi.vercel.app",
-  logo: "https://fire-sim-phi.vercel.app/icon-512.png",
+  url: SITE_URL,
+  logo: `${SITE_URL}/icon-512.png`,
 };
 
 export default function HomePage() {

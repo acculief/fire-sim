@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import Link from "next/link";
 import { modelCases, getModelCaseBySlug } from "@/data/model-cases";
 import { FAMILY_COEFFICIENTS, HOUSING_COEFFICIENTS } from "@/config/assumptions";
+import { SITE_URL } from "@/config/site";
 import { formatMoney } from "@/lib/format";
 import Breadcrumb from "@/components/Breadcrumb";
 
@@ -62,7 +63,7 @@ export default async function CaseDetailPage({
     author: {
       "@type": "Organization",
       name: "FIREシミュレーター",
-      url: "https://fire-sim-phi.vercel.app",
+      url: SITE_URL,
     },
     publisher: {
       "@type": "Organization",
@@ -191,7 +192,7 @@ export default async function CaseDetailPage({
         <ul className="mt-4 space-y-3">
           {c.keyPoints.map((point, i) => (
             <li
-              key={i}
+              key={point}
               className="flex gap-3 rounded-lg border border-gray-100 bg-gray-50 p-4 text-sm text-gray-700"
             >
               <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-primary-100 text-xs font-bold text-primary-700">

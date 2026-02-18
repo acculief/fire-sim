@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import Link from "next/link";
 import { prefectures } from "@/data/prefectures";
 import { REGION_SLUGS } from "@/config/assumptions";
+import { SITE_URL } from "@/config/site";
 import { generateRegionComparison } from "@/lib/seo-helpers";
 import { formatMoney } from "@/lib/format";
 import Disclaimer from "@/components/Disclaimer";
@@ -235,7 +236,7 @@ export default async function RegionPage({
               itemListElement: comparison.map((c, i) => ({
                 "@type": "ListItem",
                 position: i + 1,
-                url: `https://fire-sim-phi.vercel.app/fire/${c.code}/`,
+                url: `${SITE_URL}/fire/${c.code}/`,
                 name: `${c.name}のFIREシミュレーション`,
               })),
             },

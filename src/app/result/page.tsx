@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import Link from "next/link";
+import { SITE_URL } from "@/config/site";
 import Breadcrumb from "@/components/Breadcrumb";
 import RelatedContent from "@/components/RelatedContent";
 
@@ -51,7 +52,7 @@ export default async function ResultPage({ searchParams }: Props) {
   const expense = params.expense ? Number(params.expense) : null;
   const strategy = params.strategy === "yield" ? "配当金戦略" : "取り崩し戦略";
 
-  const pageUrl = `https://fire-sim-phi.vercel.app/result/?pref=${encodeURIComponent(pref)}&fire=${fire ?? ""}&age=${age ?? ""}&expense=${expense ?? ""}`;
+  const pageUrl = `${SITE_URL}/result/?pref=${encodeURIComponent(pref)}&fire=${fire ?? ""}&age=${age ?? ""}&expense=${expense ?? ""}`;
 
   const shareText = fire
     ? `私のFIRE必要資産は${fire.toLocaleString()}万円${age ? `（${age}歳で達成予定）` : ""}！あなたもシミュレーションしてみよう`
