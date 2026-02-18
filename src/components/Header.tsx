@@ -81,7 +81,7 @@ export default function Header() {
             aria-label={open ? "メニューを閉じる" : "メニューを開く"}
             aria-expanded={open}
             onClick={() => setOpen((v) => !v)}
-            className="flex h-8 w-8 items-center justify-center rounded text-gray-600 transition-colors hover:bg-gray-100 hover:text-primary-600"
+            className="flex h-11 w-11 items-center justify-center rounded text-gray-600 transition-colors hover:bg-gray-100 hover:text-primary-600"
           >
             {open ? (
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">

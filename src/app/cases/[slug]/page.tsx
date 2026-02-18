@@ -26,6 +26,8 @@ export async function generateMetadata({
       title: `${c.title}のFIREモデルケース`,
       description: c.description,
       type: "article",
+      url: `/cases/${slug}/`,
+      siteName: "FIREシミュレーター",
     },
   };
 }

@@ -8,6 +8,14 @@ export const metadata: Metadata = {
   title: "FIRE達成におすすめの証券口座・投資信託【2026年最新】",
   description:
     "FIRE（経済的自立・早期退職）を目指す方におすすめのネット証券口座を徹底比較。新NISA・iDeCo対応状況、手数料、ポイント還元まで解説。",
+  openGraph: {
+    title: "FIRE達成におすすめの証券口座・投資信託【2026年最新】",
+    description:
+      "FIRE達成に最適なネット証券口座を比較。新NISA・iDeCo対応、手数料、ポイント還元を解説。",
+    type: "website",
+    url: "/recommend/",
+    siteName: "FIREシミュレーター",
+  },
 };
 
 /** 証券口座のおすすめ度データ */
@@ -415,6 +423,7 @@ export default function RecommendPage() {
                   viewBox="0 0 24 24"
                   strokeWidth={2}
                   stroke="currentColor"
+                  aria-hidden="true"
                 >
                   <path
                     strokeLinecap="round"

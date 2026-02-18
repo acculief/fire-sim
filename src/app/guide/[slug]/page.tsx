@@ -26,6 +26,8 @@ export async function generateMetadata({
       title: article.title,
       description: article.description,
       type: "article",
+      url: `/guide/${slug}/`,
+      siteName: "FIREシミュレーター",
       publishedTime: article.publishedAt,
     },
   };

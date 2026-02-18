@@ -177,6 +177,8 @@ export async function generateMetadata({
       title: page.title,
       description: page.description,
       type: "article",
+      url: `/plan/${slug}/`,
+      siteName: "FIREシミュレーター",
     },
   };
 }

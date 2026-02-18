@@ -36,6 +36,8 @@ export async function generateMetadata({
       title: `年収${level.toLocaleString()}万円の手取り額`,
       description: `手取り約${takeMan.toLocaleString()}万円（${r.takeHomeRate}%）。税金・保険料の詳細内訳。`,
       type: "article",
+      url: `/income/${amount}/`,
+      siteName: "FIREシミュレーター",
     },
   };
 }
@@ -518,7 +520,7 @@ export default async function IncomeDetailPage({
       <div className="mt-10 rounded-lg bg-gray-100 p-4 text-xs text-gray-500">
         <p className="font-medium">計算の前提</p>
         <p className="mt-1">
-          2025年の税制に基づく概算。40歳未満・給与収入のみ・協会けんぽ全国平均で計算。
+          2026年の税制に基づく概算。40歳未満・給与収入のみ・協会けんぽ全国平均で計算。
           ふるさと納税・iDeCo・住宅ローン控除等は含みません。
         </p>
       </div>

@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import Link from "next/link";
 import { SITE_URL } from "@/config/site";
 import Breadcrumb from "@/components/Breadcrumb";
+import RelatedContent from "@/components/RelatedContent";
 import {
   INCOME_LEVELS,
   FAMILY_PATTERNS,
@@ -77,7 +78,7 @@ export default function IncomePage() {
         家族構成による手取りの違いも比較できます。
       </p>
       <p className="mt-2 text-xs text-gray-400">
-        ※2025年の税制に基づく簡易計算。40歳未満・給与収入のみ・協会けんぽ加入を想定。
+        ※2026年の税制に基づく簡易計算。40歳未満・給与収入のみ・協会けんぽ加入を想定。
       </p>
 
       {/* ---------- メイン早見表（独身） ---------- */}
@@ -263,11 +264,36 @@ export default function IncomePage() {
         </div>
       </section>
 
+      <RelatedContent
+        items={[
+          {
+            href: "/simulate/",
+            title: "FIREシミュレーション",
+            description: "地域・年収・家族構成から必要資産と達成年を計算",
+          },
+          {
+            href: "/guide/fire-tax-optimization/",
+            title: "FIRE志向者の節税戦略",
+            description: "手取りを最大化して資産形成を加速する方法",
+          },
+          {
+            href: "/recommend/",
+            title: "おすすめ証券口座",
+            description: "FIRE達成に最適な証券口座を比較",
+          },
+          {
+            href: "/plan/",
+            title: "年収×年代別プラン",
+            description: "年収帯ごとのFIRE達成プランを確認",
+          },
+        ]}
+      />
+
       {/* ---------- 注意事項 ---------- */}
       <div className="mt-12 rounded-lg bg-gray-100 p-4 text-xs text-gray-500">
         <p className="font-medium">計算の前提・注意事項</p>
         <ul className="mt-1 ml-4 list-disc space-y-0.5">
-          <li>2025年（令和7年）の税制に基づく概算値です</li>
+          <li>2026年（令和8年）の税制に基づく概算値です</li>
           <li>40歳未満（介護保険料なし）、給与収入のみを想定</li>
           <li>健康保険は協会けんぽ全国平均（約5.0%）で計算</li>
           <li>配偶者は年収103万円以下（配偶者控除適用）、子は16歳以上（一般扶養控除適用）を想定</li>
