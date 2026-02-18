@@ -25,3 +25,11 @@
     @apply rounded-xl border border-gray-200 bg-white p-6 shadow-sm;
   }
 }
+
+@keyframes slideDown {
+  from { transform: translateY(-100%); }
+  to { transform: translateY(0); }
+}
+.animate-slide-down {
+  animation: slideDown 200ms ease-out;
+}

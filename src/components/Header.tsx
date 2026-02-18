@@ -1,0 +1,142 @@
+"use client";
+
+import { useState } from "react";
+
+const menuSections = [
+  {
+    label: "ツール",
+    links: [
+      { href: "/simulate/", text: "シミュレーション" },
+      { href: "/diagnose/", text: "FIRE診断" },
+      { href: "/withdraw/", text: "取り崩しシミュレーション" },
+      { href: "/tracker/", text: "進捗トラッカー" },
+    ],
+  },
+  {
+    label: "学ぶ",
+    links: [
+      { href: "/guide/", text: "ガイド記事一覧" },
+      { href: "/recommend/", text: "おすすめ証券口座・投信" },
+    ],
+  },
+  {
+    label: "調べる",
+    links: [
+      { href: "/fire/", text: "地域別FIRE情報" },
+      { href: "/cases/", text: "モデルケース" },
+      { href: "/faq/", text: "よくある質問" },
+    ],
+  },
+];
+
+export default function Header() {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <header className="border-b border-gray-200 bg-white" role="banner">
+      <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-3">
+        <a
+          href="/"
+          className="shrink-0 text-base font-bold text-primary-700 sm:text-xl"
+        >
+          FIREシミュレーター
+        </a>
+
+        {/* PC nav */}
+        <nav
+          aria-label="メインナビゲーション"
+          className="hidden gap-4 text-sm sm:flex"
+        >
+          <a href="/simulate/" className="text-gray-600 transition-colors hover:text-primary-600">シミュレーション</a>
+          <a href="/diagnose/" className="text-gray-600 transition-colors hover:text-primary-600">診断</a>
+          <a href="/withdraw/" className="text-gray-600 transition-colors hover:text-primary-600">取り崩し</a>
+          <a href="/tracker/" className="text-gray-600 transition-colors hover:text-primary-600">トラッカー</a>
+          <a href="/guide/" className="text-gray-600 transition-colors hover:text-primary-600">ガイド</a>
+          <a href="/recommend/" className="text-gray-600 transition-colors hover:text-primary-600">おすすめ</a>
+          <a href="/fire/" className="text-gray-600 transition-colors hover:text-primary-600">地域別</a>
+        </nav>
+
+        {/* Mobile nav: visible links + hamburger */}
+        <div className="flex items-center gap-3 sm:hidden">
+          <nav aria-label="メインナビゲーション" className="flex gap-2 text-xs">
+            <a href="/simulate/" className="text-gray-600 transition-colors hover:text-primary-600">シミュレーション</a>
+            <a href="/diagnose/" className="text-gray-600 transition-colors hover:text-primary-600">診断</a>
+            <a href="/guide/" className="text-gray-600 transition-colors hover:text-primary-600">ガイド</a>
+          </nav>
+          <button
+            type="button"
+            aria-label={open ? "メニューを閉じる" : "メニューを開く"}
+            aria-expanded={open}
+            onClick={() => setOpen((v) => !v)}
+            className="flex h-8 w-8 items-center justify-center rounded text-gray-600 transition-colors hover:bg-gray-100 hover:text-primary-600"
+          >
+            {open ? (
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                <path d="M5 5l10 10M15 5L5 15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+              </svg>
+            ) : (
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                <path d="M3 5h14M3 10h14M3 15h14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+              </svg>
+            )}
+          </button>
+        </div>
+      </div>
+
+      {/* Mobile overlay menu */}
+      {open && (
+        <>
+          {/* Backdrop */}
+          <div
+            className="fixed inset-0 z-40 bg-black/30 sm:hidden"
+            onClick={() => setOpen(false)}
+            aria-hidden="true"
+          />
+          {/* Menu panel */}
+          <nav
+            aria-label="モバイルメニュー"
+            className="fixed inset-x-0 top-0 z-50 max-h-[85vh] overflow-y-auto bg-white shadow-lg sm:hidden animate-slide-down"
+          >
+            {/* Close bar */}
+            <div className="flex items-center justify-between border-b border-gray-100 px-4 py-3">
+              <span className="text-base font-bold text-primary-700">メニュー</span>
+              <button
+                type="button"
+                aria-label="メニューを閉じる"
+                onClick={() => setOpen(false)}
+                className="flex h-8 w-8 items-center justify-center rounded text-gray-600 hover:bg-gray-100"
+              >
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                  <path d="M5 5l10 10M15 5L5 15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                </svg>
+              </button>
+            </div>
+
+            <div className="px-4 py-4 space-y-5">
+              {menuSections.map((section) => (
+                <div key={section.label}>
+                  <p className="mb-2 text-xs font-bold uppercase tracking-wider text-gray-400">
+                    {section.label}
+                  </p>
+                  <ul className="space-y-1">
+                    {section.links.map((link) => (
+                      <li key={link.href}>
+                        <a
+                          href={link.href}
+                          onClick={() => setOpen(false)}
+                          className="block rounded-md px-3 py-2 text-sm text-gray-700 transition-colors hover:bg-primary-50 hover:text-primary-700"
+                        >
+                          {link.text}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </nav>
+        </>
+      )}
+    </header>
+  );
+}

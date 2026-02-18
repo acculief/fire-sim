@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Noto_Sans_JP } from "next/font/google";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
+import Header from "@/components/Header";
 import "./globals.css";
 
 const notoSansJP = Noto_Sans_JP({
@@ -50,51 +51,7 @@ export default function RootLayout({
         >
           メインコンテンツへスキップ
         </a>
-        <header className="border-b border-gray-200 bg-white" role="banner">
-          <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-3">
-            <a href="/" className="shrink-0 text-base font-bold text-primary-700 sm:text-xl">
-              FIREシミュレーター
-            </a>
-            <nav aria-label="メインナビゲーション" className="flex gap-2 text-xs sm:gap-4 sm:text-sm">
-              <a
-                href="/simulate/"
-                className="text-gray-600 transition-colors hover:text-primary-600"
-              >
-                シミュレーション
-              </a>
-              <a
-                href="/diagnose/"
-                className="text-gray-600 transition-colors hover:text-primary-600"
-              >
-                診断
-              </a>
-              <a
-                href="/tracker/"
-                className="text-gray-600 transition-colors hover:text-primary-600"
-              >
-                トラッカー
-              </a>
-              <a
-                href="/guide/"
-                className="hidden text-gray-600 transition-colors hover:text-primary-600 sm:block"
-              >
-                ガイド
-              </a>
-              <a
-                href="/recommend/"
-                className="hidden text-gray-600 transition-colors hover:text-primary-600 sm:block"
-              >
-                おすすめ
-              </a>
-              <a
-                href="/fire/"
-                className="hidden text-gray-600 transition-colors hover:text-primary-600 sm:block"
-              >
-                地域別
-              </a>
-            </nav>
-          </div>
-        </header>
+        <Header />
         <main id="main-content">{children}</main>
         <footer className="mt-16 border-t border-gray-200 bg-white" role="contentinfo">
           <div className="mx-auto max-w-5xl px-4 py-8">
