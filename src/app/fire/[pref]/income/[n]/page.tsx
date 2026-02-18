@@ -136,6 +136,24 @@ export default async function IncomePage({
         </div>
       </section>
 
+      {/* 他の年収へのリンク */}
+      <section className="mt-10">
+        <h2 className="text-xl font-bold text-gray-900">
+          {prefecture.name}の他の年収
+        </h2>
+        <div className="mt-3 flex flex-wrap gap-2">
+          {INCOME_LEVELS.filter((il) => il.value !== income).map((il) => (
+            <Link
+              key={il.value}
+              href={`/fire/${pref}/income/${il.value}/`}
+              className="rounded-lg border border-gray-200 bg-white px-3 py-1.5 text-sm text-gray-700 hover:border-primary-300 hover:bg-primary-50 hover:text-primary-700"
+            >
+              {il.label}
+            </Link>
+          ))}
+        </div>
+      </section>
+
       <section className="mt-10">
         <FAQ items={faqItems} prefName={prefecture.name} />
       </section>

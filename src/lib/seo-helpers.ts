@@ -21,6 +21,27 @@ export interface CaseExample {
   monthlyExpense: number;
 }
 
+/** DEFAULTS をベースに部分上書きした SimulationInput を生成 */
+function createBaseInput(overrides: Partial<SimulationInput>): SimulationInput {
+  return {
+    prefecture: "",
+    annualIncome: 500,
+    incomeType: "gross",
+    currentAssets: DEFAULTS.currentAssets,
+    monthlyInvestment: DEFAULTS.monthlyInvestment,
+    familyType: "single",
+    housingType: "rent",
+    currentAge: DEFAULTS.currentAge,
+    annualReturnRate: DEFAULTS.annualReturnRate,
+    swr: DEFAULTS.swr,
+    inflationRate: DEFAULTS.inflationRate,
+    fireStrategy: DEFAULTS.fireStrategy,
+    yieldRate: DEFAULTS.yieldRate,
+    dividendTaxRate: DEFAULTS.dividendTaxRate,
+    ...overrides,
+  };
+}
+
 /** 地域LPの代表ケースを生成 */
 export function generateCaseExamples(prefCode: string): CaseExample[] {
   const cases: { label: string; income: number; family: string; familyLabel: string }[] = [
@@ -30,22 +51,11 @@ export function generateCaseExamples(prefCode: string): CaseExample[] {
   ];
 
   return cases.map((c) => {
-    const input: SimulationInput = {
+    const input = createBaseInput({
       prefecture: prefCode,
       annualIncome: c.income,
-      incomeType: "gross",
-      currentAssets: DEFAULTS.currentAssets,
-      monthlyInvestment: DEFAULTS.monthlyInvestment,
       familyType: c.family,
-      housingType: "rent",
-      currentAge: DEFAULTS.currentAge,
-      annualReturnRate: DEFAULTS.annualReturnRate,
-      swr: DEFAULTS.swr,
-      inflationRate: DEFAULTS.inflationRate,
-      fireStrategy: DEFAULTS.fireStrategy,
-      yieldRate: DEFAULTS.yieldRate,
-      dividendTaxRate: DEFAULTS.dividendTaxRate,
-    };
+    });
     const result = runSimulation(input);
     const neutral = result.scenarios.neutral;
 
@@ -64,22 +74,11 @@ export function generateCaseExamples(prefCode: string): CaseExample[] {
 /** 年収別のケースを生成 */
 export function generateIncomeCases(prefCode: string, income: number) {
   return FAMILY_TYPES_FOR_SEO.map((ft) => {
-    const input: SimulationInput = {
+    const input = createBaseInput({
       prefecture: prefCode,
       annualIncome: income,
-      incomeType: "gross",
-      currentAssets: DEFAULTS.currentAssets,
-      monthlyInvestment: DEFAULTS.monthlyInvestment,
       familyType: ft.key,
-      housingType: "rent",
-      currentAge: DEFAULTS.currentAge,
-      annualReturnRate: DEFAULTS.annualReturnRate,
-      swr: DEFAULTS.swr,
-      inflationRate: DEFAULTS.inflationRate,
-      fireStrategy: DEFAULTS.fireStrategy,
-      yieldRate: DEFAULTS.yieldRate,
-      dividendTaxRate: DEFAULTS.dividendTaxRate,
-    };
+    });
     const result = runSimulation(input);
     const neutral = result.scenarios.neutral;
     return {
@@ -95,22 +94,11 @@ export function generateIncomeCases(prefCode: string, income: number) {
 /** 家族構成別のケースを生成 */
 export function generateFamilyCases(prefCode: string, familyType: string) {
   return INCOME_LEVELS.slice(0, 5).map((il) => {
-    const input: SimulationInput = {
+    const input = createBaseInput({
       prefecture: prefCode,
       annualIncome: il.value,
-      incomeType: "gross",
-      currentAssets: DEFAULTS.currentAssets,
-      monthlyInvestment: DEFAULTS.monthlyInvestment,
       familyType,
-      housingType: "rent",
-      currentAge: DEFAULTS.currentAge,
-      annualReturnRate: DEFAULTS.annualReturnRate,
-      swr: DEFAULTS.swr,
-      inflationRate: DEFAULTS.inflationRate,
-      fireStrategy: DEFAULTS.fireStrategy,
-      yieldRate: DEFAULTS.yieldRate,
-      dividendTaxRate: DEFAULTS.dividendTaxRate,
-    };
+    });
     const result = runSimulation(input);
     const neutral = result.scenarios.neutral;
     return {
@@ -138,22 +126,13 @@ export function estimateAssetsByAge(ageSlug: string) {
 export function generateAgeCases(prefCode: string, ageSlug: string) {
   const { currentAssets, monthlyInvestment, currentAge } = estimateAssetsByAge(ageSlug);
   return INCOME_LEVELS.slice(0, 5).map((il) => {
-    const input: SimulationInput = {
+    const input = createBaseInput({
       prefecture: prefCode,
       annualIncome: il.value,
-      incomeType: "gross",
       currentAssets,
       monthlyInvestment,
-      familyType: "single",
-      housingType: "rent",
       currentAge,
-      annualReturnRate: DEFAULTS.annualReturnRate,
-      swr: DEFAULTS.swr,
-      inflationRate: DEFAULTS.inflationRate,
-      fireStrategy: DEFAULTS.fireStrategy,
-      yieldRate: DEFAULTS.yieldRate,
-      dividendTaxRate: DEFAULTS.dividendTaxRate,
-    };
+    });
     const result = runSimulation(input);
     const neutral = result.scenarios.neutral;
     return {
@@ -172,22 +151,11 @@ export function generateAgeCases(prefCode: string, ageSlug: string) {
 /** 住宅×都道府県のシミュレーション結果生成（年収別に比較） */
 export function generateHousingCases(prefCode: string, housingType: string) {
   return INCOME_LEVELS.slice(0, 5).map((il) => {
-    const input: SimulationInput = {
+    const input = createBaseInput({
       prefecture: prefCode,
       annualIncome: il.value,
-      incomeType: "gross",
-      currentAssets: DEFAULTS.currentAssets,
-      monthlyInvestment: DEFAULTS.monthlyInvestment,
-      familyType: "single",
       housingType,
-      currentAge: DEFAULTS.currentAge,
-      annualReturnRate: DEFAULTS.annualReturnRate,
-      swr: DEFAULTS.swr,
-      inflationRate: DEFAULTS.inflationRate,
-      fireStrategy: DEFAULTS.fireStrategy,
-      yieldRate: DEFAULTS.yieldRate,
-      dividendTaxRate: DEFAULTS.dividendTaxRate,
-    };
+    });
     const result = runSimulation(input);
     const neutral = result.scenarios.neutral;
     return {
@@ -203,22 +171,11 @@ export function generateHousingCases(prefCode: string, housingType: string) {
 /** 住宅タイプ間のミニ比較（特定年収での3タイプ比較） */
 export function generateHousingComparison(prefCode: string, income: number) {
   return HOUSING_TYPES_FOR_SEO.map((ht) => {
-    const input: SimulationInput = {
+    const input = createBaseInput({
       prefecture: prefCode,
       annualIncome: income,
-      incomeType: "gross",
-      currentAssets: DEFAULTS.currentAssets,
-      monthlyInvestment: DEFAULTS.monthlyInvestment,
-      familyType: "single",
       housingType: ht.key,
-      currentAge: DEFAULTS.currentAge,
-      annualReturnRate: DEFAULTS.annualReturnRate,
-      swr: DEFAULTS.swr,
-      inflationRate: DEFAULTS.inflationRate,
-      fireStrategy: DEFAULTS.fireStrategy,
-      yieldRate: DEFAULTS.yieldRate,
-      dividendTaxRate: DEFAULTS.dividendTaxRate,
-    };
+    });
     const result = runSimulation(input);
     const neutral = result.scenarios.neutral;
     return {
@@ -239,22 +196,10 @@ export function generateRegionComparison(regionLabel: string) {
     .sort((a, b) => a.costIndex - b.costIndex);
 
   return regionPrefs.map((p) => {
-    const input: SimulationInput = {
+    const input = createBaseInput({
       prefecture: p.code,
       annualIncome: 500,
-      incomeType: "gross",
-      currentAssets: DEFAULTS.currentAssets,
-      monthlyInvestment: DEFAULTS.monthlyInvestment,
-      familyType: "single",
-      housingType: "rent",
-      currentAge: DEFAULTS.currentAge,
-      annualReturnRate: DEFAULTS.annualReturnRate,
-      swr: DEFAULTS.swr,
-      inflationRate: DEFAULTS.inflationRate,
-      fireStrategy: DEFAULTS.fireStrategy,
-      yieldRate: DEFAULTS.yieldRate,
-      dividendTaxRate: DEFAULTS.dividendTaxRate,
-    };
+    });
     const result = runSimulation(input);
     const neutral = result.scenarios.neutral;
     return {

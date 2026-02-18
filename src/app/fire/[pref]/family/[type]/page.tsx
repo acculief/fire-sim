@@ -137,6 +137,24 @@ export default async function FamilyPage({
         </div>
       </section>
 
+      {/* 他の家族構成へのリンク */}
+      <section className="mt-10">
+        <h2 className="text-xl font-bold text-gray-900">
+          {prefecture.name}の他の家族構成
+        </h2>
+        <div className="mt-3 flex flex-wrap gap-2">
+          {FAMILY_TYPES_FOR_SEO.filter((ft) => ft.key !== type).map((ft) => (
+            <Link
+              key={ft.key}
+              href={`/fire/${pref}/family/${ft.key}/`}
+              className="rounded-lg border border-gray-200 bg-white px-3 py-1.5 text-sm text-gray-700 hover:border-primary-300 hover:bg-primary-50 hover:text-primary-700"
+            >
+              {ft.label}
+            </Link>
+          ))}
+        </div>
+      </section>
+
       <section className="mt-10">
         <FAQ items={faqItems} prefName={prefecture.name} />
       </section>

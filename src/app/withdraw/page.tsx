@@ -271,12 +271,12 @@ export default function WithdrawPage() {
               </div>
             </div>
             {!result.depletionAge && (
-              <p className="mt-4 rounded-lg bg-green-50 p-3 text-center text-sm text-green-700">
+              <p className="mt-4 rounded-lg bg-green-50 p-3 text-center text-sm text-green-700" role="status" aria-live="polite">
                 この条件では100歳まで資産を維持できます。4%ルールの範囲内です。
               </p>
             )}
             {result.depletionAge && result.depletionAge < 80 && (
-              <p className="mt-4 rounded-lg bg-red-50 p-3 text-center text-sm text-red-700">
+              <p className="mt-4 rounded-lg bg-red-50 p-3 text-center text-sm text-red-700" role="alert">
                 資産が早期に枯渇するリスクがあります。取り崩し額の見直しや運用利回りの改善を検討してください。
               </p>
             )}
