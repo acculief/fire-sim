@@ -4,6 +4,7 @@ import { INCOME_LEVELS, FAMILY_TYPES_FOR_SEO, AGE_GROUPS_FOR_SEO, HOUSING_TYPES_
 import { guides } from "@/data/guides";
 import { modelCases } from "@/data/model-cases";
 import { longtailPages } from "@/data/longtail-pages";
+import { INCOME_LEVELS as TAKE_HOME_LEVELS } from "@/lib/income-tax";
 import { SITE_URL } from "@/config/site";
 
 const BASE_URL = SITE_URL;
@@ -183,6 +184,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
   for (const p of longtailPages) {
     entries.push({
       url: `${BASE_URL}/plan/${p.slug}/`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.6,
+    });
+  }
+
+  // 手取り早見表 一覧ページ
+  entries.push({
+    url: `${BASE_URL}/income/`,
+    lastModified: new Date(),
+    changeFrequency: "monthly",
+    priority: 0.8,
+  });
+
+  // 手取り早見表 個別年収ページ
+  for (const level of TAKE_HOME_LEVELS) {
+    entries.push({
+      url: `${BASE_URL}/income/${level}/`,
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.6,

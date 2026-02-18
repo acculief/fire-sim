@@ -74,6 +74,7 @@ export default function RootLayout({
                   <li><Link href="/guide/" className="hover:text-primary-600">ガイド記事</Link></li>
                   <li><Link href="/recommend/" className="hover:text-primary-600">おすすめツール</Link></li>
                   <li><Link href="/fire/" className="hover:text-primary-600">地域別一覧</Link></li>
+                  <li><Link href="/income/" className="hover:text-primary-600">手取り早見表</Link></li>
                   <li><Link href="/cases/" className="hover:text-primary-600">モデルケース</Link></li>
                   <li><Link href="/plan/" className="hover:text-primary-600">年収×年代別プラン</Link></li>
                   <li><Link href="/faq/" className="hover:text-primary-600">よくある質問</Link></li>

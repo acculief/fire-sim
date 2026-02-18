@@ -24,6 +24,7 @@ const menuSections = [
     label: "調べる",
     links: [
       { href: "/fire/", text: "地域別FIRE情報" },
+      { href: "/income/", text: "手取り早見表" },
       { href: "/cases/", text: "モデルケース" },
       { href: "/plan/", text: "年収×年代別プラン" },
       { href: "/faq/", text: "よくある質問" },
@@ -67,6 +68,7 @@ export default function Header() {
           <Link href="/guide/" className="text-gray-600 transition-colors hover:text-primary-600">ガイド</Link>
           <Link href="/recommend/" className="text-gray-600 transition-colors hover:text-primary-600">おすすめ</Link>
           <Link href="/fire/" className="text-gray-600 transition-colors hover:text-primary-600">地域別</Link>
+          <Link href="/income/" className="text-gray-600 transition-colors hover:text-primary-600">手取り</Link>
           <Link href="/cases/" className="text-gray-600 transition-colors hover:text-primary-600">事例</Link>
           <Link href="/plan/" className="text-gray-600 transition-colors hover:text-primary-600">プラン</Link>
           <Link href="/faq/" className="text-gray-600 transition-colors hover:text-primary-600">FAQ</Link>
