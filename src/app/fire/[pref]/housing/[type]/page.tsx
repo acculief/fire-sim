@@ -91,7 +91,7 @@ export default async function HousingPage({
           30歳開始、資産300万円、月10万円積立、利回り4%、SWR4%、{housingLabel}の場合
         </p>
         <div className="mt-4 overflow-x-auto">
-          <table className="w-full text-sm">
+          <table className="w-full text-sm" aria-label={`${prefecture.name}・${housingLabel}の年収別比較`}>
             <thead>
               <tr className="border-b border-gray-200 bg-gray-50">
                 <th className="px-3 py-2 text-left font-medium text-gray-600">年収</th>
@@ -101,8 +101,8 @@ export default async function HousingPage({
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-100">
-              {cases.map((c, i) => (
-                <tr key={i}>
+              {cases.map((c) => (
+                <tr key={c.label}>
                   <td className="px-3 py-2 font-medium text-gray-800">{c.label}</td>
                   <td className="px-3 py-2 text-right">{c.monthlyExpense}万円</td>
                   <td className="px-3 py-2 text-right font-medium">{formatMoney(c.fireNumber)}</td>
@@ -125,7 +125,7 @@ export default async function HousingPage({
           {prefecture.name}・年収500万円・独身・30歳開始の場合
         </p>
         <div className="mt-4 overflow-x-auto">
-          <table className="w-full text-sm">
+          <table className="w-full text-sm" aria-label={`${prefecture.name}の住宅タイプ別比較`}>
             <thead>
               <tr className="border-b border-gray-200 bg-gray-50">
                 <th className="px-3 py-2 text-left font-medium text-gray-600">住宅タイプ</th>
@@ -136,9 +136,9 @@ export default async function HousingPage({
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-100">
-              {comparison.map((c, i) => (
+              {comparison.map((c) => (
                 <tr
-                  key={i}
+                  key={c.housingType}
                   className={c.housingType === type ? "bg-primary-50" : ""}
                 >
                   <td className="px-3 py-2 font-medium text-gray-800">

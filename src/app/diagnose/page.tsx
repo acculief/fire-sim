@@ -5,6 +5,7 @@ import Link from "next/link";
 import { brokers } from "@/data/recommend";
 import BrokerCard from "@/components/BrokerCard";
 import RelatedContent from "@/components/RelatedContent";
+import { SITE_URL } from "@/config/site";
 
 /* ------------------------------------------------------------------ */
 /*  定数 & 型                                                          */
@@ -223,7 +224,7 @@ function ShareButtons({ result }: { result: DiagnoseResult }) {
   const shareUrl =
     typeof window !== "undefined"
       ? window.location.origin + "/diagnose/"
-      : "https://fire-sim-phi.vercel.app/diagnose/";
+      : `${SITE_URL}/diagnose/`;
 
   const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`;
 

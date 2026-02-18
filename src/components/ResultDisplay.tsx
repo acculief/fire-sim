@@ -5,6 +5,7 @@ import dynamic from "next/dynamic";
 import Link from "next/link";
 import type { SimulationResult } from "@/lib/types";
 import { formatMoney, formatPercent, formatYearDiff } from "@/lib/format";
+import { SITE_URL } from "@/config/site";
 import { prefectures, type Prefecture } from "@/data/prefectures";
 import { brokers } from "@/data/recommend";
 import BrokerCard from "@/components/BrokerCard";
@@ -43,7 +44,7 @@ export default function ResultDisplay({ result, shareUrl }: Props) {
     if (neutral.achievementAge !== null) params.set("age", String(neutral.achievementAge));
     params.set("expense", String(neutral.monthlyExpense));
     params.set("strategy", result.input.fireStrategy);
-    return `https://fire-sim-phi.vercel.app/result/?${params.toString()}`;
+    return `${SITE_URL}/result/?${params.toString()}`;
   }, [result, neutral]);
 
   // --- 移住比較ロジック ---

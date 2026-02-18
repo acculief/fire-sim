@@ -1,10 +1,9 @@
 import { prefectures } from "@/data/prefectures";
 import { DEFAULTS, AGE_GROUPS_FOR_SEO } from "@/config/assumptions";
+import { SITE_URL } from "@/config/site";
 import { runSimulation } from "./calculator";
 import type { SimulationInput } from "./types";
 import { formatMoney } from "./format";
-
-const SITE_URL = "https://fire-sim-phi.vercel.app";
 
 type TweetGenerator = () => string;
 

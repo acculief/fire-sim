@@ -83,7 +83,7 @@ export default async function FamilyPage({
           30歳開始、資産300万円、月10万円積立、利回り4%、SWR4%の場合
         </p>
         <div className="mt-4 overflow-x-auto">
-          <table className="w-full text-sm">
+          <table className="w-full text-sm" aria-label={`${prefecture.name}・${familyLabel}の年収別比較`}>
             <thead>
               <tr className="border-b border-gray-200 bg-gray-50">
                 <th className="px-3 py-2 text-left font-medium text-gray-600">
@@ -101,8 +101,8 @@ export default async function FamilyPage({
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-100">
-              {cases.map((c, i) => (
-                <tr key={i}>
+              {cases.map((c) => (
+                <tr key={c.label}>
                   <td className="px-3 py-2 font-medium text-gray-800">
                     {c.label}
                   </td>

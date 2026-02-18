@@ -117,7 +117,7 @@ export default async function AgePage({
           月{ageGroup.monthlyInvestment}万円積立、利回り4%、SWR4%の場合
         </p>
         <div className="mt-4 overflow-x-auto">
-          <table className="w-full text-sm">
+          <table className="w-full text-sm" aria-label={`${prefecture.name}・${ageGroup.label}の年収別比較`}>
             <thead>
               <tr className="border-b border-gray-200 bg-gray-50">
                 <th className="px-3 py-2 text-left font-medium text-gray-600">年収</th>
@@ -127,8 +127,8 @@ export default async function AgePage({
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-100">
-              {cases.map((c, i) => (
-                <tr key={i}>
+              {cases.map((c) => (
+                <tr key={c.label}>
                   <td className="px-3 py-2 font-medium text-gray-800">{c.label}</td>
                   <td className="px-3 py-2 text-right">{c.monthlyExpense}万円</td>
                   <td className="px-3 py-2 text-right font-medium">{formatMoney(c.fireNumber)}</td>
