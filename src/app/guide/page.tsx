@@ -7,6 +7,12 @@ export const metadata: Metadata = {
   title: "FIREガイド | 経済的自立・早期退職の完全ガイド",
   description:
     "FIRE（経済的自立・早期退職）に関する包括的なガイド記事。4%ルール、必要資産の計算方法、地域別戦略、税制活用法などを解説。",
+  openGraph: {
+    title: "FIREガイド | 経済的自立・早期退職の完全ガイド",
+    description:
+      "FIRE（経済的自立・早期退職）に関する包括的なガイド記事。4%ルール、必要資産の計算方法、地域別戦略、税制活用法などを解説。",
+    type: "website",
+  },
 };
 
 export default function GuidesIndexPage() {

@@ -36,7 +36,9 @@ export default function Breadcrumb({ items }: Props) {
               "@type": "ListItem",
               position: i + 1,
               name: item.label,
-              ...(item.href ? { item: item.href } : {}),
+              ...(item.href
+                ? { item: `https://fire-sim-phi.vercel.app${item.href}` }
+                : {}),
             })),
           }),
         }}

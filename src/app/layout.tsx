@@ -24,6 +24,9 @@ export const metadata: Metadata = {
     locale: "ja_JP",
     siteName: "FIREシミュレーター",
   },
+  twitter: {
+    card: "summary_large_image",
+  },
   other: {
     "mobile-web-app-capable": "yes",
     "apple-mobile-web-app-capable": "yes",
@@ -60,11 +63,14 @@ export default function RootLayout({
                 <p className="font-bold text-gray-700">コンテンツ</p>
                 <ul className="mt-2 space-y-1 text-gray-500">
                   <li><a href="/simulate/" className="hover:text-primary-600">シミュレーション</a></li>
+                  <li><a href="/diagnose/" className="hover:text-primary-600">FIRE診断</a></li>
+                  <li><a href="/withdraw/" className="hover:text-primary-600">取り崩しシミュレーション</a></li>
+                  <li><a href="/tracker/" className="hover:text-primary-600">進捗トラッカー</a></li>
                   <li><a href="/guide/" className="hover:text-primary-600">ガイド記事</a></li>
                   <li><a href="/recommend/" className="hover:text-primary-600">おすすめツール</a></li>
-                  <li><a href="/diagnose/" className="hover:text-primary-600">FIRE診断</a></li>
-                  <li><a href="/tracker/" className="hover:text-primary-600">進捗トラッカー</a></li>
                   <li><a href="/fire/" className="hover:text-primary-600">地域別一覧</a></li>
+                  <li><a href="/cases/" className="hover:text-primary-600">モデルケース</a></li>
+                  <li><a href="/faq/" className="hover:text-primary-600">よくある質問</a></li>
                 </ul>
               </div>
               <div>

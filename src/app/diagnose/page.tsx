@@ -176,6 +176,7 @@ function OptionButton({
     <button
       type="button"
       onClick={onClick}
+      aria-pressed={selected}
       className={`w-full rounded-xl border-2 px-4 py-4 text-center text-base font-semibold transition-all duration-200 sm:text-lg ${
         selected
           ? "border-primary-500 bg-primary-50 text-primary-700 shadow-md ring-2 ring-primary-200"
@@ -198,7 +199,7 @@ function ProgressBar({ step, total }: { step: number; total: number }) {
         </span>
         <span>{Math.round(pct)}%</span>
       </div>
-      <div className="h-2 w-full overflow-hidden rounded-full bg-gray-200">
+      <div className="h-2 w-full overflow-hidden rounded-full bg-gray-200" role="progressbar" aria-valuenow={Math.round(pct)} aria-valuemin={0} aria-valuemax={100} aria-label="診断の進捗">
         <div
           className="h-full rounded-full bg-primary-500 transition-all duration-500 ease-out"
           style={{ width: `${pct}%` }}

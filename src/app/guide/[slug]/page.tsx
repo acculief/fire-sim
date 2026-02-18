@@ -52,6 +52,11 @@ export default async function GuidePage({
     headline: article.title,
     description: article.description,
     datePublished: article.publishedAt,
+    author: {
+      "@type": "Organization",
+      name: "FIREシミュレーター",
+      url: "https://fire-sim-phi.vercel.app",
+    },
     publisher: {
       "@type": "Organization",
       name: "FIREシミュレーター",
@@ -111,7 +116,7 @@ export default async function GuidePage({
               <h2 className="text-xl font-bold text-gray-800">
                 {section.heading}
               </h2>
-              <div className="prose mt-3 max-w-none text-gray-700">
+              <div className="mt-3 max-w-none text-gray-700">
                 {section.body.split("\n\n").map((paragraph, j) => {
                   let html = paragraph
                     .replace(/\n/g, "<br />")

@@ -49,7 +49,7 @@ export default function AssetChart({ scenarios }: Props) {
   };
 
   return (
-    <div className="h-72 w-full sm:h-80">
+    <div className="h-72 w-full sm:h-80" role="img" aria-label="資産推移グラフ：楽観・中立・悲観シナリオの比較">
       <ResponsiveContainer width="100%" height="100%">
         <LineChart data={data} margin={{ top: 5, right: 10, left: 0, bottom: 5 }}>
           <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />

@@ -5,7 +5,7 @@ import Disclaimer from "@/components/Disclaimer";
 import Breadcrumb from "@/components/Breadcrumb";
 
 export const metadata: Metadata = {
-  title: "FIRE達成におすすめの証券口座・投資信託【2025年最新】",
+  title: "FIRE達成におすすめの証券口座・投資信託【2026年最新】",
   description:
     "FIRE（経済的自立・早期退職）を目指す方におすすめのネット証券口座を徹底比較。新NISA・iDeCo対応状況、手数料、ポイント還元まで解説。",
 };

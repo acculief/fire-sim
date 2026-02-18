@@ -58,6 +58,11 @@ export default async function CaseDetailPage({
     "@type": "Article",
     headline: `${c.title}のFIREモデルケース`,
     description: c.description,
+    author: {
+      "@type": "Organization",
+      name: "FIREシミュレーター",
+      url: "https://fire-sim-phi.vercel.app",
+    },
     publisher: {
       "@type": "Organization",
       name: "FIREシミュレーター",
