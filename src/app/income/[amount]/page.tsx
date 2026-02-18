@@ -33,6 +33,7 @@ export async function generateMetadata({
   return {
     title: `年収${level.toLocaleString()}万円の手取りは${takeMan.toLocaleString()}万円｜税金・保険料の内訳`,
     description: `年収${level.toLocaleString()}万円（月収${Math.round(level / 12).toLocaleString()}万円）の手取り額は約${takeMan.toLocaleString()}万円（手取り率${r.takeHomeRate}%）。所得税・住民税・社会保険料の内訳と、家族構成別の比較を掲載。`,
+    alternates: { canonical: `/income/${amount}/` },
     openGraph: {
       title: `年収${level.toLocaleString()}万円の手取り額`,
       description: `手取り約${takeMan.toLocaleString()}万円（${r.takeHomeRate}%）。税金・保険料の詳細内訳。`,

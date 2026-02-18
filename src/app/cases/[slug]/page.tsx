@@ -23,6 +23,7 @@ export async function generateMetadata({
   return {
     title: `${c.title}のFIREモデルケース | ${c.subtitle}`,
     description: c.description,
+    alternates: { canonical: `/cases/${slug}/` },
     openGraph: {
       title: `${c.title}のFIREモデルケース`,
       description: c.description,

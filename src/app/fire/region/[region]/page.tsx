@@ -25,9 +25,11 @@ export async function generateMetadata({
   return {
     title: `${label}のFIRE比較 | ${regionPrefs.map((p) => p.name).join("・")}`,
     description: `${label}地方${regionPrefs.length}${regionPrefs.length > 1 ? "都道府県" : "道"}の生活費・FIRE必要資産を比較。コスパの良い地域でFIRE達成を加速。`,
+    alternates: { canonical: `/fire/region/${region}/` },
     openGraph: {
       title: `${label}地方のFIRE比較`,
       description: `${label}地方の都道府県別FIRE必要資産を比較`,
+      url: `/fire/region/${region}/`,
     },
   };
 }

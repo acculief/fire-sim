@@ -137,6 +137,7 @@ export default async function ResultPage({ searchParams }: Props) {
             href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(pageUrl)}`}
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="Xでポスト"
             className="inline-flex items-center gap-1.5 rounded-lg bg-black px-4 py-2 text-sm font-medium text-white transition-opacity hover:opacity-80"
           >
             <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -148,6 +149,7 @@ export default async function ResultPage({ searchParams }: Props) {
             href={`https://social-plugins.line.me/lineit/share?url=${encodeURIComponent(pageUrl)}`}
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="LINEでシェア"
             className="inline-flex items-center gap-1.5 rounded-lg bg-[#06C755] px-4 py-2 text-sm font-medium text-white transition-opacity hover:opacity-80"
           >
             <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -159,6 +161,7 @@ export default async function ResultPage({ searchParams }: Props) {
             href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(pageUrl)}`}
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="Facebookでシェア"
             className="inline-flex items-center gap-1.5 rounded-lg bg-[#1877F2] px-4 py-2 text-sm font-medium text-white transition-opacity hover:opacity-80"
           >
             <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">

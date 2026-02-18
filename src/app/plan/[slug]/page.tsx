@@ -174,6 +174,7 @@ export async function generateMetadata({
   return {
     title: `${page.title} | 家族構成・地域別シミュレーション`,
     description: page.description,
+    alternates: { canonical: `/plan/${slug}/` },
     openGraph: {
       title: page.title,
       description: page.description,

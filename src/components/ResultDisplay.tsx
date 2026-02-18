@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo } from "react";
+import { useMemo, useState, useCallback } from "react";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import type { SimulationResult } from "@/lib/types";
@@ -35,6 +35,13 @@ interface Props {
 export default function ResultDisplay({ result, shareUrl }: Props) {
   const { scenarios, sensitivity } = result;
   const neutral = scenarios.neutral;
+  const [copyToast, setCopyToast] = useState(false);
+
+  const handleCopyUrl = useCallback(() => {
+    navigator.clipboard.writeText(shareUrl);
+    setCopyToast(true);
+    setTimeout(() => setCopyToast(false), 2000);
+  }, [shareUrl]);
 
   // OGP画像つきシェアURL
   const ogShareUrl = useMemo(() => {
@@ -241,13 +248,14 @@ export default function ResultDisplay({ result, shareUrl }: Props) {
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b border-gray-200">
-                <th className="pb-2 text-left font-medium text-gray-500">
+                <th scope="col" className="pb-2 text-left font-medium text-gray-500">
                   項目
                 </th>
                 {(["optimistic", "neutral", "pessimistic"] as const).map(
                   (key) => (
                     <th
                       key={key}
+                      scope="col"
                       className="pb-2 text-right font-medium"
                       style={{ color: scenarios[key].color }}
                     >
@@ -679,14 +687,16 @@ export default function ResultDisplay({ result, shareUrl }: Props) {
           <button
             type="button"
             className="btn-secondary text-sm"
-            onClick={() => {
-              navigator.clipboard.writeText(shareUrl);
-              alert("URLをコピーしました");
-            }}
+            onClick={handleCopyUrl}
           >
-            URLをコピー
+            {copyToast ? "✓ コピーしました" : "URLをコピー"}
           </button>
         </div>
+        {copyToast && (
+          <p className="mt-2 text-center text-sm text-green-600" role="status" aria-live="polite">
+            URLをクリップボードにコピーしました
+          </p>
+        )}
       </div>
 
       {/* 免責 */}
