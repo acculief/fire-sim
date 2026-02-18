@@ -241,6 +241,7 @@ export default async function PlanDetailPage({
     url: `${SITE_URL}/plan/${slug}/`,
     image: `${SITE_URL}/opengraph-image`,
     datePublished: CONTENT_PUBLISHED_DATE,
+    dateModified: CONTENT_PUBLISHED_DATE,
     inLanguage: "ja",
     author: {
       "@type": "Organization",

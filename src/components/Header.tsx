@@ -117,7 +117,7 @@ export default function Header() {
                 type="button"
                 aria-label="メニューを閉じる"
                 onClick={() => setOpen(false)}
-                className="flex h-8 w-8 items-center justify-center rounded text-gray-600 hover:bg-gray-100"
+                className="flex h-11 w-11 items-center justify-center rounded text-gray-600 hover:bg-gray-100"
               >
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
                   <path d="M5 5l10 10M15 5L5 15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />

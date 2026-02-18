@@ -99,6 +99,7 @@ export default async function IncomeDetailPage({
     url: `${SITE_URL}/income/${level}/`,
     image: `${SITE_URL}/opengraph-image`,
     datePublished: CONTENT_PUBLISHED_DATE,
+    dateModified: CONTENT_PUBLISHED_DATE,
     inLanguage: "ja",
     author: {
       "@type": "Organization",

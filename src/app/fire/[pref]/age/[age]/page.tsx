@@ -7,6 +7,8 @@ import { formatMoney } from "@/lib/format";
 import FAQ, { getDefaultFAQ } from "@/components/FAQ";
 import Disclaimer from "@/components/Disclaimer";
 import Breadcrumb from "@/components/Breadcrumb";
+import JsonLd from "@/components/JsonLd";
+import { SITE_URL, CONTENT_PUBLISHED_DATE } from "@/config/site";
 
 export function generateStaticParams() {
   const params: { pref: string; age: string }[] = [];
@@ -53,6 +55,18 @@ export default async function AgePage({
 
   return (
     <div className="mx-auto max-w-3xl px-4 py-8">
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          name: `${prefecture.name}・${ageGroup.label}のFIREシミュレーション`,
+          url: `${SITE_URL}/fire/${pref}/age/${age}/`,
+          datePublished: CONTENT_PUBLISHED_DATE,
+          dateModified: CONTENT_PUBLISHED_DATE,
+          inLanguage: "ja",
+          isPartOf: { "@type": "WebSite", name: "FIREシミュレーター", url: SITE_URL },
+        }}
+      />
       <Breadcrumb
         items={[
           { label: "ホーム", href: "/" },

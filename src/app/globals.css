@@ -9,6 +9,11 @@
   body {
     @apply bg-gray-50 text-gray-900 antialiased;
   }
+  a:focus-visible,
+  button:focus-visible,
+  [role="button"]:focus-visible {
+    @apply outline-2 outline-offset-2 outline-primary-500 rounded-sm;
+  }
 }
 
 @layer components {

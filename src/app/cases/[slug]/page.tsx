@@ -67,6 +67,7 @@ export default async function CaseDetailPage({
     url: `${SITE_URL}/cases/${slug}/`,
     image: `${SITE_URL}/opengraph-image`,
     datePublished: CONTENT_PUBLISHED_DATE,
+    dateModified: CONTENT_PUBLISHED_DATE,
     inLanguage: "ja",
     author: {
       "@type": "Organization",
