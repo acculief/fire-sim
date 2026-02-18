@@ -26,9 +26,12 @@ export async function generateMetadata({
   const { pref, n } = await params;
   const prefecture = getPrefectureByCode(pref);
   const name = prefecture?.name ?? pref;
+  const title = `${name}・年収${n}万円のFIREシミュレーション`;
+  const description = `${name}在住・年収${n}万円の方のFIRE必要資産と達成年を家族構成別にシミュレーション。`;
   return {
-    title: `${name}・年収${n}万円のFIREシミュレーション`,
-    description: `${name}在住・年収${n}万円の方のFIRE必要資産と達成年を家族構成別にシミュレーション。`,
+    title,
+    description,
+    openGraph: { title, description },
   };
 }
 

@@ -231,6 +231,7 @@ export default async function PlanDetailPage({
     "@type": "Article",
     headline: page.title,
     description: page.description,
+    dateModified: "2026-02-18",
     publisher: {
       "@type": "Organization",
       name: "FIREシミュレーター",

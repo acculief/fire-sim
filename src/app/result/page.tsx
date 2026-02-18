@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import Link from "next/link";
+import Breadcrumb from "@/components/Breadcrumb";
 
 interface Props {
   searchParams: Promise<{
@@ -57,6 +58,14 @@ export default async function ResultPage({ searchParams }: Props) {
 
   return (
     <div className="mx-auto max-w-2xl px-4 py-8">
+      <Breadcrumb
+        items={[
+          { label: "ホーム", href: "/" },
+          { label: "シミュレーション", href: "/simulate/" },
+          { label: "結果" },
+        ]}
+      />
+
       {/* 結果カード */}
       <div className="overflow-hidden rounded-2xl border-2 border-primary-200 bg-gradient-to-br from-primary-50 to-blue-50 shadow-lg">
         <div className="bg-gradient-to-r from-primary-600 to-blue-600 px-6 py-4">

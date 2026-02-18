@@ -23,6 +23,9 @@ export const metadata: Metadata = {
     type: "website",
     locale: "ja_JP",
     siteName: "FIREシミュレーター",
+    title: "FIREシミュレーター | 地域別・年収別で達成年を計算",
+    description:
+      "あなたの地域・年収・家族構成に合わせたFIRE（経済的自立・早期退職）達成シミュレーション。必要資産額と達成年を簡単計算。",
   },
   twitter: {
     card: "summary_large_image",

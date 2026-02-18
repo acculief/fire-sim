@@ -58,6 +58,7 @@ export default async function CaseDetailPage({
     "@type": "Article",
     headline: `${c.title}のFIREモデルケース`,
     description: c.description,
+    dateModified: "2026-02-18",
     author: {
       "@type": "Organization",
       name: "FIREシミュレーター",

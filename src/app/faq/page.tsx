@@ -1,6 +1,18 @@
+import { Metadata } from "next";
 import Link from "next/link";
 import Breadcrumb from "@/components/Breadcrumb";
 import RelatedContent from "@/components/RelatedContent";
+
+export const metadata: Metadata = {
+  title: "よくある質問（FAQ） | FIREの基礎知識",
+  description:
+    "FIRE（経済的自立・早期退職）に関するよくある質問。4%ルール、必要資産額、新NISA活用法、住む場所の影響など10問に回答。",
+  openGraph: {
+    title: "よくある質問（FAQ） | FIREの基礎知識",
+    description:
+      "FIRE（経済的自立・早期退職）に関するよくある質問。4%ルール、必要資産額、新NISA活用法、住む場所の影響など10問に回答。",
+  },
+};
 
 interface FaqItem {
   question: string;

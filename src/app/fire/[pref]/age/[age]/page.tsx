@@ -28,9 +28,12 @@ export async function generateMetadata({
   const name = prefecture?.name ?? pref;
   const ageGroup = AGE_GROUPS_FOR_SEO.find((g) => g.slug === age);
   const ageLabel = ageGroup?.label ?? age;
+  const title = `${name}・${ageLabel}のFIREシミュレーション | 必要資産・達成年`;
+  const description = `${name}在住・${ageLabel}の方のFIRE必要資産と達成年を年収別にシミュレーション。${ageLabel}の平均的な初期資産と積立額で計算。`;
   return {
-    title: `${name}・${ageLabel}のFIREシミュレーション | 必要資産・達成年`,
-    description: `${name}在住・${ageLabel}の方のFIRE必要資産と達成年を年収別にシミュレーション。${ageLabel}の平均的な初期資産と積立額で計算。`,
+    title,
+    description,
+    openGraph: { title, description },
   };
 }
 
@@ -240,21 +243,6 @@ export default async function AgePage({
       <section className="mt-10">
         <Disclaimer />
       </section>
-
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "BreadcrumbList",
-            itemListElement: [
-              { "@type": "ListItem", position: 1, name: "ホーム", item: "https://fire-sim-phi.vercel.app/" },
-              { "@type": "ListItem", position: 2, name: prefecture.name, item: `https://fire-sim-phi.vercel.app/fire/${pref}/` },
-              { "@type": "ListItem", position: 3, name: `${ageGroup.label}` },
-            ],
-          }),
-        }}
-      />
     </div>
   );
 }

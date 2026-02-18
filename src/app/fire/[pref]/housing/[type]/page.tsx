@@ -27,9 +27,12 @@ export async function generateMetadata({
   const prefecture = getPrefectureByCode(pref);
   const name = prefecture?.name ?? pref;
   const housingLabel = HOUSING_COEFFICIENTS[type]?.label ?? type;
+  const title = `${name}・${housingLabel}のFIREシミュレーション`;
+  const description = `${name}在住・${housingLabel}の方のFIRE必要資産と達成年を年収別にシミュレーション。住宅タイプ別の戦略も解説。`;
   return {
-    title: `${name}・${housingLabel}のFIREシミュレーション`,
-    description: `${name}在住・${housingLabel}の方のFIRE必要資産と達成年を年収別にシミュレーション。住宅タイプ別の戦略も解説。`,
+    title,
+    description,
+    openGraph: { title, description },
   };
 }
 
@@ -250,21 +253,6 @@ export default async function HousingPage({
       <section className="mt-10">
         <Disclaimer />
       </section>
-
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "BreadcrumbList",
-            itemListElement: [
-              { "@type": "ListItem", position: 1, name: "ホーム", item: "https://fire-sim-phi.vercel.app/" },
-              { "@type": "ListItem", position: 2, name: prefecture.name, item: `https://fire-sim-phi.vercel.app/fire/${pref}/` },
-              { "@type": "ListItem", position: 3, name: housingLabel },
-            ],
-          }),
-        }}
-      />
     </div>
   );
 }

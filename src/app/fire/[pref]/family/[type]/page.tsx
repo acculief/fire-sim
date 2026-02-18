@@ -27,9 +27,12 @@ export async function generateMetadata({
   const prefecture = getPrefectureByCode(pref);
   const name = prefecture?.name ?? pref;
   const familyLabel = FAMILY_COEFFICIENTS[type]?.label ?? type;
+  const title = `${name}・${familyLabel}のFIREシミュレーション`;
+  const description = `${name}在住・${familyLabel}の方のFIRE必要資産と達成年を年収別にシミュレーション。`;
   return {
-    title: `${name}・${familyLabel}のFIREシミュレーション`,
-    description: `${name}在住・${familyLabel}の方のFIRE必要資産と達成年を年収別にシミュレーション。`,
+    title,
+    description,
+    openGraph: { title, description },
   };
 }
 
