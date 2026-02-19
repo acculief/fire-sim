@@ -17,7 +17,6 @@ function SimulateContent() {
   const searchParams = useSearchParams();
   const [result, setResult] = useState<SimulationResult | null>(null);
   const [initialInput, setInitialInput] = useState<Partial<SimulationInput>>({});
-  const [shareUrl, setShareUrl] = useState("");
   const [compareTarget, setCompareTarget] = useState<HistoryItem | null>(null);
   const [historyKey, setHistoryKey] = useState(0);
 
@@ -28,7 +27,6 @@ function SimulateContent() {
       setInitialInput(input);
       const simResult = runSimulation(input);
       setResult(simResult);
-      setShareUrl(window.location.origin + "/simulate/?" + inputToParams(input));
     }
   }, [searchParams]);
 
@@ -38,8 +36,6 @@ function SimulateContent() {
     incrementSimulationCount();
 
     const queryStr = inputToParams(input);
-    const url = window.location.origin + "/simulate/?" + queryStr;
-    setShareUrl(url);
     window.history.replaceState(null, "", "/simulate/?" + queryStr);
 
     // 履歴に保存
@@ -66,8 +62,6 @@ function SimulateContent() {
     setResult(simResult);
 
     const queryStr = inputToParams(item.input);
-    const url = window.location.origin + "/simulate/?" + queryStr;
-    setShareUrl(url);
     window.history.replaceState(null, "", "/simulate/?" + queryStr);
 
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -94,7 +88,7 @@ function SimulateContent() {
             />
           )}
 
-          <ResultDisplay result={result} shareUrl={shareUrl} />
+          <ResultDisplay result={result} />
         </div>
       )}
 

@@ -6,6 +6,7 @@ import { brokers } from "@/data/recommend";
 import BrokerCard from "@/components/BrokerCard";
 import Breadcrumb from "@/components/Breadcrumb";
 import RelatedContent from "@/components/RelatedContent";
+import ShareButtons from "@/components/ShareButtons";
 import { SITE_URL } from "@/config/site";
 
 /* ------------------------------------------------------------------ */
@@ -213,70 +214,6 @@ function ProgressBar({ step, total }: { step: number; total: number }) {
   );
 }
 
-/** シェアボタン群 */
-function ShareButtons({ result }: { result: DiagnoseResult }) {
-  const [copied, setCopied] = useState(false);
-  const cfg = GRADE_CONFIG[result.grade];
-
-  const shareText = result.impossible
-    ? `FIRE偏差値${result.deviation}（${cfg.title}）でした！まずは戦略を立てるところから。あなたも診断してみよう！`
-    : `FIRE偏差値${result.deviation}（${cfg.title}／${result.achievementAge}歳でFIRE達成予測）でした！あなたも診断してみよう！`;
-
-  const shareUrl =
-    typeof window !== "undefined"
-      ? window.location.origin + "/diagnose/"
-      : `${SITE_URL}/diagnose/`;
-
-  const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`;
-
-  const handleCopy = useCallback(async () => {
-    try {
-      await navigator.clipboard.writeText(`${shareText}\n${shareUrl}`);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    } catch {
-      // fallback
-    }
-  }, [shareText, shareUrl]);
-
-  return (
-    <div className="flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
-      <a
-        href={twitterUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Xで診断結果を共有"
-        className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-black px-5 py-3 text-sm font-semibold text-white transition-opacity hover:opacity-80 sm:w-auto"
-      >
-        <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-        </svg>
-        Xで共有
-      </a>
-      <button
-        type="button"
-        onClick={handleCopy}
-        className="inline-flex w-full items-center justify-center gap-2 rounded-lg border border-gray-300 bg-white px-5 py-3 text-sm font-semibold text-gray-700 transition-colors hover:bg-gray-50 sm:w-auto"
-      >
-        <svg
-          className="h-4 w-4"
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth={2}
-          stroke="currentColor"
-          aria-hidden="true"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M15.666 3.888A2.25 2.25 0 0 0 13.5 2.25h-3a2.25 2.25 0 0 0-2.166 1.638m7.332 0c.055.194.084.4.084.612v0a.75.75 0 0 1-.75.75H9.75a.75.75 0 0 1-.75-.75v0c0-.212.03-.418.084-.612m7.332 0c.646.049 1.288.11 1.927.184 1.1.128 1.907 1.077 1.907 2.185V19.5a2.25 2.25 0 0 1-2.25 2.25H6.75A2.25 2.25 0 0 1 4.5 19.5V6.257c0-1.108.806-2.057 1.907-2.185a48.208 48.208 0 0 1 1.927-.184"
-          />
-        </svg>
-        {copied ? "コピーしました！" : "URLをコピー"}
-      </button>
-    </div>
-  );
-}
 
 /* ------------------------------------------------------------------ */
 /*  メインページ                                                        */
@@ -545,7 +482,25 @@ export default function DiagnosePage() {
             <p className="mb-3 text-center text-sm font-medium text-gray-600">
               結果をシェアする
             </p>
-            <ShareButtons result={result} />
+            {(() => {
+              const cfg = GRADE_CONFIG[result.grade];
+              const shareText = result.impossible
+                ? `FIRE偏差値${result.deviation}（${cfg.title}）でした！まずは戦略を立てるところから。あなたも診断してみよう！`
+                : `FIRE偏差値${result.deviation}（${cfg.title}／${result.achievementAge}歳でFIRE達成予測）でした！あなたも診断してみよう！`;
+              const shareUrl =
+                typeof window !== "undefined"
+                  ? window.location.origin + "/diagnose/"
+                  : `${SITE_URL}/diagnose/`;
+              return (
+                <ShareButtons
+                  text={shareText}
+                  url={shareUrl}
+                  copyContent={`${shareText}\n${shareUrl}`}
+                  showFacebook={false}
+                  showLine={false}
+                />
+              );
+            })()}
           </div>
 
           {/* CTA */}
