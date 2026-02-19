@@ -157,7 +157,7 @@ export default function TrackerPage() {
                 </button>
               )}
             </div>
-            <p className="mt-2 text-xs text-gray-500">
+            <p className="mt-2 text-xs text-gray-600">
               目標資産がわからない場合は
               <Link href="/simulate/" className="text-primary-600 hover:underline">
                 シミュレーション
@@ -199,7 +199,7 @@ export default function TrackerPage() {
               style={{ width: `${progressPercent}%` }}
             />
           </div>
-          <div className="mt-1 flex justify-between text-xs text-gray-500">
+          <div className="mt-1 flex justify-between text-xs text-gray-600">
             <span>0</span>
             <span>{goal.fireNumber.toLocaleString()}万円</span>
           </div>
@@ -245,7 +245,7 @@ export default function TrackerPage() {
           <h2 className="text-lg font-bold text-gray-800">資産推移</h2>
           <div className="mt-4 space-y-2">
             {goal && (
-              <div className="mb-3 flex items-center gap-2 text-xs text-gray-500">
+              <div className="mb-3 flex items-center gap-2 text-xs text-gray-600">
                 <div className="h-px flex-1 border-t-2 border-dashed border-gray-300" />
                 <span>目標: {goal.fireNumber.toLocaleString()}万円</span>
               </div>
@@ -256,7 +256,7 @@ export default function TrackerPage() {
               return (
                 <div key={entry.date} className="group">
                   <div className="flex items-center gap-2">
-                    <span className="w-[4.5rem] shrink-0 text-xs text-gray-500">
+                    <span className="w-[4.5rem] shrink-0 text-xs text-gray-600">
                       {entry.date}
                     </span>
                     <div className="relative min-w-0 flex-1">
@@ -278,7 +278,7 @@ export default function TrackerPage() {
                     </span>
                     <button
                       type="button"
-                      className="flex h-8 w-8 shrink-0 items-center justify-center rounded text-xs text-gray-500 opacity-0 transition-opacity hover:bg-red-50 hover:text-red-500 group-hover:opacity-100 focus:opacity-100"
+                      className="flex h-8 w-8 shrink-0 items-center justify-center rounded text-xs text-gray-600 opacity-0 transition-opacity hover:bg-red-50 hover:text-red-500 group-hover:opacity-100 focus:opacity-100"
                       onClick={() => handleDeleteEntry(entry.date)}
                       aria-label={`${entry.date}のデータを削除`}
                     >

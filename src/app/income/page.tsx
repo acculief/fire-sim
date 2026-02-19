@@ -76,7 +76,7 @@ export default function IncomePage() {
         年収200万〜2,000万円の手取り額を、税金（所得税・住民税）と社会保険料の内訳付きで一覧表にまとめました。
         家族構成による手取りの違いも比較できます。
       </p>
-      <p className="mt-2 text-xs text-gray-500">
+      <p className="mt-2 text-xs text-gray-600">
         ※2026年の税制に基づく簡易計算。40歳未満・給与収入のみ・協会けんぽ加入を想定。
       </p>
 
@@ -289,7 +289,7 @@ export default function IncomePage() {
       />
 
       {/* ---------- 注意事項 ---------- */}
-      <div className="mt-12 rounded-lg bg-gray-100 p-4 text-xs text-gray-500">
+      <div className="mt-12 rounded-lg bg-gray-100 p-4 text-xs text-gray-600">
         <p className="font-medium">計算の前提・注意事項</p>
         <ul className="mt-1 ml-4 list-disc space-y-0.5">
           <li>2026年（令和8年）の税制に基づく概算値です</li>

@@ -1,6 +1,6 @@
 export default function Disclaimer() {
   return (
-    <div className="rounded-lg bg-gray-100 p-4 text-xs text-gray-500">
+    <div className="rounded-lg bg-gray-100 p-4 text-xs text-gray-600">
       <p className="font-medium">免責事項・前提条件</p>
       <ul className="mt-1 list-inside list-disc space-y-0.5">
         <li>

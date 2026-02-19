@@ -232,7 +232,7 @@ export default function RecommendPage() {
             </tbody>
           </table>
         </div>
-        <p className="mt-2 text-xs text-gray-500">
+        <p className="mt-2 text-xs text-gray-600">
           ※新NISA対応。iDeCo・投信取扱は証券会社により異なります
         </p>
 
@@ -399,7 +399,7 @@ export default function RecommendPage() {
               <div className="flex items-start justify-between">
                 <div>
                   <h3 className="font-bold text-gray-800">{f.name}</h3>
-                  <p className="mt-0.5 text-xs text-gray-500">
+                  <p className="mt-0.5 text-xs text-gray-600">
                     {f.type} / 信託報酬：{f.costRatio}
                   </p>
                 </div>
@@ -513,28 +513,28 @@ export default function RecommendPage() {
             className="block rounded-lg border border-gray-200 bg-white p-3 text-sm transition-colors hover:border-primary-300 hover:bg-primary-50"
           >
             <p className="font-bold text-gray-800">FIRE達成度診断</p>
-            <p className="mt-1 text-xs text-gray-500">30秒であなたのFIRE達成度をチェック</p>
+            <p className="mt-1 text-xs text-gray-600">30秒であなたのFIRE達成度をチェック</p>
           </Link>
           <Link
             href="/tracker/"
             className="block rounded-lg border border-gray-200 bg-white p-3 text-sm transition-colors hover:border-primary-300 hover:bg-primary-50"
           >
             <p className="font-bold text-gray-800">FIRE進捗トラッカー</p>
-            <p className="mt-1 text-xs text-gray-500">毎月の資産を記録して達成度を可視化</p>
+            <p className="mt-1 text-xs text-gray-600">毎月の資産を記録して達成度を可視化</p>
           </Link>
           <Link
             href="/cases/"
             className="block rounded-lg border border-gray-200 bg-white p-3 text-sm transition-colors hover:border-primary-300 hover:bg-primary-50"
           >
             <p className="font-bold text-gray-800">モデルケース</p>
-            <p className="mt-1 text-xs text-gray-500">年代別のFIRE達成プランを参考に</p>
+            <p className="mt-1 text-xs text-gray-600">年代別のFIRE達成プランを参考に</p>
           </Link>
           <Link
             href="/withdraw/"
             className="block rounded-lg border border-gray-200 bg-white p-3 text-sm transition-colors hover:border-primary-300 hover:bg-primary-50"
           >
             <p className="font-bold text-gray-800">取り崩しシミュレーション</p>
-            <p className="mt-1 text-xs text-gray-500">FIRE後に資産が何歳まで持つか計算</p>
+            <p className="mt-1 text-xs text-gray-600">FIRE後に資産が何歳まで持つか計算</p>
           </Link>
         </div>
       </div>
@@ -542,7 +542,7 @@ export default function RecommendPage() {
       <Disclaimer />
 
       {/* アフィリエイト開示 */}
-      <p className="mt-4 text-center text-xs text-gray-500">
+      <p className="mt-4 text-center text-xs text-gray-600">
         ※当サイトはアフィリエイトプログラムに参加しています
       </p>
     </div>

@@ -165,25 +165,25 @@ export default async function IncomeDetailPage({
       <div className="mt-6 rounded-lg border-2 border-primary-200 bg-primary-50 p-5">
         <div className="grid grid-cols-2 gap-4 text-center sm:grid-cols-4">
           <div>
-            <p className="text-xs text-gray-500">年収（額面）</p>
+            <p className="text-xs text-gray-600">年収（額面）</p>
             <p className="mt-1 text-lg font-bold text-gray-800">
               {level.toLocaleString()}万円
             </p>
           </div>
           <div>
-            <p className="text-xs text-gray-500">手取り（年額）</p>
+            <p className="text-xs text-gray-600">手取り（年額）</p>
             <p className="mt-1 text-lg font-bold text-primary-700">
               {man(r.takeHomeAnnual)}
             </p>
           </div>
           <div>
-            <p className="text-xs text-gray-500">手取り（月額）</p>
+            <p className="text-xs text-gray-600">手取り（月額）</p>
             <p className="mt-1 text-lg font-bold text-primary-700">
               {man(r.takeHomeMonthly)}
             </p>
           </div>
           <div>
-            <p className="text-xs text-gray-500">手取り率</p>
+            <p className="text-xs text-gray-600">手取り率</p>
             <p className="mt-1 text-lg font-bold text-primary-700">
               {r.takeHomeRate}%
             </p>
@@ -196,7 +196,7 @@ export default async function IncomeDetailPage({
         <h2 className="text-xl font-bold text-gray-900">
           税金・社会保険料の内訳
         </h2>
-        <p className="mt-1 text-xs text-gray-500">独身・扶養なしの場合</p>
+        <p className="mt-1 text-xs text-gray-600">独身・扶養なしの場合</p>
         <div className="mt-4 overflow-x-auto">
           <table className="w-full text-sm" aria-label={`年収${level.toLocaleString()}万円の税金・社会保険料の内訳`}>
             <tbody className="divide-y divide-gray-100">
@@ -347,7 +347,7 @@ export default async function IncomeDetailPage({
             </tbody>
           </table>
         </div>
-        <p className="mt-2 text-xs text-gray-500">
+        <p className="mt-2 text-xs text-gray-600">
           ※社会保険料は家族構成に関わらず同額。配偶者は年収103万円以下、子は16歳以上を想定。
         </p>
       </section>
@@ -483,7 +483,7 @@ export default async function IncomeDetailPage({
             href={`/income/${prev}/`}
             className="flex-1 rounded-lg border border-gray-200 bg-white p-4 text-center transition-colors hover:border-primary-300 hover:bg-primary-50"
           >
-            <p className="text-xs text-gray-500">前の年収</p>
+            <p className="text-xs text-gray-600">前の年収</p>
             <p className="mt-1 font-bold text-primary-700">
               {prev.toLocaleString()}万円
             </p>
@@ -494,7 +494,7 @@ export default async function IncomeDetailPage({
             href={`/income/${next}/`}
             className="flex-1 rounded-lg border border-gray-200 bg-white p-4 text-center transition-colors hover:border-primary-300 hover:bg-primary-50"
           >
-            <p className="text-xs text-gray-500">次の年収</p>
+            <p className="text-xs text-gray-600">次の年収</p>
             <p className="mt-1 font-bold text-primary-700">
               {next.toLocaleString()}万円
             </p>
@@ -513,7 +513,7 @@ export default async function IncomeDetailPage({
       </div>
 
       {/* ---------- 注意事項 ---------- */}
-      <div className="mt-10 rounded-lg bg-gray-100 p-4 text-xs text-gray-500">
+      <div className="mt-10 rounded-lg bg-gray-100 p-4 text-xs text-gray-600">
         <p className="font-medium">計算の前提</p>
         <p className="mt-1">
           2026年の税制に基づく概算。40歳未満・給与収入のみ・協会けんぽ全国平均で計算。

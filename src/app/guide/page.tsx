@@ -66,7 +66,7 @@ export default function GuidesIndexPage() {
             <p className="mt-1 text-sm text-gray-600">
               {article.description}
             </p>
-            <time className="mt-2 block text-xs text-gray-500">
+            <time className="mt-2 block text-xs text-gray-600">
               {article.publishedAt}
             </time>
           </Link>

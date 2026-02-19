@@ -108,10 +108,10 @@ export default function RootLayout({
               </nav>
             </div>
             <hr className="my-6 border-gray-200" />
-            <p className="text-center text-xs text-gray-500">
+            <p className="text-center text-xs text-gray-600">
               ※本シミュレーションは概算であり、投資助言ではありません。実際の投資判断はご自身の責任で行ってください。
             </p>
-            <p className="mt-2 text-center text-xs text-gray-500">
+            <p className="mt-2 text-center text-xs text-gray-600">
               &copy; 2026 FIREシミュレーター
             </p>
           </div>

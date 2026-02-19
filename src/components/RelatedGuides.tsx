@@ -31,7 +31,7 @@ export default function RelatedGuides({ category }: { category: string }) {
             className="block rounded-lg border border-gray-200 bg-white p-3 transition-colors hover:border-primary-300 hover:bg-primary-50"
           >
             <p className="text-sm font-bold text-gray-800">{article.title}</p>
-            <p className="mt-1 text-xs text-gray-500 line-clamp-2">
+            <p className="mt-1 text-xs text-gray-600 line-clamp-2">
               {article.description}
             </p>
           </Link>

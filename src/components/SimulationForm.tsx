@@ -204,7 +204,7 @@ export default function SimulationForm({ initialInput, onSubmit }: Props) {
                 手取り
               </label>
             </fieldset>
-            <p className="mt-1 text-xs text-gray-500">
+            <p className="mt-1 text-xs text-gray-600">
               <Link href="/income/" className="text-primary-500 hover:underline">
                 手取り早見表で確認 →
               </Link>
@@ -320,7 +320,7 @@ export default function SimulationForm({ initialInput, onSubmit }: Props) {
               placeholder="未入力なら地域×家族×住宅から自動推定"
               aria-describedby="customMonthlyExpense-hint"
             />
-            <p id="customMonthlyExpense-hint" className="mt-1 text-xs text-gray-500">
+            <p id="customMonthlyExpense-hint" className="mt-1 text-xs text-gray-600">
               実際の生活費が分かっている場合に入力すると、より正確な結果になります
             </p>
           </div>
@@ -350,7 +350,7 @@ export default function SimulationForm({ initialInput, onSubmit }: Props) {
                   className="sr-only"
                 />
                 <p className="font-bold text-gray-800">{strategy.shortLabel}</p>
-                <p className="mt-1 text-xs text-gray-500">
+                <p className="mt-1 text-xs text-gray-600">
                   {strategy.description}
                 </p>
               </label>
@@ -367,9 +367,10 @@ export default function SimulationForm({ initialInput, onSubmit }: Props) {
           onClick={() => setShowAdvanced(!showAdvanced)}
           aria-expanded={showAdvanced}
           aria-controls="advanced-settings"
+          aria-label={showAdvanced ? "詳細設定を閉じる" : "詳細設定を開く"}
         >
           <h2 className="text-lg font-bold text-gray-800">詳細設定</h2>
-          <span className="text-sm text-gray-500">
+          <span className="text-sm text-gray-500" aria-hidden="true">
             {showAdvanced ? "閉じる ▲" : "開く ▼"}
           </span>
         </button>
@@ -390,7 +391,7 @@ export default function SimulationForm({ initialInput, onSubmit }: Props) {
                   step={0.5}
                   aria-describedby="annualReturnRate-hint"
                 />
-                <p id="annualReturnRate-hint" className="mt-1 text-xs text-gray-500">
+                <p id="annualReturnRate-hint" className="mt-1 text-xs text-gray-600">
                   積立期間中の運用利回り
                 </p>
               </div>
@@ -409,7 +410,7 @@ export default function SimulationForm({ initialInput, onSubmit }: Props) {
                     step={0.5}
                     aria-describedby="swr-hint"
                   />
-                  <p id="swr-hint" className="mt-1 text-xs text-gray-500">
+                  <p id="swr-hint" className="mt-1 text-xs text-gray-600">
                     FIRE後に毎年取り崩す率
                   </p>
                 </div>
@@ -428,7 +429,7 @@ export default function SimulationForm({ initialInput, onSubmit }: Props) {
                     step={0.5}
                     aria-describedby="yieldRate-hint"
                   />
-                  <p id="yieldRate-hint" className="mt-1 text-xs text-gray-500">
+                  <p id="yieldRate-hint" className="mt-1 text-xs text-gray-600">
                     FIRE後に得る配当/利息の年率（税引前）
                   </p>
                 </div>
@@ -469,7 +470,7 @@ export default function SimulationForm({ initialInput, onSubmit }: Props) {
                     step={0.1}
                     aria-describedby="dividendTaxRate-hint"
                   />
-                  <p id="dividendTaxRate-hint" className="mt-1 text-xs text-gray-500">
+                  <p id="dividendTaxRate-hint" className="mt-1 text-xs text-gray-600">
                     通常約20%。NISA活用で0%に近づく
                   </p>
                 </div>
@@ -494,7 +495,7 @@ export default function SimulationForm({ initialInput, onSubmit }: Props) {
                     step={0.1}
                     aria-describedby="postFireMonthlyCost-hint"
                   />
-                  <p id="postFireMonthlyCost-hint" className="mt-1 text-xs text-gray-500">
+                  <p id="postFireMonthlyCost-hint" className="mt-1 text-xs text-gray-600">
                     国民健康保険＋国民年金の概算。家族構成から自動推定
                   </p>
                 </div>

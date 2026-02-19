@@ -282,11 +282,11 @@ export default async function PlanDetailPage({
       {/* Assumptions summary */}
       <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
         <div className="rounded-lg border border-gray-200 bg-gray-50 p-3 text-center">
-          <p className="text-xs text-gray-500">開始年齢</p>
+          <p className="text-xs text-gray-600">開始年齢</p>
           <p className="mt-1 text-lg font-bold text-gray-800">{page.age}歳</p>
         </div>
         <div className="rounded-lg border border-gray-200 bg-gray-50 p-3 text-center">
-          <p className="text-xs text-gray-500">年収（額面）</p>
+          <p className="text-xs text-gray-600">年収（額面）</p>
           <p className="mt-1 text-lg font-bold text-gray-800">
             {TAKE_HOME_LEVELS.includes(page.annualIncome as (typeof TAKE_HOME_LEVELS)[number]) ? (
               <Link href={`/income/${page.annualIncome}/`} className="text-primary-700 hover:underline">
@@ -298,13 +298,13 @@ export default async function PlanDetailPage({
           </p>
         </div>
         <div className="rounded-lg border border-gray-200 bg-gray-50 p-3 text-center">
-          <p className="text-xs text-gray-500">毎月の積立</p>
+          <p className="text-xs text-gray-600">毎月の積立</p>
           <p className="mt-1 text-lg font-bold text-gray-800">
             {monthlyInvestment}万円
           </p>
         </div>
         <div className="rounded-lg border border-gray-200 bg-gray-50 p-3 text-center">
-          <p className="text-xs text-gray-500">初期資産</p>
+          <p className="text-xs text-gray-600">初期資産</p>
           <p className="mt-1 text-lg font-bold text-gray-800">
             {formatMoney(currentAssets)}
           </p>
@@ -364,7 +364,7 @@ export default async function PlanDetailPage({
             </tbody>
           </table>
         </div>
-        <p className="mt-2 text-xs text-gray-500">
+        <p className="mt-2 text-xs text-gray-600">
           ※想定利回り年5%、インフレ率1%、SWR 4%、貯蓄率20%、賃貸住まいで計算。初期資産は年収の50%を想定。
         </p>
       </section>

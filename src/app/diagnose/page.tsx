@@ -368,15 +368,15 @@ export default function DiagnosePage() {
           <div className="mt-10 grid grid-cols-3 gap-4 text-center">
             <div className="rounded-lg bg-white p-4 shadow-sm">
               <p className="text-2xl font-bold text-primary-600">3問</p>
-              <p className="mt-1 text-xs text-gray-500">カンタン質問</p>
+              <p className="mt-1 text-xs text-gray-600">カンタン質問</p>
             </div>
             <div className="rounded-lg bg-white p-4 shadow-sm">
               <p className="text-2xl font-bold text-primary-600">30秒</p>
-              <p className="mt-1 text-xs text-gray-500">サクッと診断</p>
+              <p className="mt-1 text-xs text-gray-600">サクッと診断</p>
             </div>
             <div className="rounded-lg bg-white p-4 shadow-sm">
               <p className="text-2xl font-bold text-primary-600">4段階</p>
-              <p className="mt-1 text-xs text-gray-500">ランク判定</p>
+              <p className="mt-1 text-xs text-gray-600">ランク判定</p>
             </div>
           </div>
         </div>
@@ -531,7 +531,7 @@ export default function DiagnosePage() {
           })()}
 
           {/* 前提条件 */}
-          <div className="mt-6 rounded-lg border border-gray-200 bg-white p-4 text-xs text-gray-500">
+          <div className="mt-6 rounded-lg border border-gray-200 bg-white p-4 text-xs text-gray-600">
             <p className="font-medium text-gray-600">診断の前提条件</p>
             <ul className="mt-2 space-y-1">
               <li>- 目標FIRE資産: {FIRE_TARGET.toLocaleString()}万円（年間生活費300万円 x 25年分）</li>

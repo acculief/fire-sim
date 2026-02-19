@@ -72,28 +72,28 @@ export default function HomePage() {
             className="rounded-lg border border-gray-200 bg-white p-4 transition-colors hover:border-primary-300 hover:bg-primary-50"
           >
             <p className="font-bold text-gray-800">FIRE診断</p>
-            <p className="mt-1 text-xs text-gray-500">30秒で達成度をチェック</p>
+            <p className="mt-1 text-xs text-gray-600">30秒で達成度をチェック</p>
           </Link>
           <Link
             href="/tracker/"
             className="rounded-lg border border-gray-200 bg-white p-4 transition-colors hover:border-primary-300 hover:bg-primary-50"
           >
             <p className="font-bold text-gray-800">進捗トラッカー</p>
-            <p className="mt-1 text-xs text-gray-500">毎月の資産推移を記録</p>
+            <p className="mt-1 text-xs text-gray-600">毎月の資産推移を記録</p>
           </Link>
           <Link
             href="/withdraw/"
             className="rounded-lg border border-gray-200 bg-white p-4 transition-colors hover:border-primary-300 hover:bg-primary-50"
           >
             <p className="font-bold text-gray-800">取り崩しシミュレーション</p>
-            <p className="mt-1 text-xs text-gray-500">FIRE後の資産寿命を計算</p>
+            <p className="mt-1 text-xs text-gray-600">FIRE後の資産寿命を計算</p>
           </Link>
           <Link
             href="/recommend/"
             className="rounded-lg border border-gray-200 bg-white p-4 transition-colors hover:border-primary-300 hover:bg-primary-50"
           >
             <p className="font-bold text-gray-800">おすすめ証券口座</p>
-            <p className="mt-1 text-xs text-gray-500">ネット証券を徹底比較</p>
+            <p className="mt-1 text-xs text-gray-600">ネット証券を徹底比較</p>
           </Link>
         </div>
       </section>
@@ -106,28 +106,28 @@ export default function HomePage() {
             className="rounded-lg border border-gray-200 bg-white p-4 transition-colors hover:border-primary-300 hover:bg-primary-50"
           >
             <p className="font-bold text-gray-800">手取り早見表</p>
-            <p className="mt-1 text-xs text-gray-500">年収別の手取り額・税金・社会保険料を一覧で確認</p>
+            <p className="mt-1 text-xs text-gray-600">年収別の手取り額・税金・社会保険料を一覧で確認</p>
           </Link>
           <Link
             href="/cases/"
             className="rounded-lg border border-gray-200 bg-white p-4 transition-colors hover:border-primary-300 hover:bg-primary-50"
           >
             <p className="font-bold text-gray-800">モデルケース</p>
-            <p className="mt-1 text-xs text-gray-500">年収・家族構成別のFIRE達成事例を紹介</p>
+            <p className="mt-1 text-xs text-gray-600">年収・家族構成別のFIRE達成事例を紹介</p>
           </Link>
           <Link
             href="/plan/"
             className="rounded-lg border border-gray-200 bg-white p-4 transition-colors hover:border-primary-300 hover:bg-primary-50"
           >
             <p className="font-bold text-gray-800">年収×年代別プラン</p>
-            <p className="mt-1 text-xs text-gray-500">あなたの年収と年齢に最適なFIRE戦略</p>
+            <p className="mt-1 text-xs text-gray-600">あなたの年収と年齢に最適なFIRE戦略</p>
           </Link>
           <Link
             href="/faq/"
             className="rounded-lg border border-gray-200 bg-white p-4 transition-colors hover:border-primary-300 hover:bg-primary-50"
           >
             <p className="font-bold text-gray-800">よくある質問</p>
-            <p className="mt-1 text-xs text-gray-500">FIREの基礎知識・4%ルール・新NISAなど</p>
+            <p className="mt-1 text-xs text-gray-600">FIREの基礎知識・4%ルール・新NISAなど</p>
           </Link>
         </div>
       </section>
@@ -175,7 +175,7 @@ export default function HomePage() {
               className="block rounded-lg border border-gray-200 bg-white p-3 transition-colors hover:border-primary-300 hover:bg-primary-50"
             >
               <h3 className="text-sm font-bold text-gray-800">{article.title}</h3>
-              <p className="mt-0.5 text-xs text-gray-500 line-clamp-1">
+              <p className="mt-0.5 text-xs text-gray-600 line-clamp-1">
                 {article.description}
               </p>
             </Link>

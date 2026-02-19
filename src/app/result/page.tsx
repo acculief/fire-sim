@@ -96,7 +96,7 @@ export default async function ResultPage({ searchParams }: Props) {
           <div className="mt-6 grid grid-cols-2 gap-4">
             {age !== null && (
               <div className="rounded-xl bg-white/70 p-4 text-center">
-                <p className="text-xs text-gray-500">達成予測年齢</p>
+                <p className="text-xs text-gray-600">達成予測年齢</p>
                 <p className="mt-1 text-2xl font-bold text-gray-800">
                   {age}
                   <span className="text-sm text-gray-500">歳</span>
@@ -105,7 +105,7 @@ export default async function ResultPage({ searchParams }: Props) {
             )}
             {expense !== null && (
               <div className="rounded-xl bg-white/70 p-4 text-center">
-                <p className="text-xs text-gray-500">月間生活費</p>
+                <p className="text-xs text-gray-600">月間生活費</p>
                 <p className="mt-1 text-2xl font-bold text-gray-800">
                   {expense}
                   <span className="text-sm text-gray-500">万円</span>

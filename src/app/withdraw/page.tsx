@@ -300,7 +300,7 @@ export default function WithdrawPage() {
                     key={record.age}
                     className="flex items-center gap-2"
                   >
-                    <span className="w-12 shrink-0 text-right text-xs text-gray-500">
+                    <span className="w-12 shrink-0 text-right text-xs text-gray-600">
                       {record.age}歳
                     </span>
                     <div className="relative flex-1">
@@ -316,7 +316,7 @@ export default function WithdrawPage() {
                 );
               })}
               {/* 0ライン */}
-              <div className="flex items-center gap-2 text-xs text-gray-500">
+              <div className="flex items-center gap-2 text-xs text-gray-600">
                 <span className="w-12 shrink-0" />
                 <div className="h-px flex-1 border-t border-dashed border-gray-300" />
                 <span className="w-24 shrink-0 text-right">0万円</span>

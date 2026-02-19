@@ -120,7 +120,7 @@ export default async function AgePage({
             </div>
           </dl>
         </div>
-        <p className="mt-2 text-xs text-gray-500">
+        <p className="mt-2 text-xs text-gray-600">
           ※ {ageGroup.label}の一般的な貯蓄額・投資余力を参考に設定した前提条件です
         </p>
       </section>

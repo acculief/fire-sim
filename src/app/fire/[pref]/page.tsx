@@ -308,7 +308,7 @@ export default async function PrefecturePage({
               <p className="text-sm font-bold text-gray-800">
                 {article.title}
               </p>
-              <p className="mt-1 text-xs text-gray-500 line-clamp-2">
+              <p className="mt-1 text-xs text-gray-600 line-clamp-2">
                 {article.description}
               </p>
             </Link>
