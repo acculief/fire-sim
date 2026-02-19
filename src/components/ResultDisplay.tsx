@@ -430,64 +430,154 @@ export default function ResultDisplay({ result, shareUrl }: Props) {
         </dl>
       </div>
 
-      {/* 次の一手 */}
-      <div className="card border-accent-200 bg-accent-50">
-        <h3 className="mb-3 text-lg font-bold text-accent-800">
-          FIRE達成に向けた次の一手
-        </h3>
-        <ul className="space-y-2 text-sm text-accent-900">
-          <li>
-            1. <strong>支出を見直す</strong> —
-            固定費（通信費・保険・サブスク）を棚卸しし、月1〜2万円の削減を目指す
-          </li>
-          <li>
-            2. <strong>積立額を増やす</strong> —
-            昇給・副業収入は生活費に充てず、投資に回す
-          </li>
-          <li>
-            3. <strong>インデックス投資を軸にする</strong> —
-            全世界株式やS&P500連動の低コスト投信で長期運用
-          </li>
-          <li>
-            4. <strong>税制優遇を活用する</strong> — 新NISA・iDeCoを最大限利用する
-          </li>
-          <li>
-            5. <strong>定期的に見直す</strong> —
-            年に1回、このシミュレーションで進捗を確認する
-          </li>
-        </ul>
-      </div>
+      {/* ストーリー型CTA */}
+      {(() => {
+        const shortfall = neutral.fireNumber - result.input.currentAssets;
+        const comparisonYears = neutral.achievementYears ?? 20;
+        const monthlyAmount = result.input.monthlyInvestment;
+        const savingsOnly = monthlyAmount * 12 * comparisonYears;
+        const withInvesting =
+          monthlyAmount *
+          12 *
+          ((Math.pow(1 + 0.04 / 12, comparisonYears * 12) - 1) / (0.04 / 12));
+        const investmentGain = Math.round(withInvesting - savingsOnly);
+        const isAchievable = neutral.achievementAge !== null;
 
-      {/* 証券口座CTA — シミュ結果に連動 */}
-      {affiliateBrokers.length > 0 && (
-        <div className="card border-primary-300 bg-gradient-to-br from-primary-50 to-accent-50">
-          <h3 className="text-lg font-bold text-primary-800">
-            この計画を始めるなら
-          </h3>
-          <p className="mt-1 text-sm text-gray-700">
-            毎月<strong className="text-primary-700">{result.input.monthlyInvestment}万円</strong>の積立投資で
-            {neutral.achievementAge !== null ? (
-              <>{neutral.achievementAge}歳でのFIRE達成を目指すなら、</>
-            ) : (
-              <>FIRE達成を目指すなら、</>
+        return (
+          <>
+            <div className="card border-primary-300 bg-gradient-to-br from-primary-50 to-accent-50">
+              <h3 className="mb-4 text-lg font-bold text-primary-800">
+                FIRE達成に向けて、今やるべきこと
+              </h3>
+
+              <div className="space-y-5">
+                {/* ① 現実を見せる */}
+                <div className="rounded-lg border border-gray-200 bg-white p-4">
+                  <p className="mb-1 text-xs font-bold uppercase tracking-wider text-gray-400">
+                    Step 1
+                  </p>
+                  <p className="text-sm font-bold text-gray-800">
+                    現在地を確認する
+                  </p>
+                  <p className="mt-2 text-sm text-gray-700">
+                    {isAchievable ? (
+                      <>
+                        目標資産{" "}
+                        <strong className="text-primary-700">
+                          {formatMoney(neutral.fireNumber)}
+                        </strong>
+                        に対し、現在の資産は{formatMoney(result.input.currentAssets)}。あと{" "}
+                        <strong className="text-primary-700">
+                          {formatMoney(shortfall)}
+                        </strong>{" "}
+                        の積み上げが必要です。
+                      </>
+                    ) : (
+                      <>
+                        現在の条件では目標達成が難しい結果になりました。
+                        目標資産{" "}
+                        <strong className="text-primary-700">
+                          {formatMoney(neutral.fireNumber)}
+                        </strong>
+                        に対し、現在の資産は{formatMoney(result.input.currentAssets)}。
+                        積立額を増やすか、支出の見直しを検討しましょう。
+                      </>
+                    )}
+                  </p>
+                </div>
+
+                {/* ② 危機感を出す */}
+                <div className="rounded-lg border border-gray-200 bg-white p-4">
+                  <p className="mb-1 text-xs font-bold uppercase tracking-wider text-gray-400">
+                    Step 2
+                  </p>
+                  <p className="text-sm font-bold text-gray-800">
+                    「預金だけ」のリスクを知る
+                  </p>
+                  <div className="mt-3 grid grid-cols-2 gap-3 text-center">
+                    <div className="rounded-lg bg-gray-100 p-3">
+                      <p className="text-xs text-gray-500">
+                        銀行預金のみ（{comparisonYears}年）
+                      </p>
+                      <p className="mt-1 text-lg font-bold text-gray-600">
+                        {formatMoney(Math.round(savingsOnly))}
+                      </p>
+                    </div>
+                    <div className="rounded-lg bg-primary-100 p-3">
+                      <p className="text-xs text-primary-600">
+                        年利4%で運用（{comparisonYears}年）
+                      </p>
+                      <p className="mt-1 text-lg font-bold text-primary-700">
+                        {formatMoney(Math.round(withInvesting))}
+                      </p>
+                    </div>
+                  </div>
+                  <p className="mt-3 text-sm text-gray-700">
+                    同じ月{monthlyAmount}万円でも、{comparisonYears}年後の差は{" "}
+                    <strong className="text-primary-700">
+                      {formatMoney(investmentGain)}
+                    </strong>
+                    。銀行預金だけでは物価上昇に負けてしまいます。
+                  </p>
+                </div>
+
+                {/* ③ 解決策を提示 */}
+                <div className="rounded-lg border border-gray-200 bg-white p-4">
+                  <p className="mb-1 text-xs font-bold uppercase tracking-wider text-gray-400">
+                    Step 3
+                  </p>
+                  <p className="text-sm font-bold text-gray-800">
+                    新NISAで非課税運用を始める
+                  </p>
+                  <p className="mt-2 text-sm text-gray-700">
+                    新NISAを活用すれば、運用益にかかる約20%の税金が非課税に。
+                    {monthlyAmount <= 30 ? (
+                      <>
+                        毎月{monthlyAmount}万円の積立なら、新NISAの枠内で始められます。
+                      </>
+                    ) : (
+                      <>
+                        まずは新NISAのつみたて投資枠（月10万円）から始めましょう。
+                      </>
+                    )}
+                  </p>
+                  <p className="mt-1 text-xs text-gray-500">
+                    ※ 新NISA：年間360万円（つみたて投資枠120万円＋成長投資枠240万円）まで非課税
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* ④ 具体的な一歩 — BrokerCard */}
+            {affiliateBrokers.length > 0 && (
+              <div className="card border-primary-300">
+                <p className="mb-1 text-xs font-bold uppercase tracking-wider text-gray-400">
+                  Step 4
+                </p>
+                <h3 className="text-lg font-bold text-primary-800">
+                  まず口座を開設する
+                </h3>
+                <p className="mt-1 text-sm text-gray-700">
+                  口座開設は無料・最短即日。まず行動を始めましょう。
+                </p>
+                <div className="mt-4 space-y-3">
+                  {affiliateBrokers.map((b) => (
+                    <BrokerCard key={b.slug} broker={b} />
+                  ))}
+                </div>
+                <div className="mt-4 text-center">
+                  <Link
+                    href="/recommend/"
+                    className="text-sm font-medium text-primary-600 transition-colors hover:text-primary-800"
+                  >
+                    他の証券口座・おすすめ書籍も見る →
+                  </Link>
+                </div>
+              </div>
             )}
-            まず証券口座の開設から。新NISAなら年間360万円まで非課税で運用できます。
-          </p>
-          <div className="mt-4 space-y-3">
-            {affiliateBrokers.map((b) => (
-              <BrokerCard key={b.slug} broker={b} />
-            ))}
-          </div>
-          <div className="mt-4 text-center">
-            <Link
-              href="/recommend/"
-              className="text-sm font-medium text-primary-600 transition-colors hover:text-primary-800"
-            >
-              他の証券口座・おすすめ書籍も見る →
-            </Link>
-          </div>
-        </div>
-      )}
+          </>
+        );
+      })()}
 
       {/* 移住比較 */}
       {migrationComparisons.length > 0 && (
