@@ -47,6 +47,7 @@ export default function SimulationHistory({
         className="flex w-full items-center justify-between text-left"
         aria-expanded={isOpen}
         aria-controls="history-panel"
+        aria-label={isOpen ? "シミュレーション履歴を閉じる" : "シミュレーション履歴を開く"}
         onClick={() => setIsOpen(!isOpen)}
       >
         <h2 className="text-lg font-bold text-gray-800">
@@ -55,7 +56,7 @@ export default function SimulationHistory({
             ({history.length}件)
           </span>
         </h2>
-        <span className="text-sm text-gray-500">
+        <span className="text-sm text-gray-500" aria-hidden="true">
           {isOpen ? "閉じる ▲" : "開く ▼"}
         </span>
       </button>
@@ -79,11 +80,11 @@ export default function SimulationHistory({
                 <div className="min-w-0 flex-1">
                   <p className="text-sm font-medium text-gray-800">
                     {item.summary.prefectureName}・{item.summary.strategyLabel}
-                    <span className="ml-2 text-xs text-gray-500">
+                    <span className="ml-2 text-xs text-gray-600">
                       {dateStr}
                     </span>
                   </p>
-                  <p className="text-xs text-gray-500">
+                  <p className="text-xs text-gray-600">
                     必要資産 {formatMoney(item.summary.fireNumber)} /
                     達成{" "}
                     {item.summary.achievementAge !== null
@@ -95,7 +96,7 @@ export default function SimulationHistory({
                   <button
                     type="button"
                     aria-label={`${item.summary.prefectureName}・${item.summary.strategyLabel}を読み込む`}
-                    className="rounded bg-primary-100 px-2.5 py-1 text-xs font-medium text-primary-700 hover:bg-primary-200"
+                    className="min-h-[44px] rounded bg-primary-100 px-3 py-2 text-xs font-medium text-primary-700 hover:bg-primary-200"
                     onClick={() => onLoad(item)}
                   >
                     読込
@@ -103,7 +104,7 @@ export default function SimulationHistory({
                   <button
                     type="button"
                     aria-label={`${item.summary.prefectureName}・${item.summary.strategyLabel}と比較`}
-                    className={`rounded px-2.5 py-1 text-xs font-medium ${
+                    className={`min-h-[44px] rounded px-3 py-2 text-xs font-medium ${
                       isComparing
                         ? "bg-primary-600 text-white"
                         : "bg-gray-200 text-gray-600 hover:bg-gray-300"
@@ -115,7 +116,7 @@ export default function SimulationHistory({
                   <button
                     type="button"
                     aria-label={`${item.summary.prefectureName}・${item.summary.strategyLabel}を削除`}
-                    className="rounded bg-gray-200 px-2 py-1 text-xs text-gray-500 hover:bg-red-100 hover:text-red-600"
+                    className="min-h-[44px] rounded bg-gray-200 px-3 py-2 text-xs text-gray-600 hover:bg-red-100 hover:text-red-600"
                     onClick={() => handleDelete(item.id)}
                   >
                     ×
@@ -126,7 +127,7 @@ export default function SimulationHistory({
           })}
           <button
             type="button"
-            className="text-xs text-gray-500 hover:text-red-500"
+            className="text-xs text-gray-600 hover:text-red-500"
             onClick={handleClear}
           >
             履歴をすべて削除

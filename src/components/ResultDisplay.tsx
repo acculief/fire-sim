@@ -228,7 +228,7 @@ export default function ResultDisplay({ result, shareUrl }: Props) {
           </p>
           <p className="mt-1 text-sm text-gray-600">
             月間支出：{neutral.monthlyExpense}万円
-            <span className="ml-1 text-xs text-gray-500">
+            <span className="ml-1 text-xs text-gray-600">
               （生活費{result.baseMonthlyExpense}万円
               {result.input.customMonthlyExpense != null && result.input.customMonthlyExpense > 0
                 ? " 手入力"
@@ -336,7 +336,7 @@ export default function ResultDisplay({ result, shareUrl }: Props) {
             >
               <div>
                 <p className="font-medium text-gray-800">{item.label}</p>
-                <p className="text-xs text-gray-500">{item.description}</p>
+                <p className="text-xs text-gray-600">{item.description}</p>
               </div>
               <div className="text-right">
                 {item.diff !== null ? (
@@ -496,7 +496,7 @@ export default function ResultDisplay({ result, shareUrl }: Props) {
                   </p>
                   <div className="mt-3 grid grid-cols-2 gap-3 text-center">
                     <div className="rounded-lg bg-gray-100 p-3">
-                      <p className="text-xs text-gray-500">
+                      <p className="text-xs text-gray-600">
                         銀行預金のみ（{comparisonYears}年）
                       </p>
                       <p className="mt-1 text-lg font-bold text-gray-600">
@@ -541,7 +541,7 @@ export default function ResultDisplay({ result, shareUrl }: Props) {
                       </>
                     )}
                   </p>
-                  <p className="mt-1 text-xs text-gray-500">
+                  <p className="mt-1 text-xs text-gray-600">
                     ※ 新NISA：年間360万円（つみたて投資枠120万円＋成長投資枠240万円）まで非課税
                   </p>
                 </div>
@@ -585,7 +585,7 @@ export default function ResultDisplay({ result, shareUrl }: Props) {
           <h3 className="mb-1 text-lg font-bold text-gray-800">
             もし移住したら？
           </h3>
-          <p className="mb-4 text-xs text-gray-500">
+          <p className="mb-4 text-xs text-gray-600">
             同じ条件で別の地域に住んだ場合のFIRE必要資産を比較
           </p>
 
@@ -623,7 +623,7 @@ export default function ResultDisplay({ result, shareUrl }: Props) {
                     <p className="text-sm font-bold text-gray-800">
                       {comp.prefecture.name}
                     </p>
-                    <p className="text-xs text-gray-500">
+                    <p className="text-xs text-gray-600">
                       物価係数 {comp.prefecture.costIndex}
                     </p>
                   </div>
@@ -664,13 +664,13 @@ export default function ResultDisplay({ result, shareUrl }: Props) {
                 <div className="mt-2 flex gap-2">
                   <Link
                     href={`/fire/${comp.prefecture.code}/`}
-                    className="inline-block rounded bg-gray-200 px-2.5 py-1 text-xs font-medium text-gray-700 transition-colors hover:bg-gray-300"
+                    className="inline-flex min-h-[44px] items-center rounded bg-gray-200 px-3 py-2 text-xs font-medium text-gray-700 transition-colors hover:bg-gray-300"
                   >
                     {comp.prefecture.name}のFIRE情報
                   </Link>
                   <Link
                     href={`/simulate/?${inputToParams({ ...result.input, prefecture: comp.prefecture.code })}`}
-                    className="inline-block rounded bg-primary-100 px-2.5 py-1 text-xs font-medium text-primary-700 transition-colors hover:bg-primary-200"
+                    className="inline-flex min-h-[44px] items-center rounded bg-primary-100 px-3 py-2 text-xs font-medium text-primary-700 transition-colors hover:bg-primary-200"
                   >
                     移住先でシミュレーション
                   </Link>
@@ -692,7 +692,7 @@ export default function ResultDisplay({ result, shareUrl }: Props) {
             className="rounded-lg border border-gray-200 p-3 text-sm transition-colors hover:border-primary-300 hover:bg-primary-50"
           >
             <p className="font-bold text-gray-800">4%ルール（SWR）徹底解説</p>
-            <p className="mt-0.5 text-xs text-gray-500">
+            <p className="mt-0.5 text-xs text-gray-600">
               取り崩し率の根拠と注意点
             </p>
           </Link>
@@ -701,7 +701,7 @@ export default function ResultDisplay({ result, shareUrl }: Props) {
             className="rounded-lg border border-gray-200 p-3 text-sm transition-colors hover:border-primary-300 hover:bg-primary-50"
           >
             <p className="font-bold text-gray-800">インデックス投資入門</p>
-            <p className="mt-0.5 text-xs text-gray-500">
+            <p className="mt-0.5 text-xs text-gray-600">
               FIRE達成の王道戦略を解説
             </p>
           </Link>
@@ -721,7 +721,7 @@ export default function ResultDisplay({ result, shareUrl }: Props) {
             className="rounded-lg border border-gray-200 p-3 text-sm transition-colors hover:border-primary-300 hover:bg-primary-50"
           >
             <p className="font-bold text-gray-800">FIREガイド一覧</p>
-            <p className="mt-0.5 text-xs text-gray-500">
+            <p className="mt-0.5 text-xs text-gray-600">
               20本以上の解説記事を公開中
             </p>
           </Link>
@@ -790,7 +790,7 @@ export default function ResultDisplay({ result, shareUrl }: Props) {
       </div>
 
       {/* 免責 */}
-      <div className="rounded-lg bg-gray-100 p-4 text-xs text-gray-500">
+      <div className="rounded-lg bg-gray-100 p-4 text-xs text-gray-600">
         <p className="font-medium">免責事項</p>
         <p className="mt-1">
           本シミュレーションは概算であり、投資助言・税務助言ではありません。
