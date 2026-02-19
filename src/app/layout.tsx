@@ -72,7 +72,7 @@ export default function RootLayout({
             <div className="grid gap-6 text-sm sm:grid-cols-3">
               <nav aria-label="フッターナビゲーション">
                 <p className="font-bold text-gray-700">コンテンツ</p>
-                <ul className="mt-2 space-y-1 text-gray-500">
+                <ul className="mt-2 space-y-1 text-gray-600">
                   <li><Link href="/simulate/" className="hover:text-primary-600">シミュレーション</Link></li>
                   <li><Link href="/diagnose/" className="hover:text-primary-600">FIRE診断</Link></li>
                   <li><Link href="/withdraw/" className="hover:text-primary-600">取り崩しシミュレーション</Link></li>
@@ -88,7 +88,7 @@ export default function RootLayout({
               </nav>
               <nav aria-label="人気の地域">
                 <p className="font-bold text-gray-700">人気の地域</p>
-                <ul className="mt-2 space-y-1 text-gray-500">
+                <ul className="mt-2 space-y-1 text-gray-600">
                   <li><Link href="/fire/tokyo/" className="hover:text-primary-600">東京都</Link></li>
                   <li><Link href="/fire/osaka/" className="hover:text-primary-600">大阪府</Link></li>
                   <li><Link href="/fire/kanagawa/" className="hover:text-primary-600">神奈川県</Link></li>
@@ -98,7 +98,7 @@ export default function RootLayout({
               </nav>
               <nav aria-label="人気のガイド記事">
                 <p className="font-bold text-gray-700">人気のガイド</p>
-                <ul className="mt-2 space-y-1 text-gray-500">
+                <ul className="mt-2 space-y-1 text-gray-600">
                   <li><Link href="/guide/what-is-fire/" className="hover:text-primary-600">FIREとは？</Link></li>
                   <li><Link href="/guide/fire-first-steps/" className="hover:text-primary-600">FIRE初心者の始め方</Link></li>
                   <li><Link href="/guide/how-to-choose-broker/" className="hover:text-primary-600">証券口座の選び方</Link></li>
