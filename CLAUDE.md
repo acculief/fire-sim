@@ -38,7 +38,7 @@
 - `src/config/assumptions.ts` — 計算の前提条件
 
 ## 本番URL
-https://fire-sim-phi.vercel.app
+https://fire-simulator.net
 
 ## 品質基準
 - `npm run build` が通ること (必須)

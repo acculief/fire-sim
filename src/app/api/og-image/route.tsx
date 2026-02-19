@@ -151,7 +151,7 @@ export async function GET(request: NextRequest) {
             color: "rgba(255,255,255,0.5)",
           }}
         >
-          fire-sim-phi.vercel.app
+          fire-simulator.net
         </div>
       </div>
     ),
