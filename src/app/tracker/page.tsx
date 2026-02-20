@@ -278,7 +278,7 @@ export default function TrackerPage() {
                     </span>
                     <button
                       type="button"
-                      className="flex h-8 w-8 shrink-0 items-center justify-center rounded text-xs text-gray-600 opacity-0 transition-opacity hover:bg-red-50 hover:text-red-500 group-hover:opacity-100 focus:opacity-100"
+                      className="flex h-8 w-8 shrink-0 items-center justify-center rounded text-xs text-gray-600 transition-opacity hover:bg-red-50 hover:text-red-500 sm:opacity-0 sm:group-hover:opacity-100 sm:focus:opacity-100"
                       onClick={() => handleDeleteEntry(entry.date)}
                       aria-label={`${entry.date}のデータを削除`}
                     >

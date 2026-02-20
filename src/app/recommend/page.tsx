@@ -431,7 +431,7 @@ export default function RecommendPage() {
               <summary className="flex cursor-pointer items-center justify-between gap-4 px-5 py-4 text-left font-bold text-gray-800 hover:text-primary-600">
                 <span>{faq.question}</span>
                 <svg
-                  className="h-5 w-5 shrink-0 text-gray-400 transition-transform group-open:rotate-180"
+                  className="h-5 w-5 shrink-0 text-gray-600 transition-transform group-open:rotate-180"
                   fill="none"
                   viewBox="0 0 24 24"
                   strokeWidth={2}
@@ -513,7 +513,7 @@ export default function RecommendPage() {
             className="block rounded-lg border border-gray-200 bg-white p-3 text-sm transition-colors hover:border-primary-300 hover:bg-primary-50"
           >
             <p className="font-bold text-gray-800">FIRE達成度診断</p>
-            <p className="mt-1 text-xs text-gray-600">30秒であなたのFIRE達成度をチェック</p>
+            <p className="mt-1 text-xs text-gray-600">6つの質問であなたのFIRE達成度を診断</p>
           </Link>
           <Link
             href="/tracker/"

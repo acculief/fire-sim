@@ -4,6 +4,7 @@ export const metadata: Metadata = {
   title: "よくある質問（FAQ） | FIREの疑問を解決",
   description:
     "FIREに必要な資産額、4%ルール、投資戦略、生活費の目安など、FIRE（経済的自立・早期退職）に関するよくある質問にお答えします。",
+  alternates: { canonical: "/faq/" },
   openGraph: {
     title: "よくある質問（FAQ） | FIREの疑問を解決",
     description:

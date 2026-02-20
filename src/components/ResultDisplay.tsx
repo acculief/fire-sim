@@ -21,7 +21,7 @@ const affiliateBrokers = brokers.filter((b) => b.isAffiliate);
 
 const AssetChart = dynamic(() => import("./AssetChart"), {
   loading: () => (
-    <div className="flex h-72 w-full items-center justify-center sm:h-80">
+    <div className="flex h-72 w-full items-center justify-center sm:h-80" role="status" aria-live="polite">
       <p className="text-sm text-gray-500">グラフを読み込み中...</p>
     </div>
   ),
