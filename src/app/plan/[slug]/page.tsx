@@ -320,19 +320,19 @@ export default async function PlanDetailPage({
           <table className="w-full min-w-[600px] text-sm" aria-label={`${page.ageLabel}・年収${page.annualIncome}万円の家族構成別×地域別FIRE比較`}>
             <thead>
               <tr className="border-b-2 border-gray-200 bg-gray-50">
-                <th className="px-3 py-3 text-left font-medium text-gray-600">
+                <th scope="col" className="px-3 py-3 text-left font-medium text-gray-600">
                   家族構成
                 </th>
-                <th className="px-3 py-3 text-right font-medium text-gray-600">
+                <th scope="col" className="px-3 py-3 text-right font-medium text-gray-600">
                   東京 FIRE資産
                 </th>
-                <th className="px-3 py-3 text-right font-medium text-gray-600">
+                <th scope="col" className="px-3 py-3 text-right font-medium text-gray-600">
                   全国平均 FIRE資産
                 </th>
-                <th className="px-3 py-3 text-right font-medium text-gray-600">
+                <th scope="col" className="px-3 py-3 text-right font-medium text-gray-600">
                   東京 達成年齢
                 </th>
-                <th className="px-3 py-3 text-right font-medium text-gray-600">
+                <th scope="col" className="px-3 py-3 text-right font-medium text-gray-600">
                   全国平均 達成年齢
                 </th>
               </tr>

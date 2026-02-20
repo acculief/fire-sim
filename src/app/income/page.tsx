@@ -91,13 +91,13 @@ export default function IncomePage() {
           <table className="w-full min-w-[700px] text-sm" aria-label="年収別 手取り額一覧（独身・扶養なし）">
             <thead>
               <tr className="border-b-2 border-gray-200 bg-gray-50">
-                <th className="px-3 py-3 text-left font-medium text-gray-600">年収</th>
-                <th className="px-3 py-3 text-right font-medium text-gray-600">手取り（年額）</th>
-                <th className="px-3 py-3 text-right font-medium text-gray-600">手取り（月額）</th>
-                <th className="px-3 py-3 text-right font-medium text-gray-600">所得税</th>
-                <th className="px-3 py-3 text-right font-medium text-gray-600">住民税</th>
-                <th className="px-3 py-3 text-right font-medium text-gray-600">社会保険料</th>
-                <th className="px-3 py-3 text-right font-medium text-gray-600">手取り率</th>
+                <th scope="col" className="px-3 py-3 text-left font-medium text-gray-600">年収</th>
+                <th scope="col" className="px-3 py-3 text-right font-medium text-gray-600">手取り（年額）</th>
+                <th scope="col" className="px-3 py-3 text-right font-medium text-gray-600">手取り（月額）</th>
+                <th scope="col" className="px-3 py-3 text-right font-medium text-gray-600">所得税</th>
+                <th scope="col" className="px-3 py-3 text-right font-medium text-gray-600">住民税</th>
+                <th scope="col" className="px-3 py-3 text-right font-medium text-gray-600">社会保険料</th>
+                <th scope="col" className="px-3 py-3 text-right font-medium text-gray-600">手取り率</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-100">
@@ -149,13 +149,13 @@ export default function IncomePage() {
           <table className="w-full min-w-[600px] text-sm" aria-label="家族構成別の手取り比較">
             <thead>
               <tr className="border-b-2 border-gray-200 bg-gray-50">
-                <th className="px-3 py-3 text-left font-medium text-gray-600">年収</th>
+                <th scope="col" className="px-3 py-3 text-left font-medium text-gray-600">年収</th>
                 {FAMILY_PATTERNS.map((f) => (
-                  <th key={f} className="px-3 py-3 text-right font-medium text-gray-600">
+                  <th key={f} scope="col" className="px-3 py-3 text-right font-medium text-gray-600">
                     {getFamilyLabel(f)}
                   </th>
                 ))}
-                <th className="px-3 py-3 text-right font-medium text-gray-600">
+                <th scope="col" className="px-3 py-3 text-right font-medium text-gray-600">
                   夫婦+子の増額
                 </th>
               </tr>

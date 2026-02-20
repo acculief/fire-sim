@@ -918,13 +918,13 @@ export default function DiagnosePage() {
                 <table className="w-full text-sm">
                   <thead>
                     <tr className="bg-gray-50 text-xs text-gray-500">
-                      <th className="px-3 py-2 text-left font-medium">
+                      <th scope="col" className="px-3 py-2 text-left font-medium">
                         シナリオ
                       </th>
-                      <th className="px-3 py-2 text-right font-medium">
+                      <th scope="col" className="px-3 py-2 text-right font-medium">
                         達成年数
                       </th>
-                      <th className="px-3 py-2 text-right font-medium">
+                      <th scope="col" className="px-3 py-2 text-right font-medium">
                         短縮
                       </th>
                     </tr>

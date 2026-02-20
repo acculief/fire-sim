@@ -293,9 +293,9 @@ export default async function IncomeDetailPage({
           <table className="w-full text-sm" aria-label={`年収${level.toLocaleString()}万円の家族構成別手取り比較`}>
             <thead>
               <tr className="border-b-2 border-gray-200 bg-gray-50">
-                <th className="px-3 py-3 text-left font-medium text-gray-600">項目</th>
+                <th scope="col" className="px-3 py-3 text-left font-medium text-gray-600">項目</th>
                 {FAMILY_PATTERNS.map((f) => (
-                  <th key={f} className="px-3 py-3 text-right font-medium text-gray-600">
+                  <th key={f} scope="col" className="px-3 py-3 text-right font-medium text-gray-600">
                     {getFamilyLabel(f)}
                   </th>
                 ))}

@@ -331,10 +331,10 @@ export default function WithdrawPage() {
             <table className="mt-4 w-full text-sm" aria-label="取り崩しシミュレーション年次データ">
               <thead>
                 <tr className="border-b border-gray-200 text-left text-gray-500">
-                  <th className="pb-2 pr-4">年齢</th>
-                  <th className="pb-2 pr-4 text-right">残高</th>
-                  <th className="pb-2 pr-4 text-right">年間取り崩し</th>
-                  <th className="pb-2 text-right">運用益</th>
+                  <th scope="col" className="pb-2 pr-4">年齢</th>
+                  <th scope="col" className="pb-2 pr-4 text-right">残高</th>
+                  <th scope="col" className="pb-2 pr-4 text-right">年間取り崩し</th>
+                  <th scope="col" className="pb-2 text-right">運用益</th>
                 </tr>
               </thead>
               <tbody>

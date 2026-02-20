@@ -180,22 +180,22 @@ export default function RecommendPage() {
           <table className="w-full text-sm" aria-label="証券口座比較テーブル">
             <thead>
               <tr className="border-b border-gray-200 bg-gray-50">
-                <th className="px-3 py-2 text-left font-medium text-gray-600">
+                <th scope="col" className="px-3 py-2 text-left font-medium text-gray-600">
                   証券会社
                 </th>
-                <th className="px-3 py-2 text-center font-medium text-gray-600">
+                <th scope="col" className="px-3 py-2 text-center font-medium text-gray-600">
                   クレカ積立
                 </th>
-                <th className="px-3 py-2 text-center font-medium text-gray-600">
+                <th scope="col" className="px-3 py-2 text-center font-medium text-gray-600">
                   投信本数
                 </th>
-                <th className="px-3 py-2 text-center font-medium text-gray-600">
+                <th scope="col" className="px-3 py-2 text-center font-medium text-gray-600">
                   米国株
                 </th>
-                <th className="px-3 py-2 text-center font-medium text-gray-600">
+                <th scope="col" className="px-3 py-2 text-center font-medium text-gray-600">
                   ポイント
                 </th>
-                <th className="px-3 py-2 text-center font-medium text-gray-600">
+                <th scope="col" className="px-3 py-2 text-center font-medium text-gray-600">
                   おすすめ度
                 </th>
               </tr>
