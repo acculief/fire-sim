@@ -281,9 +281,9 @@ export default function IncomePage() {
             description: "FIRE達成に最適な証券口座を比較",
           },
           {
-            href: "/plan/",
-            title: "年収×年代別プラン",
-            description: "年収帯ごとのFIRE達成プランを確認",
+            href: "/diagnose/",
+            title: "FIRE達成度診断",
+            description: "6つの質問であなたのFIREグレードを判定",
           },
         ]}
       />

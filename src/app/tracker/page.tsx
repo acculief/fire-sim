@@ -309,7 +309,7 @@ export default function TrackerPage() {
           { href: "/simulate/", title: "FIREシミュレーション", description: "地域・年収・家族構成から必要資産を計算" },
           { href: "/guide/fire-index-investing/", title: "インデックス投資入門", description: "資産を増やすための投資戦略" },
           { href: "/cases/", title: "年代別モデルケース", description: "同世代のFIREプランを参考に" },
-          { href: "/recommend/", title: "おすすめ証券口座", description: "FIRE達成に役立つツール" },
+          { href: "/diagnose/", title: "FIRE達成度診断", description: "6つの質問であなたのFIREグレードを判定" },
         ]}
       />
 
