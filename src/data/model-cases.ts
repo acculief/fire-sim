@@ -1,6 +1,7 @@
 import { estimateMonthlyExpense, calcFireNumber, calcAchievementYears } from "@/lib/calculator";
 import { getPrefectureByCode } from "@/data/prefectures";
 import { estimatePostFireMonthlyCost } from "@/config/assumptions";
+import type { FamilyType, HousingType } from "@/lib/types";
 
 export interface ModelCase {
   slug: string;
@@ -11,8 +12,8 @@ export interface ModelCase {
   annualIncome: number;
   prefecture: string;
   prefectureName: string;
-  familyType: string;
-  housingType: string;
+  familyType: FamilyType;
+  housingType: HousingType;
   currentAssets: number;
   monthlyInvestment: number;
   fireNumber: number;
@@ -30,8 +31,8 @@ interface ModelCaseInput {
   age: number;
   annualIncome: number;
   prefecture: string;
-  familyType: string;
-  housingType: string;
+  familyType: FamilyType;
+  housingType: HousingType;
   currentAssets: number;
   monthlyInvestment: number;
   keyPoints: string[];

@@ -10,7 +10,7 @@ import {
   FIRE_STRATEGIES,
   estimatePostFireMonthlyCost,
 } from "@/config/assumptions";
-import type { SimulationInput, FireStrategy } from "@/lib/types";
+import type { SimulationInput, FireStrategy, FamilyType, HousingType } from "@/lib/types";
 import NumberInput from "@/components/NumberInput";
 
 // 静的データなのでモジュールスコープで1回だけ計算
@@ -275,7 +275,7 @@ export default function SimulationForm({ initialInput, onSubmit }: Props) {
               id="familyType"
               className="input-field"
               value={familyType}
-              onChange={(e) => setFamilyType(e.target.value)}
+              onChange={(e) => setFamilyType(e.target.value as FamilyType)}
             >
               {Object.entries(FAMILY_COEFFICIENTS).map(([key, val]) => (
                 <option key={key} value={key}>
@@ -292,7 +292,7 @@ export default function SimulationForm({ initialInput, onSubmit }: Props) {
               id="housingType"
               className="input-field"
               value={housingType}
-              onChange={(e) => setHousingType(e.target.value)}
+              onChange={(e) => setHousingType(e.target.value as HousingType)}
             >
               {Object.entries(HOUSING_COEFFICIENTS).map(([key, val]) => (
                 <option key={key} value={key}>

@@ -14,6 +14,8 @@ import type {
   ScenarioResult,
   YearProjection,
   SensitivityItem,
+  FamilyType,
+  HousingType,
 } from "./types";
 
 const MAX_SIMULATION_YEARS = 80;
@@ -21,8 +23,8 @@ const MAX_SIMULATION_YEARS = 80;
 /** 月間生活費を推定（万円） */
 export function estimateMonthlyExpense(
   costIndex: number,
-  familyType: string,
-  housingType: string,
+  familyType: string,  // string for flexibility with SEO pages that iterate keys
+  housingType: string, // string for flexibility with SEO pages that iterate keys
 ): number {
   const familyCoeff = FAMILY_COEFFICIENTS[familyType]?.coefficient ?? 1.0;
   const housingCoeff = HOUSING_COEFFICIENTS[housingType]?.coefficient ?? 1.0;
@@ -310,8 +312,8 @@ export function inputFromParams(
     incomeType: params.incomeType === "net" ? "net" : "gross",
     currentAssets: Number(params.assets) || 300,
     monthlyInvestment: Number(params.invest) || 10,
-    familyType: params.family ?? "single",
-    housingType: params.housing ?? "rent",
+    familyType: (params.family ?? "single") as FamilyType,
+    housingType: (params.housing ?? "rent") as HousingType,
     currentAge: Number(params.age) || 30,
     targetAge: params.targetAge ? Number(params.targetAge) : undefined,
     annualReturnRate: Number(params.return) || 0.04,

@@ -69,8 +69,8 @@ export const DEFAULTS = {
   currentAssets: 300,
   monthlyInvestment: 10,
   prefecture: "tokyo",
-  familyType: "single",
-  housingType: "rent",
+  familyType: "single" as const,
+  housingType: "rent" as const,
   incomeType: "gross" as "gross" | "net",
 };
 

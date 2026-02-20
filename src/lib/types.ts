@@ -1,4 +1,6 @@
 export type FireStrategy = "withdrawal" | "yield";
+export type FamilyType = "single" | "couple" | "couple-1child" | "couple-2children" | "couple-3children";
+export type HousingType = "rent" | "own" | "own_loan";
 
 export interface SimulationInput {
   prefecture: string;
@@ -6,8 +8,8 @@ export interface SimulationInput {
   incomeType: "gross" | "net";
   currentAssets: number;
   monthlyInvestment: number;
-  familyType: string;
-  housingType: string;
+  familyType: FamilyType;
+  housingType: HousingType;
   currentAge: number;
   targetAge?: number;
   annualReturnRate: number;

@@ -1,5 +1,5 @@
 import { runSimulation } from "./calculator";
-import type { SimulationInput } from "./types";
+import type { SimulationInput, FamilyType, HousingType } from "./types";
 import {
   DEFAULTS,
   INCOME_LEVELS,
@@ -54,7 +54,7 @@ export function generateCaseExamples(prefCode: string): CaseExample[] {
     const input = createBaseInput({
       prefecture: prefCode,
       annualIncome: c.income,
-      familyType: c.family,
+      familyType: c.family as FamilyType,
     });
     const result = runSimulation(input);
     const neutral = result.scenarios.neutral;
@@ -77,7 +77,7 @@ export function generateIncomeCases(prefCode: string, income: number) {
     const input = createBaseInput({
       prefecture: prefCode,
       annualIncome: income,
-      familyType: ft.key,
+      familyType: ft.key as FamilyType,
     });
     const result = runSimulation(input);
     const neutral = result.scenarios.neutral;
@@ -97,7 +97,7 @@ export function generateFamilyCases(prefCode: string, familyType: string) {
     const input = createBaseInput({
       prefecture: prefCode,
       annualIncome: il.value,
-      familyType,
+      familyType: familyType as FamilyType,
     });
     const result = runSimulation(input);
     const neutral = result.scenarios.neutral;
@@ -154,7 +154,7 @@ export function generateHousingCases(prefCode: string, housingType: string) {
     const input = createBaseInput({
       prefecture: prefCode,
       annualIncome: il.value,
-      housingType,
+      housingType: housingType as HousingType,
     });
     const result = runSimulation(input);
     const neutral = result.scenarios.neutral;
@@ -174,7 +174,7 @@ export function generateHousingComparison(prefCode: string, income: number) {
     const input = createBaseInput({
       prefecture: prefCode,
       annualIncome: income,
-      housingType: ht.key,
+      housingType: ht.key as HousingType,
     });
     const result = runSimulation(input);
     const neutral = result.scenarios.neutral;
