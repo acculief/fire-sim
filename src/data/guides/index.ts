@@ -103,7 +103,7 @@ FIREの核心は「自由の獲得」です。必ずしも完全に仕事を辞�
       height: 630,
       credit: "Photo by Maxim Hopman on Unsplash",
     },
-    relatedSlugs: ["what-is-fire", "withdrawal-vs-yield", "how-to-calculate-fire-number"],
+    relatedSlugs: ["what-is-fire", "withdrawal-vs-yield", "how-to-calculate-fire-number", "fire-emergency-fund"],
     sections: [
       {
         heading: "4%ルールとは",
@@ -175,7 +175,7 @@ FIRE直後に大暴落が来ると、資産が大きく毀損した状態で取�
       height: 630,
       credit: "Photo by Isaac Smith on Unsplash",
     },
-    relatedSlugs: ["4percent-rule", "what-is-fire", "fire-savings-rate"],
+    relatedSlugs: ["4percent-rule", "what-is-fire", "fire-savings-rate", "fire-by-region"],
     sections: [
       {
         heading: "FIREナンバーとは",
@@ -278,7 +278,7 @@ FIRE直後に大暴落が来ると、資産が大きく毀損した状態で取�
     description:
       "都道府県別の生活費の違いがFIRE必要資産と達成年にどう影響するか、データとともに解説。地方移住によるFIRE加速戦略も紹介。",
     publishedAt: "2026-02-01",
-    relatedSlugs: ["how-to-calculate-fire-number", "fire-with-family", "fire-tax-optimization"],
+    relatedSlugs: ["how-to-calculate-fire-number", "fire-with-family", "fire-tax-optimization", "fire-and-pension"],
     sections: [
       {
         heading: "住む場所でFIREの難易度が変わる",
@@ -351,7 +351,7 @@ FIRE直後に大暴落が来ると、資産が大きく毀損した状態で取�
     description:
       "独身に比べてハードルが高いと言われる家族持ちのFIRE。夫婦・子育て世帯向けの必要資産・戦略・教育費の考え方を解説します。",
     publishedAt: "2026-02-01",
-    relatedSlugs: ["how-to-calculate-fire-number", "fire-by-region", "fire-couple-strategy"],
+    relatedSlugs: ["how-to-calculate-fire-number", "fire-by-region", "fire-couple-strategy", "fire-by-age-30"],
     sections: [
       {
         heading: "家族構成によるFIREナンバーの違い",
@@ -507,7 +507,7 @@ FIREは家族全員に影響する決断です。「なぜFIREしたいか」「
     description:
       "FIRE後の資産の使い方「取り崩し（SWR）」と「利回り運用（配当生活）」を徹底比較。メリット・デメリット・向いている人を解説。",
     publishedAt: "2026-02-01",
-    relatedSlugs: ["4percent-rule", "nisa-ideco-for-fire", "fire-index-investing"],
+    relatedSlugs: ["4percent-rule", "nisa-ideco-for-fire", "fire-index-investing", "fire-real-estate"],
     sections: [
       {
         heading: "2つの出口戦略",
@@ -1066,7 +1066,7 @@ FIREナンバー8,000万円の場合:
     description:
       "FIRE計画で多くの人が陥る5つの失敗パターンとその対策を解説。生活費の甘い見積もり、インフレの無視、暴落パニックなど、事前に知っておくべき注意点。",
     publishedAt: "2026-02-17",
-    relatedSlugs: ["how-to-calculate-fire-number", "fire-emergency-fund", "fire-mental"],
+    relatedSlugs: ["how-to-calculate-fire-number", "fire-emergency-fund", "fire-mental", "fire-first-steps"],
     sections: [
       {
         heading: "失敗1: 生活費を甘く見積もる",
@@ -1159,7 +1159,7 @@ FIRE資産が5,000万円あった人がリーマンショック級の暴落（-5
     description:
       "FIRE（早期退職）すると公的年金はいくら減るのか？厚生年金・国民年金の仕組みとFIRE計画への組み込み方、繰り上げ・繰り下げ受給の活用法を解説。",
     publishedAt: "2026-02-17",
-    relatedSlugs: ["what-is-fire", "fire-by-age-40", "fire-tax-optimization"],
+    relatedSlugs: ["what-is-fire", "fire-by-age-40", "fire-tax-optimization", "fire-emergency-fund"],
     sections: [
       {
         heading: "FIREすると年金はいくら減るのか",
@@ -1325,7 +1325,7 @@ FIRE達成が近づいたら、生活防衛資金を12〜24ヶ月分に増額す
     description:
       "FIRE達成後に多くの人が直面する心理的な課題と対処法を解説。アイデンティティの再構築、社会的孤立、目標喪失感への対策を紹介します。",
     publishedAt: "2026-02-17",
-    relatedSlugs: ["what-is-fire", "side-fire", "fire-barista"],
+    relatedSlugs: ["what-is-fire", "side-fire", "fire-barista", "fire-mistakes"],
     sections: [
       {
         heading: "FIRE後に待ち受ける「意外な現実」",
@@ -1423,7 +1423,7 @@ FIRE後の生活イメージを配偶者と共有し、**お互いの期待値�
     description:
       "不動産投資でFIREを目指す戦略を解説。家賃収入によるキャッシュフロー、レバレッジ効果、リスク管理、インデックス投資との比較を詳しく紹介。",
     publishedAt: "2026-02-17",
-    relatedSlugs: ["withdrawal-vs-yield", "side-fire", "fire-tax-optimization"],
+    relatedSlugs: ["withdrawal-vs-yield", "side-fire", "fire-tax-optimization", "fire-index-investing"],
     sections: [
       {
         heading: "不動産投資がFIREに向いている理由",
@@ -1513,7 +1513,7 @@ FIRE後の生活イメージを配偶者と共有し、**お互いの期待値�
     description:
       "FIRE達成を加速するための節税テクニックを解説。新NISA、iDeCo、ふるさと納税、医療費控除、副業の経費活用など、合法的に手取りを増やす方法を紹介。",
     publishedAt: "2026-02-17",
-    relatedSlugs: ["nisa-ideco-for-fire", "fire-and-pension", "fire-couple-strategy"],
+    relatedSlugs: ["nisa-ideco-for-fire", "fire-and-pension", "fire-couple-strategy", "fire-real-estate"],
     sections: [
       {
         heading: "なぜFIRE志向者に節税が重要なのか",
@@ -1597,7 +1597,7 @@ NISA口座で売却した利益は所得にカウントされません。FIRE後
     description:
       "共働き夫婦がFIREを最速で達成するための戦略を解説。1馬力生活・2馬力投資、NISA枠の夫婦活用、段階的FIREなど、具体的なプランを紹介。",
     publishedAt: "2026-02-17",
-    relatedSlugs: ["fire-with-family", "fire-savings-rate", "fire-barista"],
+    relatedSlugs: ["fire-with-family", "fire-savings-rate", "fire-barista", "fire-tax-optimization"],
     sections: [
       {
         heading: "共働き夫婦はFIREに圧倒的に有利",
@@ -1722,7 +1722,7 @@ NISA口座で売却した利益は所得にカウントされません。FIRE後
     description:
       "バリスタFIREの仕組み、必要資産、社会保険のメリット、向いている仕事を解説。完全リタイアとサイドFIREの中間にある現実的な選択肢を紹介。",
     publishedAt: "2026-02-17",
-    relatedSlugs: ["side-fire", "what-is-fire", "fire-couple-strategy"],
+    relatedSlugs: ["side-fire", "what-is-fire", "fire-couple-strategy", "fire-mental"],
     sections: [
       {
         heading: "バリスタFIREとは何か",
@@ -1851,7 +1851,7 @@ NISA口座で売却した利益は所得にカウントされません。FIRE後
       height: 630,
       credit: "Photo by Green Chameleon on Unsplash",
     },
-    relatedSlugs: ["what-is-fire", "how-to-choose-broker", "fire-index-investing"],
+    relatedSlugs: ["what-is-fire", "how-to-choose-broker", "fire-index-investing", "fire-savings-rate"],
     sections: [
       {
         heading: "ステップ1: 家計を把握する",
@@ -1956,7 +1956,7 @@ FIRE達成スピードを決める最重要指標が**貯蓄率**です。計算
     description:
       "FIRE達成に最適なネット証券口座の選び方を徹底解説。主要6社の比較、タイプ別おすすめ、口座開設の流れ、複数口座の活用戦略まで。",
     publishedAt: "2026-02-17",
-    relatedSlugs: ["fire-first-steps", "fire-index-investing", "nisa-ideco-for-fire"],
+    relatedSlugs: ["fire-first-steps", "fire-index-investing", "nisa-ideco-for-fire", "nisa-fire-acceleration"],
     sections: [
       {
         heading: "FIRE志向者が証券口座に求めるべき5つの条件",
@@ -2070,7 +2070,7 @@ DMM.com証券が提供するウルトラ投資アプリ。株・FX・CFDまで�
     description:
       "新NISAの非課税メリットでFIRE達成が何年短縮されるかを具体的に試算。最速で枠を埋める積立戦略、おすすめ証券口座、FIRE後の出口戦略まで解説。",
     publishedAt: "2026-02-17",
-    relatedSlugs: ["nisa-ideco-for-fire", "fire-index-investing", "how-to-choose-broker"],
+    relatedSlugs: ["nisa-ideco-for-fire", "fire-index-investing", "how-to-choose-broker", "fire-savings-rate"],
     sections: [
       {
         heading: "新NISAでFIRE達成を何年短縮できるか",
