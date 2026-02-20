@@ -1,11 +1,14 @@
 import type { Metadata } from "next";
 import { Noto_Sans_JP } from "next/font/google";
+import Script from "next/script";
 import { Analytics } from "@vercel/analytics/next";
 import { SITE_URL } from "@/config/site";
-import GoogleAnalytics from "@/components/GoogleAnalytics";
+import GoogleAnalyticsPageview from "@/components/GoogleAnalytics";
 import Link from "next/link";
 import Header from "@/components/Header";
 import "./globals.css";
+
+const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
 
 const notoSansJP = Noto_Sans_JP({
   subsets: ["latin"],
@@ -57,7 +60,23 @@ export default function RootLayout({
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
       </head>
       <body>
-        <GoogleAnalytics />
+        {GA_ID && (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+              strategy="afterInteractive"
+            />
+            <Script id="gtag-init" strategy="afterInteractive">
+              {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${GA_ID}');
+              `}
+            </Script>
+          </>
+        )}
+        <GoogleAnalyticsPageview />
         <Analytics />
         <a
           href="#main-content"
