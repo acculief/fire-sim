@@ -72,7 +72,7 @@ export default function HomePage() {
             className="rounded-lg border border-gray-200 bg-white p-4 transition-colors hover:border-primary-300 hover:bg-primary-50"
           >
             <p className="font-bold text-gray-800">FIRE診断</p>
-            <p className="mt-1 text-xs text-gray-600">30秒で達成度をチェック</p>
+            <p className="mt-1 text-xs text-gray-600">約1分で達成度を診断</p>
           </Link>
           <Link
             href="/tracker/"

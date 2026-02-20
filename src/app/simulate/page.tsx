@@ -116,13 +116,13 @@ export default function SimulatePage() {
         </p>
       </div>
 
-      <Suspense fallback={<div className="text-center text-sm text-gray-500">読み込み中...</div>}>
+      <Suspense fallback={<div className="text-center text-sm text-gray-500" role="status" aria-live="polite">読み込み中...</div>}>
         <SimulateContent />
       </Suspense>
 
       <RelatedContent
         items={[
-          { href: "/diagnose/", title: "30秒でFIRE診断", description: "3つの質問でFIREグレードを判定" },
+          { href: "/diagnose/", title: "FIRE達成度診断", description: "6つの質問でFIREグレードを判定" },
           { href: "/cases/", title: "年代別モデルケース", description: "同世代のFIREプランを参考に" },
           { href: "/withdraw/", title: "取り崩しシミュレーション", description: "FIRE後に資産が何歳まで持つか計算" },
           { href: "/income/", title: "手取り早見表", description: "年収別の手取り額・税金を確認" },

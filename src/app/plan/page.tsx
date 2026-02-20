@@ -108,7 +108,7 @@ export default function PlanIndexPage() {
           { href: "/cases/", title: "モデルケース", description: "実例で学ぶFIRE達成プラン" },
           { href: "/income/", title: "手取り早見表", description: "年収別の手取り額・税金を確認" },
           { href: "/guide/nisa-ideco-for-fire/", title: "NISA・iDeCo活用法", description: "税制優遇をフル活用する戦略" },
-          { href: "/diagnose/", title: "30秒でFIRE診断", description: "あなたのFIREグレードを判定" },
+          { href: "/diagnose/", title: "FIRE達成度診断", description: "6つの質問であなたのFIREグレードを判定" },
         ]}
       />
 

@@ -91,7 +91,7 @@ export default function CasesIndexPage() {
         items={[
           { href: "/guide/fire-first-steps/", title: "FIRE達成の第一歩", description: "具体的なアクションプランを解説" },
           { href: "/guide/fire-savings-rate/", title: "貯蓄率とFIRE達成年", description: "貯蓄率がFIRE達成を左右する理由" },
-          { href: "/diagnose/", title: "30秒でFIRE診断", description: "あなたのFIREグレードを判定" },
+          { href: "/diagnose/", title: "FIRE達成度診断", description: "6つの質問であなたのFIREグレードを判定" },
           { href: "/plan/", title: "年収×年代別プラン", description: "年収帯ごとのFIRE達成プランを確認" },
         ]}
       />

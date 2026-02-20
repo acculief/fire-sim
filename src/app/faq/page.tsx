@@ -206,7 +206,7 @@ export default function FaqPage() {
             href="/diagnose/"
             className="btn-secondary"
           >
-            30秒でFIRE診断
+            約1分でFIRE診断
           </Link>
         </div>
       </div>
