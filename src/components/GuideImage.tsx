@@ -19,7 +19,7 @@ export default function GuideImage({ image, priority = false }: Props) {
         className="w-full rounded-lg object-cover"
       />
       {image.credit && (
-        <figcaption className="mt-2 text-center text-xs text-gray-400">
+        <figcaption className="mt-2 text-center text-xs text-gray-600">
           {image.credit}
         </figcaption>
       )}

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import Link from "next/link";
 
 const menuSections = [
@@ -34,6 +34,8 @@ const menuSections = [
 
 export default function Header() {
   const [open, setOpen] = useState(false);
+  const hamburgerRef = useRef<HTMLButtonElement>(null);
+  const menuRef = useRef<HTMLElement>(null);
 
   const handleEscape = useCallback((e: KeyboardEvent) => {
     if (e.key === "Escape") setOpen(false);
@@ -42,7 +44,17 @@ export default function Header() {
   useEffect(() => {
     if (open) {
       document.addEventListener("keydown", handleEscape);
-      return () => document.removeEventListener("keydown", handleEscape);
+      // Focus the close button inside the menu
+      const closeBtn = menuRef.current?.querySelector<HTMLButtonElement>("button[aria-label]");
+      closeBtn?.focus();
+      document.body.style.overflow = "hidden";
+      return () => {
+        document.removeEventListener("keydown", handleEscape);
+        document.body.style.overflow = "";
+      };
+    } else {
+      // Restore focus to hamburger button when menu closes
+      hamburgerRef.current?.focus();
     }
   }, [open, handleEscape]);
 
@@ -77,6 +89,7 @@ export default function Header() {
         {/* Mobile hamburger */}
         <div className="flex items-center sm:hidden">
           <button
+            ref={hamburgerRef}
             type="button"
             aria-label={open ? "メニューを閉じる" : "メニューを開く"}
             aria-expanded={open}
@@ -107,6 +120,7 @@ export default function Header() {
           />
           {/* Menu panel */}
           <nav
+            ref={menuRef}
             aria-label="モバイルメニュー"
             className="fixed inset-x-0 top-0 z-50 max-h-[85vh] overflow-y-auto bg-white shadow-lg sm:hidden animate-slide-down"
           >
@@ -137,7 +151,7 @@ export default function Header() {
                         <Link
                           href={link.href}
                           onClick={() => setOpen(false)}
-                          className="block rounded-md px-3 py-2 text-sm text-gray-700 transition-colors hover:bg-primary-50 hover:text-primary-700"
+                          className="flex min-h-[44px] items-center rounded-md px-3 text-sm text-gray-700 transition-colors hover:bg-primary-50 hover:text-primary-700"
                         >
                           {link.text}
                         </Link>

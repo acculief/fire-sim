@@ -23,7 +23,7 @@ export default function Breadcrumb({ items }: Props) {
                 {item.label}
               </Link>
             ) : (
-              <span className="text-gray-700">{item.label}</span>
+              <span className="text-gray-700" aria-current="page">{item.label}</span>
             )}
           </span>
         ))}

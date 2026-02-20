@@ -56,7 +56,7 @@ export default function SimulationHistory({
             ({history.length}件)
           </span>
         </h2>
-        <span className="text-sm text-gray-500" aria-hidden="true">
+        <span className="text-sm text-gray-600" aria-hidden="true">
           {isOpen ? "閉じる ▲" : "開く ▼"}
         </span>
       </button>
