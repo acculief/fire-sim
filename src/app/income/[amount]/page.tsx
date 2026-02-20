@@ -527,7 +527,7 @@ export default async function IncomeDetailPage({
       <div className="mt-10 rounded-lg bg-gray-100 p-4 text-xs text-gray-600">
         <p className="font-medium">計算の前提</p>
         <p className="mt-1">
-          2026年の税制に基づく概算。40歳未満・給与収入のみ・協会けんぽ全国平均で計算。
+          {new Date().getFullYear()}年の税制に基づく概算。40歳未満・給与収入のみ・協会けんぽ全国平均で計算。
           ふるさと納税・iDeCo・住宅ローン控除等は含みません。
         </p>
       </div>

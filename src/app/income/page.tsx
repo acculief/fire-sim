@@ -79,7 +79,7 @@ export default function IncomePage() {
         家族構成による手取りの違いも比較できます。
       </p>
       <p className="mt-2 text-xs text-gray-600">
-        ※2026年の税制に基づく簡易計算。40歳未満・給与収入のみ・協会けんぽ加入を想定。
+        ※{new Date().getFullYear()}年の税制に基づく簡易計算。40歳未満・給与収入のみ・協会けんぽ加入を想定。
       </p>
 
       {/* ---------- メイン早見表（独身） ---------- */}
@@ -294,7 +294,7 @@ export default function IncomePage() {
       <div className="mt-12 rounded-lg bg-gray-100 p-4 text-xs text-gray-600">
         <p className="font-medium">計算の前提・注意事項</p>
         <ul className="mt-1 ml-4 list-disc space-y-0.5">
-          <li>2026年（令和8年）の税制に基づく概算値です</li>
+          <li>{new Date().getFullYear()}年の税制に基づく概算値です</li>
           <li>40歳未満（介護保険料なし）、給与収入のみを想定</li>
           <li>健康保険は協会けんぽ全国平均（約5.0%）で計算</li>
           <li>配偶者は年収103万円以下（配偶者控除適用）、子は16歳以上（一般扶養控除適用）を想定</li>

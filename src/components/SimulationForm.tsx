@@ -15,6 +15,9 @@ import NumberInput from "@/components/NumberInput";
 
 // 静的データなのでモジュールスコープで1回だけ計算
 const regions = Array.from(new Set(prefectures.map((p) => p.region)));
+const familyEntries = Object.entries(FAMILY_COEFFICIENTS);
+const housingEntries = Object.entries(HOUSING_COEFFICIENTS);
+const strategyEntries = Object.entries(FIRE_STRATEGIES) as [FireStrategy, typeof FIRE_STRATEGIES[FireStrategy]][];
 
 interface Props {
   initialInput?: Partial<SimulationInput>;
@@ -277,7 +280,7 @@ export default function SimulationForm({ initialInput, onSubmit }: Props) {
               value={familyType}
               onChange={(e) => setFamilyType(e.target.value as FamilyType)}
             >
-              {Object.entries(FAMILY_COEFFICIENTS).map(([key, val]) => (
+              {familyEntries.map(([key, val]) => (
                 <option key={key} value={key}>
                   {val.label}
                 </option>
@@ -294,7 +297,7 @@ export default function SimulationForm({ initialInput, onSubmit }: Props) {
               value={housingType}
               onChange={(e) => setHousingType(e.target.value as HousingType)}
             >
-              {Object.entries(HOUSING_COEFFICIENTS).map(([key, val]) => (
+              {housingEntries.map(([key, val]) => (
                 <option key={key} value={key}>
                   {val.label}
                 </option>
@@ -332,7 +335,7 @@ export default function SimulationForm({ initialInput, onSubmit }: Props) {
       <fieldset className="card">
         <legend className="mb-4 text-lg font-bold text-gray-800">FIREタイプ</legend>
         <div className="grid gap-3 sm:grid-cols-2">
-          {(Object.entries(FIRE_STRATEGIES) as [FireStrategy, typeof FIRE_STRATEGIES[FireStrategy]][]).map(
+          {strategyEntries.map(
             ([key, strategy]) => (
               <label
                 key={key}
