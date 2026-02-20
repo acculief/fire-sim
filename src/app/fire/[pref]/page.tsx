@@ -324,6 +324,18 @@ export default async function PrefecturePage({
         </div>
       </section>
 
+      {/* 診断CTA */}
+      <section className="mt-10 rounded-lg border border-primary-200 bg-primary-50 p-5 text-center">
+        <p className="font-bold text-primary-800">まずは約1分でFIRE達成度をチェック</p>
+        <p className="mt-1 text-sm text-primary-700">6つの質問であなたのFIREグレードを診断します</p>
+        <Link
+          href="/diagnose/"
+          className="btn-secondary mt-3 inline-block"
+        >
+          FIRE達成度診断を受ける
+        </Link>
+      </section>
+
       {/* FAQ */}
       <section className="mt-10">
         <FAQ items={faqItems} prefName={prefecture.name} />

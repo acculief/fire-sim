@@ -193,7 +193,7 @@ export default function TrackerPage() {
               )}
             </div>
           </div>
-          <div className="mt-3 h-4 overflow-hidden rounded-full bg-gray-200" role="progressbar" aria-valuenow={progressPercent} aria-valuemin={0} aria-valuemax={100} aria-label="FIRE目標への進捗">
+          <div className="mt-3 h-4 overflow-hidden rounded-full bg-gray-200" role="progressbar" aria-valuenow={progressPercent} aria-valuemin={0} aria-valuemax={100} aria-label="FIRE目標への進捗" aria-valuetext={`目標の${progressPercent}%達成`}>
             <div
               className="h-full rounded-full bg-primary-500 transition-all duration-500"
               style={{ width: `${progressPercent}%` }}

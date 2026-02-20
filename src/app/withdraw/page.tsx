@@ -392,6 +392,12 @@ export default function WithdrawPage() {
             description:
               "資産を増やすための投資戦略ガイド",
           },
+          {
+            href: "/diagnose/",
+            title: "FIRE達成度診断",
+            description:
+              "6つの質問であなたのFIREグレードを判定",
+          },
         ]}
       />
 
