@@ -5,12 +5,12 @@ import JsonLd from "@/components/JsonLd";
 export const metadata: Metadata = {
   title: "FIRE達成度診断 | あなたはFIREまであと何年？",
   description:
-    "たった3問であなたのFIRE達成度を診断。年齢・貯蓄額・資産額からFIRE達成年齢とランクを判定します。",
+    "6つの質問であなたのFIRE達成度をパーソナライズ診断。年齢・家族構成・年収・貯蓄額・資産額・投資経験からFIRE目標額と達成年齢を判定します。",
   alternates: { canonical: "/diagnose/" },
   openGraph: {
     title: "FIRE達成度診断 | あなたはFIREまであと何年？",
     description:
-      "たった3問であなたのFIRE達成度を診断。年齢・貯蓄額・資産額からFIRE達成年齢とランクを判定します。",
+      "6つの質問であなたのFIRE達成度をパーソナライズ診断。年齢・家族構成・年収・貯蓄額・資産額・投資経験からFIRE目標額と達成年齢を判定します。",
     url: "/diagnose/",
   },
 };
@@ -24,7 +24,7 @@ const jsonLd = {
   operatingSystem: "All",
   offers: { "@type": "Offer", price: "0", priceCurrency: "JPY" },
   description:
-    "3問でFIRE達成度を診断。年齢・貯蓄額・資産額からランクを判定。",
+    "6問でFIRE達成度をパーソナライズ診断。家族構成・年収を含めた目標額と達成年齢を判定。",
 };
 
 export default function DiagnoseLayout({

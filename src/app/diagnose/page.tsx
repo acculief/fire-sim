@@ -2,18 +2,25 @@
 
 import { useState, useCallback } from "react";
 import Link from "next/link";
-import { brokers } from "@/data/recommend";
+import { brokers, type Broker } from "@/data/recommend";
 import BrokerCard from "@/components/BrokerCard";
 import Breadcrumb from "@/components/Breadcrumb";
 import RelatedContent from "@/components/RelatedContent";
 import ShareButtons from "@/components/ShareButtons";
 import { SITE_URL } from "@/config/site";
+import {
+  BASE_MONTHLY_COST,
+  estimatePostFireMonthlyCost,
+  grossToNet,
+} from "@/config/assumptions";
 
 /* ------------------------------------------------------------------ */
 /*  定数 & 型                                                          */
 /* ------------------------------------------------------------------ */
 
-/** 年齢選択肢 */
+const TOTAL_STEPS = 6;
+
+/** Q1: 年齢選択肢 */
 const AGE_OPTIONS = [
   { label: "20代", value: 25 },
   { label: "30代", value: 35 },
@@ -21,15 +28,32 @@ const AGE_OPTIONS = [
   { label: "50代", value: 55 },
 ] as const;
 
-/** 毎月の貯蓄額（万円） */
-const SAVINGS_OPTIONS = [
-  { label: "5万円以下", value: 3 },
-  { label: "5〜10万円", value: 7.5 },
-  { label: "10〜20万円", value: 15 },
-  { label: "20万円以上", value: 25 },
+/** Q2: 家族構成 */
+const FAMILY_OPTIONS = [
+  { label: "独身", value: "single" },
+  { label: "夫婦（子なし）", value: "couple" },
+  { label: "夫婦＋子あり", value: "couple-child" },
 ] as const;
 
-/** 現在の金融資産（万円） */
+/** Q3: 年収（万円） */
+const INCOME_OPTIONS = [
+  { label: "300万円以下", value: 250 },
+  { label: "300〜500万円", value: 400 },
+  { label: "500〜700万円", value: 600 },
+  { label: "700〜1000万円", value: 850 },
+  { label: "1000万円以上", value: 1200 },
+] as const;
+
+/** Q4: 毎月の貯蓄額（万円） */
+const SAVINGS_OPTIONS = [
+  { label: "3万円以下", value: 2 },
+  { label: "3〜7万円", value: 5 },
+  { label: "7〜15万円", value: 11 },
+  { label: "15〜25万円", value: 20 },
+  { label: "25万円以上", value: 30 },
+] as const;
+
+/** Q5: 現在の金融資産（万円） */
 const ASSET_OPTIONS = [
   { label: "100万円以下", value: 50 },
   { label: "100〜500万円", value: 300 },
@@ -38,20 +62,50 @@ const ASSET_OPTIONS = [
   { label: "3000万円以上", value: 5000 },
 ] as const;
 
-const FIRE_TARGET = 7500; // 万円
+/** Q6: 投資経験 */
+const EXPERIENCE_OPTIONS = [
+  { label: "まだ始めていない", value: "none" },
+  { label: "NISA・投信で積立中", value: "beginner" },
+  { label: "株式・ETFも運用中", value: "intermediate" },
+] as const;
+
+/** 家族係数（診断用簡易マッピング） */
+const FAMILY_COEFF: Record<string, number> = {
+  single: 1.0,
+  couple: 1.3,
+  "couple-child": 1.55,
+};
+
+/** assumptions.ts の familyType にマッピング（社会保険料計算用） */
+const FAMILY_TO_ASSUMPTIONS: Record<string, string> = {
+  single: "single",
+  couple: "couple",
+  "couple-child": "couple-1child",
+};
+
 const ANNUAL_RETURN = 0.04;
-const MAX_YEARS = 100; // 収束しない場合の上限
+const SWR = 0.04;
+const MAX_YEARS = 100;
+const NATIONAL_AVERAGE_COEFF = 0.95;
 
 const affiliateBrokers = brokers.filter((b) => b.isAffiliate);
 
 type Grade = "A" | "B" | "C" | "D";
+type FamilyType = "single" | "couple" | "couple-child";
+type ExperienceType = "none" | "beginner" | "intermediate";
 
 interface DiagnoseResult {
   achievementAge: number;
   yearsToFire: number;
   grade: Grade;
   impossible: boolean;
-  deviation: number; // FIRE偏差値 (40-75)
+  deviation: number;
+  fireTarget: number;
+  monthlyExpense: number;
+  savingsRate: number;
+  investmentExperience: ExperienceType;
+  familyType: FamilyType;
+  annualIncome: number;
 }
 
 /* ------------------------------------------------------------------ */
@@ -60,14 +114,35 @@ interface DiagnoseResult {
 
 function calculate(
   age: number,
+  familyType: FamilyType,
+  annualIncome: number,
   monthlySavings: number,
   currentAssets: number,
+  experience: ExperienceType,
 ): DiagnoseResult {
+  // パーソナライズされたFIRE目標額
+  const coeff = FAMILY_COEFF[familyType];
+  const assumptionsFamilyType = FAMILY_TO_ASSUMPTIONS[familyType];
+  const postFireInsurance = estimatePostFireMonthlyCost(assumptionsFamilyType);
+  const monthlyExpense =
+    BASE_MONTHLY_COST * NATIONAL_AVERAGE_COEFF * coeff + postFireInsurance;
+  const annualExpense = monthlyExpense * 12;
+  const fireTarget = Math.round(annualExpense / SWR);
+
+  // 貯蓄率
+  const netIncome = grossToNet(annualIncome);
+  const annualSavings = monthlySavings * 12;
+  const savingsRate = Math.min(
+    Math.round((annualSavings / netIncome) * 100),
+    99,
+  );
+
+  // 達成シミュレーション
   const annualInvestment = monthlySavings * 12;
   let assets = currentAssets;
   let years = 0;
 
-  while (assets < FIRE_TARGET && years < MAX_YEARS) {
+  while (assets < fireTarget && years < MAX_YEARS) {
     assets = assets * (1 + ANNUAL_RETURN) + annualInvestment;
     years++;
   }
@@ -86,27 +161,185 @@ function calculate(
     grade = "A";
   }
 
-  // FIRE偏差値: 達成年齢が若いほど高い (40-75スケール)
-  // 65歳以上 or impossible → 40, 45歳以下 → 70-75
+  // FIRE偏差値
   let deviation: number;
   if (impossible) {
     deviation = 38;
   } else if (achievementAge >= 65) {
     deviation = 42;
   } else if (achievementAge >= 55) {
-    // 55-65 → 45-52
     deviation = 52 - Math.round(((achievementAge - 55) / 10) * 7);
   } else if (achievementAge >= 45) {
-    // 45-55 → 55-65
     deviation = 65 - Math.round(((achievementAge - 45) / 10) * 10);
   } else if (achievementAge >= 35) {
-    // 35-45 → 65-72
     deviation = 72 - Math.round(((achievementAge - 35) / 10) * 7);
   } else {
     deviation = 75;
   }
 
-  return { achievementAge, yearsToFire: years, grade, impossible, deviation };
+  return {
+    achievementAge,
+    yearsToFire: years,
+    grade,
+    impossible,
+    deviation,
+    fireTarget,
+    monthlyExpense: Math.round(monthlyExpense * 10) / 10,
+    savingsRate,
+    investmentExperience: experience,
+    familyType,
+    annualIncome,
+  };
+}
+
+/* ------------------------------------------------------------------ */
+/*  What-If シナリオ計算                                                */
+/* ------------------------------------------------------------------ */
+
+function calcWhatIf(
+  currentAssets: number,
+  monthlySavings: number,
+  fireTarget: number,
+  returnRate: number,
+): number {
+  const annualInvestment = monthlySavings * 12;
+  let assets = currentAssets;
+  let years = 0;
+  while (assets < fireTarget && years < MAX_YEARS) {
+    assets = assets * (1 + returnRate) + annualInvestment;
+    years++;
+  }
+  return years >= MAX_YEARS ? -1 : years;
+}
+
+/* ------------------------------------------------------------------ */
+/*  ブローカーマッチング                                                 */
+/* ------------------------------------------------------------------ */
+
+interface MatchedBroker {
+  broker: Broker;
+  reason: string;
+  isTop: boolean;
+}
+
+function matchBrokers(
+  experience: ExperienceType,
+  annualIncome: number,
+  familyType: FamilyType,
+): MatchedBroker[] {
+  const candidates = affiliateBrokers.length > 0 ? affiliateBrokers : brokers.slice(0, 3);
+
+  const scored = candidates.map((broker) => {
+    let score = 0;
+    let reason = "";
+
+    if (experience === "none") {
+      // 未経験者 → 始めやすさ重視
+      if (broker.slug === "tossy") {
+        score += 10;
+        reason = "アプリで直感的に始められるため投資デビューに最適";
+      } else if (broker.slug === "matsui") {
+        score += 7;
+        reason = "手厚いサポート体制で初めての投資も安心";
+      } else if (broker.slug === "dmm") {
+        score += 5;
+        reason = "最短即日で口座開設、すぐに投資スタート可能";
+      }
+    } else if (experience === "beginner") {
+      // NISA積立中 → 効率化重視
+      if (broker.slug === "matsui") {
+        score += 10;
+        reason = "投信残高に応じたポイント還元でNISA運用を効率化";
+      } else if (broker.slug === "tossy") {
+        score += 7;
+        reason = "株・FX・CFDまで1アプリで完結し投資の幅が広がる";
+      } else if (broker.slug === "dmm") {
+        score += 5;
+        reason = "米国株手数料0円で海外分散投資に最適";
+      }
+    } else {
+      // 中級者 → 米国株・iDeCo対応
+      if (broker.slug === "dmm") {
+        score += 10;
+        reason = "米国株手数料0円でポートフォリオの海外比率を最適化";
+      } else if (broker.slug === "matsui") {
+        score += 7;
+        reason = "iDeCo40本の品揃えで節税しながら資産形成を加速";
+      } else if (broker.slug === "tossy") {
+        score += 5;
+        reason = "株・FX・CFDまでアプリ1つで幅広い資産運用が可能";
+      }
+    }
+
+    // 高収入ボーナス: iDeCo対応を加点
+    if (annualIncome >= 700 && broker.ideco) {
+      score += 3;
+      if (!reason) reason = "高年収者のiDeCo節税メリットが大きい証券口座";
+    }
+
+    // 家族ありボーナス: NISA対応を加点
+    if (familyType !== "single" && broker.nisa) {
+      score += 1;
+    }
+
+    if (!reason) {
+      reason = broker.nisa ? "新NISA対応で非課税の資産形成をスタート" : "幅広い投資商品でFIRE達成を加速";
+    }
+
+    return { broker, score, reason };
+  });
+
+  scored.sort((a, b) => b.score - a.score);
+
+  return scored.map((s, i) => ({
+    broker: s.broker,
+    reason: s.reason,
+    isTop: i === 0,
+  }));
+}
+
+/* ------------------------------------------------------------------ */
+/*  アドバイス生成                                                      */
+/* ------------------------------------------------------------------ */
+
+function generateInsight(r: DiagnoseResult): string {
+  const parts: string[] = [];
+
+  // 貯蓄率に基づくアドバイス
+  if (r.savingsRate >= 50) {
+    parts.push(
+      `貯蓄率${r.savingsRate}%は非常に優秀です。この高い貯蓄率を維持できれば、FIRE達成は十分に現実的です。`,
+    );
+  } else if (r.savingsRate >= 30) {
+    parts.push(
+      `貯蓄率${r.savingsRate}%は平均を大きく上回る水準です。固定費の見直しでさらに加速できる可能性があります。`,
+    );
+  } else if (r.savingsRate >= 15) {
+    parts.push(
+      `貯蓄率${r.savingsRate}%は平均的な水準です。まずは家賃・通信費・保険の固定費3大項目を見直して、貯蓄率30%を目指しましょう。`,
+    );
+  } else {
+    parts.push(
+      `貯蓄率${r.savingsRate}%には改善の余地があります。まずは毎月の支出を把握し、固定費の削減から始めましょう。格安SIM・保険の見直しだけでも月1〜2万円の節約が期待できます。`,
+    );
+  }
+
+  // 投資経験に基づくアドバイス
+  if (r.investmentExperience === "none") {
+    parts.push(
+      "投資はまだ始めていないとのこと。まずは新NISAのつみたて投資枠で、全世界株式インデックスファンドの積立から始めるのがおすすめです。月1万円からでもスタートできます。",
+    );
+  } else if (r.investmentExperience === "beginner") {
+    parts.push(
+      "NISA・投信での積立を実践中なのは素晴らしいです。次のステップとして、つみたて投資枠の年間上限（120万円）を目指しつつ、成長投資枠の活用も検討してみましょう。",
+    );
+  } else {
+    parts.push(
+      "株式・ETFの運用経験があるのは大きな強みです。NISA枠（年間360万円）のフル活用と、iDeCoによる節税効果の最大化で、FIRE達成をさらに加速できます。",
+    );
+  }
+
+  return parts.join("\n\n");
 }
 
 /* ------------------------------------------------------------------ */
@@ -131,7 +364,8 @@ const GRADE_CONFIG: Record<
     border: "border-green-300",
     ring: "ring-green-200",
     title: "FIRE達人",
-    message: "素晴らしい！あなたは早期FIREが見えています。この調子で資産形成を続けましょう。",
+    message:
+      "素晴らしい！あなたは早期FIREが見えています。この調子で資産形成を続けましょう。",
     emoji: "S",
   },
   B: {
@@ -140,7 +374,8 @@ const GRADE_CONFIG: Record<
     border: "border-blue-300",
     ring: "ring-blue-200",
     title: "FIRE有望株",
-    message: "いい線いっています！貯蓄率をもう少し上げれば、さらに早くFIREに到達できます。",
+    message:
+      "いい線いっています！貯蓄率をもう少し上げれば、さらに早くFIREに到達できます。",
     emoji: "A",
   },
   C: {
@@ -149,7 +384,8 @@ const GRADE_CONFIG: Record<
     border: "border-yellow-300",
     ring: "ring-yellow-200",
     title: "FIRE挑戦者",
-    message: "まだまだこれから！支出の見直しと投資戦略の最適化でFIREを加速できます。",
+    message:
+      "まだまだこれから！支出の見直しと投資戦略の最適化でFIREを加速できます。",
     emoji: "B",
   },
   D: {
@@ -158,13 +394,22 @@ const GRADE_CONFIG: Record<
     border: "border-red-300",
     ring: "ring-red-200",
     title: "FIRE準備中",
-    message: "まずは貯蓄習慣と資産運用の第一歩から。正しい戦略を立てれば道は開けます。",
+    message:
+      "まずは貯蓄習慣と資産運用の第一歩から。正しい戦略を立てれば道は開けます。",
     emoji: "C",
   },
 };
 
+/** 貯蓄率ラベル */
+function savingsRateLabel(rate: number): { label: string; color: string } {
+  if (rate >= 50) return { label: "加速モード", color: "text-green-700" };
+  if (rate >= 30) return { label: "優秀", color: "text-blue-700" };
+  if (rate >= 15) return { label: "平均的", color: "text-yellow-700" };
+  return { label: "改善余地あり", color: "text-red-700" };
+}
+
 /* ------------------------------------------------------------------ */
-/*  コンポーネント                                                      */
+/*  UIコンポーネント                                                     */
 /* ------------------------------------------------------------------ */
 
 /** 選択肢ボタン */
@@ -204,7 +449,14 @@ function ProgressBar({ step, total }: { step: number; total: number }) {
         </span>
         <span>{Math.round(pct)}%</span>
       </div>
-      <div className="h-2 w-full overflow-hidden rounded-full bg-gray-200" role="progressbar" aria-valuenow={Math.round(pct)} aria-valuemin={0} aria-valuemax={100} aria-label="診断の進捗">
+      <div
+        className="h-2 w-full overflow-hidden rounded-full bg-gray-200"
+        role="progressbar"
+        aria-valuenow={Math.round(pct)}
+        aria-valuemin={0}
+        aria-valuemax={100}
+        aria-label="診断の進捗"
+      >
         <div
           className="h-full rounded-full bg-primary-500 transition-all duration-500 ease-out"
           style={{ width: `${pct}%` }}
@@ -214,16 +466,19 @@ function ProgressBar({ step, total }: { step: number; total: number }) {
   );
 }
 
-
 /* ------------------------------------------------------------------ */
 /*  メインページ                                                        */
 /* ------------------------------------------------------------------ */
 
 export default function DiagnosePage() {
-  const [step, setStep] = useState(0); // 0 = intro, 1-3 = questions, 4 = result
+  // 0=intro, 1-6=questions, 7=result
+  const [step, setStep] = useState(0);
   const [age, setAge] = useState<number | null>(null);
+  const [familyType, setFamilyType] = useState<FamilyType | null>(null);
+  const [income, setIncome] = useState<number | null>(null);
   const [savings, setSavings] = useState<number | null>(null);
   const [assets, setAssets] = useState<number | null>(null);
+  const [experience, setExperience] = useState<ExperienceType | null>(null);
   const [result, setResult] = useState<DiagnoseResult | null>(null);
 
   const handleAge = useCallback((v: number) => {
@@ -231,34 +486,60 @@ export default function DiagnosePage() {
     setTimeout(() => setStep(2), 300);
   }, []);
 
-  const handleSavings = useCallback((v: number) => {
-    setSavings(v);
+  const handleFamily = useCallback((v: FamilyType) => {
+    setFamilyType(v);
     setTimeout(() => setStep(3), 300);
   }, []);
 
-  const handleAssets = useCallback(
-    (v: number) => {
-      setAssets(v);
-      if (age !== null && savings !== null) {
-        const r = calculate(age, savings, v);
+  const handleIncome = useCallback((v: number) => {
+    setIncome(v);
+    setTimeout(() => setStep(4), 300);
+  }, []);
+
+  const handleSavings = useCallback((v: number) => {
+    setSavings(v);
+    setTimeout(() => setStep(5), 300);
+  }, []);
+
+  const handleAssets = useCallback((v: number) => {
+    setAssets(v);
+    setTimeout(() => setStep(6), 300);
+  }, []);
+
+  const handleExperience = useCallback(
+    (v: ExperienceType) => {
+      setExperience(v);
+      if (
+        age !== null &&
+        familyType !== null &&
+        income !== null &&
+        savings !== null &&
+        assets !== null
+      ) {
+        const r = calculate(age, familyType, income, savings, assets, v);
         setResult(r);
       }
-      setTimeout(() => setStep(4), 400);
+      setTimeout(() => setStep(7), 400);
     },
-    [age, savings],
+    [age, familyType, income, savings, assets],
   );
 
   const handleRetry = useCallback(() => {
     setStep(0);
     setAge(null);
+    setFamilyType(null);
+    setIncome(null);
     setSavings(null);
     setAssets(null);
+    setExperience(null);
     setResult(null);
   }, []);
 
   return (
     <div className="mx-auto max-w-2xl px-4 py-8">
-      <Breadcrumb items={[{ label: "ホーム", href: "/" }, { label: "FIRE診断" }]} />
+      <Breadcrumb
+        items={[{ label: "ホーム", href: "/" }, { label: "FIRE診断" }]}
+      />
 
       {/* ================================================================ */}
       {/*  INTRO                                                           */}
@@ -272,6 +553,7 @@ export default function DiagnosePage() {
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="currentColor"
+              aria-hidden="true"
             >
               <path
                 strokeLinecap="round"
@@ -289,10 +571,10 @@ export default function DiagnosePage() {
             FIRE達成度診断
           </h1>
           <p className="mt-3 text-gray-600">
-            たった<span className="font-bold text-primary-600">3つの質問</span>
-            であなたのFIRE達成度を診断します。
+            <span className="font-bold text-primary-600">6つの質問</span>
+            であなた専用のFIRE達成度を診断します。
           </p>
-          <p className="mt-1 text-sm text-gray-500">所要時間：約30秒</p>
+          <p className="mt-1 text-sm text-gray-500">所要時間：約1分</p>
 
           <button
             type="button"
@@ -304,11 +586,11 @@ export default function DiagnosePage() {
 
           <div className="mt-10 grid grid-cols-3 gap-4 text-center">
             <div className="rounded-lg bg-white p-4 shadow-sm">
-              <p className="text-2xl font-bold text-primary-600">3問</p>
+              <p className="text-2xl font-bold text-primary-600">6問</p>
               <p className="mt-1 text-xs text-gray-600">カンタン質問</p>
             </div>
             <div className="rounded-lg bg-white p-4 shadow-sm">
-              <p className="text-2xl font-bold text-primary-600">30秒</p>
+              <p className="text-2xl font-bold text-primary-600">1分</p>
               <p className="mt-1 text-xs text-gray-600">サクッと診断</p>
             </div>
             <div className="rounded-lg bg-white p-4 shadow-sm">
@@ -324,7 +606,7 @@ export default function DiagnosePage() {
       {/* ================================================================ */}
       {step === 1 && (
         <section className="animate-fadeIn" aria-label="質問1: 年齢">
-          <ProgressBar step={1} total={3} />
+          <ProgressBar step={1} total={TOTAL_STEPS} />
           <h2 className="text-center text-xl font-bold text-gray-900 sm:text-2xl">
             Q1. あなたの年齢は？
           </h2>
@@ -345,18 +627,68 @@ export default function DiagnosePage() {
       )}
 
       {/* ================================================================ */}
-      {/*  STEP 2 : 毎月の貯蓄額                                           */}
+      {/*  STEP 2 : 家族構成                                               */}
       {/* ================================================================ */}
       {step === 2 && (
-        <section className="animate-fadeIn" aria-label="質問2: 毎月の貯蓄額">
-          <ProgressBar step={2} total={3} />
+        <section className="animate-fadeIn" aria-label="質問2: 家族構成">
+          <ProgressBar step={2} total={TOTAL_STEPS} />
           <h2 className="text-center text-xl font-bold text-gray-900 sm:text-2xl">
-            Q2. 毎月の貯蓄額は？
+            Q2. 家族構成は？
+          </h2>
+          <p className="mt-2 text-center text-sm text-gray-500">
+            現在の家族構成を選んでください
+          </p>
+          <div className="mt-8 grid grid-cols-1 gap-3">
+            {FAMILY_OPTIONS.map((opt) => (
+              <OptionButton
+                key={opt.value}
+                label={opt.label}
+                selected={familyType === opt.value}
+                onClick={() => handleFamily(opt.value as FamilyType)}
+              />
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* ================================================================ */}
+      {/*  STEP 3 : 年収                                                   */}
+      {/* ================================================================ */}
+      {step === 3 && (
+        <section className="animate-fadeIn" aria-label="質問3: 年収">
+          <ProgressBar step={3} total={TOTAL_STEPS} />
+          <h2 className="text-center text-xl font-bold text-gray-900 sm:text-2xl">
+            Q3. 年収（額面）は？
+          </h2>
+          <p className="mt-2 text-center text-sm text-gray-500">
+            税込みのおおよその年収を選んでください
+          </p>
+          <div className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2">
+            {INCOME_OPTIONS.map((opt) => (
+              <OptionButton
+                key={opt.value}
+                label={opt.label}
+                selected={income === opt.value}
+                onClick={() => handleIncome(opt.value)}
+              />
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* ================================================================ */}
+      {/*  STEP 4 : 毎月の貯蓄額                                           */}
+      {/* ================================================================ */}
+      {step === 4 && (
+        <section className="animate-fadeIn" aria-label="質問4: 毎月の貯蓄額">
+          <ProgressBar step={4} total={TOTAL_STEPS} />
+          <h2 className="text-center text-xl font-bold text-gray-900 sm:text-2xl">
+            Q4. 毎月の貯蓄額は？
           </h2>
           <p className="mt-2 text-center text-sm text-gray-500">
             投資・貯金に回せる月額を選んでください
           </p>
-          <div className="mt-8 grid grid-cols-2 gap-3">
+          <div className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2">
             {SAVINGS_OPTIONS.map((opt) => (
               <OptionButton
                 key={opt.value}
@@ -370,13 +702,13 @@ export default function DiagnosePage() {
       )}
 
       {/* ================================================================ */}
-      {/*  STEP 3 : 金融資産                                               */}
+      {/*  STEP 5 : 金融資産                                               */}
       {/* ================================================================ */}
-      {step === 3 && (
-        <section className="animate-fadeIn" aria-label="質問3: 現在の金融資産">
-          <ProgressBar step={3} total={3} />
+      {step === 5 && (
+        <section className="animate-fadeIn" aria-label="質問5: 現在の金融資産">
+          <ProgressBar step={5} total={TOTAL_STEPS} />
           <h2 className="text-center text-xl font-bold text-gray-900 sm:text-2xl">
-            Q3. 現在の金融資産は？
+            Q5. 現在の金融資産は？
           </h2>
           <p className="mt-2 text-center text-sm text-gray-500">
             預貯金・株式・投資信託などの合計額を選んでください
@@ -395,22 +727,50 @@ export default function DiagnosePage() {
       )}
 
       {/* ================================================================ */}
+      {/*  STEP 6 : 投資経験                                               */}
+      {/* ================================================================ */}
+      {step === 6 && (
+        <section className="animate-fadeIn" aria-label="質問6: 投資経験">
+          <ProgressBar step={6} total={TOTAL_STEPS} />
+          <h2 className="text-center text-xl font-bold text-gray-900 sm:text-2xl">
+            Q6. 投資経験は？
+          </h2>
+          <p className="mt-2 text-center text-sm text-gray-500">
+            現在の投資状況に近いものを選んでください
+          </p>
+          <div className="mt-8 grid grid-cols-1 gap-3">
+            {EXPERIENCE_OPTIONS.map((opt) => (
+              <OptionButton
+                key={opt.value}
+                label={opt.label}
+                selected={experience === opt.value}
+                onClick={() => handleExperience(opt.value as ExperienceType)}
+              />
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* ================================================================ */}
       {/*  RESULT                                                          */}
       {/* ================================================================ */}
-      {step === 4 && result && (
-        <section className="animate-fadeIn" aria-label="診断結果" aria-live="polite">
+      {step === 7 && result && (
+        <section
+          className="animate-fadeIn"
+          aria-label="診断結果"
+          aria-live="polite"
+        >
           <h2 className="mb-6 text-center text-xl font-bold text-gray-900 sm:text-2xl">
             診断結果
           </h2>
 
-          {/* 結果カード */}
+          {/* ---- 1. グレードカード ---- */}
           {(() => {
             const cfg = GRADE_CONFIG[result.grade];
             return (
               <div
                 className={`rounded-2xl border-2 ${cfg.border} ${cfg.bg} p-6 text-center shadow-lg ring-4 ${cfg.ring} sm:p-8`}
               >
-                {/* グレードバッジ */}
                 <div className="mb-4 inline-flex flex-col items-center">
                   <span className="text-sm font-medium text-gray-500">
                     FIRE達成度
@@ -422,7 +782,6 @@ export default function DiagnosePage() {
                   </span>
                 </div>
 
-                {/* タイトル */}
                 <p className={`text-xl font-bold ${cfg.color} sm:text-2xl`}>
                   {cfg.title}
                 </p>
@@ -453,13 +812,27 @@ export default function DiagnosePage() {
                         </span>
                       </p>
                       <p className="mt-1 text-sm text-gray-500">
-                        あと約{result.yearsToFire}年で目標資産{FIRE_TARGET.toLocaleString()}万円に到達
+                        あと約{result.yearsToFire}年で目標資産
+                        {result.fireTarget.toLocaleString()}万円に到達
                       </p>
                     </>
                   )}
                 </div>
 
-                {/* メッセージ */}
+                {/* パーソナライズFIRE目標 */}
+                <div className="mt-3 rounded-lg bg-white/60 px-4 py-3">
+                  <p className="text-xs text-gray-500">
+                    あなたのFIRE目標額（推定月{result.monthlyExpense}万円
+                    &times; 25年分）
+                  </p>
+                  <p className="mt-1 text-2xl font-black text-gray-900">
+                    {result.fireTarget.toLocaleString()}
+                    <span className="text-base font-bold text-gray-500">
+                      万円
+                    </span>
+                  </p>
+                </div>
+
                 <p className="mt-4 text-sm leading-relaxed text-gray-600">
                   {cfg.message}
                 </p>
@@ -467,12 +840,212 @@ export default function DiagnosePage() {
             );
           })()}
 
+          {/* ---- 2. 3指標ダッシュボード ---- */}
+          <div className="mt-6 grid grid-cols-3 gap-3">
+            <div className="rounded-xl border border-gray-200 bg-white p-4 text-center shadow-sm">
+              <p className="text-xs text-gray-500">達成予測年齢</p>
+              <p className="mt-1 text-2xl font-black text-gray-900">
+                {result.impossible ? "—" : `${result.achievementAge}歳`}
+              </p>
+            </div>
+            <div className="rounded-xl border border-gray-200 bg-white p-4 text-center shadow-sm">
+              <p className="text-xs text-gray-500">貯蓄率</p>
+              <p className="mt-1 text-2xl font-black text-gray-900">
+                {result.savingsRate}%
+              </p>
+              <p
+                className={`mt-0.5 text-[10px] font-bold ${savingsRateLabel(result.savingsRate).color}`}
+              >
+                {savingsRateLabel(result.savingsRate).label}
+              </p>
+            </div>
+            <div className="rounded-xl border border-gray-200 bg-white p-4 text-center shadow-sm">
+              <p className="text-xs text-gray-500">残り</p>
+              <p className="mt-1 text-2xl font-black text-gray-900">
+                {result.impossible ? "—" : `${result.yearsToFire}年`}
+              </p>
+            </div>
+          </div>
+
+          {/* ---- 3. パーソナライズドアドバイス ---- */}
+          <div className="mt-6 rounded-xl border border-gray-200 bg-white p-5 shadow-sm">
+            <h3 className="mb-3 text-base font-bold text-gray-800">
+              あなたへのアドバイス
+            </h3>
+            {generateInsight(result)
+              .split("\n\n")
+              .map((p, i) => (
+                <p
+                  key={i}
+                  className="mt-2 text-sm leading-relaxed text-gray-600 first:mt-0"
+                >
+                  {p}
+                </p>
+              ))}
+          </div>
+
+          {/* ---- 4. What-If ミニテーブル ---- */}
+          {savings !== null && assets !== null && !result.impossible && (
+            <div className="mt-6 rounded-xl border border-gray-200 bg-white p-5 shadow-sm">
+              <h3 className="mb-3 text-base font-bold text-gray-800">
+                もし条件が変わったら？
+              </h3>
+              <div className="overflow-hidden rounded-lg border border-gray-100">
+                <table className="w-full text-sm">
+                  <thead>
+                    <tr className="bg-gray-50 text-xs text-gray-500">
+                      <th className="px-3 py-2 text-left font-medium">
+                        シナリオ
+                      </th>
+                      <th className="px-3 py-2 text-right font-medium">
+                        達成年数
+                      </th>
+                      <th className="px-3 py-2 text-right font-medium">
+                        短縮
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-gray-100">
+                    {/* 積立額+3万 */}
+                    {(() => {
+                      const newYears = calcWhatIf(
+                        assets,
+                        savings + 3,
+                        result.fireTarget,
+                        ANNUAL_RETURN,
+                      );
+                      const diff =
+                        newYears >= 0 ? result.yearsToFire - newYears : null;
+                      return (
+                        <tr>
+                          <td className="px-3 py-2 text-gray-700">
+                            積立額を+3万円
+                          </td>
+                          <td className="px-3 py-2 text-right font-semibold text-gray-900">
+                            {newYears >= 0 ? `${newYears}年` : "—"}
+                          </td>
+                          <td className="px-3 py-2 text-right font-semibold text-green-600">
+                            {diff !== null && diff > 0
+                              ? `${diff}年短縮`
+                              : "—"}
+                          </td>
+                        </tr>
+                      );
+                    })()}
+                    {/* 利回り5% */}
+                    {(() => {
+                      const newYears = calcWhatIf(
+                        assets,
+                        savings,
+                        result.fireTarget,
+                        0.05,
+                      );
+                      const diff =
+                        newYears >= 0 ? result.yearsToFire - newYears : null;
+                      return (
+                        <tr>
+                          <td className="px-3 py-2 text-gray-700">
+                            利回り5%で運用
+                          </td>
+                          <td className="px-3 py-2 text-right font-semibold text-gray-900">
+                            {newYears >= 0 ? `${newYears}年` : "—"}
+                          </td>
+                          <td className="px-3 py-2 text-right font-semibold text-green-600">
+                            {diff !== null && diff > 0
+                              ? `${diff}年短縮`
+                              : "—"}
+                          </td>
+                        </tr>
+                      );
+                    })()}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          )}
+
+          {/* ---- 5. 詳細シミュレーターCTA ---- */}
+          <div className="mt-6 rounded-xl border-2 border-primary-200 bg-primary-50 p-6 text-center">
+            <p className="text-lg font-bold text-primary-800">
+              もっと正確な数字を知りたい？
+            </p>
+            <p className="mt-1 text-sm text-primary-700">
+              地域・年収・家族構成をもとに、詳細なFIREシミュレーションができます
+            </p>
+            <Link
+              href={`/simulate/?age=${age ?? 35}&income=${income ?? 500}&assets=${assets ?? 300}&invest=${savings ?? 10}&family=${familyType === "couple-child" ? "couple-1child" : (familyType ?? "single")}`}
+              className="btn-primary mt-4 inline-block"
+            >
+              詳細シミュレーションで正確な数字を確認
+            </Link>
+          </div>
+
+          {/* ---- 6. 証券口座レコメンド ---- */}
+          {affiliateBrokers.length > 0 && (
+            <div className="mt-6 rounded-xl border-2 border-accent-200 bg-accent-50 p-6">
+              <h3 className="mb-1 text-center text-lg font-bold text-accent-800">
+                {result.investmentExperience === "none"
+                  ? "あなたに合った証券口座を開設しよう"
+                  : result.investmentExperience === "beginner"
+                    ? "NISA運用をさらに効率化しませんか？"
+                    : "ポートフォリオを最適化する証券口座"}
+              </h3>
+              <p className="mb-4 text-center text-xs text-gray-600">
+                {result.investmentExperience === "none"
+                  ? "FIREへの第一歩は証券口座の開設。新NISAで非課税の積立投資を始めましょう"
+                  : result.investmentExperience === "beginner"
+                    ? "新NISAを活用した非課税投資で、FIRE達成をさらに数年短縮できます"
+                    : "手数料の最適化と投資先の分散で、FIRE達成を加速しましょう"}
+              </p>
+              <div className="space-y-3">
+                {matchBrokers(
+                  result.investmentExperience,
+                  result.annualIncome,
+                  result.familyType,
+                ).map(({ broker, reason, isTop }) => (
+                  <div key={broker.slug}>
+                    {isTop && (
+                      <div className="mb-1 flex items-center justify-center">
+                        <span className="rounded-full bg-accent-600 px-3 py-0.5 text-xs font-bold text-white">
+                          あなたにおすすめ
+                        </span>
+                      </div>
+                    )}
+                    <BrokerCard broker={broker} />
+                    <p className="mt-1 px-2 text-xs text-gray-500">{reason}</p>
+                  </div>
+                ))}
+              </div>
+              <div className="mt-4 flex flex-wrap justify-center gap-3 text-xs">
+                <Link
+                  href="/recommend/"
+                  className="text-accent-700 underline hover:text-accent-600"
+                >
+                  おすすめ証券口座をもっと見る
+                </Link>
+                <Link
+                  href="/guide/fire-first-steps/"
+                  className="text-accent-700 underline hover:text-accent-600"
+                >
+                  FIRE初心者ガイドを読む
+                </Link>
+              </div>
+            </div>
+          )}
+
           {/* 前提条件 */}
           <div className="mt-6 rounded-lg border border-gray-200 bg-white p-4 text-xs text-gray-600">
             <p className="font-medium text-gray-600">診断の前提条件</p>
             <ul className="mt-2 space-y-1">
-              <li>- 目標FIRE資産: {FIRE_TARGET.toLocaleString()}万円（年間生活費300万円 x 25年分）</li>
-              <li>- 想定年利回り: {(ANNUAL_RETURN * 100).toFixed(0)}%（インフレ調整後）</li>
+              <li>
+                - FIRE目標: 推定月間生活費 &times; 12ヶ月 &divide;{" "}
+                {(SWR * 100).toFixed(0)}%（安全引出率）
+              </li>
+              <li>
+                - 想定年利回り: {(ANNUAL_RETURN * 100).toFixed(0)}%
+                （インフレ調整後）
+              </li>
+              <li>- 生活費は全国平均 &times; 家族係数で概算</li>
               <li>- 毎月一定額を積立投資した場合の概算値</li>
             </ul>
           </div>
@@ -485,8 +1058,8 @@ export default function DiagnosePage() {
             {(() => {
               const cfg = GRADE_CONFIG[result.grade];
               const shareText = result.impossible
-                ? `FIRE偏差値${result.deviation}（${cfg.title}）でした！まずは戦略を立てるところから。あなたも診断してみよう！`
-                : `FIRE偏差値${result.deviation}（${cfg.title}／${result.achievementAge}歳でFIRE達成予測）でした！あなたも診断してみよう！`;
+                ? `FIRE偏差値${result.deviation}（${cfg.title}）でした！目標額${result.fireTarget.toLocaleString()}万円に向けて戦略を立てます。あなたも診断してみよう！`
+                : `FIRE偏差値${result.deviation}（${cfg.title}／${result.achievementAge}歳でFIRE達成予測）でした！目標額${result.fireTarget.toLocaleString()}万円。あなたも診断してみよう！`;
               const shareUrl =
                 typeof window !== "undefined"
                   ? window.location.origin + "/diagnose/"
@@ -503,55 +1076,29 @@ export default function DiagnosePage() {
             })()}
           </div>
 
-          {/* CTA */}
-          <div className="mt-8 rounded-xl border-2 border-primary-200 bg-primary-50 p-6 text-center">
-            <p className="text-lg font-bold text-primary-800">
-              もっと正確な数字を知りたい？
-            </p>
-            <p className="mt-1 text-sm text-primary-700">
-              地域・年収・家族構成をもとに、詳細なFIREシミュレーションができます
-            </p>
-            <Link href="/simulate/" className="btn-primary mt-4 inline-block">
-              詳細シミュレーションで正確な数字を確認
-            </Link>
-          </div>
-
-          {/* 証券口座CTA */}
-          {affiliateBrokers.length > 0 && (
-            <div className="mt-6 rounded-xl border-2 border-accent-200 bg-accent-50 p-6">
-              <h3 className="mb-1 text-center text-lg font-bold text-accent-800">
-                {result.grade === "A" || result.grade === "B"
-                  ? "FIRE達成をさらに加速しましょう"
-                  : "まずは証券口座を開設して第一歩を踏み出そう"}
-              </h3>
-              <p className="mb-4 text-center text-xs text-gray-600">
-                {result.grade === "A" || result.grade === "B"
-                  ? "新NISAを活用した非課税投資で、FIRE達成をさらに数年短縮できます"
-                  : "FIREへの第一歩は証券口座の開設。新NISAで非課税の積立投資を始めましょう"}
-              </p>
-              <div className="space-y-3">
-                {affiliateBrokers.map((b) => (
-                  <BrokerCard key={b.slug} broker={b} />
-                ))}
-              </div>
-              <div className="mt-4 flex flex-wrap justify-center gap-3 text-xs">
-                <Link href="/recommend/" className="text-accent-700 underline hover:text-accent-600">
-                  おすすめ証券口座をもっと見る
-                </Link>
-                <Link href="/guide/fire-first-steps/" className="text-accent-700 underline hover:text-accent-600">
-                  FIRE初心者ガイドを読む
-                </Link>
-              </div>
-            </div>
-          )}
-
           <RelatedContent
             heading="次のステップ"
             items={[
-              { href: "/tracker/", title: "FIRE進捗トラッカー", description: "毎月の資産を記録してFIRE達成度を可視化" },
-              { href: "/withdraw/", title: "取り崩しシミュレーション", description: "FIRE後に資産が何歳まで持つか計算" },
-              { href: "/income/", title: "手取り早見表", description: "年収別の手取り額・税金を一覧で確認" },
-              { href: "/cases/", title: "モデルケースを見る", description: "年代別のFIRE達成プランを参考に" },
+              {
+                href: "/tracker/",
+                title: "FIRE進捗トラッカー",
+                description: "毎月の資産を記録してFIRE達成度を可視化",
+              },
+              {
+                href: "/withdraw/",
+                title: "取り崩しシミュレーション",
+                description: "FIRE後に資産が何歳まで持つか計算",
+              },
+              {
+                href: "/income/",
+                title: "手取り早見表",
+                description: "年収別の手取り額・税金を一覧で確認",
+              },
+              {
+                href: "/cases/",
+                title: "モデルケースを見る",
+                description: "年代別のFIRE達成プランを参考に",
+              },
             ]}
           />
 
