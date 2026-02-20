@@ -55,3 +55,31 @@
     scroll-behavior: auto !important;
   }
 }
+
+@media print {
+  header,
+  footer,
+  nav,
+  .btn-primary,
+  .btn-secondary {
+    display: none !important;
+  }
+  body {
+    background: white !important;
+    color: black !important;
+  }
+  .card {
+    border: 1px solid #ccc !important;
+    box-shadow: none !important;
+    break-inside: avoid;
+  }
+  a[href]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.75em;
+    color: #666;
+  }
+  a[href^="#"]::after,
+  a[href^="javascript"]::after {
+    content: "";
+  }
+}
