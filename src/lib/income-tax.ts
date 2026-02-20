@@ -41,7 +41,7 @@ export function getFamilyLabel(f: FamilyPattern): string {
 /*  給与所得控除                                                         */
 /* ------------------------------------------------------------------ */
 
-export function calcEmploymentDeduction(gross: number): number {
+function calcEmploymentDeduction(gross: number): number {
   if (gross <= 1_625_000) return 550_000;
   if (gross <= 1_800_000) return Math.floor(gross * 0.4) - 100_000;
   if (gross <= 3_600_000) return Math.floor(gross * 0.3) + 80_000;
@@ -72,14 +72,14 @@ function basicDeductionRT(totalIncome: number): number {
 /*  社会保険料（従業員負担分）                                              */
 /* ------------------------------------------------------------------ */
 
-export interface SocialInsuranceBreakdown {
+interface SocialInsuranceBreakdown {
   health: number;
   pension: number;
   employment: number;
   total: number;
 }
 
-export function calcSocialInsurance(gross: number): SocialInsuranceBreakdown {
+function calcSocialInsurance(gross: number): SocialInsuranceBreakdown {
   // 健康保険: 協会けんぽ全国平均 約5.0%（事業主と折半後）
   const health = Math.floor(gross * 0.05);
 
@@ -97,7 +97,7 @@ export function calcSocialInsurance(gross: number): SocialInsuranceBreakdown {
 /*  所得税                                                              */
 /* ------------------------------------------------------------------ */
 
-export function calcIncomeTax(taxableIncome: number): number {
+function calcIncomeTax(taxableIncome: number): number {
   if (taxableIncome <= 0) return 0;
 
   let tax: number;
@@ -125,7 +125,7 @@ export function calcIncomeTax(taxableIncome: number): number {
 /*  住民税                                                              */
 /* ------------------------------------------------------------------ */
 
-export function calcResidentTax(taxableIncome: number): number {
+function calcResidentTax(taxableIncome: number): number {
   if (taxableIncome <= 0) return 0;
   // 所得割 10% ＋ 均等割 5,000円 ＋ 森林環境税 1,000円
   return Math.floor(taxableIncome * 0.1) + 6_000;

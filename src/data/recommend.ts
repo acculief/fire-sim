@@ -17,14 +17,6 @@ export interface Broker {
   isAffiliate?: boolean; // アフィリエイト案件フラグ
 }
 
-export interface Book {
-  title: string;
-  author: string;
-  description: string;
-  url: string; // Amazon等のURL（後でアフィリエイトURLに差し替え）
-  tags: string[];
-}
-
 export interface Fund {
   name: string;
   type: string;
@@ -194,57 +186,6 @@ export const brokers: Broker[] = [
     idecoCount: "27本",
     pointType: "Pontaポイント",
     url: "https://kabu.com/",
-  },
-];
-
-export const books: Book[] = [
-  {
-    title: "FIRE 最強の早期リタイア術",
-    author: "クリスティー・シェン、ブライス・リャン",
-    description:
-      "カナダでFIREを達成した著者夫妻の実践記。投資ポートフォリオの具体的な構築方法からFIRE後の生活まで幅広くカバー。FIRE入門書の定番。",
-    url: "https://www.amazon.co.jp/dp/4478108579",
-    tags: ["FIRE入門", "実践記"],
-  },
-  {
-    title: "本気でFIREをめざす人のための資産形成入門",
-    author: "穂高 唯希",
-    description:
-      "日本でFIREを実践した著者による具体的なロードマップ。高配当株投資を中心としたFIRE戦略を解説。日本の税制・社会保険を踏まえた内容。",
-    url: "https://www.amazon.co.jp/dp/4408339563",
-    tags: ["日本版FIRE", "高配当"],
-  },
-  {
-    title: "ほったらかし投資術",
-    author: "山崎元、水瀬ケンイチ",
-    description:
-      "インデックス投資の入門書として長年ベストセラー。全世界株式インデックスファンド1本で資産形成する方法を平易に解説。",
-    url: "https://www.amazon.co.jp/dp/4022518634",
-    tags: ["インデックス投資", "入門"],
-  },
-  {
-    title: "敗者のゲーム",
-    author: "チャールズ・エリス",
-    description:
-      "投資の名著。なぜアクティブ運用よりインデックス運用が優れているかを論理的に解説。長期投資の重要性を理解するための必読書。",
-    url: "https://www.amazon.co.jp/dp/4532358000",
-    tags: ["投資哲学", "名著"],
-  },
-  {
-    title: "ウォール街のランダム・ウォーカー",
-    author: "バートン・マルキール",
-    description:
-      "効率的市場仮説とインデックス投資の重要性を説いた古典的名著。投資理論を体系的に学びたいFIRE志向者におすすめ。",
-    url: "https://www.amazon.co.jp/dp/4532359287",
-    tags: ["投資理論", "名著"],
-  },
-  {
-    title: "DIE WITH ZERO",
-    author: "ビル・パーキンス",
-    description:
-      "「ゼロで死ね」。お金を貯めすぎず人生を最大限楽しむという視点。FIRE達成後の「使い方」を考えるきっかけになる一冊。",
-    url: "https://www.amazon.co.jp/dp/4478109680",
-    tags: ["人生設計", "FIRE後"],
   },
 ];
 
