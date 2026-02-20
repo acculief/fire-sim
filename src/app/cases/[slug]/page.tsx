@@ -1,11 +1,113 @@
 import { Metadata } from "next";
 import Link from "next/link";
-import { modelCases, getModelCaseBySlug } from "@/data/model-cases";
+import { modelCases, getModelCaseBySlug, type ModelCase } from "@/data/model-cases";
 import { FAMILY_COEFFICIENTS, HOUSING_COEFFICIENTS } from "@/config/assumptions";
 import { SITE_URL, CONTENT_PUBLISHED_DATE } from "@/config/site";
 import { formatMoney } from "@/lib/format";
 import Breadcrumb from "@/components/Breadcrumb";
 import JsonLd from "@/components/JsonLd";
+
+/* ------------------------------------------------------------------ */
+/*  ケース特性に応じたガイド記事選択                                       */
+/* ------------------------------------------------------------------ */
+
+interface GuideLink {
+  href: string;
+  title: string;
+  description: string;
+}
+
+function getRelatedGuides(c: ModelCase): GuideLink[] {
+  const guides: GuideLink[] = [];
+
+  // 年代別ガイド
+  if (c.age < 40) {
+    guides.push({
+      href: "/guide/fire-by-age-30/",
+      title: "30代からのFIRE計画",
+      description: "年収別の達成シミュレーション",
+    });
+  } else if (c.age < 50) {
+    guides.push({
+      href: "/guide/fire-by-age-40/",
+      title: "40代からのFIRE計画",
+      description: "遅くない！現実的な資産形成ロードマップ",
+    });
+  } else {
+    guides.push({
+      href: "/guide/fire-and-pension/",
+      title: "FIREと年金の関係",
+      description: "早期退職後の年金への影響を解説",
+    });
+  }
+
+  // 家族構成別ガイド
+  if (c.familyType === "couple") {
+    guides.push({
+      href: "/guide/fire-couple-strategy/",
+      title: "共働き夫婦のFIRE最速プラン",
+      description: "2馬力を最大限活かす資産形成戦略",
+    });
+  } else if (c.familyType.includes("child")) {
+    guides.push({
+      href: "/guide/fire-with-family/",
+      title: "家族持ちのFIRE戦略",
+      description: "夫婦・子育て世帯のFIRE計画ガイド",
+    });
+  }
+
+  // サイドFIRE関連（slugにsidefireが含まれる場合）
+  if (c.slug.includes("sidefire")) {
+    guides.push({
+      href: "/guide/side-fire/",
+      title: "サイドFIREとは？",
+      description: "必要資産・始め方・向いている人を解説",
+    });
+  }
+
+  // 地域差が大きいケース
+  if (c.prefecture !== "tokyo") {
+    guides.push({
+      href: "/guide/fire-by-region/",
+      title: "地域別FIRE戦略",
+      description: "東京vs地方、住む場所で達成年はこう変わる",
+    });
+  }
+
+  // 共通ガイド（4件になるまで追加）
+  const universal: GuideLink[] = [
+    {
+      href: "/guide/nisa-fire-acceleration/",
+      title: "新NISAでFIRE達成を加速",
+      description: "非課税枠の活用で2〜3年短縮",
+    },
+    {
+      href: "/guide/fire-index-investing/",
+      title: "インデックス投資入門",
+      description: "銘柄選びから出口戦略まで",
+    },
+    {
+      href: "/guide/how-to-choose-broker/",
+      title: "ネット証券口座の選び方",
+      description: "主要6社比較＆タイプ別おすすめ",
+    },
+    {
+      href: "/guide/fire-first-steps/",
+      title: "FIRE初心者がやるべき3つのこと",
+      description: "家計把握・口座開設・投資開始の3ステップ",
+    },
+  ];
+
+  const existingHrefs = new Set(guides.map((g) => g.href));
+  for (const g of universal) {
+    if (guides.length >= 4) break;
+    if (!existingHrefs.has(g.href)) {
+      guides.push(g);
+    }
+  }
+
+  return guides.slice(0, 4);
+}
 
 export function generateStaticParams() {
   return modelCases.map((c) => ({ slug: c.slug }));
@@ -233,36 +335,34 @@ export default async function CaseDetailPage({
           関連ガイド記事
         </h2>
         <div className="mt-4 grid gap-3 sm:grid-cols-2">
-          <Link
-            href="/guide/fire-first-steps/"
-            className="block rounded-lg border border-gray-200 bg-white p-4 transition-colors hover:border-primary-300 hover:bg-primary-50"
-          >
-            <p className="font-bold text-gray-800">FIRE初心者が最初にやるべき3つのこと</p>
-            <p className="mt-1 text-xs text-gray-600">家計把握・口座開設・投資開始の3ステップ</p>
-          </Link>
-          <Link
-            href="/guide/how-to-choose-broker/"
-            className="block rounded-lg border border-gray-200 bg-white p-4 transition-colors hover:border-primary-300 hover:bg-primary-50"
-          >
-            <p className="font-bold text-gray-800">ネット証券口座の選び方</p>
-            <p className="mt-1 text-xs text-gray-600">主要6社比較＆タイプ別おすすめ</p>
-          </Link>
-          <Link
-            href="/guide/fire-index-investing/"
-            className="block rounded-lg border border-gray-200 bg-white p-4 transition-colors hover:border-primary-300 hover:bg-primary-50"
-          >
-            <p className="font-bold text-gray-800">インデックス投資入門</p>
-            <p className="mt-1 text-xs text-gray-600">銘柄選びから出口戦略まで</p>
-          </Link>
-          <Link
-            href="/guide/nisa-fire-acceleration/"
-            className="block rounded-lg border border-gray-200 bg-white p-4 transition-colors hover:border-primary-300 hover:bg-primary-50"
-          >
-            <p className="font-bold text-gray-800">新NISAでFIRE達成を加速</p>
-            <p className="mt-1 text-xs text-gray-600">非課税枠の活用で2〜3年短縮</p>
-          </Link>
+          {getRelatedGuides(c).map((guide) => (
+            <Link
+              key={guide.href}
+              href={guide.href}
+              className="block rounded-lg border border-gray-200 bg-white p-4 transition-colors hover:border-primary-300 hover:bg-primary-50"
+            >
+              <p className="font-bold text-gray-800">{guide.title}</p>
+              <p className="mt-1 text-xs text-gray-600">{guide.description}</p>
+            </Link>
+          ))}
         </div>
       </section>
+
+      {/* FIRE診断CTA */}
+      <div className="mt-8 rounded-lg border border-accent-200 bg-accent-50 p-6 text-center">
+        <p className="font-bold text-accent-800">
+          あなたのFIRE達成度をチェックしよう
+        </p>
+        <p className="mt-1 text-sm text-accent-700">
+          6つの質問に答えるだけで、FIREグレードと達成予測年齢がわかります
+        </p>
+        <Link
+          href="/diagnose/"
+          className="mt-3 inline-block rounded-lg bg-accent-600 px-6 py-2.5 text-sm font-bold text-white transition-colors hover:bg-accent-700"
+        >
+          約1分でFIRE診断
+        </Link>
+      </div>
 
       {/* 他のモデルケース */}
       <section className="mt-12">

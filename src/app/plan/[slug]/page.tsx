@@ -468,6 +468,63 @@ export default async function PlanDetailPage({
           })}
         </div>
       </section>
+
+      {/* 関連ガイド */}
+      <section className="mt-12">
+        <h2 className="text-lg font-bold text-gray-800">
+          関連ガイド記事
+        </h2>
+        <div className="mt-4 grid gap-3 sm:grid-cols-2">
+          <Link
+            href={page.age < 40 ? "/guide/fire-by-age-30/" : page.age < 50 ? "/guide/fire-by-age-40/" : "/guide/fire-and-pension/"}
+            className="block rounded-lg border border-gray-200 bg-white p-4 transition-colors hover:border-primary-300 hover:bg-primary-50"
+          >
+            <p className="font-bold text-gray-800">
+              {page.age < 40 ? "30代からのFIRE計画" : page.age < 50 ? "40代からのFIRE計画" : "FIREと年金の関係"}
+            </p>
+            <p className="mt-1 text-xs text-gray-600">
+              {page.age < 40 ? "年収別の達成シミュレーション" : page.age < 50 ? "現実的な資産形成ロードマップ" : "早期退職後の年金への影響を解説"}
+            </p>
+          </Link>
+          <Link
+            href="/guide/fire-savings-rate/"
+            className="block rounded-lg border border-gray-200 bg-white p-4 transition-colors hover:border-primary-300 hover:bg-primary-50"
+          >
+            <p className="font-bold text-gray-800">貯蓄率がFIRE達成年を決める</p>
+            <p className="mt-1 text-xs text-gray-600">年収より重要な指標とは</p>
+          </Link>
+          <Link
+            href="/guide/nisa-fire-acceleration/"
+            className="block rounded-lg border border-gray-200 bg-white p-4 transition-colors hover:border-primary-300 hover:bg-primary-50"
+          >
+            <p className="font-bold text-gray-800">新NISAでFIRE達成を加速</p>
+            <p className="mt-1 text-xs text-gray-600">非課税枠の活用で2〜3年短縮</p>
+          </Link>
+          <Link
+            href="/guide/fire-index-investing/"
+            className="block rounded-lg border border-gray-200 bg-white p-4 transition-colors hover:border-primary-300 hover:bg-primary-50"
+          >
+            <p className="font-bold text-gray-800">インデックス投資入門</p>
+            <p className="mt-1 text-xs text-gray-600">銘柄選びから出口戦略まで</p>
+          </Link>
+        </div>
+      </section>
+
+      {/* FIRE診断CTA */}
+      <div className="mt-8 rounded-lg border border-accent-200 bg-accent-50 p-6 text-center">
+        <p className="font-bold text-accent-800">
+          あなたのFIRE達成度をチェックしよう
+        </p>
+        <p className="mt-1 text-sm text-accent-700">
+          6つの質問に答えるだけで、FIREグレードと達成予測年齢がわかります
+        </p>
+        <Link
+          href="/diagnose/"
+          className="mt-3 inline-block rounded-lg bg-accent-600 px-6 py-2.5 text-sm font-bold text-white transition-colors hover:bg-accent-700"
+        >
+          約1分でFIRE診断
+        </Link>
+      </div>
     </div>
   );
 }
