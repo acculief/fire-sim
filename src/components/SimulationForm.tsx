@@ -335,7 +335,7 @@ export default function SimulationForm({ initialInput, onSubmit }: Props) {
             ([key, strategy]) => (
               <label
                 key={key}
-                className={`cursor-pointer rounded-lg border-2 p-4 transition-colors ${
+                className={`cursor-pointer rounded-lg border-2 p-4 transition-colors focus-within:ring-2 focus-within:ring-primary-300 ${
                   fireStrategy === key
                     ? "border-primary-500 bg-primary-50"
                     : "border-gray-200 bg-white hover:border-gray-300"

@@ -32,7 +32,7 @@ export default function BrokerCard({ broker: b }: Props) {
       </a>
       {b.trackingPixel && (
         /* eslint-disable-next-line @next/next/no-img-element */
-        <img src={b.trackingPixel} width={1} height={1} alt="" className="inline" />
+        <img src={b.trackingPixel} width={1} height={1} alt="" loading="lazy" decoding="async" className="inline" />
       )}
     </div>
   );

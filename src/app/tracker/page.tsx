@@ -279,7 +279,11 @@ export default function TrackerPage() {
                     <button
                       type="button"
                       className="flex h-8 w-8 shrink-0 items-center justify-center rounded text-xs text-gray-600 transition-opacity hover:bg-red-50 hover:text-red-500 sm:opacity-0 sm:group-hover:opacity-100 sm:focus:opacity-100"
-                      onClick={() => handleDeleteEntry(entry.date)}
+                      onClick={() => {
+                        if (window.confirm(`${entry.date}のデータを削除してもよろしいですか？`)) {
+                          handleDeleteEntry(entry.date);
+                        }
+                      }}
                       aria-label={`${entry.date}のデータを削除`}
                     >
                       ×

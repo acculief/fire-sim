@@ -30,13 +30,21 @@ export function saveEntry(entry: TrackerEntry): TrackerEntry[] {
     entries.push(entry);
   }
   entries.sort((a, b) => a.date.localeCompare(b.date));
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(entries));
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(entries));
+  } catch {
+    // QuotaExceededError — storage full
+  }
   return entries;
 }
 
 export function deleteEntry(date: string): TrackerEntry[] {
   const entries = getEntries().filter((e) => e.date !== date);
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(entries));
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(entries));
+  } catch {
+    // QuotaExceededError — storage full
+  }
   return entries;
 }
 
@@ -51,5 +59,9 @@ export function getGoal(): TrackerGoal | null {
 }
 
 export function saveGoal(goal: TrackerGoal): void {
-  localStorage.setItem(GOAL_KEY, JSON.stringify(goal));
+  try {
+    localStorage.setItem(GOAL_KEY, JSON.stringify(goal));
+  } catch {
+    // QuotaExceededError — storage full
+  }
 }
