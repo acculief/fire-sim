@@ -22,6 +22,8 @@ export const metadata: Metadata = {
       "年収200万〜2,000万円の手取り額・税金・社会保険料を一覧表で比較。家族構成別の違いも。",
     type: "article",
     url: "/income/",
+    siteName: "FIREシミュレーター",
+    images: [`${SITE_URL}/opengraph-image`],
   },
 };
 
@@ -250,7 +252,7 @@ export default function IncomePage() {
         <p className="mt-2 text-sm text-gray-600">
           各年収の詳しい内訳（社会保険料の明細・家族構成別比較・FIRE目安）を確認できます。
         </p>
-        <div className="mt-4 grid grid-cols-3 gap-2 sm:grid-cols-4 lg:grid-cols-6">
+        <div className="mt-4 grid grid-cols-2 gap-2 sm:grid-cols-4 lg:grid-cols-6">
           {INCOME_LEVELS.map((level) => (
             <Link
               key={level}

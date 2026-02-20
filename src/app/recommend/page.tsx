@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import { brokers, funds } from "@/data/recommend";
+import { SITE_URL } from "@/config/site";
 import Disclaimer from "@/components/Disclaimer";
 import Breadcrumb from "@/components/Breadcrumb";
 import JsonLd from "@/components/JsonLd";
@@ -17,6 +18,7 @@ export const metadata: Metadata = {
     type: "website",
     url: "/recommend/",
     siteName: "FIREシミュレーター",
+    images: [`${SITE_URL}/opengraph-image`],
   },
 };
 
@@ -175,7 +177,7 @@ export default function RecommendPage() {
 
         {/* レスポンシブ比較表 */}
         <div className="mt-4 overflow-x-auto">
-          <table className="w-full text-sm">
+          <table className="w-full text-sm" aria-label="証券口座比較テーブル">
             <thead>
               <tr className="border-b border-gray-200 bg-gray-50">
                 <th className="px-3 py-2 text-left font-medium text-gray-600">

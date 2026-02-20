@@ -199,6 +199,12 @@ export default async function IncomeDetailPage({
         <p className="mt-1 text-xs text-gray-600">独身・扶養なしの場合</p>
         <div className="mt-4 overflow-x-auto">
           <table className="w-full text-sm" aria-label={`年収${level.toLocaleString()}万円の税金・社会保険料の内訳`}>
+            <thead className="sr-only">
+              <tr>
+                <th>項目</th>
+                <th>金額</th>
+              </tr>
+            </thead>
             <tbody className="divide-y divide-gray-100">
               <tr className="bg-gray-50">
                 <td className="px-4 py-3 font-medium text-gray-700">年収（額面）</td>
