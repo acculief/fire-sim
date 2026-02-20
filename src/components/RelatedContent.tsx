@@ -22,7 +22,7 @@ export default function RelatedContent({ items, heading = "関連コンテンツ
           <Link
             key={item.href}
             href={item.href}
-            className="block rounded-lg border border-gray-200 bg-white p-4 transition-colors hover:border-primary-300 hover:bg-primary-50"
+            className="link-card"
           >
             <p className="font-bold text-gray-800">{item.title}</p>
             <p className="mt-1 text-xs text-gray-600">{item.description}</p>

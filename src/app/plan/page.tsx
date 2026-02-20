@@ -85,7 +85,7 @@ export default function PlanIndexPage() {
                 <Link
                   key={page.slug}
                   href={`/plan/${page.slug}/`}
-                  className="block rounded-lg border border-gray-200 bg-white p-4 transition-colors hover:border-primary-300 hover:bg-primary-50"
+                  className="link-card"
                 >
                   <h3 className="font-bold text-gray-800">
                     年収{page.annualIncome}万円

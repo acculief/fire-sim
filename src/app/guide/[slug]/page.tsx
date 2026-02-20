@@ -240,7 +240,7 @@ export default async function GuidePage({
               <Link
                 key={related!.slug}
                 href={`/guide/${related!.slug}/`}
-                className="block rounded-lg border border-gray-200 bg-white p-4 transition-colors hover:border-primary-300 hover:bg-primary-50"
+                className="link-card"
               >
                 <p className="font-bold text-gray-800">{related!.title}</p>
                 <p className="mt-1 text-sm text-gray-500 line-clamp-2">

@@ -422,7 +422,7 @@ export default async function PlanDetailPage({
               <Link
                 key={related.slug}
                 href={`/plan/${related.slug}/`}
-                className="block rounded-lg border border-gray-200 bg-white p-4 transition-colors hover:border-primary-300 hover:bg-primary-50"
+                className="link-card"
               >
                 <p className="font-bold text-gray-800">
                   年収{related.annualIncome}万円
@@ -455,7 +455,7 @@ export default async function PlanDetailPage({
               <Link
                 key={related.slug}
                 href={`/plan/${related.slug}/`}
-                className="block rounded-lg border border-gray-200 bg-white p-4 transition-colors hover:border-primary-300 hover:bg-primary-50"
+                className="link-card"
               >
                 <p className="font-bold text-gray-800">{related.ageLabel}</p>
                 <p className="mt-1 text-sm text-primary-600">
@@ -477,7 +477,7 @@ export default async function PlanDetailPage({
         <div className="mt-4 grid gap-3 sm:grid-cols-2">
           <Link
             href={page.age < 40 ? "/guide/fire-by-age-30/" : page.age < 50 ? "/guide/fire-by-age-40/" : "/guide/fire-and-pension/"}
-            className="block rounded-lg border border-gray-200 bg-white p-4 transition-colors hover:border-primary-300 hover:bg-primary-50"
+            className="link-card"
           >
             <p className="font-bold text-gray-800">
               {page.age < 40 ? "30代からのFIRE計画" : page.age < 50 ? "40代からのFIRE計画" : "FIREと年金の関係"}
@@ -488,21 +488,21 @@ export default async function PlanDetailPage({
           </Link>
           <Link
             href="/guide/fire-savings-rate/"
-            className="block rounded-lg border border-gray-200 bg-white p-4 transition-colors hover:border-primary-300 hover:bg-primary-50"
+            className="link-card"
           >
             <p className="font-bold text-gray-800">貯蓄率がFIRE達成年を決める</p>
             <p className="mt-1 text-xs text-gray-600">年収より重要な指標とは</p>
           </Link>
           <Link
             href="/guide/nisa-fire-acceleration/"
-            className="block rounded-lg border border-gray-200 bg-white p-4 transition-colors hover:border-primary-300 hover:bg-primary-50"
+            className="link-card"
           >
             <p className="font-bold text-gray-800">新NISAでFIRE達成を加速</p>
             <p className="mt-1 text-xs text-gray-600">非課税枠の活用で2〜3年短縮</p>
           </Link>
           <Link
             href="/guide/fire-index-investing/"
-            className="block rounded-lg border border-gray-200 bg-white p-4 transition-colors hover:border-primary-300 hover:bg-primary-50"
+            className="link-card"
           >
             <p className="font-bold text-gray-800">インデックス投資入門</p>
             <p className="mt-1 text-xs text-gray-600">銘柄選びから出口戦略まで</p>

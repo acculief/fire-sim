@@ -339,7 +339,7 @@ export default async function CaseDetailPage({
             <Link
               key={guide.href}
               href={guide.href}
-              className="block rounded-lg border border-gray-200 bg-white p-4 transition-colors hover:border-primary-300 hover:bg-primary-50"
+              className="link-card"
             >
               <p className="font-bold text-gray-800">{guide.title}</p>
               <p className="mt-1 text-xs text-gray-600">{guide.description}</p>
@@ -376,7 +376,7 @@ export default async function CaseDetailPage({
               <Link
                 key={other.slug}
                 href={`/cases/${other.slug}/`}
-                className="block rounded-lg border border-gray-200 bg-white p-4 transition-colors hover:border-primary-300 hover:bg-primary-50"
+                className="link-card"
               >
                 <p className="font-bold text-gray-800">{other.title}</p>
                 <p className="mt-1 text-xs text-gray-600">{other.subtitle}</p>
