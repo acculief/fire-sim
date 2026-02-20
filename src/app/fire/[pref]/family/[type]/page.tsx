@@ -102,16 +102,16 @@ export default async function FamilyPage({
           <table className="w-full text-sm" aria-label={`${prefecture.name}・${familyLabel}の年収別比較`}>
             <thead>
               <tr className="border-b border-gray-200 bg-gray-50">
-                <th className="px-3 py-2 text-left font-medium text-gray-600">
+                <th scope="col" className="px-3 py-2 text-left font-medium text-gray-600">
                   年収
                 </th>
-                <th className="px-3 py-2 text-right font-medium text-gray-600">
+                <th scope="col" className="px-3 py-2 text-right font-medium text-gray-600">
                   月間生活費
                 </th>
-                <th className="px-3 py-2 text-right font-medium text-gray-600">
+                <th scope="col" className="px-3 py-2 text-right font-medium text-gray-600">
                   必要資産
                 </th>
-                <th className="px-3 py-2 text-right font-medium text-gray-600">
+                <th scope="col" className="px-3 py-2 text-right font-medium text-gray-600">
                   達成年齢
                 </th>
               </tr>
@@ -148,7 +148,7 @@ export default async function FamilyPage({
             <Link
               key={ft.key}
               href={`/fire/${pref}/family/${ft.key}/`}
-              className="rounded-lg border border-gray-200 bg-white px-3 py-1.5 text-sm text-gray-700 hover:border-primary-300 hover:bg-primary-50 hover:text-primary-700"
+              className="tag-link"
             >
               {ft.label}
             </Link>

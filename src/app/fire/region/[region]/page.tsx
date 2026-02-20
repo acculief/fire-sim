@@ -112,11 +112,11 @@ export default async function RegionPage({
           <table className="w-full text-sm" aria-label={`${regionInfo.label}地方の都道府県別FIRE比較`}>
             <thead>
               <tr className="border-b border-gray-200 bg-gray-50">
-                <th className="px-3 py-2 text-left font-medium text-gray-600">都道府県</th>
-                <th className="px-3 py-2 text-right font-medium text-gray-600">生活費係数</th>
-                <th className="px-3 py-2 text-right font-medium text-gray-600">月間生活費</th>
-                <th className="px-3 py-2 text-right font-medium text-gray-600">必要資産</th>
-                <th className="px-3 py-2 text-right font-medium text-gray-600">達成年齢</th>
+                <th scope="col" className="px-3 py-2 text-left font-medium text-gray-600">都道府県</th>
+                <th scope="col" className="px-3 py-2 text-right font-medium text-gray-600">生活費係数</th>
+                <th scope="col" className="px-3 py-2 text-right font-medium text-gray-600">月間生活費</th>
+                <th scope="col" className="px-3 py-2 text-right font-medium text-gray-600">必要資産</th>
+                <th scope="col" className="px-3 py-2 text-right font-medium text-gray-600">達成年齢</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-100">
@@ -203,7 +203,7 @@ export default async function RegionPage({
             <Link
               key={r.slug}
               href={`/fire/region/${r.slug}/`}
-              className="rounded-lg border border-gray-200 bg-white px-3 py-1.5 text-sm text-gray-700 hover:border-primary-300 hover:bg-primary-50 hover:text-primary-700"
+              className="tag-link"
             >
               {r.label}
             </Link>

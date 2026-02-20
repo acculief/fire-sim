@@ -110,10 +110,10 @@ export default async function HousingPage({
           <table className="w-full text-sm" aria-label={`${prefecture.name}・${housingLabel}の年収別比較`}>
             <thead>
               <tr className="border-b border-gray-200 bg-gray-50">
-                <th className="px-3 py-2 text-left font-medium text-gray-600">年収</th>
-                <th className="px-3 py-2 text-right font-medium text-gray-600">月間生活費</th>
-                <th className="px-3 py-2 text-right font-medium text-gray-600">必要資産</th>
-                <th className="px-3 py-2 text-right font-medium text-gray-600">達成年齢</th>
+                <th scope="col" className="px-3 py-2 text-left font-medium text-gray-600">年収</th>
+                <th scope="col" className="px-3 py-2 text-right font-medium text-gray-600">月間生活費</th>
+                <th scope="col" className="px-3 py-2 text-right font-medium text-gray-600">必要資産</th>
+                <th scope="col" className="px-3 py-2 text-right font-medium text-gray-600">達成年齢</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-100">
@@ -144,11 +144,11 @@ export default async function HousingPage({
           <table className="w-full text-sm" aria-label={`${prefecture.name}の住宅タイプ別比較`}>
             <thead>
               <tr className="border-b border-gray-200 bg-gray-50">
-                <th className="px-3 py-2 text-left font-medium text-gray-600">住宅タイプ</th>
-                <th className="px-3 py-2 text-right font-medium text-gray-600">住宅係数</th>
-                <th className="px-3 py-2 text-right font-medium text-gray-600">月間生活費</th>
-                <th className="px-3 py-2 text-right font-medium text-gray-600">必要資産</th>
-                <th className="px-3 py-2 text-right font-medium text-gray-600">達成年齢</th>
+                <th scope="col" className="px-3 py-2 text-left font-medium text-gray-600">住宅タイプ</th>
+                <th scope="col" className="px-3 py-2 text-right font-medium text-gray-600">住宅係数</th>
+                <th scope="col" className="px-3 py-2 text-right font-medium text-gray-600">月間生活費</th>
+                <th scope="col" className="px-3 py-2 text-right font-medium text-gray-600">必要資産</th>
+                <th scope="col" className="px-3 py-2 text-right font-medium text-gray-600">達成年齢</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-100">
@@ -245,7 +245,7 @@ export default async function HousingPage({
             <Link
               key={ht.key}
               href={`/fire/${pref}/housing/${ht.key}/`}
-              className="rounded-lg border border-gray-200 bg-white px-3 py-1.5 text-sm text-gray-700 hover:border-primary-300 hover:bg-primary-50 hover:text-primary-700"
+              className="tag-link"
             >
               {ht.label}
             </Link>

@@ -101,16 +101,16 @@ export default async function IncomePage({
           <table className="w-full text-sm" aria-label={`${prefecture.name}・年収${income}万円の家族構成別比較`}>
             <thead>
               <tr className="border-b border-gray-200 bg-gray-50">
-                <th className="px-3 py-2 text-left font-medium text-gray-600">
+                <th scope="col" className="px-3 py-2 text-left font-medium text-gray-600">
                   家族構成
                 </th>
-                <th className="px-3 py-2 text-right font-medium text-gray-600">
+                <th scope="col" className="px-3 py-2 text-right font-medium text-gray-600">
                   月間生活費
                 </th>
-                <th className="px-3 py-2 text-right font-medium text-gray-600">
+                <th scope="col" className="px-3 py-2 text-right font-medium text-gray-600">
                   必要資産
                 </th>
-                <th className="px-3 py-2 text-right font-medium text-gray-600">
+                <th scope="col" className="px-3 py-2 text-right font-medium text-gray-600">
                   達成年齢
                 </th>
               </tr>
@@ -147,7 +147,7 @@ export default async function IncomePage({
             <Link
               key={il.value}
               href={`/fire/${pref}/income/${il.value}/`}
-              className="rounded-lg border border-gray-200 bg-white px-3 py-1.5 text-sm text-gray-700 hover:border-primary-300 hover:bg-primary-50 hover:text-primary-700"
+              className="tag-link"
             >
               {il.label}
             </Link>

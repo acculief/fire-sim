@@ -146,7 +146,7 @@ export default function HomePage() {
               <Link
                 key={p.code}
                 href={`/fire/${p.code}/`}
-                className="rounded-lg border border-gray-200 bg-white px-3 py-1.5 text-sm text-gray-700 transition-colors hover:border-primary-300 hover:bg-primary-50 hover:text-primary-700"
+                className="tag-link"
               >
                 {p.name}
               </Link>
