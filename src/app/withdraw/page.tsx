@@ -325,8 +325,9 @@ export default function WithdrawPage() {
           </div>
 
           {/* 年次データテーブル */}
-          <div className="card overflow-x-auto">
+          <div className="card overflow-x-auto" role="region" aria-label="年次データテーブル（横スクロール可能）" tabIndex={0}>
             <h2 className="text-lg font-bold text-gray-800">年次データ</h2>
+            <p className="mt-1 text-xs text-gray-500 sm:hidden">← 横スクロールで全列を表示 →</p>
             <table className="mt-4 w-full text-sm" aria-label="取り崩しシミュレーション年次データ">
               <thead>
                 <tr className="border-b border-gray-200 text-left text-gray-500">

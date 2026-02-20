@@ -178,6 +178,7 @@ export default function SimulationForm({ initialInput, onSubmit }: Props) {
               onValueChange={setAnnualIncome}
               min={0}
               step={10}
+              aria-describedby="annualIncome-hint"
             />
             <fieldset className="mt-2 flex gap-3">
               <legend className="sr-only">年収の種類</legend>
@@ -204,7 +205,7 @@ export default function SimulationForm({ initialInput, onSubmit }: Props) {
                 手取り
               </label>
             </fieldset>
-            <p className="mt-1 text-xs text-gray-600">
+            <p id="annualIncome-hint" className="mt-1 text-xs text-gray-600">
               <Link href="/income/" className="text-primary-500 hover:underline">
                 手取り早見表で確認 →
               </Link>

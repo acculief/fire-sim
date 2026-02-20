@@ -473,6 +473,11 @@ export default async function IncomeDetailPage({
             title: "年収×年代別FIREプラン",
             description: "あなたの年収と年齢に最適なFIRE戦略",
           },
+          {
+            href: "/diagnose/",
+            title: "FIRE達成度診断",
+            description: "6つの質問であなたのFIREグレードを判定",
+          },
         ]}
       />
 
