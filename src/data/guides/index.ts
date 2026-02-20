@@ -424,7 +424,7 @@ FIREは家族全員に影響する決断です。「なぜFIREしたいか」「
     description:
       "FIRE達成を加速する新NISA・iDeCoの活用法。非課税メリットの最大化、出口戦略、FIRE後の取り崩し方を具体的に解説します。",
     publishedAt: "2026-02-01",
-    relatedSlugs: ["4percent-rule", "withdrawal-vs-yield", "nisa-fire-acceleration"],
+    relatedSlugs: ["4percent-rule", "withdrawal-vs-yield", "nisa-fire-acceleration", "how-to-choose-broker", "fire-by-age-30"],
     sections: [
       {
         heading: "新NISAはFIREの最強ツール",
@@ -592,7 +592,7 @@ FIREナンバー8,000万円の場合:
     description:
       "30代からFIREを目指す場合の現実的なプランを、年収400万〜1000万円のケース別にシミュレーション。30代ならではの戦略と注意点を解説。",
     publishedAt: "2026-02-15",
-    relatedSlugs: ["how-to-calculate-fire-number", "fire-with-family", "fire-savings-rate"],
+    relatedSlugs: ["how-to-calculate-fire-number", "fire-with-family", "fire-savings-rate", "nisa-ideco-for-fire"],
     sections: [
       {
         heading: "30代がFIREを目指す優位性",
@@ -769,7 +769,7 @@ FIREナンバー8,000万円の場合:
     description:
       "FIRE達成スピードを最も左右するのは年収ではなく貯蓄率。貯蓄率別の達成年シミュレーションと、貯蓄率を上げる具体的な方法を解説。",
     publishedAt: "2026-02-15",
-    relatedSlugs: ["how-to-calculate-fire-number", "fire-by-age-30", "fire-first-steps"],
+    relatedSlugs: ["how-to-calculate-fire-number", "fire-by-age-30", "fire-first-steps", "fire-emergency-fund"],
     sections: [
       {
         heading: "なぜ年収より貯蓄率が重要なのか",
@@ -855,7 +855,7 @@ FIREナンバー8,000万円の場合:
     description:
       "40代からFIREを目指すのは遅い？いいえ、40代ならではの強みを活かした現実的なFIRE戦略を、年収別シミュレーションとともに解説します。",
     publishedAt: "2026-02-17",
-    relatedSlugs: ["fire-by-age-30", "how-to-calculate-fire-number", "side-fire"],
+    relatedSlugs: ["fire-by-age-30", "how-to-calculate-fire-number", "side-fire", "fire-emergency-fund"],
     sections: [
       {
         heading: "40代からFIREを目指しても遅くない理由",
@@ -1243,7 +1243,7 @@ FIRE後も国民年金に加入していればiDeCoに加入可能（月67,000�
     description:
       "FIRE達成前後に確保すべき生活防衛資金（緊急予備資金）の目安を解説。暴落時のバッファー、医療費、失業リスクへの備え方を具体的に紹介。",
     publishedAt: "2026-02-17",
-    relatedSlugs: ["fire-mistakes", "how-to-calculate-fire-number", "fire-and-pension"],
+    relatedSlugs: ["fire-mistakes", "how-to-calculate-fire-number", "fire-and-pension", "fire-by-age-40", "fire-savings-rate"],
     sections: [
       {
         heading: "生活防衛資金とは何か",
