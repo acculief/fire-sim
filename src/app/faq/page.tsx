@@ -164,7 +164,7 @@ export default function FaqPage() {
             <summary className="flex cursor-pointer items-center justify-between gap-4 px-5 py-4 text-left font-bold text-gray-800 hover:text-primary-600">
               <span>{faq.question}</span>
               <svg
-                className="h-5 w-5 shrink-0 text-gray-400 transition-transform group-open:rotate-180"
+                className="h-5 w-5 shrink-0 text-gray-500 transition-transform group-open:rotate-180"
                 fill="none"
                 viewBox="0 0 24 24"
                 strokeWidth={2}

@@ -686,7 +686,7 @@ FIREナンバー8,000万円の場合:
     description:
       "完全リタイアより現実的な「サイドFIRE」の全貌。必要資産額の計算方法、おすすめの副業、始め方を具体的に解説します。",
     publishedAt: "2026-02-15",
-    relatedSlugs: ["what-is-fire", "how-to-calculate-fire-number", "fire-barista"],
+    relatedSlugs: ["what-is-fire", "how-to-calculate-fire-number", "fire-barista", "fire-by-age-40"],
     sections: [
       {
         heading: "サイドFIREとは",

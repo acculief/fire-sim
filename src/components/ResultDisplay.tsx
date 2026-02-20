@@ -445,7 +445,7 @@ export default function ResultDisplay({ result }: Props) {
               <div className="space-y-5">
                 {/* ① 現実を見せる */}
                 <div className="rounded-lg border border-gray-200 bg-white p-4">
-                  <p className="mb-1 text-xs font-bold uppercase tracking-wider text-gray-400">
+                  <p className="mb-1 text-xs font-bold uppercase tracking-wider text-gray-500">
                     Step 1
                   </p>
                   <p className="text-sm font-bold text-gray-800">
@@ -480,7 +480,7 @@ export default function ResultDisplay({ result }: Props) {
 
                 {/* ② 危機感を出す */}
                 <div className="rounded-lg border border-gray-200 bg-white p-4">
-                  <p className="mb-1 text-xs font-bold uppercase tracking-wider text-gray-400">
+                  <p className="mb-1 text-xs font-bold uppercase tracking-wider text-gray-500">
                     Step 2
                   </p>
                   <p className="text-sm font-bold text-gray-800">
@@ -515,7 +515,7 @@ export default function ResultDisplay({ result }: Props) {
 
                 {/* ③ 解決策を提示 */}
                 <div className="rounded-lg border border-gray-200 bg-white p-4">
-                  <p className="mb-1 text-xs font-bold uppercase tracking-wider text-gray-400">
+                  <p className="mb-1 text-xs font-bold uppercase tracking-wider text-gray-500">
                     Step 3
                   </p>
                   <p className="text-sm font-bold text-gray-800">
@@ -543,7 +543,7 @@ export default function ResultDisplay({ result }: Props) {
             {/* ④ 具体的な一歩 — BrokerCard */}
             {affiliateBrokers.length > 0 && (
               <div className="card border-primary-300">
-                <p className="mb-1 text-xs font-bold uppercase tracking-wider text-gray-400">
+                <p className="mb-1 text-xs font-bold uppercase tracking-wider text-gray-500">
                   Step 4
                 </p>
                 <h3 className="text-lg font-bold text-primary-800">

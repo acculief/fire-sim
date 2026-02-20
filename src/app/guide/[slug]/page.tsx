@@ -108,7 +108,7 @@ export default async function GuidePage({
         <p className="mt-3 text-gray-600">{article.description}</p>
         <time
           dateTime={article.publishedAt}
-          className="mt-2 block text-sm text-gray-400"
+          className="mt-2 block text-sm text-gray-500"
         >
           {article.publishedAt}
         </time>
