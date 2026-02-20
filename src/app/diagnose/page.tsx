@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, memo } from "react";
 import Link from "next/link";
 import { brokers, type Broker } from "@/data/recommend";
 import BrokerCard from "@/components/BrokerCard";
@@ -413,7 +413,7 @@ function savingsRateLabel(rate: number): { label: string; color: string } {
 /* ------------------------------------------------------------------ */
 
 /** 選択肢ボタン */
-function OptionButton({
+const OptionButton = memo(function OptionButton({
   label,
   selected,
   onClick,
@@ -436,10 +436,10 @@ function OptionButton({
       {label}
     </button>
   );
-}
+});
 
 /** プログレスバー */
-function ProgressBar({ step, total }: { step: number; total: number }) {
+const ProgressBar = memo(function ProgressBar({ step, total }: { step: number; total: number }) {
   const pct = (step / total) * 100;
   return (
     <div className="mx-auto mb-8 w-full max-w-md">
@@ -464,7 +464,25 @@ function ProgressBar({ step, total }: { step: number; total: number }) {
       </div>
     </div>
   );
-}
+});
+
+/** 戻るボタン */
+const BackButton = memo(function BackButton({ onClick }: { onClick: () => void }) {
+  return (
+    <div className="mt-6 text-center">
+      <button
+        type="button"
+        onClick={onClick}
+        className="inline-flex min-h-[44px] items-center gap-1 text-sm text-gray-500 transition-colors hover:text-gray-700"
+      >
+        <svg className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+          <path fillRule="evenodd" d="M12.79 5.23a.75.75 0 01-.02 1.06L8.832 10l3.938 3.71a.75.75 0 11-1.04 1.08l-4.5-4.25a.75.75 0 010-1.08l4.5-4.25a.75.75 0 011.06.02z" clipRule="evenodd" />
+        </svg>
+        前の質問に戻る
+      </button>
+    </div>
+  );
+});
 
 /* ------------------------------------------------------------------ */
 /*  メインページ                                                        */
@@ -533,6 +551,7 @@ export default function DiagnosePage() {
     setAssets(null);
     setExperience(null);
     setResult(null);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
 
   return (
@@ -648,6 +667,7 @@ export default function DiagnosePage() {
               />
             ))}
           </div>
+          <BackButton onClick={() => setStep(1)} />
         </section>
       )}
 
@@ -673,6 +693,7 @@ export default function DiagnosePage() {
               />
             ))}
           </div>
+          <BackButton onClick={() => setStep(2)} />
         </section>
       )}
 
@@ -698,6 +719,7 @@ export default function DiagnosePage() {
               />
             ))}
           </div>
+          <BackButton onClick={() => setStep(3)} />
         </section>
       )}
 
@@ -723,6 +745,7 @@ export default function DiagnosePage() {
               />
             ))}
           </div>
+          <BackButton onClick={() => setStep(4)} />
         </section>
       )}
 
@@ -748,6 +771,7 @@ export default function DiagnosePage() {
               />
             ))}
           </div>
+          <BackButton onClick={() => setStep(5)} />
         </section>
       )}
 
