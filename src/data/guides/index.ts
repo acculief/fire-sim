@@ -11,6 +11,7 @@ export interface GuideArticle {
   title: string;
   description: string;
   publishedAt: string;
+  updatedAt?: string;
   heroImage?: GuideImage;
   sections: { heading: string; body: string; image?: GuideImage }[];
   relatedSlugs: string[];

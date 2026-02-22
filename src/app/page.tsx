@@ -12,11 +12,6 @@ const websiteSchema = {
   url: SITE_URL,
   description:
     "あなたの地域・年収・家族構成に合わせたFIRE達成シミュレーション。必要資産額と達成年を簡単計算。",
-  potentialAction: {
-    "@type": "SearchAction",
-    target: `${SITE_URL}/fire/{search_term_string}/`,
-    "query-input": "required name=search_term_string",
-  },
 };
 
 const orgSchema = {

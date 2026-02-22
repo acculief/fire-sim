@@ -43,6 +43,7 @@ export async function generateMetadata({
       url: `/guide/${slug}/`,
       siteName: "FIREシミュレーター",
       publishedTime: article.publishedAt,
+      modifiedTime: article.updatedAt ?? article.publishedAt,
       ...(ogImages && { images: ogImages }),
     },
   };
@@ -75,7 +76,7 @@ export default async function GuidePage({
       ? `${SITE_URL}${article.heroImage.src}`
       : `${SITE_URL}/opengraph-image`,
     datePublished: article.publishedAt,
-    dateModified: article.publishedAt,
+    dateModified: article.updatedAt ?? article.publishedAt,
     inLanguage: "ja",
     author: {
       "@type": "Organization",
@@ -89,9 +90,21 @@ export default async function GuidePage({
     },
   };
 
+
+  const breadcrumbData = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "ホーム", item: SITE_URL },
+      { "@type": "ListItem", position: 2, name: "ガイド", item: `${SITE_URL}/guide/` },
+      { "@type": "ListItem", position: 3, name: article.title, item: `${SITE_URL}/guide/${slug}/` },
+    ],
+  };
+
   return (
     <div className="mx-auto max-w-3xl px-4 py-8">
       <JsonLd data={structuredData} />
+      <JsonLd data={breadcrumbData} />
 
       <Breadcrumb
         items={[

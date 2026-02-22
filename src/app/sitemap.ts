@@ -15,7 +15,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // トップページ
   entries.push({
     url: `${BASE_URL}/`,
-    lastModified: new Date(),
+    lastModified: new Date("2026-02-22"),
     changeFrequency: "weekly",
     priority: 1.0,
   });
@@ -23,7 +23,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // シミュレーションページ
   entries.push({
     url: `${BASE_URL}/simulate/`,
-    lastModified: new Date(),
+    lastModified: new Date("2026-02-22"),
     changeFrequency: "monthly",
     priority: 0.9,
   });
@@ -31,7 +31,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // ガイド一覧
   entries.push({
     url: `${BASE_URL}/guide/`,
-    lastModified: new Date(),
+    lastModified: new Date("2026-02-22"),
     changeFrequency: "weekly",
     priority: 0.8,
   });
@@ -39,7 +39,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // おすすめページ
   entries.push({
     url: `${BASE_URL}/recommend/`,
-    lastModified: new Date(),
+    lastModified: new Date("2026-02-22"),
     changeFrequency: "monthly",
     priority: 0.8,
   });
@@ -47,7 +47,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // FIRE達成度診断ページ
   entries.push({
     url: `${BASE_URL}/diagnose/`,
-    lastModified: new Date(),
+    lastModified: new Date("2026-02-22"),
     changeFrequency: "monthly",
     priority: 0.8,
   });
@@ -55,7 +55,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // FAQ
   entries.push({
     url: `${BASE_URL}/faq/`,
-    lastModified: new Date(),
+    lastModified: new Date("2026-02-22"),
     changeFrequency: "monthly",
     priority: 0.7,
   });
@@ -63,7 +63,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // FIRE進捗トラッカー
   entries.push({
     url: `${BASE_URL}/tracker/`,
-    lastModified: new Date(),
+    lastModified: new Date("2026-02-22"),
     changeFrequency: "monthly",
     priority: 0.7,
   });
@@ -71,7 +71,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // 取り崩しシミュレーション
   entries.push({
     url: `${BASE_URL}/withdraw/`,
-    lastModified: new Date(),
+    lastModified: new Date("2026-02-22"),
     changeFrequency: "monthly",
     priority: 0.8,
   });
@@ -79,7 +79,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // 地域別一覧ページ
   entries.push({
     url: `${BASE_URL}/fire/`,
-    lastModified: new Date(),
+    lastModified: new Date("2026-02-22"),
     changeFrequency: "weekly",
     priority: 0.8,
   });
@@ -98,7 +98,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   for (const pref of prefectures) {
     entries.push({
       url: `${BASE_URL}/fire/${pref.code}/`,
-      lastModified: new Date(),
+      lastModified: new Date("2026-02-22"),
       changeFrequency: "monthly",
       priority: 0.7,
     });
@@ -107,7 +107,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     for (const income of INCOME_LEVELS) {
       entries.push({
         url: `${BASE_URL}/fire/${pref.code}/income/${income.value}/`,
-        lastModified: new Date(),
+        lastModified: new Date("2026-02-22"),
         changeFrequency: "monthly",
         priority: 0.5,
       });
@@ -117,7 +117,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     for (const family of FAMILY_TYPES_FOR_SEO) {
       entries.push({
         url: `${BASE_URL}/fire/${pref.code}/family/${family.key}/`,
-        lastModified: new Date(),
+        lastModified: new Date("2026-02-22"),
         changeFrequency: "monthly",
         priority: 0.5,
       });
@@ -127,7 +127,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     for (const age of AGE_GROUPS_FOR_SEO) {
       entries.push({
         url: `${BASE_URL}/fire/${pref.code}/age/${age.slug}/`,
-        lastModified: new Date(),
+        lastModified: new Date("2026-02-22"),
         changeFrequency: "monthly",
         priority: 0.5,
       });
@@ -137,7 +137,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     for (const housing of HOUSING_TYPES_FOR_SEO) {
       entries.push({
         url: `${BASE_URL}/fire/${pref.code}/housing/${housing.key}/`,
-        lastModified: new Date(),
+        lastModified: new Date("2026-02-22"),
         changeFrequency: "monthly",
         priority: 0.5,
       });
@@ -148,7 +148,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   for (const region of REGION_SLUGS) {
     entries.push({
       url: `${BASE_URL}/fire/region/${region.slug}/`,
-      lastModified: new Date(),
+      lastModified: new Date("2026-02-22"),
       changeFrequency: "monthly",
       priority: 0.6,
     });
@@ -157,7 +157,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // モデルケース一覧
   entries.push({
     url: `${BASE_URL}/cases/`,
-    lastModified: new Date(),
+    lastModified: new Date("2026-02-22"),
     changeFrequency: "monthly",
     priority: 0.8,
   });
@@ -166,7 +166,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   for (const c of modelCases) {
     entries.push({
       url: `${BASE_URL}/cases/${c.slug}/`,
-      lastModified: new Date(),
+      lastModified: new Date("2026-02-22"),
       changeFrequency: "monthly",
       priority: 0.7,
     });
@@ -175,7 +175,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // プラン一覧ページ
   entries.push({
     url: `${BASE_URL}/plan/`,
-    lastModified: new Date(),
+    lastModified: new Date("2026-02-22"),
     changeFrequency: "weekly",
     priority: 0.8,
   });
@@ -184,7 +184,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   for (const p of longtailPages) {
     entries.push({
       url: `${BASE_URL}/plan/${p.slug}/`,
-      lastModified: new Date(),
+      lastModified: new Date("2026-02-22"),
       changeFrequency: "monthly",
       priority: 0.6,
     });
@@ -193,7 +193,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // 手取り早見表 一覧ページ
   entries.push({
     url: `${BASE_URL}/income/`,
-    lastModified: new Date(),
+    lastModified: new Date("2026-02-22"),
     changeFrequency: "monthly",
     priority: 0.8,
   });
@@ -202,7 +202,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   for (const level of TAKE_HOME_LEVELS) {
     entries.push({
       url: `${BASE_URL}/income/${level}/`,
-      lastModified: new Date(),
+      lastModified: new Date("2026-02-22"),
       changeFrequency: "monthly",
       priority: 0.6,
     });
