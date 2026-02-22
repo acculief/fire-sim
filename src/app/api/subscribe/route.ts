@@ -47,7 +47,7 @@ export async function POST(req: NextRequest) {
       try {
         const resend = new Resend(resendKey);
         await resend.emails.send({
-          from: "FIREシミュレーター <noreply@fire-simulator.net>",
+          from: process.env.RESEND_FROM_EMAIL || "FIREシミュレーター <onboarding@resend.dev>",
           to: email,
           subject: "【FIRE進捗レポート】登録ありがとうございます",
           html: `

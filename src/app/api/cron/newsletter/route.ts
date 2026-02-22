@@ -76,7 +76,7 @@ export async function GET(req: NextRequest) {
       await Promise.allSettled(
         batch.map((email) =>
           resend.emails.send({
-            from: "FIREシミュレーター <noreply@fire-simulator.net>",
+            from: process.env.RESEND_FROM_EMAIL || "FIREシミュレーター <onboarding@resend.dev>",
             to: email,
             subject: `【FIRE進捗レポート】${monthStr}号`,
             html,
