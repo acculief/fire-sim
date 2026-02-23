@@ -187,10 +187,11 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* メール登録 */}
+      {/* メール登録 - 一時非表示
       <section className="mt-12">
         <EmailSignup />
       </section>
+      */}
 
       {/* CTA */}
       <section className="mt-12 text-center">
