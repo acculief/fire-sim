@@ -32,24 +32,36 @@ function UnsubscribeForm() {
     <div className="mx-auto max-w-md px-4 py-20 text-center">
       <h1 className="text-2xl font-bold text-gray-900">配信停止</h1>
       {status === "done" ? (
-        <p className="mt-6 text-green-700">✅ 配信を停止しました。またいつでも登録できます。</p>
+        <p className="mt-6 text-green-700">配信を停止しました。またいつでも登録できます。</p>
       ) : (
         <>
           <p className="mt-4 text-gray-600">以下のメールアドレスの配信を停止します。</p>
+          <label htmlFor="unsubscribe-email" className="sr-only">
+            メールアドレス
+          </label>
           <input
+            id="unsubscribe-email"
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="mt-4 w-full rounded-lg border border-gray-300 px-4 py-2 text-center focus:outline-none"
+            placeholder="your@email.com"
+            required
+            aria-invalid={status === "error" ? true : undefined}
+            aria-describedby={status === "error" ? "unsubscribe-error" : undefined}
+            className="mt-4 w-full rounded-lg border border-gray-300 px-4 py-2 text-center focus:border-primary-500 focus:outline-none"
           />
           <button
             onClick={handleUnsubscribe}
-            disabled={status === "loading"}
+            disabled={status === "loading" || !email}
             className="mt-4 rounded-lg bg-red-600 px-8 py-2 font-bold text-white hover:bg-red-700 disabled:opacity-60"
           >
             {status === "loading" ? "処理中..." : "配信停止する"}
           </button>
-          {status === "error" && <p className="mt-2 text-red-600">エラーが発生しました</p>}
+          {status === "error" && (
+            <p id="unsubscribe-error" className="mt-2 text-red-600" role="alert">
+              エラーが発生しました。もう一度お試しください。
+            </p>
+          )}
         </>
       )}
     </div>
@@ -58,7 +70,7 @@ function UnsubscribeForm() {
 
 export default function UnsubscribePage() {
   return (
-    <Suspense>
+    <Suspense fallback={<div className="mx-auto max-w-md px-4 py-20 text-center"><p className="text-gray-500">読み込み中...</p></div>}>
       <UnsubscribeForm />
     </Suspense>
   );

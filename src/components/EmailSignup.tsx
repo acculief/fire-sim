@@ -52,13 +52,19 @@ export default function EmailSignup() {
         </div>
       ) : (
         <form onSubmit={handleSubmit} className="mt-4">
+          <label htmlFor="email-signup" className="sr-only">
+            メールアドレス
+          </label>
           <div className="flex flex-col gap-2 sm:flex-row sm:justify-center">
             <input
+              id="email-signup"
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="your@email.com"
               required
+              aria-invalid={status === "error" ? true : undefined}
+              aria-describedby={status === "error" ? "email-signup-error" : "email-signup-hint"}
               className="w-full rounded-lg border border-gray-300 px-4 py-2 text-sm focus:border-green-500 focus:outline-none sm:w-64"
             />
             <button
@@ -70,9 +76,9 @@ export default function EmailSignup() {
             </button>
           </div>
           {status === "error" && (
-            <p className="mt-2 text-sm text-red-600">{message}</p>
+            <p id="email-signup-error" className="mt-2 text-sm text-red-600" role="alert">{message}</p>
           )}
-          <p className="mt-2 text-xs text-gray-500">
+          <p id="email-signup-hint" className="mt-2 text-xs text-gray-500">
             登録解除はいつでも可能。スパムは送りません。
           </p>
         </form>

@@ -16,8 +16,20 @@ async function redisCommand(command: string[]): Promise<unknown> {
 }
 
 export async function POST(req: NextRequest) {
-  const { email } = await req.json();
-  if (!email) return NextResponse.json({ error: "Email required" }, { status: 400 });
-  await redisCommand(["SREM", SUBSCRIBERS_KEY, email]);
-  return NextResponse.json({ ok: true });
+  try {
+    const { email } = await req.json();
+    if (!email) {
+      return NextResponse.json(
+        { error: "メールアドレスが必要です" },
+        { status: 400 },
+      );
+    }
+    await redisCommand(["SREM", SUBSCRIBERS_KEY, email]);
+    return NextResponse.json({ ok: true });
+  } catch {
+    return NextResponse.json(
+      { error: "エラーが発生しました。もう一度お試しください" },
+      { status: 500 },
+    );
+  }
 }
