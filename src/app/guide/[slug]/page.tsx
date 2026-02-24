@@ -228,8 +228,24 @@ export default async function GuidePage({
         </Link>
       </div>
 
+      {/* FIRE診断 CTA */}
+      <div className="mt-8 rounded-lg border border-accent-200 bg-accent-50 p-5">
+        <h2 className="text-lg font-bold text-gray-800">
+          あなたのFIRE達成度は？
+        </h2>
+        <p className="mt-1 text-sm text-gray-600">
+          6つの質問に答えるだけで、FIRE目標額と達成予測年齢を無料診断
+        </p>
+        <Link
+          href="/diagnose/"
+          className="mt-3 inline-block text-sm font-medium text-accent-700 hover:text-accent-600 hover:underline"
+        >
+          FIRE診断を受ける（無料・1分） →
+        </Link>
+      </div>
+
       {/* おすすめツール */}
-      <div className="mt-8 rounded-lg border border-gray-200 bg-white p-5">
+      <div className="mt-4 rounded-lg border border-gray-200 bg-white p-5">
         <h2 className="text-lg font-bold text-gray-800">
           FIRE達成に役立つツール
         </h2>

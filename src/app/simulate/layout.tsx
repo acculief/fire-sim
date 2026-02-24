@@ -3,14 +3,14 @@ import { SITE_URL } from "@/config/site";
 import JsonLd from "@/components/JsonLd";
 
 export const metadata: Metadata = {
-  title: "FIREシミュレーション | 必要資産・達成年を計算",
+  title: "FIREシミュレーション（無料）必要資産と達成年を計算",
   description:
-    "あなたの地域・年収・家族構成に合わせてFIRE必要資産と達成年を計算。楽観・中立・悲観の3シナリオで比較し、感度分析も確認できます。",
+    "無料のFIREシミュレーター。47都道府県の生活費・年収・家族構成を入力して必要資産と達成年を計算。3シナリオ比較＆感度分析で現実的なFIRE計画が立てられます。",
   alternates: { canonical: "/simulate/" },
   openGraph: {
-    title: "FIREシミュレーション",
+    title: "FIREシミュレーション（無料）必要資産と達成年を計算",
     description:
-      "地域・年収・家族構成からFIRE必要資産と達成年をシミュレーション",
+      "47都道府県対応。年収・家族構成・居住地域からFIRE必要資産と達成年をシミュレーション。3シナリオ比較＆感度分析対応。",
     url: "/simulate/",
   },
 };
@@ -24,7 +24,7 @@ const jsonLd = {
   operatingSystem: "All",
   offers: { "@type": "Offer", price: "0", priceCurrency: "JPY" },
   description:
-    "地域・年収・家族構成からFIRE必要資産と達成年をシミュレーション。3シナリオ比較・感度分析対応。",
+    "47都道府県対応の無料FIREシミュレーター。年収・家族構成・居住地域からFIRE必要資産と達成年を計算。3シナリオ比較・感度分析対応。",
 };
 
 export default function SimulateLayout({
