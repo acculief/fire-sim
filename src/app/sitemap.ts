@@ -88,7 +88,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   for (const article of guides) {
     entries.push({
       url: `${BASE_URL}/guide/${article.slug}/`,
-      lastModified: new Date(article.publishedAt),
+      lastModified: new Date(article.updatedAt ?? article.publishedAt),
       changeFrequency: "monthly",
       priority: 0.7,
     });
@@ -208,27 +208,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     });
   }
 
-
-  entries.push({
-    url: `${BASE_URL}/guide/fire-living-expenses/`,
-    lastModified: new Date("2026-02-23"),
-    changeFrequency: "monthly",
-    priority: 0.7,
-  });
-
-  entries.push({
-    url: `${BASE_URL}/guide/fire-health-insurance/`,
-    lastModified: new Date("2026-02-23"),
-    changeFrequency: "monthly",
-    priority: 0.7,
-  });
-
-  entries.push({
-    url: `${BASE_URL}/guide/fire-downturn/`,
-    lastModified: new Date("2026-02-23"),
-    changeFrequency: "monthly",
-    priority: 0.7,
-  });
 
   return entries;
 }

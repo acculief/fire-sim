@@ -1848,7 +1848,7 @@ NISA口座で売却した利益は所得にカウントされません。FIRE後
   },
   {
     slug: "fire-first-steps",
-    title: "FIRE初心者が最初にやるべき3つのこと",
+    title: "FIREの始め方｜初心者が最初にやるべき3つのステップ",
     description:
       "FIREを目指すと決めたら、まず何をすべき？家計の把握・証券口座の開設・インデックス投資の開始という3ステップを具体的に解説します。",
     publishedAt: "2026-02-17",
@@ -1960,9 +1960,9 @@ FIRE達成スピードを決める最重要指標が**貯蓄率**です。計算
   },
   {
     slug: "how-to-choose-broker",
-    title: "ネット証券口座の選び方【FIRE志向者向け】",
+    title: "FIRE向けネット証券口座の選び方｜主要6社を徹底比較",
     description:
-      "FIRE達成に最適なネット証券口座の選び方を徹底解説。主要6社の比較、タイプ別おすすめ、口座開設の流れ、複数口座の活用戦略まで。",
+      "FIRE達成に最適なネット証券口座の選び方を徹底解説。SBI証券・楽天証券など主要6社の手数料・NISA・iDeCo対応を比較し、タイプ別おすすめを紹介。",
     publishedAt: "2026-02-17",
     relatedSlugs: ["fire-first-steps", "fire-index-investing", "nisa-ideco-for-fire", "nisa-fire-acceleration"],
     sections: [
