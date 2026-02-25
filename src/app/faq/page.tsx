@@ -4,6 +4,7 @@ import { ReactNode } from "react";
 import Breadcrumb from "@/components/Breadcrumb";
 import JsonLd from "@/components/JsonLd";
 import RelatedContent from "@/components/RelatedContent";
+import BrokerCtaSection from "@/components/BrokerCtaSection";
 
 export const metadata: Metadata = {
   title: "よくある質問（FAQ） | FIREの基礎知識",
@@ -189,6 +190,8 @@ export default function FaqPage() {
           { href: "/guide/fire-index-investing/", title: "インデックス投資入門", description: "FIRE達成の王道戦略" },
         ]}
       />
+
+      <BrokerCtaSection />
 
       {/* CTA */}
       <div className="mt-10 rounded-xl border-2 border-primary-200 bg-primary-50 p-6 text-center">

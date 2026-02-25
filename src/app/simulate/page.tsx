@@ -6,6 +6,7 @@ import SimulationForm from "@/components/SimulationForm";
 import ResultDisplay from "@/components/ResultDisplay";
 import SimulationHistory from "@/components/SimulationHistory";
 import RelatedContent from "@/components/RelatedContent";
+import BrokerCtaSection from "@/components/BrokerCtaSection";
 import ComparePanel from "@/components/ComparePanel";
 import { runSimulation, inputFromParams, inputToParams } from "@/lib/calculator";
 import { saveHistory } from "@/lib/history";
@@ -119,6 +120,11 @@ export default function SimulatePage() {
       <Suspense fallback={<div className="text-center text-sm text-gray-600" role="status" aria-live="polite">読み込み中...</div>}>
         <SimulateContent />
       </Suspense>
+
+      <BrokerCtaSection
+        heading="FIRE計画の第一歩は証券口座の開設"
+        description="新NISAで運用益が非課税に。シミュレーション結果をもとに資産形成を始めましょう"
+      />
 
       <RelatedContent
         items={[
