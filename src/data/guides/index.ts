@@ -1848,9 +1848,9 @@ NISA口座で売却した利益は所得にカウントされません。FIRE後
   },
   {
     slug: "fire-first-steps",
-    title: "FIREの始め方｜初心者が最初にやるべき3つのステップ",
+    title: "FIREするには？初心者が最初にやるべき3つのステップ",
     description:
-      "FIREを目指すと決めたら、まず何をすべき？家計の把握・証券口座の開設・インデックス投資の開始という3ステップを具体的に解説します。",
+      "FIREするにはどうすればいい？FIREのやり方を3ステップで解説。家計の把握・証券口座の開設・インデックス投資の開始で、誰でも今日からFIREを目指せます。",
     publishedAt: "2026-02-17",
     heroImage: {
       src: "/images/guides/fire-first-steps/hero.webp",
