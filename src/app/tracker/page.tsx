@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import Breadcrumb from "@/components/Breadcrumb";
 import RelatedContent from "@/components/RelatedContent";
+import BrokerCtaSection from "@/components/BrokerCtaSection";
 import {
   getEntries,
   saveEntry,
@@ -307,6 +308,11 @@ export default function TrackerPage() {
           </p>
         </div>
       )}
+
+      <BrokerCtaSection
+        heading="投資を始めてFIRE達成を加速しよう"
+        description="新NISAで運用益が非課税に。証券口座を開設して資産形成をスタート"
+      />
 
       <RelatedContent
         items={[

@@ -60,7 +60,7 @@ export default async function GuidePage({
 
   const relatedArticles = article.relatedSlugs
     .map((s) => getGuideBySlug(s))
-    .filter(Boolean);
+    .filter((a): a is NonNullable<typeof a> => a != null);
 
   // 記事全体で各キーワード1回のみリンク化するためのSet
   const linkedKeywords = new Set<string>();
@@ -267,13 +267,13 @@ export default async function GuidePage({
           <div className="mt-4 grid gap-4 sm:grid-cols-2">
             {relatedArticles.map((related) => (
               <Link
-                key={related!.slug}
-                href={`/guide/${related!.slug}/`}
+                key={related.slug}
+                href={`/guide/${related.slug}/`}
                 className="link-card"
               >
-                <p className="font-bold text-gray-800">{related!.title}</p>
+                <p className="font-bold text-gray-800">{related.title}</p>
                 <p className="mt-1 text-sm text-gray-600 line-clamp-2">
-                  {related!.description}
+                  {related.description}
                 </p>
               </Link>
             ))}
