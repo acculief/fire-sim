@@ -9,6 +9,7 @@ export const metadata: Metadata = {
     title: "年代別FIREモデルケース",
     description:
       "年代・家族構成・地域別のFIREモデルケースと必要資産シミュレーション",
+    siteName: "FIREシミュレーター",
   },
 };
 

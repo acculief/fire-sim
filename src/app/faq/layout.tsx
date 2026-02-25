@@ -9,6 +9,7 @@ export const metadata: Metadata = {
     title: "よくある質問（FAQ） | FIREの疑問を解決",
     description:
       "FIREに必要な資産額、4%ルール、投資戦略など、よくある質問に回答。",
+    siteName: "FIREシミュレーター",
   },
 };
 

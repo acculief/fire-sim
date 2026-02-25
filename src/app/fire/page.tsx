@@ -15,6 +15,7 @@ export const metadata: Metadata = {
     title: "地域別FIREシミュレーション",
     description: "47都道府県対応。地域の生活費水準に基づくFIRE必要資産を無料で計算",
     url: "/fire/",
+    siteName: "FIREシミュレーター",
   },
 };
 

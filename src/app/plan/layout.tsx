@@ -9,6 +9,7 @@ export const metadata: Metadata = {
     title: "年収×年代別 FIREプラン",
     description:
       "年収と年代の組み合わせ別にFIRE必要資産と達成年齢をシミュレーション",
+    siteName: "FIREシミュレーター",
   },
 };
 
