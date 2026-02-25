@@ -22,13 +22,20 @@ export async function generateMetadata({
   const { pref } = await params;
   const prefecture = getPrefectureByCode(pref);
   const name = prefecture?.name ?? pref;
+  const costDesc = prefecture?.costIndex
+    ? prefecture.costIndex > 1.0
+      ? `全国平均より${Math.round((prefecture.costIndex - 1.0) * 100)}%高い`
+      : prefecture.costIndex < 1.0
+        ? `全国平均より${Math.round((1.0 - prefecture.costIndex) * 100)}%低い`
+        : "全国平均と同水準の"
+    : "";
   return {
-    title: `${name}のFIREシミュレーション | 必要資産・達成年を計算`,
-    description: `${name}在住の方向けFIREシミュレーション。地域の生活費係数（${prefecture?.costIndex}）を反映した必要資産額と達成年を計算できます。`,
+    title: `${name}のFIREシミュレーション | 必要資産・達成年を無料計算`,
+    description: `${name}在住の方向けFIREシミュレーション。${costDesc}生活費水準を反映し、FIRE達成に必要な資産額と年数を無料で計算。家族構成・年収・住居別の比較も。`,
     alternates: { canonical: `/fire/${pref}/` },
     openGraph: {
       title: `${name}のFIREシミュレーション`,
-      description: `${name}の生活費に基づくFIRE必要資産と達成年`,
+      description: `${name}の生活費に基づくFIRE必要資産と達成年を無料で計算`,
       url: `/fire/${pref}/`,
     },
   };
