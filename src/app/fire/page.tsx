@@ -88,7 +88,7 @@ export default function FireIndexPage() {
         items={[
           { href: "/guide/fire-by-region/", title: "地域別FIRE戦略", description: "地方移住とFIREの関係を解説" },
           { href: "/guide/side-fire/", title: "サイドFIREとは", description: "完全リタイアではない柔軟なFIRE" },
-          { href: "/cases/", title: "モデルケース", description: "年代別のFIRE達成プランを参考に" },
+          { href: "/compound/", title: "複利計算シミュレーション", description: "積立投資の将来額を複利で計算" },
           { href: "/income/", title: "手取り早見表", description: "年収別の手取り額・税金を確認" },
         ]}
       />

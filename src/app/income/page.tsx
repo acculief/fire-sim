@@ -278,9 +278,9 @@ export default function IncomePage() {
             description: "手取りを最大化して資産形成を加速する方法",
           },
           {
-            href: "/recommend/",
-            title: "おすすめ証券口座",
-            description: "FIRE達成に最適な証券口座を比較",
+            href: "/compound/",
+            title: "複利計算シミュレーション",
+            description: "積立投資の将来額を複利で計算",
           },
           {
             href: "/diagnose/",

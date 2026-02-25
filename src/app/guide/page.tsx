@@ -77,8 +77,8 @@ export default function GuidesIndexPage() {
         items={[
           { href: "/simulate/", title: "FIREシミュレーション", description: "条件に合わせて必要資産を計算" },
           { href: "/diagnose/", title: "FIRE達成度診断", description: "6つの質問でFIREグレードを判定" },
+          { href: "/compound/", title: "複利計算シミュレーション", description: "積立投資の将来額を複利で計算" },
           { href: "/cases/", title: "モデルケース", description: "年代別のFIRE達成プランを参考に" },
-          { href: "/faq/", title: "よくある質問", description: "FIREに関する疑問をまとめて解説" },
         ]}
       />
 

@@ -533,6 +533,13 @@ export default function RecommendPage() {
             <p className="font-bold text-gray-800">取り崩しシミュレーション</p>
             <p className="mt-1 text-xs text-gray-600">FIRE後に資産が何歳まで持つか計算</p>
           </Link>
+          <Link
+            href="/compound/"
+            className="block rounded-lg border border-gray-200 bg-white p-3 text-sm transition-colors hover:border-primary-300 hover:bg-primary-50"
+          >
+            <p className="font-bold text-gray-800">複利計算シミュレーション</p>
+            <p className="mt-1 text-xs text-gray-600">積立投資の将来額を複利で計算</p>
+          </Link>
         </div>
       </div>
 
