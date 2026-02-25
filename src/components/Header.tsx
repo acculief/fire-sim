@@ -10,6 +10,7 @@ const menuSections = [
       { href: "/simulate/", text: "シミュレーション" },
       { href: "/diagnose/", text: "FIRE診断" },
       { href: "/withdraw/", text: "取り崩しシミュレーション" },
+      { href: "/compound/", text: "複利計算シミュレーション" },
       { href: "/tracker/", text: "進捗トラッカー" },
     ],
   },
@@ -76,6 +77,7 @@ export default function Header() {
           <Link href="/simulate/" className="text-gray-600 transition-colors hover:text-primary-600">シミュレーション</Link>
           <Link href="/diagnose/" className="text-gray-600 transition-colors hover:text-primary-600">診断</Link>
           <Link href="/withdraw/" className="text-gray-600 transition-colors hover:text-primary-600">取り崩し</Link>
+          <Link href="/compound/" className="text-gray-600 transition-colors hover:text-primary-600">複利計算</Link>
           <Link href="/tracker/" className="text-gray-600 transition-colors hover:text-primary-600">トラッカー</Link>
           <Link href="/guide/" className="text-gray-600 transition-colors hover:text-primary-600">ガイド</Link>
           <Link href="/recommend/" className="text-gray-600 transition-colors hover:text-primary-600">おすすめ</Link>

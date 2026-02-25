@@ -85,6 +85,13 @@ export default function HomePage() {
             <p className="mt-1 text-xs text-gray-600">FIRE後の資産寿命を計算</p>
           </Link>
           <Link
+            href="/compound/"
+            className="link-card"
+          >
+            <p className="font-bold text-gray-800">複利計算シミュレーション</p>
+            <p className="mt-1 text-xs text-gray-600">積立投資の将来額を計算</p>
+          </Link>
+          <Link
             href="/recommend/"
             className="link-card"
           >

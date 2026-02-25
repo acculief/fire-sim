@@ -76,6 +76,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   });
 
+  // 複利計算シミュレーション
+  entries.push({
+    url: `${BASE_URL}/compound/`,
+    lastModified: new Date("2026-02-25"),
+    changeFrequency: "monthly",
+    priority: 0.8,
+  });
+
   // 地域別一覧ページ
   entries.push({
     url: `${BASE_URL}/fire/`,
