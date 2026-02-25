@@ -71,13 +71,6 @@ export default function HomePage() {
             <p className="mt-1 text-xs text-gray-600">約1分で達成度を診断</p>
           </Link>
           <Link
-            href="/tracker/"
-            className="link-card"
-          >
-            <p className="font-bold text-gray-800">進捗トラッカー</p>
-            <p className="mt-1 text-xs text-gray-600">毎月の資産推移を記録</p>
-          </Link>
-          <Link
             href="/withdraw/"
             className="link-card"
           >

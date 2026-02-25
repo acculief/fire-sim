@@ -520,13 +520,6 @@ export default function RecommendPage() {
             <p className="mt-1 text-xs text-gray-600">6つの質問であなたのFIRE達成度を診断</p>
           </Link>
           <Link
-            href="/tracker/"
-            className="block rounded-lg border border-gray-200 bg-white p-3 text-sm transition-colors hover:border-primary-300 hover:bg-primary-50"
-          >
-            <p className="font-bold text-gray-800">FIRE進捗トラッカー</p>
-            <p className="mt-1 text-xs text-gray-600">毎月の資産を記録して達成度を可視化</p>
-          </Link>
-          <Link
             href="/cases/"
             className="block rounded-lg border border-gray-200 bg-white p-3 text-sm transition-colors hover:border-primary-300 hover:bg-primary-50"
           >

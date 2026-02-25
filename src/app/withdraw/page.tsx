@@ -388,12 +388,6 @@ export default function WithdrawPage() {
               "積立投資の将来額を複利で計算",
           },
           {
-            href: "/tracker/",
-            title: "進捗トラッカー",
-            description:
-              "毎月の資産を記録して達成度を可視化",
-          },
-          {
             href: "/diagnose/",
             title: "FIRE達成度診断",
             description:

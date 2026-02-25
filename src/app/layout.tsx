@@ -97,7 +97,6 @@ export default function RootLayout({
                   <li><Link href="/diagnose/" className="hover:text-primary-600">FIRE診断</Link></li>
                   <li><Link href="/withdraw/" className="hover:text-primary-600">取り崩しシミュレーション</Link></li>
                   <li><Link href="/compound/" className="hover:text-primary-600">複利計算シミュレーション</Link></li>
-                  <li><Link href="/tracker/" className="hover:text-primary-600">進捗トラッカー</Link></li>
                   <li><Link href="/guide/" className="hover:text-primary-600">ガイド記事</Link></li>
                   <li><Link href="/recommend/" className="hover:text-primary-600">おすすめツール</Link></li>
                   <li><Link href="/fire/" className="hover:text-primary-600">地域別一覧</Link></li>

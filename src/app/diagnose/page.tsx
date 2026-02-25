@@ -1104,9 +1104,9 @@ export default function DiagnosePage() {
             heading="次のステップ"
             items={[
               {
-                href: "/tracker/",
-                title: "FIRE進捗トラッカー",
-                description: "毎月の資産を記録してFIRE達成度を可視化",
+                href: "/compound/",
+                title: "複利計算シミュレーション",
+                description: "積立投資の将来額を複利で計算",
               },
               {
                 href: "/withdraw/",

@@ -60,14 +60,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   });
 
-  // FIRE進捗トラッカー
-  entries.push({
-    url: `${BASE_URL}/tracker/`,
-    lastModified: new Date("2026-02-23"),
-    changeFrequency: "monthly",
-    priority: 0.7,
-  });
-
   // 取り崩しシミュレーション
   entries.push({
     url: `${BASE_URL}/withdraw/`,

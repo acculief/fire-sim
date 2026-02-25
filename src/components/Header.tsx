@@ -11,7 +11,6 @@ const menuSections = [
       { href: "/diagnose/", text: "FIRE診断" },
       { href: "/withdraw/", text: "取り崩しシミュレーション" },
       { href: "/compound/", text: "複利計算シミュレーション" },
-      { href: "/tracker/", text: "進捗トラッカー" },
     ],
   },
   {
@@ -45,7 +44,6 @@ export default function Header() {
   useEffect(() => {
     if (open) {
       document.addEventListener("keydown", handleEscape);
-      // Focus the close button inside the menu
       const closeBtn = menuRef.current?.querySelector<HTMLButtonElement>("button[aria-label]");
       closeBtn?.focus();
       document.body.style.overflow = "hidden";
@@ -54,7 +52,6 @@ export default function Header() {
         document.body.style.overflow = "";
       };
     } else {
-      // Restore focus to hamburger button when menu closes
       hamburgerRef.current?.focus();
     }
   }, [open, handleEscape]);
@@ -69,62 +66,41 @@ export default function Header() {
           FIREシミュレーター
         </Link>
 
-        {/* PC nav */}
-        <nav
-          aria-label="メインナビゲーション"
-          className="hidden gap-3 text-sm sm:flex"
+        {/* Hamburger button */}
+        <button
+          ref={hamburgerRef}
+          type="button"
+          aria-label={open ? "メニューを閉じる" : "メニューを開く"}
+          aria-expanded={open}
+          onClick={() => setOpen((v) => !v)}
+          className="flex h-11 w-11 items-center justify-center rounded text-gray-600 transition-colors hover:bg-gray-100 hover:text-primary-600"
         >
-          <Link href="/simulate/" className="text-gray-600 transition-colors hover:text-primary-600">シミュレーション</Link>
-          <Link href="/diagnose/" className="text-gray-600 transition-colors hover:text-primary-600">診断</Link>
-          <Link href="/withdraw/" className="text-gray-600 transition-colors hover:text-primary-600">取り崩し</Link>
-          <Link href="/compound/" className="text-gray-600 transition-colors hover:text-primary-600">複利計算</Link>
-          <Link href="/tracker/" className="text-gray-600 transition-colors hover:text-primary-600">トラッカー</Link>
-          <Link href="/guide/" className="text-gray-600 transition-colors hover:text-primary-600">ガイド</Link>
-          <Link href="/recommend/" className="text-gray-600 transition-colors hover:text-primary-600">おすすめ</Link>
-          <Link href="/fire/" className="text-gray-600 transition-colors hover:text-primary-600">地域別</Link>
-          <Link href="/income/" className="text-gray-600 transition-colors hover:text-primary-600">手取り</Link>
-          <Link href="/cases/" className="text-gray-600 transition-colors hover:text-primary-600">事例</Link>
-          <Link href="/plan/" className="text-gray-600 transition-colors hover:text-primary-600">プラン</Link>
-          <Link href="/faq/" className="text-gray-600 transition-colors hover:text-primary-600">FAQ</Link>
-        </nav>
-
-        {/* Mobile hamburger */}
-        <div className="flex items-center sm:hidden">
-          <button
-            ref={hamburgerRef}
-            type="button"
-            aria-label={open ? "メニューを閉じる" : "メニューを開く"}
-            aria-expanded={open}
-            onClick={() => setOpen((v) => !v)}
-            className="flex h-11 w-11 items-center justify-center rounded text-gray-600 transition-colors hover:bg-gray-100 hover:text-primary-600"
-          >
-            {open ? (
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-                <path d="M5 5l10 10M15 5L5 15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-              </svg>
-            ) : (
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-                <path d="M3 5h14M3 10h14M3 15h14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-              </svg>
-            )}
-          </button>
-        </div>
+          {open ? (
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+              <path d="M5 5l10 10M15 5L5 15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+            </svg>
+          ) : (
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+              <path d="M3 5h14M3 10h14M3 15h14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+            </svg>
+          )}
+        </button>
       </div>
 
-      {/* Mobile overlay menu */}
+      {/* Overlay menu */}
       {open && (
         <>
           {/* Backdrop */}
           <div
-            className="fixed inset-0 z-40 bg-black/30 sm:hidden"
+            className="fixed inset-0 z-40 bg-black/30"
             onClick={() => setOpen(false)}
             aria-hidden="true"
           />
           {/* Menu panel */}
           <nav
             ref={menuRef}
-            aria-label="モバイルメニュー"
-            className="fixed inset-x-0 top-0 z-50 max-h-[85vh] overflow-y-auto bg-white shadow-lg sm:hidden animate-slide-down"
+            aria-label="メインメニュー"
+            className="fixed inset-x-0 top-0 z-50 max-h-[85vh] overflow-y-auto bg-white shadow-lg animate-slide-down"
           >
             {/* Close bar */}
             <div className="flex items-center justify-between border-b border-gray-100 px-4 py-3">

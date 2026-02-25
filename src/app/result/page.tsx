@@ -189,7 +189,7 @@ export default async function ResultPage({ searchParams }: Props) {
         heading="次のステップ"
         items={[
           { href: "/diagnose/", title: "FIRE達成度診断", description: "6つの質問であなたのFIREグレードを判定" },
-          { href: "/tracker/", title: "FIRE進捗トラッカー", description: "毎月の資産を記録してFIRE達成度を可視化" },
+          { href: "/compound/", title: "複利計算シミュレーション", description: "積立投資の将来額を複利で計算" },
           { href: "/withdraw/", title: "取り崩しシミュレーション", description: "FIRE後に資産が何歳まで持つか計算" },
           { href: "/cases/", title: "モデルケースを見る", description: "年代別のFIRE達成プランを参考に" },
         ]}
