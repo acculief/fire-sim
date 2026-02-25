@@ -59,6 +59,8 @@ export default function RootLayout({
       <head>
         <meta name="theme-color" content="#2563eb" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        {/* Google AdSense */}
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6737818747220655" crossOrigin="anonymous" />
       </head>
       <body>
         {GA_ID && (
