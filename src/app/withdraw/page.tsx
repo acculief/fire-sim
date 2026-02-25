@@ -6,10 +6,7 @@ import Breadcrumb from "@/components/Breadcrumb";
 import RelatedContent from "@/components/RelatedContent";
 import NumberInput from "@/components/NumberInput";
 import { formatMoney } from "@/lib/format";
-import { brokers } from "@/data/recommend";
-import BrokerCard from "@/components/BrokerCard";
-
-const affiliateBrokers = brokers.filter((b) => b.isAffiliate);
+import BrokerCtaSection from "@/components/BrokerCtaSection";
 
 /* ------------------------------------------------------------------ */
 /*  型定義                                                              */
@@ -413,29 +410,11 @@ export default function WithdrawPage() {
       </div>
 
       {/* 証券口座CTA */}
-      {affiliateBrokers.length > 0 && (
-        <div className="mt-6 rounded-xl border-2 border-accent-200 bg-accent-50 p-6">
-          <h3 className="mb-1 text-center text-lg font-bold text-accent-800">
-            FIRE後の取り崩しに備えて証券口座を準備しよう
-          </h3>
-          <p className="mb-4 text-center text-xs text-gray-600">
-            新NISAを活用すれば取り崩し時も非課税。まずは口座開設から始めましょう
-          </p>
-          <div className="space-y-3">
-            {affiliateBrokers.map((b) => (
-              <BrokerCard key={b.slug} broker={b} />
-            ))}
-          </div>
-          <div className="mt-4 flex flex-wrap justify-center gap-3 text-xs">
-            <Link href="/guide/how-to-choose-broker/" className="text-accent-700 underline hover:text-accent-600">
-              証券口座の選び方ガイド
-            </Link>
-            <Link href="/guide/nisa-fire-acceleration/" className="text-accent-700 underline hover:text-accent-600">
-              新NISAでFIRE加速
-            </Link>
-          </div>
-        </div>
-      )}
+      <BrokerCtaSection
+        heading="FIRE後の取り崩しに備えて証券口座を準備しよう"
+        description="新NISAを活用すれば取り崩し時も非課税。まずは口座開設から始めましょう"
+        className="mt-6"
+      />
     </div>
   );
 }
