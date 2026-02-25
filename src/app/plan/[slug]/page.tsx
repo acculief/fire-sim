@@ -259,9 +259,20 @@ export default async function PlanDetailPage({
     },
   };
 
+  const breadcrumbLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "ホーム", item: SITE_URL },
+      { "@type": "ListItem", position: 2, name: "プラン一覧", item: `${SITE_URL}/plan/` },
+      { "@type": "ListItem", position: 3, name: page.title, item: `${SITE_URL}/plan/${slug}/` },
+    ],
+  };
+
   return (
     <div className="mx-auto max-w-3xl px-4 py-8">
       <JsonLd data={structuredData} />
+      <JsonLd data={breadcrumbLd} />
 
       <Breadcrumb
         items={[

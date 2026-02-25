@@ -8,6 +8,7 @@ import FAQ, { getDefaultFAQ } from "@/components/FAQ";
 import Disclaimer from "@/components/Disclaimer";
 import Breadcrumb from "@/components/Breadcrumb";
 import JsonLd from "@/components/JsonLd";
+import { SITE_URL } from "@/config/site";
 import { guides } from "@/data/guides";
 
 export function generateStaticParams() {
@@ -370,6 +371,17 @@ export default async function PrefecturePage({
           "@type": "WebPage",
           name: `${prefecture.name}のFIREシミュレーション`,
           description: `${prefecture.name}在住の方向けFIREシミュレーション`,
+        }}
+      />
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            { "@type": "ListItem", position: 1, name: "ホーム", item: SITE_URL },
+            { "@type": "ListItem", position: 2, name: "地域別", item: `${SITE_URL}/fire/` },
+            { "@type": "ListItem", position: 3, name: prefecture.name, item: `${SITE_URL}/fire/${prefecture.code}/` },
+          ],
         }}
       />
     </div>

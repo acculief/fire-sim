@@ -65,9 +65,19 @@ export default function IncomePage() {
     },
   };
 
+  const breadcrumbLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "ホーム", item: SITE_URL },
+      { "@type": "ListItem", position: 2, name: "手取り早見表", item: `${SITE_URL}/income/` },
+    ],
+  };
+
   return (
     <div className="mx-auto max-w-5xl px-4 py-8">
       <JsonLd data={jsonLd} />
+      <JsonLd data={breadcrumbLd} />
 
       <Breadcrumb items={[{ label: "ホーム", href: "/" }, { label: "手取り早見表" }]} />
 

@@ -144,10 +144,21 @@ export default async function IncomeDetailPage({
     ],
   };
 
+  const breadcrumbLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "ホーム", item: SITE_URL },
+      { "@type": "ListItem", position: 2, name: "手取り早見表", item: `${SITE_URL}/income/` },
+      { "@type": "ListItem", position: 3, name: `年収${level.toLocaleString()}万円`, item: `${SITE_URL}/income/${level}/` },
+    ],
+  };
+
   return (
     <div className="mx-auto max-w-3xl px-4 py-8">
       <JsonLd data={jsonLd} />
       <JsonLd data={faqLd} />
+      <JsonLd data={breadcrumbLd} />
 
       <Breadcrumb
         items={[
