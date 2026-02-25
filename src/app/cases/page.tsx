@@ -5,6 +5,7 @@ import { formatMoney } from "@/lib/format";
 import Breadcrumb from "@/components/Breadcrumb";
 import JsonLd from "@/components/JsonLd";
 import RelatedContent from "@/components/RelatedContent";
+import BrokerCtaSection from "@/components/BrokerCtaSection";
 
 export const metadata: Metadata = {
   title: "年代別FIREモデルケース | 必要資産・達成年シミュレーション",
@@ -96,6 +97,8 @@ export default function CasesIndexPage() {
           { href: "/plan/", title: "年収×年代別プラン", description: "年収帯ごとのFIRE達成プランを確認" },
         ]}
       />
+
+      <BrokerCtaSection />
 
       {/* CTA */}
       <div className="mt-12 rounded-lg border-2 border-primary-200 bg-primary-50 p-6 text-center">

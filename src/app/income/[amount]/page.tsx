@@ -4,6 +4,7 @@ import { SITE_URL, CONTENT_PUBLISHED_DATE } from "@/config/site";
 import Breadcrumb from "@/components/Breadcrumb";
 import JsonLd from "@/components/JsonLd";
 import RelatedContent from "@/components/RelatedContent";
+import BrokerCtaSection from "@/components/BrokerCtaSection";
 import {
   INCOME_LEVELS,
   FAMILY_PATTERNS,
@@ -466,6 +467,11 @@ export default async function IncomeDetailPage({
           </div>
         </div>
       </section>
+
+      <BrokerCtaSection
+        heading="FIRE達成に向けて証券口座を準備しよう"
+        description="新NISAを活用すれば運用益が非課税に。手取りを最大化して資産形成を加速しましょう"
+      />
 
       {/* ---------- 関連コンテンツ ---------- */}
       <RelatedContent

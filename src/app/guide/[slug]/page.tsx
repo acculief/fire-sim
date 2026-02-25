@@ -7,6 +7,7 @@ import Breadcrumb from "@/components/Breadcrumb";
 import JsonLd from "@/components/JsonLd";
 import GuideImage from "@/components/GuideImage";
 import { autoLinkKeywords } from "@/lib/auto-link";
+import BrokerCtaSection from "@/components/BrokerCtaSection";
 
 export function generateStaticParams() {
   return guides.map((g) => ({ slug: g.slug }));
@@ -259,6 +260,8 @@ export default async function GuidePage({
           おすすめツール・書籍を見る →
         </Link>
       </div>
+
+      <BrokerCtaSection />
 
       {/* 関連記事 */}
       {relatedArticles.length > 0 && (
