@@ -248,7 +248,7 @@ export default function WithdrawPage() {
           <div className="card">
             <div className="grid gap-4 sm:grid-cols-3">
               <div className="text-center">
-                <p className="text-sm text-gray-500">資産が尽きる年齢</p>
+                <p className="text-sm text-gray-600">資産が尽きる年齢</p>
                 <p className="mt-1 text-3xl font-bold text-primary-700">
                   {result.depletionAge
                     ? `${result.depletionAge}歳`
@@ -256,14 +256,14 @@ export default function WithdrawPage() {
                 </p>
               </div>
               <div className="text-center">
-                <p className="text-sm text-gray-500">資産維持年数</p>
+                <p className="text-sm text-gray-600">資産維持年数</p>
                 <p className="mt-1 text-3xl font-bold text-gray-800">
                   {result.yearsLasted}
                   <span className="text-lg">年</span>
                 </p>
               </div>
               <div className="text-center">
-                <p className="text-sm text-gray-500">実質取り崩し率</p>
+                <p className="text-sm text-gray-600">実質取り崩し率</p>
                 <p className="mt-1 text-3xl font-bold text-gray-800">
                   {result.effectiveRate.toFixed(1)}
                   <span className="text-lg">%</span>
@@ -327,10 +327,10 @@ export default function WithdrawPage() {
           {/* 年次データテーブル */}
           <div className="card overflow-x-auto" role="region" aria-label="年次データテーブル（横スクロール可能）" tabIndex={0}>
             <h2 className="text-lg font-bold text-gray-800">年次データ</h2>
-            <p className="mt-1 text-xs text-gray-500 sm:hidden">← 横スクロールで全列を表示 →</p>
+            <p className="mt-1 text-xs text-gray-600 sm:hidden">← 横スクロールで全列を表示 →</p>
             <table className="mt-4 w-full text-sm" aria-label="取り崩しシミュレーション年次データ">
               <thead>
-                <tr className="border-b border-gray-200 text-left text-gray-500">
+                <tr className="border-b border-gray-200 text-left text-gray-600">
                   <th scope="col" className="pb-2 pr-4">年齢</th>
                   <th scope="col" className="pb-2 pr-4 text-right">残高</th>
                   <th scope="col" className="pb-2 pr-4 text-right">年間取り崩し</th>
