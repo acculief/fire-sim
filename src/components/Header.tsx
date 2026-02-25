@@ -67,14 +67,6 @@ export default function Header() {
           FIREシミュレーター
         </Link>
 
-        {/* FIREタイプ診断クイックリンク */}
-        <Link
-          href="/diagnose/type/"
-          className="hidden sm:inline-flex items-center gap-1 text-xs font-bold px-3 py-1.5 rounded-full border border-orange-300 text-orange-500 hover:bg-orange-50 transition-all"
-        >
-          🔥 タイプ診断
-        </Link>
-
         {/* Hamburger button */}
         <button
           ref={hamburgerRef}
