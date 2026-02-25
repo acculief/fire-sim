@@ -4,7 +4,6 @@ import { guides } from "@/data/guides";
 import { SITE_URL } from "@/config/site";
 import JsonLd from "@/components/JsonLd";
 import SimulationCounter from "@/components/SimulationCounter";
-import EmailSignup from "@/components/EmailSignup";
 
 const websiteSchema = {
   "@context": "https://schema.org",
@@ -186,12 +185,6 @@ export default function HomePage() {
           </Link>
         </div>
       </section>
-
-      {/* メール登録 - 一時非表示
-      <section className="mt-12">
-        <EmailSignup />
-      </section>
-      */}
 
       {/* CTA */}
       <section className="mt-12 text-center">
