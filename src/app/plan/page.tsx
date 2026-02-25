@@ -7,6 +7,7 @@ import { estimatePostFireMonthlyCost } from "@/config/assumptions";
 import Breadcrumb from "@/components/Breadcrumb";
 import JsonLd from "@/components/JsonLd";
 import RelatedContent from "@/components/RelatedContent";
+import { SITE_URL } from "@/config/site";
 
 export const metadata: Metadata = {
   title: "年収×年代別 FIREプラン一覧 | 必要資産シミュレーション",
@@ -58,6 +59,16 @@ export default function PlanIndexPage() {
   return (
     <div className="mx-auto max-w-4xl px-4 py-8">
       <JsonLd data={structuredData} />
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            { "@type": "ListItem", position: 1, name: "ホーム", item: SITE_URL },
+            { "@type": "ListItem", position: 2, name: "プラン一覧", item: `${SITE_URL}/plan/` },
+          ],
+        }}
+      />
       <Breadcrumb
         items={[
           { label: "ホーム", href: "/" },

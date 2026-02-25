@@ -66,6 +66,17 @@ export default async function IncomePage({
           isPartOf: { "@type": "WebSite", name: "FIREシミュレーター", url: SITE_URL },
         }}
       />
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            { "@type": "ListItem", position: 1, name: "ホーム", item: SITE_URL },
+            { "@type": "ListItem", position: 2, name: prefecture.name, item: `${SITE_URL}/fire/${pref}/` },
+            { "@type": "ListItem", position: 3, name: `年収${income}万円`, item: `${SITE_URL}/fire/${pref}/income/${n}/` },
+          ],
+        }}
+      />
       <Breadcrumb
         items={[
           { label: "ホーム", href: "/" },

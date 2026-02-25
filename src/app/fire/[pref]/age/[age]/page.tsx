@@ -68,6 +68,17 @@ export default async function AgePage({
           isPartOf: { "@type": "WebSite", name: "FIREシミュレーター", url: SITE_URL },
         }}
       />
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            { "@type": "ListItem", position: 1, name: "ホーム", item: SITE_URL },
+            { "@type": "ListItem", position: 2, name: prefecture.name, item: `${SITE_URL}/fire/${pref}/` },
+            { "@type": "ListItem", position: 3, name: ageGroup.label, item: `${SITE_URL}/fire/${pref}/age/${age}/` },
+          ],
+        }}
+      />
       <Breadcrumb
         items={[
           { label: "ホーム", href: "/" },

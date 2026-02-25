@@ -247,6 +247,17 @@ export default async function RegionPage({
       <JsonLd
         data={{
           "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            { "@type": "ListItem", position: 1, name: "ホーム", item: SITE_URL },
+            { "@type": "ListItem", position: 2, name: "地域別", item: `${SITE_URL}/fire/` },
+            { "@type": "ListItem", position: 3, name: `${regionInfo.label}地方`, item: `${SITE_URL}/fire/region/${region}/` },
+          ],
+        }}
+      />
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
           "@type": "CollectionPage",
           name: `${regionInfo.label}地方のFIRE比較`,
           description: `${regionInfo.label}地方の都道府県別FIRE必要資産比較`,
