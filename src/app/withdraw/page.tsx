@@ -382,16 +382,16 @@ export default function WithdrawPage() {
               "FIRE後の取り崩し戦略の基本を解説",
           },
           {
+            href: "/compound/",
+            title: "複利計算シミュレーション",
+            description:
+              "積立投資の将来額を複利で計算",
+          },
+          {
             href: "/tracker/",
             title: "進捗トラッカー",
             description:
               "毎月の資産を記録して達成度を可視化",
-          },
-          {
-            href: "/guide/fire-index-investing/",
-            title: "インデックス投資",
-            description:
-              "資産を増やすための投資戦略ガイド",
           },
           {
             href: "/diagnose/",

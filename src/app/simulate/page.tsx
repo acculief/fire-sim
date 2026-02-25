@@ -125,6 +125,7 @@ export default function SimulatePage() {
           { href: "/diagnose/", title: "FIRE達成度診断", description: "6つの質問でFIREグレードを判定" },
           { href: "/cases/", title: "年代別モデルケース", description: "同世代のFIREプランを参考に" },
           { href: "/withdraw/", title: "取り崩しシミュレーション", description: "FIRE後に資産が何歳まで持つか計算" },
+          { href: "/compound/", title: "複利計算シミュレーション", description: "積立投資の将来額を複利で計算" },
           { href: "/income/", title: "手取り早見表", description: "年収別の手取り額・税金を確認" },
         ]}
       />

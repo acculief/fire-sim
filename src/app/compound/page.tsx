@@ -222,25 +222,25 @@ export default function CompoundPage() {
           <div className="card">
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
               <div className="text-center">
-                <p className="text-sm text-gray-500">最終資産額</p>
+                <p className="text-sm text-gray-600">最終資産額</p>
                 <p className="mt-1 text-3xl font-bold text-primary-700">
                   {formatMoney(result.totalAssets)}
                 </p>
               </div>
               <div className="text-center">
-                <p className="text-sm text-gray-500">投資元本</p>
+                <p className="text-sm text-gray-600">投資元本</p>
                 <p className="mt-1 text-3xl font-bold text-gray-800">
                   {formatMoney(result.totalPrincipal)}
                 </p>
               </div>
               <div className="text-center">
-                <p className="text-sm text-gray-500">運用益</p>
+                <p className="text-sm text-gray-600">運用益</p>
                 <p className="mt-1 text-3xl font-bold text-accent-700">
                   +{formatMoney(result.totalReturn)}
                 </p>
               </div>
               <div className="text-center">
-                <p className="text-sm text-gray-500">運用益率</p>
+                <p className="text-sm text-gray-600">運用益率</p>
                 <p className="mt-1 text-3xl font-bold text-gray-800">
                   +{result.returnRate.toFixed(1)}
                   <span className="text-lg">%</span>
@@ -252,7 +252,7 @@ export default function CompoundPage() {
           {/* 積み上げバーチャート */}
           <div className="card">
             <h2 className="text-lg font-bold text-gray-800">資産推移</h2>
-            <div className="mt-1 flex items-center gap-4 text-xs text-gray-500">
+            <div className="mt-1 flex items-center gap-4 text-xs text-gray-600">
               <span className="flex items-center gap-1">
                 <span className="inline-block h-3 w-3 rounded bg-primary-400" />
                 元本
@@ -309,7 +309,7 @@ export default function CompoundPage() {
             tabIndex={0}
           >
             <h2 className="text-lg font-bold text-gray-800">年次データ</h2>
-            <p className="mt-1 text-xs text-gray-500 sm:hidden">
+            <p className="mt-1 text-xs text-gray-600 sm:hidden">
               ← 横スクロールで全列を表示 →
             </p>
             <table
@@ -317,7 +317,7 @@ export default function CompoundPage() {
               aria-label="複利計算シミュレーション年次データ"
             >
               <thead>
-                <tr className="border-b border-gray-200 text-left text-gray-500">
+                <tr className="border-b border-gray-200 text-left text-gray-600">
                   <th scope="col" className="pb-2 pr-4">
                     年数
                   </th>
