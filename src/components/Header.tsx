@@ -9,6 +9,7 @@ const menuSections = [
     links: [
       { href: "/simulate/", text: "シミュレーション" },
       { href: "/diagnose/", text: "FIRE診断" },
+      { href: "/diagnose/type/", text: "🔥 FIREタイプ診断" },
       { href: "/withdraw/", text: "取り崩しシミュレーション" },
       { href: "/compound/", text: "複利計算シミュレーション" },
     ],
@@ -64,6 +65,14 @@ export default function Header() {
           className="shrink-0 text-base font-bold text-primary-700 sm:text-xl"
         >
           FIREシミュレーター
+        </Link>
+
+        {/* FIREタイプ診断クイックリンク */}
+        <Link
+          href="/diagnose/type/"
+          className="hidden sm:inline-flex items-center gap-1 text-xs font-bold px-3 py-1.5 rounded-full border border-orange-300 text-orange-500 hover:bg-orange-50 transition-all"
+        >
+          🔥 タイプ診断
         </Link>
 
         {/* Hamburger button */}
