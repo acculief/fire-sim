@@ -54,7 +54,7 @@ export default function FireIndexPage() {
                     className="flex items-center justify-between rounded-lg border border-gray-200 bg-white px-4 py-3 transition-colors hover:border-primary-300 hover:bg-primary-50"
                   >
                     <span className="font-medium text-gray-800">{p.name}</span>
-                    <span className="text-sm text-gray-500">
+                    <span className="text-sm text-gray-600">
                       係数 {p.costIndex}
                     </span>
                   </Link>
@@ -68,7 +68,7 @@ export default function FireIndexPage() {
       {/* 地方別比較リンク */}
       <section className="mt-10">
         <h2 className="text-lg font-bold text-gray-800">地方別のFIRE比較</h2>
-        <p className="mt-1 text-sm text-gray-500">
+        <p className="mt-1 text-sm text-gray-600">
           地方ごとの都道府県を比較して、FIREに有利な地域を見つけましょう
         </p>
         <div className="mt-3 grid gap-2 sm:grid-cols-2 md:grid-cols-4">

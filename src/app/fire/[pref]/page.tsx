@@ -89,7 +89,7 @@ export default async function PrefecturePage({
         <h2 className="text-xl font-bold text-gray-900">
           {prefecture.name}の代表的なケース
         </h2>
-        <p className="mt-1 text-sm text-gray-500">
+        <p className="mt-1 text-sm text-gray-600">
           30歳開始、資産300万円、月10万円積立、利回り4%、SWR4%の場合
         </p>
         <div className="mt-4 overflow-x-auto">
@@ -244,7 +244,7 @@ export default async function PrefecturePage({
             <h2 className="text-xl font-bold text-gray-900">
               {prefecture.region}の生活費比較
             </h2>
-            <p className="mt-1 text-sm text-gray-500">
+            <p className="mt-1 text-sm text-gray-600">
               {prefecture.region}内の都道府県を生活費係数で比較
             </p>
             <div className="mt-4 overflow-x-auto">

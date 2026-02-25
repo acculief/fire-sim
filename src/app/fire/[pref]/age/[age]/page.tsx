@@ -103,19 +103,19 @@ export default async function AgePage({
         <div className="mt-3 rounded-lg border border-gray-200 bg-gray-50 p-4">
           <dl className="grid grid-cols-2 gap-3 text-sm sm:grid-cols-4">
             <div>
-              <dt className="text-gray-500">開始年齢</dt>
+              <dt className="text-gray-600">開始年齢</dt>
               <dd className="font-bold text-gray-800">{ageGroup.representativeAge}歳</dd>
             </div>
             <div>
-              <dt className="text-gray-500">初期資産</dt>
+              <dt className="text-gray-600">初期資産</dt>
               <dd className="font-bold text-gray-800">{ageGroup.currentAssets}万円</dd>
             </div>
             <div>
-              <dt className="text-gray-500">月間積立</dt>
+              <dt className="text-gray-600">月間積立</dt>
               <dd className="font-bold text-gray-800">{ageGroup.monthlyInvestment}万円</dd>
             </div>
             <div>
-              <dt className="text-gray-500">運用利回り</dt>
+              <dt className="text-gray-600">運用利回り</dt>
               <dd className="font-bold text-gray-800">4.0%</dd>
             </div>
           </dl>
@@ -128,7 +128,7 @@ export default async function AgePage({
       {/* 年収別比較表 */}
       <section className="mt-8">
         <h2 className="text-xl font-bold text-gray-900">年収別の比較</h2>
-        <p className="mt-1 text-sm text-gray-500">
+        <p className="mt-1 text-sm text-gray-600">
           {ageGroup.representativeAge}歳開始、資産{ageGroup.currentAssets}万円、
           月{ageGroup.monthlyInvestment}万円積立、利回り4%、SWR4%の場合
         </p>

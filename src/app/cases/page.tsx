@@ -64,19 +64,19 @@ export default function CasesIndexPage() {
             <h2 className="text-lg font-bold text-gray-800">{c.title}</h2>
             <p className="mt-1 text-sm text-gray-600">{c.subtitle}</p>
             <div className="mt-3 flex flex-wrap gap-x-6 gap-y-1 text-sm">
-              <span className="text-gray-500">
+              <span className="text-gray-600">
                 FIRE必要資産{" "}
                 <span className="font-bold text-primary-700">
                   {formatMoney(c.fireNumber)}
                 </span>
               </span>
-              <span className="text-gray-500">
+              <span className="text-gray-600">
                 達成年齢{" "}
                 <span className="font-bold text-primary-700">
                   {c.achievementAge !== null ? `${c.achievementAge}歳` : "ー"}
                 </span>
               </span>
-              <span className="text-gray-500">
+              <span className="text-gray-600">
                 月間生活費{" "}
                 <span className="font-bold text-gray-700">
                   {c.monthlyExpense}万円

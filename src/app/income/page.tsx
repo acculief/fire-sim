@@ -126,9 +126,10 @@ export default function IncomePage() {
                   <td className="px-3 py-2.5 text-right text-gray-600">
                     {man(row.single.socialInsurance.total)}
                   </td>
-                  <td className="px-3 py-2.5 text-right text-gray-500">
+                  <td className="px-3 py-2.5 text-right text-gray-600">
                     {row.single.takeHomeRate}%
                   </td>
+
                 </tr>
               ))}
             </tbody>

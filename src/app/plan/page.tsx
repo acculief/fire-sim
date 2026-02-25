@@ -90,7 +90,7 @@ export default function PlanIndexPage() {
                   <h3 className="font-bold text-gray-800">
                     年収{page.annualIncome}万円
                   </h3>
-                  <p className="mt-2 text-sm text-gray-500">
+                  <p className="mt-2 text-sm text-gray-600">
                     FIRE必要資産（独身・全国平均）
                   </p>
                   <p className="text-lg font-bold text-primary-700">

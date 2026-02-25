@@ -203,7 +203,7 @@ export default async function CaseDetailPage({
         {c.title}
       </h1>
       <p className="mt-2 text-lg text-gray-600">{c.subtitle}</p>
-      <p className="mt-3 text-sm text-gray-500">{c.description}</p>
+      <p className="mt-3 text-sm text-gray-600">{c.description}</p>
 
       {/* 主要数値カード */}
       <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4">

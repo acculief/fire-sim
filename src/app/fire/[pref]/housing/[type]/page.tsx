@@ -103,7 +103,7 @@ export default async function HousingPage({
       {/* 年収別比較表 */}
       <section className="mt-8">
         <h2 className="text-xl font-bold text-gray-900">年収別の比較</h2>
-        <p className="mt-1 text-sm text-gray-500">
+        <p className="mt-1 text-sm text-gray-600">
           30歳開始、資産300万円、月10万円積立、利回り4%、SWR4%、{housingLabel}の場合
         </p>
         <div className="mt-4 overflow-x-auto">
@@ -137,7 +137,7 @@ export default async function HousingPage({
         <h2 className="text-xl font-bold text-gray-900">
           住宅タイプ別の比較（年収500万円の場合）
         </h2>
-        <p className="mt-1 text-sm text-gray-500">
+        <p className="mt-1 text-sm text-gray-600">
           {prefecture.name}・年収500万円・独身・30歳開始の場合
         </p>
         <div className="mt-4 overflow-x-auto">

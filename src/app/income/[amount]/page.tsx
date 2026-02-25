@@ -345,7 +345,7 @@ export default async function IncomeDetailPage({
               <tr>
                 <td className="px-3 py-2.5 text-gray-600">手取り率</td>
                 {FAMILY_PATTERNS.map((f) => (
-                  <td key={f} className="px-3 py-2.5 text-right text-gray-500">
+                  <td key={f} className="px-3 py-2.5 text-right text-gray-600">
                     {results[f].takeHomeRate}%
                   </td>
                 ))}

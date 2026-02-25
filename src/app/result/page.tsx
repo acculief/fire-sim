@@ -82,14 +82,14 @@ export default async function ResultPage({ searchParams }: Props) {
         </div>
         <div className="p-6 sm:p-8">
           {pref && (
-            <p className="mb-1 text-center text-sm text-gray-500">
+            <p className="mb-1 text-center text-sm text-gray-600">
               {pref}在住 / {strategy}
             </p>
           )}
 
           {fire !== null && (
             <div className="text-center">
-              <p className="text-sm font-medium text-gray-500">FIRE必要資産</p>
+              <p className="text-sm font-medium text-gray-600">FIRE必要資産</p>
               <p className="mt-1 text-4xl font-black text-primary-700 sm:text-5xl">
                 {fire.toLocaleString()}
                 <span className="text-xl font-bold text-primary-500">万円</span>
@@ -103,7 +103,7 @@ export default async function ResultPage({ searchParams }: Props) {
                 <p className="text-xs text-gray-600">達成予測年齢</p>
                 <p className="mt-1 text-2xl font-bold text-gray-800">
                   {age}
-                  <span className="text-sm text-gray-500">歳</span>
+                  <span className="text-sm text-gray-600">歳</span>
                 </p>
               </div>
             )}
@@ -112,7 +112,7 @@ export default async function ResultPage({ searchParams }: Props) {
                 <p className="text-xs text-gray-600">月間生活費</p>
                 <p className="mt-1 text-2xl font-bold text-gray-800">
                   {expense}
-                  <span className="text-sm text-gray-500">万円</span>
+                  <span className="text-sm text-gray-600">万円</span>
                 </p>
               </div>
             )}
@@ -123,7 +123,7 @@ export default async function ResultPage({ searchParams }: Props) {
               <p className="text-lg font-bold text-gray-700">
                 シミュレーション結果を表示するには
               </p>
-              <p className="mt-2 text-sm text-gray-500">
+              <p className="mt-2 text-sm text-gray-600">
                 まずはシミュレーションを実行して、結果を共有しましょう
               </p>
             </div>

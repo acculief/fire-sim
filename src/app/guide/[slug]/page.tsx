@@ -121,7 +121,7 @@ export default async function GuidePage({
         <p className="mt-3 text-gray-600">{article.description}</p>
         <time
           dateTime={article.publishedAt}
-          className="mt-2 block text-sm text-gray-500"
+          className="mt-2 block text-sm text-gray-600"
         >
           {article.publishedAt}
         </time>
@@ -272,7 +272,7 @@ export default async function GuidePage({
                 className="link-card"
               >
                 <p className="font-bold text-gray-800">{related!.title}</p>
-                <p className="mt-1 text-sm text-gray-500 line-clamp-2">
+                <p className="mt-1 text-sm text-gray-600 line-clamp-2">
                   {related!.description}
                 </p>
               </Link>

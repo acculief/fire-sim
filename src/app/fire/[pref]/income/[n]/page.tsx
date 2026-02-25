@@ -94,7 +94,7 @@ export default async function IncomePage({
       {/* 家族構成別比較 */}
       <section className="mt-8">
         <h2 className="text-xl font-bold text-gray-900">家族構成別の比較</h2>
-        <p className="mt-1 text-sm text-gray-500">
+        <p className="mt-1 text-sm text-gray-600">
           30歳開始、資産300万円、月10万円積立、利回り4%、SWR4%の場合
         </p>
         <div className="mt-4 overflow-x-auto">

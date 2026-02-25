@@ -78,7 +78,7 @@ export default async function RegionPage({
         </h2>
         <div className="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-3">
           <div className="rounded-lg border border-gray-200 bg-white p-4 text-center">
-            <p className="text-sm text-gray-500">平均生活費係数</p>
+            <p className="text-sm text-gray-600">平均生活費係数</p>
             <p className="text-2xl font-bold text-gray-800">{avgCostIndex}</p>
           </div>
           {comparison.length > 1 && (
@@ -105,7 +105,7 @@ export default async function RegionPage({
         <h2 className="text-xl font-bold text-gray-900">
           都道府県別FIRE比較表
         </h2>
-        <p className="mt-1 text-sm text-gray-500">
+        <p className="mt-1 text-sm text-gray-600">
           年収500万円・独身・30歳開始、資産300万円、月10万円積立、利回り4%、SWR4%の場合
         </p>
         <div className="mt-4 overflow-x-auto">
@@ -189,7 +189,7 @@ export default async function RegionPage({
               className="flex items-center justify-between rounded-lg border border-gray-200 bg-white px-4 py-3 transition-colors hover:border-primary-300 hover:bg-primary-50"
             >
               <span className="font-medium text-gray-800">{c.name}</span>
-              <span className="text-sm text-gray-500">係数 {c.costIndex}</span>
+              <span className="text-sm text-gray-600">係数 {c.costIndex}</span>
             </Link>
           ))}
         </div>
