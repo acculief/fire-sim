@@ -103,6 +103,7 @@ export default function RootLayout({
                   <li><Link href="/income/" className="inline-flex min-h-[44px] items-center hover:text-primary-600">手取り早見表</Link></li>
                   <li><Link href="/cases/" className="inline-flex min-h-[44px] items-center hover:text-primary-600">モデルケース</Link></li>
                   <li><Link href="/plan/" className="inline-flex min-h-[44px] items-center hover:text-primary-600">年収×年代別プラン</Link></li>
+                  <li><Link href="/tracker/" className="inline-flex min-h-[44px] items-center hover:text-primary-600">FIRE進捗トラッカー</Link></li>
                   <li><Link href="/faq/" className="inline-flex min-h-[44px] items-center hover:text-primary-600">よくある質問</Link></li>
                 </ul>
               </nav>
