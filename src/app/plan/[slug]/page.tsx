@@ -19,6 +19,7 @@ import { INCOME_LEVELS as TAKE_HOME_LEVELS } from "@/lib/income-tax";
 import Breadcrumb from "@/components/Breadcrumb";
 import JsonLd from "@/components/JsonLd";
 import BrokerCtaSection from "@/components/BrokerCtaSection";
+import DiagnoseCtaSection from "@/components/DiagnoseCtaSection";
 
 /* ---------- types ---------- */
 
@@ -526,20 +527,11 @@ export default async function PlanDetailPage({
       <BrokerCtaSection />
 
       {/* FIRE診断CTA */}
-      <div className="mt-8 rounded-lg border border-accent-200 bg-accent-50 p-6 text-center">
-        <p className="font-bold text-accent-800">
-          あなたのFIRE達成度をチェックしよう
-        </p>
-        <p className="mt-1 text-sm text-accent-700">
-          6つの質問に答えるだけで、FIREグレードと達成予測年齢がわかります
-        </p>
-        <Link
-          href="/diagnose/"
-          className="mt-3 inline-block rounded-lg bg-accent-600 px-6 py-2.5 text-sm font-bold text-white transition-colors hover:bg-accent-700"
-        >
-          約1分でFIRE診断
-        </Link>
-      </div>
+      <DiagnoseCtaSection
+        heading="あなたのFIRE達成度をチェックしよう"
+        description="6つの質問に答えるだけで、FIREグレードと達成予測年齢がわかります"
+        className="mt-8"
+      />
     </div>
   );
 }

@@ -11,6 +11,7 @@ import RelatedGuides from "@/components/RelatedGuides";
 import JsonLd from "@/components/JsonLd";
 import { SITE_URL, CONTENT_PUBLISHED_DATE } from "@/config/site";
 import BrokerCtaSection from "@/components/BrokerCtaSection";
+import DiagnoseCtaSection from "@/components/DiagnoseCtaSection";
 
 export function generateStaticParams() {
   const params: { pref: string; n: string }[] = [];
@@ -182,13 +183,7 @@ export default async function IncomePage({
         </Link>
       </section>
 
-      <div className="mt-6 rounded-lg border border-accent-200 bg-accent-50 p-5 text-center">
-        <p className="font-bold text-accent-800">FIRE達成度をチェック</p>
-        <p className="mt-1 text-sm text-accent-700">6つの質問であなたのFIREグレードを判定</p>
-        <Link href="/diagnose/" className="mt-3 inline-block rounded-lg bg-accent-600 px-6 py-2.5 text-sm font-bold text-white transition-colors hover:bg-accent-700">
-          約1分でFIRE診断
-        </Link>
-      </div>
+      <DiagnoseCtaSection />
 
       <BrokerCtaSection />
 
