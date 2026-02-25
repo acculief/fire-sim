@@ -116,7 +116,7 @@ export default function SimulatePage() {
         </p>
       </div>
 
-      <Suspense fallback={<div className="text-center text-sm text-gray-500" role="status" aria-live="polite">読み込み中...</div>}>
+      <Suspense fallback={<div className="text-center text-sm text-gray-600" role="status" aria-live="polite">読み込み中...</div>}>
         <SimulateContent />
       </Suspense>
 

@@ -443,7 +443,7 @@ const ProgressBar = memo(function ProgressBar({ step, total }: { step: number; t
   const pct = (step / total) * 100;
   return (
     <div className="mx-auto mb-8 w-full max-w-md">
-      <div className="mb-2 flex justify-between text-xs font-medium text-gray-500">
+      <div className="mb-2 flex justify-between text-xs font-medium text-gray-600">
         <span>
           質問 {step} / {total}
         </span>
@@ -473,7 +473,7 @@ const BackButton = memo(function BackButton({ onClick }: { onClick: () => void }
       <button
         type="button"
         onClick={onClick}
-        className="inline-flex min-h-[44px] items-center gap-1 text-sm text-gray-500 transition-colors hover:text-gray-700"
+        className="inline-flex min-h-[44px] items-center gap-1 text-sm text-gray-600 transition-colors hover:text-gray-700"
       >
         <svg className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
           <path fillRule="evenodd" d="M12.79 5.23a.75.75 0 01-.02 1.06L8.832 10l3.938 3.71a.75.75 0 11-1.04 1.08l-4.5-4.25a.75.75 0 010-1.08l4.5-4.25a.75.75 0 011.06.02z" clipRule="evenodd" />
@@ -593,7 +593,7 @@ export default function DiagnosePage() {
             <span className="font-bold text-primary-600">6つの質問</span>
             であなた専用のFIRE達成度を診断します。
           </p>
-          <p className="mt-1 text-sm text-gray-500">所要時間：約1分</p>
+          <p className="mt-1 text-sm text-gray-600">所要時間：約1分</p>
 
           <button
             type="button"
@@ -629,7 +629,7 @@ export default function DiagnosePage() {
           <h2 className="text-center text-xl font-bold text-gray-900 sm:text-2xl">
             Q1. あなたの年齢は？
           </h2>
-          <p className="mt-2 text-center text-sm text-gray-500">
+          <p className="mt-2 text-center text-sm text-gray-600">
             現在の年代を選んでください
           </p>
           <div className="mt-8 grid grid-cols-2 gap-3">
@@ -654,7 +654,7 @@ export default function DiagnosePage() {
           <h2 className="text-center text-xl font-bold text-gray-900 sm:text-2xl">
             Q2. 家族構成は？
           </h2>
-          <p className="mt-2 text-center text-sm text-gray-500">
+          <p className="mt-2 text-center text-sm text-gray-600">
             現在の家族構成を選んでください
           </p>
           <div className="mt-8 grid grid-cols-1 gap-3">
@@ -680,7 +680,7 @@ export default function DiagnosePage() {
           <h2 className="text-center text-xl font-bold text-gray-900 sm:text-2xl">
             Q3. 年収（額面）は？
           </h2>
-          <p className="mt-2 text-center text-sm text-gray-500">
+          <p className="mt-2 text-center text-sm text-gray-600">
             税込みのおおよその年収を選んでください
           </p>
           <div className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2">
@@ -706,7 +706,7 @@ export default function DiagnosePage() {
           <h2 className="text-center text-xl font-bold text-gray-900 sm:text-2xl">
             Q4. 毎月の貯蓄額は？
           </h2>
-          <p className="mt-2 text-center text-sm text-gray-500">
+          <p className="mt-2 text-center text-sm text-gray-600">
             投資・貯金に回せる月額を選んでください
           </p>
           <div className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2">
@@ -732,7 +732,7 @@ export default function DiagnosePage() {
           <h2 className="text-center text-xl font-bold text-gray-900 sm:text-2xl">
             Q5. 現在の金融資産は？
           </h2>
-          <p className="mt-2 text-center text-sm text-gray-500">
+          <p className="mt-2 text-center text-sm text-gray-600">
             預貯金・株式・投資信託などの合計額を選んでください
           </p>
           <div className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2">
@@ -758,7 +758,7 @@ export default function DiagnosePage() {
           <h2 className="text-center text-xl font-bold text-gray-900 sm:text-2xl">
             Q6. 投資経験は？
           </h2>
-          <p className="mt-2 text-center text-sm text-gray-500">
+          <p className="mt-2 text-center text-sm text-gray-600">
             現在の投資状況に近いものを選んでください
           </p>
           <div className="mt-8 grid grid-cols-1 gap-3">
@@ -796,7 +796,7 @@ export default function DiagnosePage() {
                 className={`rounded-2xl border-2 ${cfg.border} ${cfg.bg} p-6 text-center shadow-lg ring-4 ${cfg.ring} sm:p-8`}
               >
                 <div className="mb-4 inline-flex flex-col items-center">
-                  <span className="text-sm font-medium text-gray-500">
+                  <span className="text-sm font-medium text-gray-600">
                     FIRE達成度
                   </span>
                   <span
@@ -812,7 +812,7 @@ export default function DiagnosePage() {
 
                 {/* FIRE偏差値 */}
                 <div className="mt-3 inline-flex items-baseline gap-1 rounded-full bg-white/60 px-4 py-2">
-                  <span className="text-sm text-gray-500">FIRE偏差値</span>
+                  <span className="text-sm text-gray-600">FIRE偏差値</span>
                   <span className={`text-3xl font-black ${cfg.color}`}>
                     {result.deviation}
                   </span>
@@ -826,16 +826,16 @@ export default function DiagnosePage() {
                     </p>
                   ) : (
                     <>
-                      <p className="text-sm text-gray-500">
+                      <p className="text-sm text-gray-600">
                         FIRE達成予測年齢
                       </p>
                       <p className="mt-1 text-4xl font-black text-gray-900 sm:text-5xl">
                         {result.achievementAge}
-                        <span className="text-xl font-bold text-gray-500">
+                        <span className="text-xl font-bold text-gray-600">
                           歳
                         </span>
                       </p>
-                      <p className="mt-1 text-sm text-gray-500">
+                      <p className="mt-1 text-sm text-gray-600">
                         あと約{result.yearsToFire}年で目標資産
                         {result.fireTarget.toLocaleString()}万円に到達
                       </p>
@@ -845,13 +845,13 @@ export default function DiagnosePage() {
 
                 {/* パーソナライズFIRE目標 */}
                 <div className="mt-3 rounded-lg bg-white/60 px-4 py-3">
-                  <p className="text-xs text-gray-500">
+                  <p className="text-xs text-gray-600">
                     あなたのFIRE目標額（推定月{result.monthlyExpense}万円
                     &times; 25年分）
                   </p>
                   <p className="mt-1 text-2xl font-black text-gray-900">
                     {result.fireTarget.toLocaleString()}
-                    <span className="text-base font-bold text-gray-500">
+                    <span className="text-base font-bold text-gray-600">
                       万円
                     </span>
                   </p>
@@ -867,13 +867,13 @@ export default function DiagnosePage() {
           {/* ---- 2. 3指標ダッシュボード ---- */}
           <div className="mt-6 grid grid-cols-3 gap-3">
             <div className="rounded-xl border border-gray-200 bg-white p-4 text-center shadow-sm">
-              <p className="text-xs text-gray-500">達成予測年齢</p>
+              <p className="text-xs text-gray-600">達成予測年齢</p>
               <p className="mt-1 text-2xl font-black text-gray-900">
                 {result.impossible ? "—" : `${result.achievementAge}歳`}
               </p>
             </div>
             <div className="rounded-xl border border-gray-200 bg-white p-4 text-center shadow-sm">
-              <p className="text-xs text-gray-500">貯蓄率</p>
+              <p className="text-xs text-gray-600">貯蓄率</p>
               <p className="mt-1 text-2xl font-black text-gray-900">
                 {result.savingsRate}%
               </p>
@@ -884,7 +884,7 @@ export default function DiagnosePage() {
               </p>
             </div>
             <div className="rounded-xl border border-gray-200 bg-white p-4 text-center shadow-sm">
-              <p className="text-xs text-gray-500">残り</p>
+              <p className="text-xs text-gray-600">残り</p>
               <p className="mt-1 text-2xl font-black text-gray-900">
                 {result.impossible ? "—" : `${result.yearsToFire}年`}
               </p>
@@ -917,7 +917,7 @@ export default function DiagnosePage() {
               <div className="overflow-hidden rounded-lg border border-gray-100">
                 <table className="w-full text-sm">
                   <thead>
-                    <tr className="bg-gray-50 text-xs text-gray-500">
+                    <tr className="bg-gray-50 text-xs text-gray-600">
                       <th scope="col" className="px-3 py-2 text-left font-medium">
                         シナリオ
                       </th>
@@ -1036,7 +1036,7 @@ export default function DiagnosePage() {
                       </div>
                     )}
                     <BrokerCard broker={broker} />
-                    <p className="mt-1 px-2 text-xs text-gray-500">{reason}</p>
+                    <p className="mt-1 px-2 text-xs text-gray-600">{reason}</p>
                   </div>
                 ))}
               </div>

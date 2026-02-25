@@ -70,7 +70,7 @@ function UnsubscribeForm() {
 
 export default function UnsubscribePage() {
   return (
-    <Suspense fallback={<div className="mx-auto max-w-md px-4 py-20 text-center"><p className="text-gray-500">読み込み中...</p></div>}>
+    <Suspense fallback={<div className="mx-auto max-w-md px-4 py-20 text-center"><p className="text-gray-600">読み込み中...</p></div>}>
       <UnsubscribeForm />
     </Suspense>
   );

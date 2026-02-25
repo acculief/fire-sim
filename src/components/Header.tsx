@@ -120,7 +120,7 @@ export default function Header() {
             <div className="px-4 py-4 space-y-5">
               {menuSections.map((section) => (
                 <div key={section.label}>
-                  <p className="mb-2 text-xs font-bold uppercase tracking-wider text-gray-500">
+                  <p className="mb-2 text-xs font-bold uppercase tracking-wider text-gray-600">
                     {section.label}
                   </p>
                   <ul className="space-y-1">

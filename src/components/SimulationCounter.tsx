@@ -13,7 +13,7 @@ export default function SimulationCounter() {
   if (count === null || count === 0) return null;
 
   return (
-    <p className="mt-3 text-sm text-gray-500">
+    <p className="mt-3 text-sm text-gray-600">
       累計 <span className="font-bold text-primary-600">{count.toLocaleString()}</span> 回シミュレーションされています
     </p>
   );

@@ -22,7 +22,7 @@ const affiliateBrokers = brokers.filter((b) => b.isAffiliate);
 const AssetChart = dynamic(() => import("./AssetChart"), {
   loading: () => (
     <div className="flex h-72 w-full items-center justify-center sm:h-80" role="status" aria-live="polite">
-      <p className="text-sm text-gray-500">グラフを読み込み中...</p>
+      <p className="text-sm text-gray-600">グラフを読み込み中...</p>
     </div>
   ),
   ssr: false,
@@ -240,7 +240,7 @@ export default function ResultDisplay({ result }: Props) {
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b border-gray-200">
-                <th scope="col" className="pb-2 text-left font-medium text-gray-500">
+                <th scope="col" className="pb-2 text-left font-medium text-gray-600">
                   項目
                 </th>
                 {(["optimistic", "neutral", "pessimistic"] as const).map(
@@ -344,7 +344,7 @@ export default function ResultDisplay({ result }: Props) {
                     {formatYearDiff(item.diff)}
                   </span>
                 ) : (
-                  <span className="text-gray-500">ー</span>
+                  <span className="text-gray-600">ー</span>
                 )}
               </div>
             </div>
@@ -357,42 +357,42 @@ export default function ResultDisplay({ result }: Props) {
         <h3 className="mb-4 text-lg font-bold text-gray-800">前提条件</h3>
         <dl className="grid grid-cols-2 gap-2 text-sm sm:grid-cols-3">
           <div>
-            <dt className="text-gray-500">地域</dt>
+            <dt className="text-gray-600">地域</dt>
             <dd className="font-medium">
               {result.prefectureName}（係数 {result.costIndex}）
             </dd>
           </div>
           <div>
-            <dt className="text-gray-500">家族構成</dt>
+            <dt className="text-gray-600">家族構成</dt>
             <dd className="font-medium">{result.familyLabel}</dd>
           </div>
           <div>
-            <dt className="text-gray-500">住宅</dt>
+            <dt className="text-gray-600">住宅</dt>
             <dd className="font-medium">{result.housingLabel}</dd>
           </div>
           <div>
-            <dt className="text-gray-500">FIREタイプ</dt>
+            <dt className="text-gray-600">FIREタイプ</dt>
             <dd className="font-medium">{result.strategyLabel}</dd>
           </div>
           <div>
-            <dt className="text-gray-500">想定利回り</dt>
+            <dt className="text-gray-600">想定利回り</dt>
             <dd className="font-medium">
               {formatPercent(result.input.annualReturnRate)}
             </dd>
           </div>
           {result.input.fireStrategy === "withdrawal" ? (
             <div>
-              <dt className="text-gray-500">取り崩し率（SWR）</dt>
+              <dt className="text-gray-600">取り崩し率（SWR）</dt>
               <dd className="font-medium">{formatPercent(result.input.swr)}</dd>
             </div>
           ) : (
             <>
               <div>
-                <dt className="text-gray-500">配当利回り（税引前）</dt>
+                <dt className="text-gray-600">配当利回り（税引前）</dt>
                 <dd className="font-medium">{formatPercent(result.input.yieldRate)}</dd>
               </div>
               <div>
-                <dt className="text-gray-500">税引後利回り</dt>
+                <dt className="text-gray-600">税引後利回り</dt>
                 <dd className="font-medium text-primary-700">
                   {result.effectiveYieldRate !== null
                     ? formatPercent(result.effectiveYieldRate)
@@ -402,19 +402,19 @@ export default function ResultDisplay({ result }: Props) {
             </>
           )}
           <div>
-            <dt className="text-gray-500">運用益の税率</dt>
+            <dt className="text-gray-600">運用益の税率</dt>
             <dd className="font-medium">
               {formatPercent(result.input.dividendTaxRate)}
             </dd>
           </div>
           <div>
-            <dt className="text-gray-500">FIRE後 社会保険料</dt>
+            <dt className="text-gray-600">FIRE後 社会保険料</dt>
             <dd className="font-medium">
               月{result.postFireMonthlyCost}万円
             </dd>
           </div>
           <div>
-            <dt className="text-gray-500">物価上昇率</dt>
+            <dt className="text-gray-600">物価上昇率</dt>
             <dd className="font-medium">
               {formatPercent(result.input.inflationRate)}
             </dd>
@@ -445,7 +445,7 @@ export default function ResultDisplay({ result }: Props) {
               <div className="space-y-5">
                 {/* ① 現実を見せる */}
                 <div className="rounded-lg border border-gray-200 bg-white p-4">
-                  <p className="mb-1 text-xs font-bold uppercase tracking-wider text-gray-500">
+                  <p className="mb-1 text-xs font-bold uppercase tracking-wider text-gray-600">
                     Step 1
                   </p>
                   <p className="text-sm font-bold text-gray-800">
@@ -480,7 +480,7 @@ export default function ResultDisplay({ result }: Props) {
 
                 {/* ② 危機感を出す */}
                 <div className="rounded-lg border border-gray-200 bg-white p-4">
-                  <p className="mb-1 text-xs font-bold uppercase tracking-wider text-gray-500">
+                  <p className="mb-1 text-xs font-bold uppercase tracking-wider text-gray-600">
                     Step 2
                   </p>
                   <p className="text-sm font-bold text-gray-800">
@@ -515,7 +515,7 @@ export default function ResultDisplay({ result }: Props) {
 
                 {/* ③ 解決策を提示 */}
                 <div className="rounded-lg border border-gray-200 bg-white p-4">
-                  <p className="mb-1 text-xs font-bold uppercase tracking-wider text-gray-500">
+                  <p className="mb-1 text-xs font-bold uppercase tracking-wider text-gray-600">
                     Step 3
                   </p>
                   <p className="text-sm font-bold text-gray-800">
@@ -543,7 +543,7 @@ export default function ResultDisplay({ result }: Props) {
             {/* ④ 具体的な一歩 — BrokerCard */}
             {affiliateBrokers.length > 0 && (
               <div className="card border-primary-300">
-                <p className="mb-1 text-xs font-bold uppercase tracking-wider text-gray-500">
+                <p className="mb-1 text-xs font-bold uppercase tracking-wider text-gray-600">
                   Step 4
                 </p>
                 <h3 className="text-lg font-bold text-primary-800">
@@ -628,7 +628,7 @@ export default function ResultDisplay({ result }: Props) {
                             ? "text-green-600"
                             : comp.monthlyDiff > 0
                               ? "text-red-600"
-                              : "text-gray-500"
+                              : "text-gray-600"
                         }`}
                       >
                         ({comp.monthlyDiff > 0 ? "+" : ""}
@@ -643,7 +643,7 @@ export default function ResultDisplay({ result }: Props) {
                             ? "text-green-600"
                             : comp.fireNumberDiff > 0
                               ? "text-red-600"
-                              : "text-gray-500"
+                              : "text-gray-600"
                         }`}
                       >
                         ({comp.fireNumberDiff > 0 ? "+" : ""}

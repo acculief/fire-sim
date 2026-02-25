@@ -307,7 +307,7 @@ export default function SimulationForm({ initialInput, onSubmit }: Props) {
           <div className="sm:col-span-2">
             <label htmlFor="customMonthlyExpense" className="mb-1 block text-sm font-medium text-gray-700">
               毎月の生活費（万円）
-              <span className="ml-1 font-normal text-gray-500">— 任意</span>
+              <span className="ml-1 font-normal text-gray-600">— 任意</span>
             </label>
             <input
               id="customMonthlyExpense"
@@ -374,7 +374,7 @@ export default function SimulationForm({ initialInput, onSubmit }: Props) {
           aria-label={showAdvanced ? "詳細設定を閉じる" : "詳細設定を開く"}
         >
           <h2 className="text-lg font-bold text-gray-800">詳細設定</h2>
-          <span className="text-sm text-gray-500" aria-hidden="true">
+          <span className="text-sm text-gray-600" aria-hidden="true">
             {showAdvanced ? "閉じる ▲" : "開く ▼"}
           </span>
         </button>

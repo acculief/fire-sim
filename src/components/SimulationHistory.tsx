@@ -52,7 +52,7 @@ export default function SimulationHistory({
       >
         <h2 className="text-lg font-bold text-gray-800">
           シミュレーション履歴
-          <span className="ml-2 text-sm font-normal text-gray-500">
+          <span className="ml-2 text-sm font-normal text-gray-600">
             ({history.length}件)
           </span>
         </h2>

@@ -78,7 +78,7 @@ export default function EmailSignup() {
           {status === "error" && (
             <p id="email-signup-error" className="mt-2 text-sm text-red-600" role="alert">{message}</p>
           )}
-          <p id="email-signup-hint" className="mt-2 text-xs text-gray-500">
+          <p id="email-signup-hint" className="mt-2 text-xs text-gray-600">
             登録解除はいつでも可能。スパムは送りません。
           </p>
         </form>

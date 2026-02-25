@@ -14,7 +14,7 @@ interface Props {
 export default function Breadcrumb({ items }: Props) {
   return (
     <>
-      <nav aria-label="パンくずリスト" className="mb-6 text-sm text-gray-500">
+      <nav aria-label="パンくずリスト" className="mb-6 text-sm text-gray-600">
         {items.map((item, i) => (
           <span key={item.label}>
             {i > 0 && <span className="mx-1">/</span>}

@@ -92,11 +92,11 @@ export default function TrackerPage() {
         {goal && !showGoalForm ? (
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm text-gray-500">FIRE目標資産</p>
+              <p className="text-sm text-gray-600">FIRE目標資産</p>
               <p className="text-2xl font-bold text-primary-700">
                 {goal.fireNumber.toLocaleString()}万円
               </p>
-              <p className="text-sm text-gray-500">
+              <p className="text-sm text-gray-600">
                 目標年齢: {goal.targetAge}歳
               </p>
             </div>
@@ -173,13 +173,13 @@ export default function TrackerPage() {
         <div className="card mt-4">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
             <div>
-              <p className="text-sm text-gray-500">現在の進捗</p>
+              <p className="text-sm text-gray-600">現在の進捗</p>
               <p className="text-3xl font-bold text-primary-700">
                 {progressPercent}%
               </p>
             </div>
             <div className="sm:text-right">
-              <p className="text-sm text-gray-500">現在の資産</p>
+              <p className="text-sm text-gray-600">現在の資産</p>
               <p className="text-xl font-bold text-gray-800">
                 {latestAssets.toLocaleString()}万円
               </p>
@@ -302,7 +302,7 @@ export default function TrackerPage() {
           <p className="text-lg font-bold text-gray-600">
             まだ記録がありません
           </p>
-          <p className="mt-2 text-sm text-gray-500">
+          <p className="mt-2 text-sm text-gray-600">
             上のフォームから今月の金融資産を記録して、FIRE達成への進捗を追跡しましょう。
           </p>
         </div>
