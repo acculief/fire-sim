@@ -54,7 +54,7 @@ export default function ComparePanel({ current, compare, onClose }: Props) {
         <h3 className="text-lg font-bold text-primary-800">結果比較</h3>
         <button
           type="button"
-          className="text-sm text-gray-600 hover:text-gray-700"
+          className="min-h-[44px] min-w-[44px] text-sm text-gray-600 hover:text-gray-700"
           onClick={onClose}
           aria-label="比較パネルを閉じる"
         >

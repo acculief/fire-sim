@@ -92,38 +92,38 @@ export default function RootLayout({
             <div className="grid gap-6 text-sm sm:grid-cols-3">
               <nav aria-label="フッターナビゲーション">
                 <p className="font-bold text-gray-700">コンテンツ</p>
-                <ul className="mt-2 space-y-1 text-gray-600">
-                  <li><Link href="/simulate/" className="hover:text-primary-600">シミュレーション</Link></li>
-                  <li><Link href="/diagnose/" className="hover:text-primary-600">FIRE診断</Link></li>
-                  <li><Link href="/withdraw/" className="hover:text-primary-600">取り崩しシミュレーション</Link></li>
-                  <li><Link href="/compound/" className="hover:text-primary-600">複利計算シミュレーション</Link></li>
-                  <li><Link href="/guide/" className="hover:text-primary-600">ガイド記事</Link></li>
-                  <li><Link href="/recommend/" className="hover:text-primary-600">おすすめツール</Link></li>
-                  <li><Link href="/fire/" className="hover:text-primary-600">地域別一覧</Link></li>
-                  <li><Link href="/income/" className="hover:text-primary-600">手取り早見表</Link></li>
-                  <li><Link href="/cases/" className="hover:text-primary-600">モデルケース</Link></li>
-                  <li><Link href="/plan/" className="hover:text-primary-600">年収×年代別プラン</Link></li>
-                  <li><Link href="/faq/" className="hover:text-primary-600">よくある質問</Link></li>
+                <ul className="mt-2 space-y-0 text-gray-600">
+                  <li><Link href="/simulate/" className="inline-flex min-h-[44px] items-center hover:text-primary-600">シミュレーション</Link></li>
+                  <li><Link href="/diagnose/" className="inline-flex min-h-[44px] items-center hover:text-primary-600">FIRE診断</Link></li>
+                  <li><Link href="/withdraw/" className="inline-flex min-h-[44px] items-center hover:text-primary-600">取り崩しシミュレーション</Link></li>
+                  <li><Link href="/compound/" className="inline-flex min-h-[44px] items-center hover:text-primary-600">複利計算シミュレーション</Link></li>
+                  <li><Link href="/guide/" className="inline-flex min-h-[44px] items-center hover:text-primary-600">ガイド記事</Link></li>
+                  <li><Link href="/recommend/" className="inline-flex min-h-[44px] items-center hover:text-primary-600">おすすめツール</Link></li>
+                  <li><Link href="/fire/" className="inline-flex min-h-[44px] items-center hover:text-primary-600">地域別一覧</Link></li>
+                  <li><Link href="/income/" className="inline-flex min-h-[44px] items-center hover:text-primary-600">手取り早見表</Link></li>
+                  <li><Link href="/cases/" className="inline-flex min-h-[44px] items-center hover:text-primary-600">モデルケース</Link></li>
+                  <li><Link href="/plan/" className="inline-flex min-h-[44px] items-center hover:text-primary-600">年収×年代別プラン</Link></li>
+                  <li><Link href="/faq/" className="inline-flex min-h-[44px] items-center hover:text-primary-600">よくある質問</Link></li>
                 </ul>
               </nav>
               <nav aria-label="人気の地域">
                 <p className="font-bold text-gray-700">人気の地域</p>
-                <ul className="mt-2 space-y-1 text-gray-600">
-                  <li><Link href="/fire/tokyo/" className="hover:text-primary-600">東京都</Link></li>
-                  <li><Link href="/fire/osaka/" className="hover:text-primary-600">大阪府</Link></li>
-                  <li><Link href="/fire/kanagawa/" className="hover:text-primary-600">神奈川県</Link></li>
-                  <li><Link href="/fire/aichi/" className="hover:text-primary-600">愛知県</Link></li>
-                  <li><Link href="/fire/fukuoka/" className="hover:text-primary-600">福岡県</Link></li>
+                <ul className="mt-2 space-y-0 text-gray-600">
+                  <li><Link href="/fire/tokyo/" className="inline-flex min-h-[44px] items-center hover:text-primary-600">東京都</Link></li>
+                  <li><Link href="/fire/osaka/" className="inline-flex min-h-[44px] items-center hover:text-primary-600">大阪府</Link></li>
+                  <li><Link href="/fire/kanagawa/" className="inline-flex min-h-[44px] items-center hover:text-primary-600">神奈川県</Link></li>
+                  <li><Link href="/fire/aichi/" className="inline-flex min-h-[44px] items-center hover:text-primary-600">愛知県</Link></li>
+                  <li><Link href="/fire/fukuoka/" className="inline-flex min-h-[44px] items-center hover:text-primary-600">福岡県</Link></li>
                 </ul>
               </nav>
               <nav aria-label="人気のガイド記事">
                 <p className="font-bold text-gray-700">人気のガイド</p>
-                <ul className="mt-2 space-y-1 text-gray-600">
-                  <li><Link href="/guide/what-is-fire/" className="hover:text-primary-600">FIREとは？</Link></li>
-                  <li><Link href="/guide/fire-first-steps/" className="hover:text-primary-600">FIRE初心者の始め方</Link></li>
-                  <li><Link href="/guide/how-to-choose-broker/" className="hover:text-primary-600">証券口座の選び方</Link></li>
-                  <li><Link href="/guide/nisa-fire-acceleration/" className="hover:text-primary-600">新NISAでFIRE加速</Link></li>
-                  <li><Link href="/guide/fire-index-investing/" className="hover:text-primary-600">インデックス投資入門</Link></li>
+                <ul className="mt-2 space-y-0 text-gray-600">
+                  <li><Link href="/guide/what-is-fire/" className="inline-flex min-h-[44px] items-center hover:text-primary-600">FIREとは？</Link></li>
+                  <li><Link href="/guide/fire-first-steps/" className="inline-flex min-h-[44px] items-center hover:text-primary-600">FIRE初心者の始め方</Link></li>
+                  <li><Link href="/guide/how-to-choose-broker/" className="inline-flex min-h-[44px] items-center hover:text-primary-600">証券口座の選び方</Link></li>
+                  <li><Link href="/guide/nisa-fire-acceleration/" className="inline-flex min-h-[44px] items-center hover:text-primary-600">新NISAでFIRE加速</Link></li>
+                  <li><Link href="/guide/fire-index-investing/" className="inline-flex min-h-[44px] items-center hover:text-primary-600">インデックス投資入門</Link></li>
                 </ul>
               </nav>
             </div>

@@ -127,7 +127,7 @@ export default function SimulationHistory({
           })}
           <button
             type="button"
-            className="text-xs text-gray-600 hover:text-red-500"
+            className="min-h-[44px] text-xs text-gray-600 hover:text-red-500"
             onClick={handleClear}
           >
             履歴をすべて削除

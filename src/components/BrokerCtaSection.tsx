@@ -31,10 +31,10 @@ export default function BrokerCtaSection({
         ))}
       </div>
       <div className="mt-4 flex flex-wrap justify-center gap-3 text-xs">
-        <Link href="/guide/how-to-choose-broker/" className="text-accent-700 underline hover:text-accent-600">
+        <Link href="/guide/how-to-choose-broker/" className="inline-flex min-h-[44px] items-center text-accent-700 underline hover:text-accent-600">
           証券口座の選び方ガイド
         </Link>
-        <Link href="/guide/nisa-fire-acceleration/" className="text-accent-700 underline hover:text-accent-600">
+        <Link href="/guide/nisa-fire-acceleration/" className="inline-flex min-h-[44px] items-center text-accent-700 underline hover:text-accent-600">
           新NISAでFIRE加速
         </Link>
       </div>
