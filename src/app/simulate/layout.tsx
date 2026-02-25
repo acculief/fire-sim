@@ -12,6 +12,7 @@ export const metadata: Metadata = {
     description:
       "47都道府県対応。年収・家族構成・居住地域からFIRE必要資産と達成年をシミュレーション。3シナリオ比較＆感度分析対応。",
     url: "/simulate/",
+    siteName: "FIREシミュレーター",
   },
 };
 

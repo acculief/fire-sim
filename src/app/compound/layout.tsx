@@ -12,6 +12,7 @@ export const metadata: Metadata = {
     description:
       "毎月の積立額と利回りから将来の資産額を複利計算。元本・運用益の内訳をグラフ表示。FIRE計画にも活用できます。",
     url: "/compound/",
+    siteName: "FIREシミュレーター",
   },
 };
 

@@ -10,6 +10,7 @@ import Breadcrumb from "@/components/Breadcrumb";
 import RelatedGuides from "@/components/RelatedGuides";
 import JsonLd from "@/components/JsonLd";
 import { SITE_URL, CONTENT_PUBLISHED_DATE } from "@/config/site";
+import BrokerCtaSection from "@/components/BrokerCtaSection";
 
 export function generateStaticParams() {
   const params: { pref: string; type: string }[] = [];
@@ -36,7 +37,7 @@ export async function generateMetadata({
     title,
     description,
     alternates: { canonical: `/fire/${pref}/family/${type}/` },
-    openGraph: { title, description, url: `/fire/${pref}/family/${type}/` },
+    openGraph: { title, description, url: `/fire/${pref}/family/${type}/`, siteName: "FIREシミュレーター" },
   };
 }
 
@@ -189,6 +190,8 @@ export default async function FamilyPage({
           約1分でFIRE診断
         </Link>
       </div>
+
+      <BrokerCtaSection />
 
       <section className="mt-10">
         <Disclaimer />

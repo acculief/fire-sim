@@ -12,6 +12,7 @@ export const metadata: Metadata = {
     description:
       "無料・登録不要のFIRE診断。年齢・年収・資産額など6問に答えるだけで、あなたのFIRE目標額・達成予測年齢・FIREグレードが分かります。",
     url: "/diagnose/",
+    siteName: "FIREシミュレーター",
   },
 };
 

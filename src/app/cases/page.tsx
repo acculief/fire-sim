@@ -16,6 +16,7 @@ export const metadata: Metadata = {
     description:
       "30代独身・40代子あり・50代夫婦など、年代・家族構成・地域別のFIREモデルケースを紹介。必要資産額と達成年齢をシミュレーション。",
     url: "/cases/",
+    siteName: "FIREシミュレーター",
   },
 };
 

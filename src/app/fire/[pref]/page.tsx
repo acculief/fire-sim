@@ -10,6 +10,7 @@ import Breadcrumb from "@/components/Breadcrumb";
 import JsonLd from "@/components/JsonLd";
 import { SITE_URL } from "@/config/site";
 import { guides } from "@/data/guides";
+import BrokerCtaSection from "@/components/BrokerCtaSection";
 
 export function generateStaticParams() {
   return prefectures.map((p) => ({ pref: p.code }));
@@ -38,6 +39,7 @@ export async function generateMetadata({
       title: `${name}のFIREシミュレーション`,
       description: `${name}の生活費に基づくFIRE必要資産と達成年を無料で計算`,
       url: `/fire/${pref}/`,
+      siteName: "FIREシミュレーター",
     },
   };
 }
@@ -343,6 +345,8 @@ export default async function PrefecturePage({
           FIRE達成度診断を受ける
         </Link>
       </section>
+
+      <BrokerCtaSection />
 
       {/* FAQ */}
       <section className="mt-10">

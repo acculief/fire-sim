@@ -19,6 +19,7 @@ export const metadata: Metadata = {
     description:
       "年収300万〜1000万円、20代〜50代の年代別にFIRE達成に必要な資産額と達成年齢をシミュレーション。あなたに近い条件のプランを確認。",
     url: "/plan/",
+    siteName: "FIREシミュレーター",
   },
 };
 

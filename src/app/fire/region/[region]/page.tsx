@@ -9,6 +9,7 @@ import Disclaimer from "@/components/Disclaimer";
 import Breadcrumb from "@/components/Breadcrumb";
 import RelatedGuides from "@/components/RelatedGuides";
 import JsonLd from "@/components/JsonLd";
+import BrokerCtaSection from "@/components/BrokerCtaSection";
 
 export function generateStaticParams() {
   return REGION_SLUGS.map((r) => ({ region: r.slug }));
@@ -31,6 +32,7 @@ export async function generateMetadata({
       title: `${label}地方のFIRE比較`,
       description: `${label}地方の都道府県別FIRE必要資産を比較`,
       url: `/fire/region/${region}/`,
+      siteName: "FIREシミュレーター",
     },
   };
 }
@@ -239,6 +241,8 @@ export default async function RegionPage({
           約1分でFIRE診断
         </Link>
       </div>
+
+      <BrokerCtaSection />
 
       <section className="mt-10">
         <Disclaimer />

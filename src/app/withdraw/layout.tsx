@@ -12,6 +12,7 @@ export const metadata: Metadata = {
     description:
       "FIRE達成後の資産取り崩しシミュレーション。4%ルールで何歳まで資産が持つかを無料で計算。",
     url: "/withdraw/",
+    siteName: "FIREシミュレーター",
   },
 };
 

@@ -10,6 +10,7 @@ import Breadcrumb from "@/components/Breadcrumb";
 import RelatedGuides from "@/components/RelatedGuides";
 import JsonLd from "@/components/JsonLd";
 import { SITE_URL, CONTENT_PUBLISHED_DATE } from "@/config/site";
+import BrokerCtaSection from "@/components/BrokerCtaSection";
 
 export function generateStaticParams() {
   const params: { pref: string; age: string }[] = [];
@@ -37,7 +38,7 @@ export async function generateMetadata({
     title,
     description,
     alternates: { canonical: `/fire/${pref}/age/${age}/` },
-    openGraph: { title, description, url: `/fire/${pref}/age/${age}/` },
+    openGraph: { title, description, url: `/fire/${pref}/age/${age}/`, siteName: "FIREシミュレーター" },
   };
 }
 
@@ -276,6 +277,8 @@ export default async function AgePage({
           約1分でFIRE診断
         </Link>
       </div>
+
+      <BrokerCtaSection />
 
       <section className="mt-10">
         <Disclaimer />
