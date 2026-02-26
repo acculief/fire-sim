@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/diagnose/type/" },
   openGraph: {
     title: "FIRE診断【無料】あなたはどのFIREタイプ？8問で6タイプ判定",
-    description: "8問に答えるだけ。あなたにぴったりのFIREスタイルを診断します。",
+    description: "8問に答えるだけ。FIRE診断でノマドFIRE・里山FIRE・クリエイターFIREなど6タイプを判定。無料・登録不要。",
     url: "/diagnose/type/",
     siteName: "FIREシミュレーター",
   },
