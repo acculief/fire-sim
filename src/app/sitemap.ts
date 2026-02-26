@@ -9,52 +9,41 @@ import { SITE_URL } from "@/config/site";
 
 const BASE_URL = SITE_URL;
 
-// 2つのサイトマップに分割
-// /sitemap/0.xml → 重要ページ（~120件）→ Googleが優先的に処理
-// /sitemap/1.xml → 詳細パラメータページ（~940件）→ 後回しOK
-export async function generateSitemaps() {
-  return [{ id: 0 }, { id: 1 }];
-}
-
-export default function sitemap({ id }: { id: number }): MetadataRoute.Sitemap {
-  if (id === 0) {
-    return mainSitemap();
-  }
-  return detailSitemap();
-}
-
-/** 重要ページ: トップ・ツール・ガイド・都道府県47・地方別・モデルケース・プラン・手取り */
-function mainSitemap(): MetadataRoute.Sitemap {
+// ─────────────────────────────────────────────────────
+// 単一サイトマップ。Googleは先頭から順にクロールするため
+// 重要度の高いページを先に、詳細パラメータページを最後に配置
+// ─────────────────────────────────────────────────────
+export default function sitemap(): MetadataRoute.Sitemap {
   const entries: MetadataRoute.Sitemap = [];
 
-  // ── コアページ ──
+  // ── Tier 1: コアページ（最優先）──────────────────────
   const corePages = [
-    { url: `${BASE_URL}/`, priority: 1.0, freq: "weekly" },
-    { url: `${BASE_URL}/simulate/`, priority: 0.9, freq: "monthly" },
-    { url: `${BASE_URL}/diagnose/`, priority: 0.9, freq: "monthly" },
-    { url: `${BASE_URL}/diagnose/type/`, priority: 0.9, freq: "monthly" },
-    { url: `${BASE_URL}/withdraw/`, priority: 0.8, freq: "monthly" },
-    { url: `${BASE_URL}/compound/`, priority: 0.8, freq: "monthly" },
-    { url: `${BASE_URL}/guide/`, priority: 0.8, freq: "weekly" },
-    { url: `${BASE_URL}/recommend/`, priority: 0.8, freq: "monthly" },
-    { url: `${BASE_URL}/fire/`, priority: 0.8, freq: "weekly" },
-    { url: `${BASE_URL}/cases/`, priority: 0.8, freq: "monthly" },
-    { url: `${BASE_URL}/plan/`, priority: 0.8, freq: "weekly" },
-    { url: `${BASE_URL}/income/`, priority: 0.8, freq: "monthly" },
-    { url: `${BASE_URL}/faq/`, priority: 0.7, freq: "monthly" },
-    { url: `${BASE_URL}/tracker/`, priority: 0.7, freq: "monthly" },
-  ] as const;
+    { url: `${BASE_URL}/`, priority: 1.0 },
+    { url: `${BASE_URL}/simulate/`, priority: 0.9 },
+    { url: `${BASE_URL}/diagnose/`, priority: 0.9 },
+    { url: `${BASE_URL}/diagnose/type/`, priority: 0.9 },
+    { url: `${BASE_URL}/withdraw/`, priority: 0.8 },
+    { url: `${BASE_URL}/compound/`, priority: 0.8 },
+    { url: `${BASE_URL}/guide/`, priority: 0.8 },
+    { url: `${BASE_URL}/recommend/`, priority: 0.8 },
+    { url: `${BASE_URL}/fire/`, priority: 0.8 },
+    { url: `${BASE_URL}/cases/`, priority: 0.8 },
+    { url: `${BASE_URL}/plan/`, priority: 0.8 },
+    { url: `${BASE_URL}/income/`, priority: 0.8 },
+    { url: `${BASE_URL}/tracker/`, priority: 0.7 },
+    { url: `${BASE_URL}/faq/`, priority: 0.7 },
+  ];
 
   for (const p of corePages) {
     entries.push({
       url: p.url,
       lastModified: new Date("2026-02-26"),
-      changeFrequency: p.freq as MetadataRoute.Sitemap[number]["changeFrequency"],
+      changeFrequency: "monthly",
       priority: p.priority,
     });
   }
 
-  // ── ガイド記事 ──
+  // ── Tier 2: ガイド記事 ────────────────────────────────
   for (const article of guides) {
     entries.push({
       url: `${BASE_URL}/guide/${article.slug}/`,
@@ -64,7 +53,7 @@ function mainSitemap(): MetadataRoute.Sitemap {
     });
   }
 
-  // ── 都道府県トップ47（重要・Googleが最優先でクロールすべき） ──
+  // ── Tier 3: 都道府県トップ47 ──────────────────────────
   for (const pref of prefectures) {
     entries.push({
       url: `${BASE_URL}/fire/${pref.code}/`,
@@ -74,7 +63,7 @@ function mainSitemap(): MetadataRoute.Sitemap {
     });
   }
 
-  // ── 地方別比較8ページ ──
+  // ── Tier 4: 地方別・モデルケース・プラン・手取り ─────────
   for (const region of REGION_SLUGS) {
     entries.push({
       url: `${BASE_URL}/fire/region/${region.slug}/`,
@@ -83,8 +72,6 @@ function mainSitemap(): MetadataRoute.Sitemap {
       priority: 0.6,
     });
   }
-
-  // ── モデルケース ──
   for (const c of modelCases) {
     entries.push({
       url: `${BASE_URL}/cases/${c.slug}/`,
@@ -93,8 +80,6 @@ function mainSitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
     });
   }
-
-  // ── 年収×年代別プラン ──
   for (const p of longtailPages) {
     entries.push({
       url: `${BASE_URL}/plan/${p.slug}/`,
@@ -103,8 +88,6 @@ function mainSitemap(): MetadataRoute.Sitemap {
       priority: 0.6,
     });
   }
-
-  // ── 手取り早見表 ──
   for (const level of TAKE_HOME_LEVELS) {
     entries.push({
       url: `${BASE_URL}/income/${level}/`,
@@ -114,20 +97,14 @@ function mainSitemap(): MetadataRoute.Sitemap {
     });
   }
 
-  return entries;
-}
-
-/** 詳細パラメータページ: 都道府県×(年収/家族/年代/住宅) = ~940件 */
-function detailSitemap(): MetadataRoute.Sitemap {
-  const entries: MetadataRoute.Sitemap = [];
-
+  // ── Tier 5: 都道府県×パラメータ ~940件（最後尾・低優先度）──
   for (const pref of prefectures) {
     for (const income of INCOME_LEVELS) {
       entries.push({
         url: `${BASE_URL}/fire/${pref.code}/income/${income.value}/`,
         lastModified: new Date("2026-02-26"),
         changeFrequency: "monthly",
-        priority: 0.5,
+        priority: 0.4,
       });
     }
     for (const family of FAMILY_TYPES_FOR_SEO) {
@@ -135,7 +112,7 @@ function detailSitemap(): MetadataRoute.Sitemap {
         url: `${BASE_URL}/fire/${pref.code}/family/${family.key}/`,
         lastModified: new Date("2026-02-26"),
         changeFrequency: "monthly",
-        priority: 0.5,
+        priority: 0.4,
       });
     }
     for (const age of AGE_GROUPS_FOR_SEO) {
@@ -143,7 +120,7 @@ function detailSitemap(): MetadataRoute.Sitemap {
         url: `${BASE_URL}/fire/${pref.code}/age/${age.slug}/`,
         lastModified: new Date("2026-02-26"),
         changeFrequency: "monthly",
-        priority: 0.5,
+        priority: 0.4,
       });
     }
     for (const housing of HOUSING_TYPES_FOR_SEO) {
@@ -151,7 +128,7 @@ function detailSitemap(): MetadataRoute.Sitemap {
         url: `${BASE_URL}/fire/${pref.code}/housing/${housing.key}/`,
         lastModified: new Date("2026-02-26"),
         changeFrequency: "monthly",
-        priority: 0.5,
+        priority: 0.4,
       });
     }
   }
