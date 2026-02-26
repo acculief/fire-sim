@@ -2,11 +2,11 @@ import { Metadata } from "next";
 import { SITE_URL } from "@/config/site";
 
 export const metadata: Metadata = {
-  title: "FIREタイプ診断 | あなたに合ったFIREスタイルがわかる",
-  description: "8問に答えるだけ。ノマドFIRE・里山FIRE・クリエイターFIREなど6タイプの中からあなたにぴったりのFIREスタイルを診断します。結果はXでシェア可能。",
+  title: "FIRE診断【無料】あなたはどのFIREタイプ？8問で6タイプ判定",
+  description: "無料のFIRE診断。8問に答えるだけでノマドFIRE・里山FIRE・クリエイターFIRE・サイドFIRE・プレミアムFIREなど6タイプのうちあなたに最適なFIREスタイルがわかります。Xシェア対応。",
   alternates: { canonical: "/diagnose/type/" },
   openGraph: {
-    title: "FIREタイプ診断 | あなたに合ったFIREスタイルがわかる",
+    title: "FIRE診断【無料】あなたはどのFIREタイプ？8問で6タイプ判定",
     description: "8問に答えるだけ。あなたにぴったりのFIREスタイルを診断します。",
     url: "/diagnose/type/",
     siteName: "FIREシミュレーター",

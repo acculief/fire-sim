@@ -20,11 +20,11 @@ const notoSansJP = Noto_Sans_JP({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "FIREシミュレーター | 地域別・年収別で達成年を計算",
+    default: "FIREシミュレーター｜早期退職は何歳でできる？地域別・年収別で無料計算",
     template: "%s | FIREシミュレーター",
   },
   description:
-    "あなたの地域・年収・家族構成に合わせたFIRE（経済的自立・早期退職）達成シミュレーション。必要資産額と達成年を簡単計算。",
+    "地域・年収・家族構成でFIRE（早期退職・経済的自立）の達成年を無料シミュレーション。FIREタイプ診断・資産シミュレーター・ガイド記事で早期退職への道を徹底サポート。",
   alternates: {
     canonical: "/",
   },
@@ -33,9 +33,9 @@ export const metadata: Metadata = {
     locale: "ja_JP",
     siteName: "FIREシミュレーター",
     url: "/",
-    title: "FIREシミュレーター | 地域別・年収別で達成年を計算",
+    title: "FIREシミュレーター｜早期退職は何歳でできる？地域別・年収別で無料計算",
     description:
-      "あなたの地域・年収・家族構成に合わせたFIRE（経済的自立・早期退職）達成シミュレーション。必要資産額と達成年を簡単計算。",
+      "地域・年収・家族構成でFIRE（早期退職・経済的自立）の達成年を無料シミュレーション。FIREタイプ診断・資産シミュレーター・ガイド記事で早期退職への道を徹底サポート。",
     images: [`${SITE_URL}/opengraph-image`],
   },
   twitter: {
