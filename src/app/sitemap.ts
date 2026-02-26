@@ -9,82 +9,52 @@ import { SITE_URL } from "@/config/site";
 
 const BASE_URL = SITE_URL;
 
-export default function sitemap(): MetadataRoute.Sitemap {
+// 2つのサイトマップに分割
+// /sitemap/0.xml → 重要ページ（~120件）→ Googleが優先的に処理
+// /sitemap/1.xml → 詳細パラメータページ（~940件）→ 後回しOK
+export async function generateSitemaps() {
+  return [{ id: 0 }, { id: 1 }];
+}
+
+export default function sitemap({ id }: { id: number }): MetadataRoute.Sitemap {
+  if (id === 0) {
+    return mainSitemap();
+  }
+  return detailSitemap();
+}
+
+/** 重要ページ: トップ・ツール・ガイド・都道府県47・地方別・モデルケース・プラン・手取り */
+function mainSitemap(): MetadataRoute.Sitemap {
   const entries: MetadataRoute.Sitemap = [];
 
-  // トップページ
-  entries.push({
-    url: `${BASE_URL}/`,
-    lastModified: new Date("2026-02-23"),
-    changeFrequency: "weekly",
-    priority: 1.0,
-  });
+  // ── コアページ ──
+  const corePages = [
+    { url: `${BASE_URL}/`, priority: 1.0, freq: "weekly" },
+    { url: `${BASE_URL}/simulate/`, priority: 0.9, freq: "monthly" },
+    { url: `${BASE_URL}/diagnose/`, priority: 0.9, freq: "monthly" },
+    { url: `${BASE_URL}/diagnose/type/`, priority: 0.9, freq: "monthly" },
+    { url: `${BASE_URL}/withdraw/`, priority: 0.8, freq: "monthly" },
+    { url: `${BASE_URL}/compound/`, priority: 0.8, freq: "monthly" },
+    { url: `${BASE_URL}/guide/`, priority: 0.8, freq: "weekly" },
+    { url: `${BASE_URL}/recommend/`, priority: 0.8, freq: "monthly" },
+    { url: `${BASE_URL}/fire/`, priority: 0.8, freq: "weekly" },
+    { url: `${BASE_URL}/cases/`, priority: 0.8, freq: "monthly" },
+    { url: `${BASE_URL}/plan/`, priority: 0.8, freq: "weekly" },
+    { url: `${BASE_URL}/income/`, priority: 0.8, freq: "monthly" },
+    { url: `${BASE_URL}/faq/`, priority: 0.7, freq: "monthly" },
+    { url: `${BASE_URL}/tracker/`, priority: 0.7, freq: "monthly" },
+  ] as const;
 
-  // シミュレーションページ
-  entries.push({
-    url: `${BASE_URL}/simulate/`,
-    lastModified: new Date("2026-02-23"),
-    changeFrequency: "monthly",
-    priority: 0.9,
-  });
+  for (const p of corePages) {
+    entries.push({
+      url: p.url,
+      lastModified: new Date("2026-02-26"),
+      changeFrequency: p.freq as MetadataRoute.Sitemap[number]["changeFrequency"],
+      priority: p.priority,
+    });
+  }
 
-  // ガイド一覧
-  entries.push({
-    url: `${BASE_URL}/guide/`,
-    lastModified: new Date("2026-02-23"),
-    changeFrequency: "weekly",
-    priority: 0.8,
-  });
-
-  // おすすめページ
-  entries.push({
-    url: `${BASE_URL}/recommend/`,
-    lastModified: new Date("2026-02-23"),
-    changeFrequency: "monthly",
-    priority: 0.8,
-  });
-
-  // FIRE達成度診断ページ
-  entries.push({
-    url: `${BASE_URL}/diagnose/`,
-    lastModified: new Date("2026-02-23"),
-    changeFrequency: "monthly",
-    priority: 0.8,
-  });
-
-  // FAQ
-  entries.push({
-    url: `${BASE_URL}/faq/`,
-    lastModified: new Date("2026-02-23"),
-    changeFrequency: "monthly",
-    priority: 0.7,
-  });
-
-  // 取り崩しシミュレーション
-  entries.push({
-    url: `${BASE_URL}/withdraw/`,
-    lastModified: new Date("2026-02-23"),
-    changeFrequency: "monthly",
-    priority: 0.8,
-  });
-
-  // 複利計算シミュレーション
-  entries.push({
-    url: `${BASE_URL}/compound/`,
-    lastModified: new Date("2026-02-25"),
-    changeFrequency: "monthly",
-    priority: 0.8,
-  });
-
-  // 地域別一覧ページ
-  entries.push({
-    url: `${BASE_URL}/fire/`,
-    lastModified: new Date("2026-02-23"),
-    changeFrequency: "weekly",
-    priority: 0.8,
-  });
-
-  // ガイド記事
+  // ── ガイド記事 ──
   for (const article of guides) {
     entries.push({
       url: `${BASE_URL}/guide/${article.slug}/`,
@@ -94,120 +64,97 @@ export default function sitemap(): MetadataRoute.Sitemap {
     });
   }
 
-  // 都道府県ページ
+  // ── 都道府県トップ47（重要・Googleが最優先でクロールすべき） ──
   for (const pref of prefectures) {
     entries.push({
       url: `${BASE_URL}/fire/${pref.code}/`,
-      lastModified: new Date("2026-02-23"),
+      lastModified: new Date("2026-02-26"),
       changeFrequency: "monthly",
       priority: 0.7,
     });
-
-    // 年収別ページ
-    for (const income of INCOME_LEVELS) {
-      entries.push({
-        url: `${BASE_URL}/fire/${pref.code}/income/${income.value}/`,
-        lastModified: new Date("2026-02-23"),
-        changeFrequency: "monthly",
-        priority: 0.5,
-      });
-    }
-
-    // 家族構成別ページ
-    for (const family of FAMILY_TYPES_FOR_SEO) {
-      entries.push({
-        url: `${BASE_URL}/fire/${pref.code}/family/${family.key}/`,
-        lastModified: new Date("2026-02-23"),
-        changeFrequency: "monthly",
-        priority: 0.5,
-      });
-    }
-
-    // 年代別ページ
-    for (const age of AGE_GROUPS_FOR_SEO) {
-      entries.push({
-        url: `${BASE_URL}/fire/${pref.code}/age/${age.slug}/`,
-        lastModified: new Date("2026-02-23"),
-        changeFrequency: "monthly",
-        priority: 0.5,
-      });
-    }
-
-    // 住宅タイプ別ページ
-    for (const housing of HOUSING_TYPES_FOR_SEO) {
-      entries.push({
-        url: `${BASE_URL}/fire/${pref.code}/housing/${housing.key}/`,
-        lastModified: new Date("2026-02-23"),
-        changeFrequency: "monthly",
-        priority: 0.5,
-      });
-    }
   }
 
-  // 地方別比較ページ
+  // ── 地方別比較8ページ ──
   for (const region of REGION_SLUGS) {
     entries.push({
       url: `${BASE_URL}/fire/region/${region.slug}/`,
-      lastModified: new Date("2026-02-23"),
+      lastModified: new Date("2026-02-26"),
       changeFrequency: "monthly",
       priority: 0.6,
     });
   }
 
-  // モデルケース一覧
-  entries.push({
-    url: `${BASE_URL}/cases/`,
-    lastModified: new Date("2026-02-23"),
-    changeFrequency: "monthly",
-    priority: 0.8,
-  });
-
-  // モデルケース個別ページ
+  // ── モデルケース ──
   for (const c of modelCases) {
     entries.push({
       url: `${BASE_URL}/cases/${c.slug}/`,
-      lastModified: new Date("2026-02-23"),
+      lastModified: new Date("2026-02-26"),
       changeFrequency: "monthly",
       priority: 0.7,
     });
   }
 
-  // プラン一覧ページ
-  entries.push({
-    url: `${BASE_URL}/plan/`,
-    lastModified: new Date("2026-02-23"),
-    changeFrequency: "weekly",
-    priority: 0.8,
-  });
-
-  // 年収×年代別プラン個別ページ
+  // ── 年収×年代別プラン ──
   for (const p of longtailPages) {
     entries.push({
       url: `${BASE_URL}/plan/${p.slug}/`,
-      lastModified: new Date("2026-02-23"),
+      lastModified: new Date("2026-02-26"),
       changeFrequency: "monthly",
       priority: 0.6,
     });
   }
 
-  // 手取り早見表 一覧ページ
-  entries.push({
-    url: `${BASE_URL}/income/`,
-    lastModified: new Date("2026-02-23"),
-    changeFrequency: "monthly",
-    priority: 0.8,
-  });
-
-  // 手取り早見表 個別年収ページ
+  // ── 手取り早見表 ──
   for (const level of TAKE_HOME_LEVELS) {
     entries.push({
       url: `${BASE_URL}/income/${level}/`,
-      lastModified: new Date("2026-02-23"),
+      lastModified: new Date("2026-02-26"),
       changeFrequency: "monthly",
       priority: 0.6,
     });
   }
 
+  return entries;
+}
+
+/** 詳細パラメータページ: 都道府県×(年収/家族/年代/住宅) = ~940件 */
+function detailSitemap(): MetadataRoute.Sitemap {
+  const entries: MetadataRoute.Sitemap = [];
+
+  for (const pref of prefectures) {
+    for (const income of INCOME_LEVELS) {
+      entries.push({
+        url: `${BASE_URL}/fire/${pref.code}/income/${income.value}/`,
+        lastModified: new Date("2026-02-26"),
+        changeFrequency: "monthly",
+        priority: 0.5,
+      });
+    }
+    for (const family of FAMILY_TYPES_FOR_SEO) {
+      entries.push({
+        url: `${BASE_URL}/fire/${pref.code}/family/${family.key}/`,
+        lastModified: new Date("2026-02-26"),
+        changeFrequency: "monthly",
+        priority: 0.5,
+      });
+    }
+    for (const age of AGE_GROUPS_FOR_SEO) {
+      entries.push({
+        url: `${BASE_URL}/fire/${pref.code}/age/${age.slug}/`,
+        lastModified: new Date("2026-02-26"),
+        changeFrequency: "monthly",
+        priority: 0.5,
+      });
+    }
+    for (const housing of HOUSING_TYPES_FOR_SEO) {
+      entries.push({
+        url: `${BASE_URL}/fire/${pref.code}/housing/${housing.key}/`,
+        lastModified: new Date("2026-02-26"),
+        changeFrequency: "monthly",
+        priority: 0.5,
+      });
+    }
+  }
 
   return entries;
 }
