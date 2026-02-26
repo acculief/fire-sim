@@ -25,14 +25,11 @@ export const metadata: Metadata = {
   },
   description:
     "地域・年収・家族構成でFIRE（早期退職・経済的自立）の達成年を無料シミュレーション。FIREタイプ診断・資産シミュレーター・ガイド記事で早期退職への道を徹底サポート。",
-  alternates: {
-    canonical: "/",
-  },
   openGraph: {
     type: "website",
     locale: "ja_JP",
     siteName: "FIREシミュレーター",
-    url: "/",
+    url: SITE_URL,
     title: "FIREシミュレーター｜早期退職は何歳でできる？地域別・年収別で無料計算",
     description:
       "地域・年収・家族構成でFIRE（早期退職・経済的自立）の達成年を無料シミュレーション。FIREタイプ診断・資産シミュレーター・ガイド記事で早期退職への道を徹底サポート。",
