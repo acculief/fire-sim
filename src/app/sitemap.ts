@@ -1,6 +1,6 @@
 import { MetadataRoute } from "next";
 import { prefectures } from "@/data/prefectures";
-import { INCOME_LEVELS, FAMILY_TYPES_FOR_SEO, AGE_GROUPS_FOR_SEO, HOUSING_TYPES_FOR_SEO, REGION_SLUGS } from "@/config/assumptions";
+import { REGION_SLUGS } from "@/config/assumptions";
 import { guides } from "@/data/guides";
 import { modelCases } from "@/data/model-cases";
 import { longtailPages } from "@/data/longtail-pages";
@@ -97,41 +97,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     });
   }
 
-  // ── Tier 5: 都道府県×パラメータ ~940件（最後尾・低優先度）──
-  for (const pref of prefectures) {
-    for (const income of INCOME_LEVELS) {
-      entries.push({
-        url: `${BASE_URL}/fire/${pref.code}/income/${income.value}/`,
-        lastModified: new Date("2026-02-26"),
-        changeFrequency: "monthly",
-        priority: 0.4,
-      });
-    }
-    for (const family of FAMILY_TYPES_FOR_SEO) {
-      entries.push({
-        url: `${BASE_URL}/fire/${pref.code}/family/${family.key}/`,
-        lastModified: new Date("2026-02-26"),
-        changeFrequency: "monthly",
-        priority: 0.4,
-      });
-    }
-    for (const age of AGE_GROUPS_FOR_SEO) {
-      entries.push({
-        url: `${BASE_URL}/fire/${pref.code}/age/${age.slug}/`,
-        lastModified: new Date("2026-02-26"),
-        changeFrequency: "monthly",
-        priority: 0.4,
-      });
-    }
-    for (const housing of HOUSING_TYPES_FOR_SEO) {
-      entries.push({
-        url: `${BASE_URL}/fire/${pref.code}/housing/${housing.key}/`,
-        lastModified: new Date("2026-02-26"),
-        changeFrequency: "monthly",
-        priority: 0.4,
-      });
-    }
-  }
+  // ── Tier 5: 都道府県×パラメータは除外 ──────────────────────
+  // 約940件の薄いパラメータページはクロール予算を消費するため
+  // Googleには都道府県トップ(Tier3)のみを示す
 
   return entries;
 }
