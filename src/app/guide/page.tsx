@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { guides } from "@/data/guides";
 import Breadcrumb from "@/components/Breadcrumb";
 import JsonLd from "@/components/JsonLd";
@@ -25,8 +26,7 @@ export default function GuidesIndexPage() {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
     name: "FIREガイド",
-    description:
-      "FIRE（経済的自立・早期退職）に関する包括的なガイド記事集",
+    description: "FIRE（経済的自立・早期退職）に関する包括的なガイド記事集",
     mainEntity: {
       "@type": "ItemList",
       itemListElement: guides.map((article, i) => ({
@@ -39,7 +39,7 @@ export default function GuidesIndexPage() {
   };
 
   return (
-    <div className="mx-auto max-w-3xl px-4 py-8">
+    <div className="mx-auto max-w-5xl px-4 py-8">
       <JsonLd data={structuredData} />
       <Breadcrumb
         items={[
@@ -54,22 +54,39 @@ export default function GuidesIndexPage() {
         FIRE（経済的自立・早期退職）を目指す方のための基礎知識から実践的な戦略まで
       </p>
 
-      <div className="mt-8 space-y-4">
+      <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {guides.map((article) => (
           <Link
             key={article.slug}
             href={`/guide/${article.slug}/`}
-            className="block rounded-lg border border-gray-200 bg-white p-5 transition-colors hover:border-primary-300 hover:bg-primary-50"
+            className="group flex flex-col rounded-xl border border-gray-200 bg-white overflow-hidden shadow-sm transition-all hover:shadow-md hover:border-primary-300"
           >
-            <h2 className="text-lg font-bold text-gray-800">
-              {article.title}
-            </h2>
-            <p className="mt-1 text-sm text-gray-600">
-              {article.description}
-            </p>
-            <time className="mt-2 block text-xs text-gray-600">
-              {article.publishedAt}
-            </time>
+            {article.heroImage ? (
+              <div className="relative h-44 w-full overflow-hidden bg-gray-100">
+                <Image
+                  src={article.heroImage.src}
+                  alt={article.heroImage.alt}
+                  fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  className="object-cover transition-transform duration-300 group-hover:scale-105"
+                />
+              </div>
+            ) : (
+              <div className="h-44 w-full bg-gradient-to-br from-primary-100 to-primary-200 flex items-center justify-center">
+                <span className="text-4xl">📖</span>
+              </div>
+            )}
+            <div className="flex flex-col flex-1 p-4">
+              <h2 className="text-base font-bold text-gray-800 leading-snug group-hover:text-primary-700 transition-colors">
+                {article.title}
+              </h2>
+              <p className="mt-2 text-sm text-gray-600 line-clamp-2 flex-1">
+                {article.description}
+              </p>
+              <time className="mt-3 block text-xs text-gray-400">
+                {article.publishedAt}
+              </time>
+            </div>
           </Link>
         ))}
       </div>
