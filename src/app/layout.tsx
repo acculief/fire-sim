@@ -131,7 +131,12 @@ export default function RootLayout({
             <p className="text-center text-xs text-gray-600">
               ※本シミュレーションは概算であり、投資助言ではありません。実際の投資判断はご自身の責任で行ってください。
             </p>
-            <p className="mt-2 text-center text-xs text-gray-600">
+            <p className="mt-2 text-center text-xs text-gray-600 space-x-3">
+              <a href="/about/" className="hover:text-primary-600 underline">運営について</a>
+              <span>·</span>
+              <a href="/contact/" className="hover:text-primary-600 underline">お問い合わせ</a>
+            </p>
+            <p className="mt-1 text-center text-xs text-gray-600">
               &copy; {new Date().getFullYear()} FIREシミュレーター
             </p>
           </div>
