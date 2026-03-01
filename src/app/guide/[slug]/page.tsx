@@ -195,9 +195,40 @@ export default async function GuidePage({
                     );
                   }
 
+                  // H3 heading
+                  if (trimmed.startsWith("### ")) {
+                    const headingHtml = trimmed.slice(4)
+                      .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
+                      .replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2" class="text-primary-600 hover:underline">$1</a>');
+                    return <h3 key={j} className="text-base font-bold text-gray-800 mt-5 mb-2" dangerouslySetInnerHTML={{ __html: headingHtml }} />;
+                  }
+
+                  // H2 heading inside body
+                  if (trimmed.startsWith("## ")) {
+                    const headingHtml = trimmed.slice(3)
+                      .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
+                      .replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2" class="text-primary-600 hover:underline">$1</a>');
+                    return <h3 key={j} className="text-lg font-bold text-gray-800 mt-6 mb-2" dangerouslySetInnerHTML={{ __html: headingHtml }} />;
+                  }
+
+                  // Bullet list
+                  const listLines = trimmed.split("\n");
+                  if (listLines.some(l => l.trim().startsWith("- "))) {
+                    const listHtml = `<ul class="list-disc pl-6 mb-3 space-y-1 text-gray-700">${listLines
+                      .filter(l => l.trim().startsWith("- "))
+                      .map(l => {
+                        const item = l.trim().slice(2)
+                          .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
+                          .replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2" class="text-primary-600 hover:underline">$1</a>');
+                        return `<li>${item}</li>`;
+                      }).join("")}</ul>`;
+                    return <div key={j} dangerouslySetInnerHTML={{ __html: listHtml }} />;
+                  }
+
                   let html = paragraph
                     .replace(/\n/g, "<br />")
-                    .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
+                    .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
+                    .replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2" class="text-primary-600 hover:underline">$1</a>');
                   html = autoLinkKeywords(html, slug, linkedKeywords);
                   return (
                     <p
