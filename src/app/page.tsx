@@ -61,20 +61,37 @@ export default function HomePage() {
 
       {/* ツール一覧 */}
       <section className="mt-12">
-        {/* FIREタイプ診断 フィーチャーバナー */}
-        <Link
-          href="/diagnose/type/"
-          className="mb-4 flex items-center gap-4 rounded-2xl border-2 border-orange-200 bg-gradient-to-r from-orange-50 to-amber-50 px-5 py-4 hover:border-orange-300 hover:shadow-sm transition-all group"
-        >
-          <span className="text-4xl">🔥</span>
-          <div className="flex-1">
-            <p className="font-bold text-gray-900 group-hover:text-orange-700">FIREタイプ診断</p>
-            <p className="text-xs text-gray-500 mt-0.5">8問に答えてあなたのFIREスタイルを診断 → Xでシェア</p>
-          </div>
-          <svg className="w-5 h-5 text-orange-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-          </svg>
-        </Link>
+        {/* 診断2本バナー */}
+        <div className="mb-4 grid gap-3 sm:grid-cols-2">
+          {/* FIRE達成度診断 */}
+          <Link
+            href="/diagnose/"
+            className="flex items-center gap-4 rounded-2xl border-2 border-primary-200 bg-gradient-to-r from-primary-50 to-blue-50 px-5 py-4 hover:border-primary-400 hover:shadow-sm transition-all group"
+          >
+            <span className="text-4xl">📊</span>
+            <div className="flex-1 min-w-0">
+              <p className="font-bold text-gray-900 group-hover:text-primary-700">FIRE達成度診断</p>
+              <p className="text-xs text-gray-500 mt-0.5">9問でFIRE偏差値・達成年齢を診断</p>
+            </div>
+            <svg className="w-5 h-5 text-primary-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+          </Link>
+          {/* FIREタイプ診断 */}
+          <Link
+            href="/diagnose/type/"
+            className="flex items-center gap-4 rounded-2xl border-2 border-orange-200 bg-gradient-to-r from-orange-50 to-amber-50 px-5 py-4 hover:border-orange-300 hover:shadow-sm transition-all group"
+          >
+            <span className="text-4xl">🔥</span>
+            <div className="flex-1 min-w-0">
+              <p className="font-bold text-gray-900 group-hover:text-orange-700">FIREタイプ診断</p>
+              <p className="text-xs text-gray-500 mt-0.5">8問であなたのFIREスタイルを診断 → Xでシェア</p>
+            </div>
+            <svg className="w-5 h-5 text-orange-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+          </Link>
+        </div>
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
           <Link
             href="/withdraw/"
