@@ -51,9 +51,15 @@ export default function HomePage() {
           </span>
         </div>
 
-        <div className="mt-6">
+        <div className="mt-6 flex flex-col items-center gap-3">
           <Link href="/simulate/" className="btn-primary inline-block text-lg">
             無料でシミュレーション開始
+          </Link>
+          <Link
+            href="/diagnose/type/"
+            className="inline-flex items-center gap-1 text-sm font-medium text-orange-600 hover:text-orange-700 transition-colors"
+          >
+            🔥 まずFIREタイプ診断をする →
           </Link>
         </div>
         <SimulationCounter />
