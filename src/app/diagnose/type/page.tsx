@@ -5,12 +5,12 @@ import { SITE_URL } from "@/config/site";
 
 /* ── タイプ定義 ── */
 const TYPES = {
-  nomad:   { emoji: "🌏", name: "ノマドFIRE型",     sub: "世界中を旅しながら生きる",     color: "#6366f1", bg: "#eef2ff", asset: "2,000〜3,000万円", desc: "国境も職業も関係ない。WiFiがあればどこでも家。あなたにとってFIREとは「住む場所の自由」を手に入れることです。タイもポルトガルも、気分次第で移り住める人生が理想。生活費を抑えて少ない資産でも早期FIREを実現できるタイプです。" },
-  satoyama:{ emoji: "🏔️", name: "里山FIRE型",       sub: "自然の中でスローライフ",       color: "#16a34a", bg: "#f0fdf4", asset: "1,500〜2,500万円", desc: "都会の競争から離れ、自然のリズムで生きる。畑を耕し、地元の人と繋がり、シンプルだけど豊かな暮らし。生活コストが低いので少ない資産でも実現可能。食の自給自足に挑戦したいタイプです。" },
-  creator: { emoji: "🎨", name: "クリエイターFIRE型", sub: "創作と発信に全時間を使う",    color: "#d946ef", bg: "#fdf4ff", asset: "3,000〜5,000万円", desc: "お金のために働くのをやめて、本当に作りたいものだけ作る。小説、音楽、動画、プロダクト——形は何でもいい。生活費を稼ぐためじゃなく、純粋に表現するために生きるタイプです。" },
-  family:  { emoji: "👨‍👩‍👧", name: "家族時間FIRE型",  sub: "子育てと自由時間を両立",      color: "#f59e0b", bg: "#fffbeb", asset: "5,000万円〜1億円", desc: "子供の成長を一瞬も見逃したくない。学校の送り迎え、宿題の付き合い、家族旅行——お金より時間を家族に使いたい。教育費・老後資金も含めると資産は多めに必要ですが、それだけの価値がある人生です。" },
-  side:    { emoji: "💼", name: "サイドFIRE型",      sub: "好きな仕事だけ細く続ける",    color: "#0ea5e9", bg: "#f0f9ff", asset: "2,500〜4,000万円", desc: "完全リタイアは退屈すぎる。でも嫌な仕事はもうしない。好きなことで月10〜20万稼ぎながら、残りは投資収益で生活する「いいとこ取り」のFIRE。社会との繋がりも保てます。" },
-  premium: { emoji: "👑", name: "プレミアムFIRE型", sub: "生活水準を下げず豊かに生きる",  color: "#dc2626", bg: "#fef2f2", asset: "1億円以上",       desc: "FIRE後も高級レストラン、ビジネスクラス、趣味への投資は妥協しない。必要資産は多いけれど、それを目標にする明確なビジョンがある。「質の高い人生」にフルベットするタイプです。" },
+  nomad:   { emoji: "🌏", img: "/images/fire-types/nomad.png", name: "ノマドFIRE型",     sub: "世界中を旅しながら生きる",     color: "#6366f1", bg: "#eef2ff", asset: "2,000〜3,000万円", desc: "国境も職業も関係ない。WiFiがあればどこでも家。あなたにとってFIREとは「住む場所の自由」を手に入れることです。タイもポルトガルも、気分次第で移り住める人生が理想。生活費を抑えて少ない資産でも早期FIREを実現できるタイプです。" },
+  satoyama:{ emoji: "🏔️", img: "/images/fire-types/satoyama.png", name: "里山FIRE型",       sub: "自然の中でスローライフ",       color: "#16a34a", bg: "#f0fdf4", asset: "1,500〜2,500万円", desc: "都会の競争から離れ、自然のリズムで生きる。畑を耕し、地元の人と繋がり、シンプルだけど豊かな暮らし。生活コストが低いので少ない資産でも実現可能。食の自給自足に挑戦したいタイプです。" },
+  creator: { emoji: "🎨", img: "/images/fire-types/creator.png", name: "クリエイターFIRE型", sub: "創作と発信に全時間を使う",    color: "#d946ef", bg: "#fdf4ff", asset: "3,000〜5,000万円", desc: "お金のために働くのをやめて、本当に作りたいものだけ作る。小説、音楽、動画、プロダクト——形は何でもいい。生活費を稼ぐためじゃなく、純粋に表現するために生きるタイプです。" },
+  family:  { emoji: "👨‍👩‍👧", img: "/images/fire-types/family.png", name: "家族時間FIRE型",  sub: "子育てと自由時間を両立",      color: "#f59e0b", bg: "#fffbeb", asset: "5,000万円〜1億円", desc: "子供の成長を一瞬も見逃したくない。学校の送り迎え、宿題の付き合い、家族旅行——お金より時間を家族に使いたい。教育費・老後資金も含めると資産は多めに必要ですが、それだけの価値がある人生です。" },
+  side:    { emoji: "💼", img: "/images/fire-types/side.png", name: "サイドFIRE型",      sub: "好きな仕事だけ細く続ける",    color: "#0ea5e9", bg: "#f0f9ff", asset: "2,500〜4,000万円", desc: "完全リタイアは退屈すぎる。でも嫌な仕事はもうしない。好きなことで月10〜20万稼ぎながら、残りは投資収益で生活する「いいとこ取り」のFIRE。社会との繋がりも保てます。" },
+  premium: { emoji: "👑", img: "/images/fire-types/premium.png", name: "プレミアムFIRE型", sub: "生活水準を下げず豊かに生きる",  color: "#dc2626", bg: "#fef2f2", asset: "1億円以上",       desc: "FIRE後も高級レストラン、ビジネスクラス、趣味への投資は妥協しない。必要資産は多いけれど、それを目標にする明確なビジョンがある。「質の高い人生」にフルベットするタイプです。" },
 } as const;
 
 type TypeKey = keyof typeof TYPES;
@@ -136,11 +136,13 @@ export default function FireTypePage() {
           <h1 className="text-2xl font-bold text-gray-900 mb-2">FIREタイプ診断</h1>
           <p className="text-gray-500 text-sm mb-1">8問に答えるだけ</p>
           <p className="text-gray-400 text-xs mb-8">あなたにぴったりのFIREスタイルがわかる</p>
-          <div className="grid grid-cols-3 gap-2 mb-8 text-center">
+          <div className="grid grid-cols-3 gap-2 mb-8">
             {Object.values(TYPES).map((t) => (
-              <div key={t.name} className="rounded-xl p-3 text-xs" style={{ background: t.bg }}>
-                <div className="text-2xl mb-1">{t.emoji}</div>
-                <div className="font-medium text-gray-700 text-xs leading-tight">{t.name.replace("型", "")}</div>
+              <div key={t.name} className="rounded-xl overflow-hidden shadow-sm border-2 transition-transform hover:scale-105" style={{ borderColor: t.color + "55" }}>
+                <img src={t.img} alt={t.name} className="w-full aspect-square object-cover" />
+                <div className="px-1 py-1.5 text-center" style={{ background: t.bg }}>
+                  <p className="font-semibold text-gray-800 text-[11px] leading-tight">{t.name.replace("型", "")}</p>
+                </div>
               </div>
             ))}
           </div>
@@ -162,7 +164,7 @@ export default function FireTypePage() {
         <div className="max-w-md mx-auto">
           {/* 結果カード */}
           <div className="rounded-3xl p-6 mb-6 text-center shadow-sm border" style={{ background: type.bg, borderColor: type.color + "33" }}>
-            <div className="text-6xl mb-3">{type.emoji}</div>
+            <img src={type.img} alt={type.name} className="w-32 h-32 rounded-2xl object-cover mx-auto mb-4 shadow-md" />
             <p className="text-xs font-medium mb-1" style={{ color: type.color }}>あなたのFIREタイプは</p>
             <h1 className="text-2xl font-bold text-gray-900 mb-1">{type.name}</h1>
             <p className="text-gray-500 text-sm mb-4">{type.sub}</p>
