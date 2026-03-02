@@ -18,7 +18,7 @@ import {
 /*  定数 & 型                                                          */
 /* ------------------------------------------------------------------ */
 
-const TOTAL_STEPS = 6;
+const TOTAL_STEPS = 9;
 
 /** Q1: 年齢選択肢 */
 const AGE_OPTIONS = [
@@ -69,6 +69,29 @@ const EXPERIENCE_OPTIONS = [
   { label: "株式・ETFも運用中", value: "intermediate" },
 ] as const;
 
+/** Q7: 住居形態 */
+const HOUSING_OPTIONS = [
+  { label: "賃貸", emoji: "🏠", sub: "家賃分をFIRE目標に上乗せ",         value: "rent"     as HousingType, monthlyAdj:  6 },
+  { label: "ローン返済中", emoji: "🏗️", sub: "完済後は住居費が激減",      value: "mortgage" as HousingType, monthlyAdj:  2 },
+  { label: "持ち家・完済済み", emoji: "🏡", sub: "住居費低でFIREに有利", value: "owned"    as HousingType, monthlyAdj: -4 },
+] as const;
+
+/** Q8: FIRE後の希望ライフスタイル */
+const LIFESTYLE_OPTIONS = [
+  { label: "地方移住・シンプル生活", emoji: "🌾", sub: "生活費を約20%節約",    value: "lean"    as LifestyleType, coeff: 0.80 },
+  { label: "今の生活水準をキープ",   emoji: "⚖️",  sub: "現状の支出感覚のまま",  value: "normal"  as LifestyleType, coeff: 1.00 },
+  { label: "都市での充実した暮らし", emoji: "🏙️", sub: "文化・外食・趣味を充実", value: "comfort" as LifestyleType, coeff: 1.25 },
+  { label: "海外移住・贅沢ライフ",  emoji: "✈️",  sub: "高水準な生活費を想定",  value: "premium" as LifestyleType, coeff: 1.60 },
+] as const;
+
+/** Q9: 副収入・副業の状況 */
+const SIDE_INCOME_OPTIONS = [
+  { label: "なし",         emoji: "💼", sub: "運用益のみでFIREを目指す",   value:  0 },
+  { label: "月3万円以下",  emoji: "💴", sub: "少額補填・バリスタFIRE候補", value:  2 },
+  { label: "月3〜10万円", emoji: "💰", sub: "セミFIRE・サイドFIRE候補",   value:  6 },
+  { label: "月10万円以上", emoji: "🚀", sub: "副業でFIRE大幅短縮の見込み", value: 12 },
+] as const;
+
 /** 家族係数（診断用簡易マッピング） */
 const FAMILY_COEFF: Record<string, number> = {
   single: 1.0,
@@ -90,6 +113,8 @@ const NATIONAL_AVERAGE_COEFF = 0.95;
 
 const affiliateBrokers = brokers.filter((b) => b.isAffiliate);
 
+type HousingType = "rent" | "mortgage" | "owned";
+type LifestyleType = "lean" | "normal" | "comfort" | "premium";
 type Grade = "A" | "B" | "C" | "D";
 type FamilyType = "single" | "couple" | "couple-child";
 type ExperienceType = "none" | "beginner" | "intermediate";
@@ -119,13 +144,19 @@ function calculate(
   monthlySavings: number,
   currentAssets: number,
   experience: ExperienceType,
+  housing: HousingType = "rent",
+  lifestyle: LifestyleType = "normal",
+  sideIncomeMonthly: number = 0,
 ): DiagnoseResult {
   // パーソナライズされたFIRE目標額
   const coeff = FAMILY_COEFF[familyType];
   const assumptionsFamilyType = FAMILY_TO_ASSUMPTIONS[familyType];
   const postFireInsurance = estimatePostFireMonthlyCost(assumptionsFamilyType);
-  const monthlyExpense =
-    BASE_MONTHLY_COST * NATIONAL_AVERAGE_COEFF * coeff + postFireInsurance;
+  const housingAdj = HOUSING_OPTIONS.find((h) => h.value === housing)?.monthlyAdj ?? 0;
+  const lifestyleCoeff = LIFESTYLE_OPTIONS.find((l) => l.value === lifestyle)?.coeff ?? 1.0;
+  const monthlyExpense = Math.round(
+    (BASE_MONTHLY_COST * NATIONAL_AVERAGE_COEFF * coeff * lifestyleCoeff + postFireInsurance + housingAdj) * 10,
+  ) / 10;
   const annualExpense = monthlyExpense * 12;
   const fireTarget = Math.round(annualExpense / SWR);
 
@@ -137,8 +168,8 @@ function calculate(
     99,
   );
 
-  // 達成シミュレーション
-  const annualInvestment = monthlySavings * 12;
+  // 達成シミュレーション（副収入も投資に充当）
+  const annualInvestment = (monthlySavings + sideIncomeMonthly) * 12;
   let assets = currentAssets;
   let years = 0;
 
@@ -415,10 +446,14 @@ function savingsRateLabel(rate: number): { label: string; color: string } {
 /** 選択肢ボタン */
 const OptionButton = memo(function OptionButton({
   label,
+  sub,
+  emoji,
   selected,
   onClick,
 }: {
   label: string;
+  sub?: string;
+  emoji?: string;
   selected: boolean;
   onClick: () => void;
 }) {
@@ -427,13 +462,23 @@ const OptionButton = memo(function OptionButton({
       type="button"
       onClick={onClick}
       aria-pressed={selected}
-      className={`w-full rounded-xl border-2 px-4 py-4 text-center text-base font-semibold transition-all duration-200 sm:text-lg ${
+      className={`w-full rounded-xl border-2 px-4 py-4 transition-all duration-200 ${
         selected
           ? "border-primary-500 bg-primary-50 text-primary-700 shadow-md ring-2 ring-primary-200"
           : "border-gray-200 bg-white text-gray-700 hover:border-primary-300 hover:bg-primary-50/50 hover:shadow-sm"
-      }`}
+      } ${emoji ? "text-left" : "text-center"}`}
     >
-      {label}
+      {emoji ? (
+        <div className="flex items-center gap-3">
+          <span className="text-2xl shrink-0">{emoji}</span>
+          <div>
+            <p className="text-base font-semibold leading-tight">{label}</p>
+            {sub && <p className="text-xs text-gray-500 mt-0.5 font-normal">{sub}</p>}
+          </div>
+        </div>
+      ) : (
+        <span className="text-base font-semibold sm:text-lg">{label}</span>
+      )}
     </button>
   );
 });
@@ -489,7 +534,7 @@ const BackButton = memo(function BackButton({ onClick }: { onClick: () => void }
 /* ------------------------------------------------------------------ */
 
 export default function DiagnosePage() {
-  // 0=intro, 1-6=questions, 7=result
+  // 0=intro, 1-9=questions, 10=result
   const [step, setStep] = useState(0);
   const [age, setAge] = useState<number | null>(null);
   const [familyType, setFamilyType] = useState<FamilyType | null>(null);
@@ -497,6 +542,9 @@ export default function DiagnosePage() {
   const [savings, setSavings] = useState<number | null>(null);
   const [assets, setAssets] = useState<number | null>(null);
   const [experience, setExperience] = useState<ExperienceType | null>(null);
+  const [housing, setHousing] = useState<HousingType | null>(null);
+  const [lifestyle, setLifestyle] = useState<LifestyleType | null>(null);
+  const [sideIncome, setSideIncome] = useState<number | null>(null);
   const [result, setResult] = useState<DiagnoseResult | null>(null);
 
   const handleAge = useCallback((v: number) => {
@@ -527,19 +575,46 @@ export default function DiagnosePage() {
   const handleExperience = useCallback(
     (v: ExperienceType) => {
       setExperience(v);
+      setTimeout(() => setStep(7), 300);
+    },
+    [],
+  );
+
+  const handleHousing = useCallback(
+    (v: HousingType) => {
+      setHousing(v);
+      setTimeout(() => setStep(8), 300);
+    },
+    [],
+  );
+
+  const handleLifestyle = useCallback(
+    (v: LifestyleType) => {
+      setLifestyle(v);
+      setTimeout(() => setStep(9), 300);
+    },
+    [],
+  );
+
+  const handleSideIncome = useCallback(
+    (v: number) => {
+      setSideIncome(v);
       if (
         age !== null &&
         familyType !== null &&
         income !== null &&
         savings !== null &&
-        assets !== null
+        assets !== null &&
+        experience !== null &&
+        housing !== null &&
+        lifestyle !== null
       ) {
-        const r = calculate(age, familyType, income, savings, assets, v);
+        const r = calculate(age, familyType, income, savings, assets, experience, housing, lifestyle, v);
         setResult(r);
       }
-      setTimeout(() => setStep(7), 400);
+      setTimeout(() => setStep(10), 400);
     },
-    [age, familyType, income, savings, assets],
+    [age, familyType, income, savings, assets, experience, housing, lifestyle],
   );
 
   const handleRetry = useCallback(() => {
@@ -550,6 +625,9 @@ export default function DiagnosePage() {
     setSavings(null);
     setAssets(null);
     setExperience(null);
+    setHousing(null);
+    setLifestyle(null);
+    setSideIncome(null);
     setResult(null);
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
@@ -564,59 +642,65 @@ export default function DiagnosePage() {
       {/*  INTRO                                                           */}
       {/* ================================================================ */}
       {step === 0 && (
-        <div className="animate-fadeIn text-center">
-          <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-primary-100">
-            <svg
-              className="h-10 w-10 text-primary-600"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-              aria-hidden="true"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M15.362 5.214A8.252 8.252 0 0 1 12 21 8.25 8.25 0 0 1 6.038 7.047 8.287 8.287 0 0 0 9 9.601a8.983 8.983 0 0 1 3.361-6.867 8.21 8.21 0 0 0 3 2.48Z"
-              />
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M12 18a3.75 3.75 0 0 0 .495-7.468 5.99 5.99 0 0 0-1.925 3.547 5.975 5.975 0 0 1-2.133-1.001A3.75 3.75 0 0 0 12 18Z"
-              />
-            </svg>
+        <div className="animate-fadeIn">
+          {/* ── グラデーションヒーローカード ── */}
+          <div className="rounded-3xl bg-gradient-to-br from-primary-600 via-primary-700 to-indigo-700 p-8 text-center text-white shadow-xl">
+            <div className="text-6xl mb-4">🔥</div>
+            <h1 className="text-2xl font-bold sm:text-3xl">FIRE達成度診断</h1>
+            <p className="mt-3 text-primary-100 text-sm leading-relaxed">
+              年収・貯蓄・資産・住居・ライフスタイルを踏まえた<br />
+              あなた専用のFIRE達成度を計算します
+            </p>
+            {/* グレードプレビュー */}
+            <div className="mt-6 flex justify-center gap-2">
+              {(["A", "B", "C", "D"] as const).map((g) => (
+                <div key={g} className="rounded-xl bg-white/20 px-3 py-2 text-center backdrop-blur-sm min-w-[58px]">
+                  <div className="text-xl font-black text-white">{g}</div>
+                  <div className="text-[10px] text-white/80 leading-tight mt-0.5">{GRADE_CONFIG[g].title}</div>
+                </div>
+              ))}
+            </div>
           </div>
-          <h1 className="text-2xl font-bold text-gray-900 sm:text-3xl">
-            FIRE達成度診断
-          </h1>
-          <p className="mt-3 text-gray-600">
-            <span className="font-bold text-primary-600">6つの質問</span>
-            であなた専用のFIRE達成度を診断します。
-          </p>
-          <p className="mt-1 text-sm text-gray-600">所要時間：約1分</p>
+
+          {/* ── 特徴リスト ── */}
+          <div className="mt-4 rounded-2xl bg-white border border-gray-100 shadow-sm p-5 space-y-3">
+            {[
+              { icon: "🎯", text: "FIRE達成予測年齢・偏差値を算出" },
+              { icon: "💰", text: "あなた専用のFIRE目標額をパーソナライズ計算" },
+              { icon: "🏠", text: "住居形態・ライフスタイルも精緻に反映" },
+              { icon: "🔮", text: "「もし条件が変わったら？」シナリオも表示" },
+            ].map((item) => (
+              <div key={item.icon} className="flex items-center gap-3 text-sm">
+                <span className="text-xl shrink-0">{item.icon}</span>
+                <span className="text-gray-700">{item.text}</span>
+              </div>
+            ))}
+          </div>
+
+          {/* ── 統計 ── */}
+          <div className="mt-4 grid grid-cols-3 gap-3 text-center">
+            <div className="rounded-2xl bg-white border border-gray-100 shadow-sm p-4">
+              <p className="text-2xl font-black text-primary-600">9問</p>
+              <p className="mt-1 text-xs text-gray-500">精度の高い診断</p>
+            </div>
+            <div className="rounded-2xl bg-white border border-gray-100 shadow-sm p-4">
+              <p className="text-2xl font-black text-primary-600">2分</p>
+              <p className="mt-1 text-xs text-gray-500">サクッと完了</p>
+            </div>
+            <div className="rounded-2xl bg-white border border-gray-100 shadow-sm p-4">
+              <p className="text-2xl font-black text-primary-600">A〜D</p>
+              <p className="mt-1 text-xs text-gray-500">4段階ランク</p>
+            </div>
+          </div>
 
           <button
             type="button"
             onClick={() => setStep(1)}
-            className="btn-primary mt-8 text-lg"
+            className="btn-primary mt-6 w-full py-4 text-lg"
           >
-            診断スタート
+            診断スタート →
           </button>
-
-          <div className="mt-10 grid grid-cols-3 gap-4 text-center">
-            <div className="rounded-lg bg-white p-4 shadow-sm">
-              <p className="text-2xl font-bold text-primary-600">6問</p>
-              <p className="mt-1 text-xs text-gray-600">カンタン質問</p>
-            </div>
-            <div className="rounded-lg bg-white p-4 shadow-sm">
-              <p className="text-2xl font-bold text-primary-600">1分</p>
-              <p className="mt-1 text-xs text-gray-600">サクッと診断</p>
-            </div>
-            <div className="rounded-lg bg-white p-4 shadow-sm">
-              <p className="text-2xl font-bold text-primary-600">4段階</p>
-              <p className="mt-1 text-xs text-gray-600">ランク判定</p>
-            </div>
-          </div>
+          <p className="mt-2 text-center text-xs text-gray-400">所要時間：約2分・完全無料</p>
         </div>
       )}
 
@@ -633,9 +717,15 @@ export default function DiagnosePage() {
             現在の年代を選んでください
           </p>
           <div className="mt-8 grid grid-cols-2 gap-3">
-            {AGE_OPTIONS.map((opt) => (
+            {[
+              { ...AGE_OPTIONS[0], emoji: "🌱" },
+              { ...AGE_OPTIONS[1], emoji: "💼" },
+              { ...AGE_OPTIONS[2], emoji: "🏠" },
+              { ...AGE_OPTIONS[3], emoji: "🏆" },
+            ].map((opt) => (
               <OptionButton
                 key={opt.value}
+                emoji={opt.emoji}
                 label={opt.label}
                 selected={age === opt.value}
                 onClick={() => handleAge(opt.value)}
@@ -658,9 +748,14 @@ export default function DiagnosePage() {
             現在の家族構成を選んでください
           </p>
           <div className="mt-8 grid grid-cols-1 gap-3">
-            {FAMILY_OPTIONS.map((opt) => (
+            {[
+              { ...FAMILY_OPTIONS[0], emoji: "🧑" },
+              { ...FAMILY_OPTIONS[1], emoji: "💑" },
+              { ...FAMILY_OPTIONS[2], emoji: "👨‍👩‍👧" },
+            ].map((opt) => (
               <OptionButton
                 key={opt.value}
+                emoji={opt.emoji}
                 label={opt.label}
                 selected={familyType === opt.value}
                 onClick={() => handleFamily(opt.value as FamilyType)}
@@ -684,9 +779,16 @@ export default function DiagnosePage() {
             税込みのおおよその年収を選んでください
           </p>
           <div className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2">
-            {INCOME_OPTIONS.map((opt) => (
+            {[
+              { ...INCOME_OPTIONS[0], emoji: "💴" },
+              { ...INCOME_OPTIONS[1], emoji: "💵" },
+              { ...INCOME_OPTIONS[2], emoji: "💰" },
+              { ...INCOME_OPTIONS[3], emoji: "💎" },
+              { ...INCOME_OPTIONS[4], emoji: "🌟" },
+            ].map((opt) => (
               <OptionButton
                 key={opt.value}
+                emoji={opt.emoji}
                 label={opt.label}
                 selected={income === opt.value}
                 onClick={() => handleIncome(opt.value)}
@@ -710,9 +812,16 @@ export default function DiagnosePage() {
             投資・貯金に回せる月額を選んでください
           </p>
           <div className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2">
-            {SAVINGS_OPTIONS.map((opt) => (
+            {[
+              { ...SAVINGS_OPTIONS[0], emoji: "🐢" },
+              { ...SAVINGS_OPTIONS[1], emoji: "🚶" },
+              { ...SAVINGS_OPTIONS[2], emoji: "🚴" },
+              { ...SAVINGS_OPTIONS[3], emoji: "🚀" },
+              { ...SAVINGS_OPTIONS[4], emoji: "⚡" },
+            ].map((opt) => (
               <OptionButton
                 key={opt.value}
+                emoji={opt.emoji}
                 label={opt.label}
                 selected={savings === opt.value}
                 onClick={() => handleSavings(opt.value)}
@@ -736,9 +845,16 @@ export default function DiagnosePage() {
             預貯金・株式・投資信託などの合計額を選んでください
           </p>
           <div className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2">
-            {ASSET_OPTIONS.map((opt) => (
+            {[
+              { ...ASSET_OPTIONS[0], emoji: "🌱" },
+              { ...ASSET_OPTIONS[1], emoji: "💴" },
+              { ...ASSET_OPTIONS[2], emoji: "💰" },
+              { ...ASSET_OPTIONS[3], emoji: "💎" },
+              { ...ASSET_OPTIONS[4], emoji: "🏆" },
+            ].map((opt) => (
               <OptionButton
                 key={opt.value}
+                emoji={opt.emoji}
                 label={opt.label}
                 selected={assets === opt.value}
                 onClick={() => handleAssets(opt.value)}
@@ -762,9 +878,14 @@ export default function DiagnosePage() {
             現在の投資状況に近いものを選んでください
           </p>
           <div className="mt-8 grid grid-cols-1 gap-3">
-            {EXPERIENCE_OPTIONS.map((opt) => (
+            {[
+              { ...EXPERIENCE_OPTIONS[0], emoji: "🌱" },
+              { ...EXPERIENCE_OPTIONS[1], emoji: "📈" },
+              { ...EXPERIENCE_OPTIONS[2], emoji: "🚀" },
+            ].map((opt) => (
               <OptionButton
                 key={opt.value}
+                emoji={opt.emoji}
                 label={opt.label}
                 selected={experience === opt.value}
                 onClick={() => handleExperience(opt.value as ExperienceType)}
@@ -776,9 +897,93 @@ export default function DiagnosePage() {
       )}
 
       {/* ================================================================ */}
+      {/*  STEP 7 : 住居形態                                               */}
+      {/* ================================================================ */}
+      {step === 7 && (
+        <section className="animate-fadeIn" aria-label="質問7: 住居形態">
+          <ProgressBar step={7} total={TOTAL_STEPS} />
+          <h2 className="text-center text-xl font-bold text-gray-900 sm:text-2xl">
+            Q7. 現在の住居形態は？
+          </h2>
+          <p className="mt-2 text-center text-sm text-gray-600">
+            FIRE後の住居コストを正確に計算するために使用します
+          </p>
+          <div className="mt-8 grid grid-cols-1 gap-3">
+            {HOUSING_OPTIONS.map((opt) => (
+              <OptionButton
+                key={opt.value}
+                emoji={opt.emoji}
+                label={opt.label}
+                sub={opt.sub}
+                selected={housing === opt.value}
+                onClick={() => handleHousing(opt.value)}
+              />
+            ))}
+          </div>
+          <BackButton onClick={() => setStep(6)} />
+        </section>
+      )}
+
+      {/* ================================================================ */}
+      {/*  STEP 8 : FIRE後のライフスタイル                                  */}
+      {/* ================================================================ */}
+      {step === 8 && (
+        <section className="animate-fadeIn" aria-label="質問8: FIRE後のライフスタイル">
+          <ProgressBar step={8} total={TOTAL_STEPS} />
+          <h2 className="text-center text-xl font-bold text-gray-900 sm:text-2xl">
+            Q8. FIRE後の理想の生活は？
+          </h2>
+          <p className="mt-2 text-center text-sm text-gray-600">
+            目標額とFIRE達成年に直接影響します
+          </p>
+          <div className="mt-8 grid grid-cols-1 gap-3">
+            {LIFESTYLE_OPTIONS.map((opt) => (
+              <OptionButton
+                key={opt.value}
+                emoji={opt.emoji}
+                label={opt.label}
+                sub={opt.sub}
+                selected={lifestyle === opt.value}
+                onClick={() => handleLifestyle(opt.value)}
+              />
+            ))}
+          </div>
+          <BackButton onClick={() => setStep(7)} />
+        </section>
+      )}
+
+      {/* ================================================================ */}
+      {/*  STEP 9 : 副収入                                                  */}
+      {/* ================================================================ */}
+      {step === 9 && (
+        <section className="animate-fadeIn" aria-label="質問9: 副収入">
+          <ProgressBar step={9} total={TOTAL_STEPS} />
+          <h2 className="text-center text-xl font-bold text-gray-900 sm:text-2xl">
+            Q9. 副収入・副業の状況は？
+          </h2>
+          <p className="mt-2 text-center text-sm text-gray-600">
+            副収入分を投資に回せるとFIRE達成が早まります
+          </p>
+          <div className="mt-8 grid grid-cols-1 gap-3">
+            {SIDE_INCOME_OPTIONS.map((opt) => (
+              <OptionButton
+                key={opt.value}
+                emoji={opt.emoji}
+                label={opt.label}
+                sub={opt.sub}
+                selected={sideIncome === opt.value}
+                onClick={() => handleSideIncome(opt.value)}
+              />
+            ))}
+          </div>
+          <BackButton onClick={() => setStep(8)} />
+        </section>
+      )}
+
+      {/* ================================================================ */}
       {/*  RESULT                                                          */}
       {/* ================================================================ */}
-      {step === 7 && result && (
+      {step === 10 && result && (
         <section
           className="animate-fadeIn"
           aria-label="診断結果"
@@ -1069,7 +1274,8 @@ export default function DiagnosePage() {
                 - 想定年利回り: {(ANNUAL_RETURN * 100).toFixed(0)}%
                 （インフレ調整後）
               </li>
-              <li>- 生活費は全国平均 &times; 家族係数で概算</li>
+              <li>- 生活費は全国平均 &times; 家族係数 &times; ライフスタイル係数で概算</li>
+              <li>- 住居形態に応じた住居費調整を加算</li>
               <li>- 毎月一定額を積立投資した場合の概算値</li>
             </ul>
           </div>
