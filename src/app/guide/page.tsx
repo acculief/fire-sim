@@ -83,9 +83,10 @@ export default function GuidesIndexPage() {
               <p className="mt-2 text-sm text-gray-600 line-clamp-2 flex-1">
                 {article.description}
               </p>
-              <time className="mt-3 block text-xs text-gray-400">
-                {article.publishedAt}
-              </time>
+              <div className="mt-3 flex items-center justify-between text-xs text-gray-400">
+                <time>{article.updatedAt ?? article.publishedAt}</time>
+                <span className="text-primary-600 font-medium">山本 健太 監修</span>
+              </div>
             </div>
           </Link>
         ))}

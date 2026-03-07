@@ -197,6 +197,30 @@ export default async function ResultPage({ searchParams }: Props) {
           { href: "/cases/", title: "モデルケースを見る", description: "年代別のFIRE達成プランを参考に" },
         ]}
       />
+
+      {/* ガイド記事への内部リンク（E-E-A-T & トピカルオーソリティ強化） */}
+      <div className="mt-10">
+        <h2 className="text-lg font-bold text-gray-800 mb-4">シミュレーション結果をさらに深掘りする</h2>
+        <div className="grid gap-3 sm:grid-cols-2">
+          {[
+            { href: "/guide/4percent-rule/", title: "4%ルールとは？", desc: "取り崩し戦略の基礎を理解する" },
+            { href: "/guide/fire-savings-rate/", title: "貯蓄率が達成年を決める", desc: "年収より重要な指標とは" },
+            { href: "/guide/nisa-ideco-for-fire/", title: "新NISA・iDeCoの活用法", desc: "非課税枠を最大限使う方法" },
+            { href: "/guide/fire-mistakes/", title: "FIRE計画でよくある5つの失敗", desc: "数年遠回りする落とし穴" },
+            { href: "/guide/fire-emergency-fund/", title: "生活防衛資金はいくら必要？", desc: "FIREナンバーとは別に確保すべき資金" },
+            { href: "/guide/fire-and-pension/", title: "FIREと年金の関係", desc: "早期退職後の年金への影響" },
+          ].map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className="flex flex-col gap-0.5 rounded-lg border border-gray-200 p-4 hover:border-primary-400 hover:bg-primary-50 transition-colors"
+            >
+              <span className="text-sm font-semibold text-gray-900">{item.title}</span>
+              <span className="text-xs text-gray-500">{item.desc}</span>
+            </Link>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }

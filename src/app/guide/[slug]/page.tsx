@@ -152,6 +152,24 @@ export default async function GuidePage({
           <GuideImage image={article.heroImage} priority />
         )}
 
+        {/* この記事の要点（TL;DR / GEO対策） */}
+        <div className="mt-6 rounded-lg border-l-4 border-primary-500 bg-primary-50 p-4">
+          <p className="text-xs font-bold text-primary-700 mb-2 uppercase tracking-wide">📌 この記事の要点</p>
+          <ul className="space-y-1">
+            {article.sections.slice(0, 4).map((section) => (
+              <li key={section.heading} className="flex items-start gap-2 text-sm text-gray-700">
+                <span className="text-primary-500 shrink-0 mt-0.5">✓</span>
+                <span>{section.heading}</span>
+              </li>
+            ))}
+          </ul>
+          {article.faqs && article.faqs.length > 0 && (
+            <p className="mt-2 text-xs text-gray-500">
+              よくある質問は記事末尾の「よくある質問」セクションで解説しています。
+            </p>
+          )}
+        </div>
+
         {/* 目次 */}
         <nav className="mt-8 rounded-lg border border-gray-200 bg-gray-50 p-4">
           <p className="mb-2 text-sm font-bold text-gray-700">目次</p>
@@ -232,6 +250,31 @@ export default async function GuidePage({
                     return <h3 key={j} className="text-lg font-bold text-gray-800 mt-6 mb-2" dangerouslySetInnerHTML={{ __html: headingHtml }} />;
                   }
 
+                  // Callout boxes: :::note / :::warn / :::point / :::check
+                  if (trimmed.startsWith(":::")) {
+                    const firstLine = trimmed.split("\n")[0];
+                    const rest = trimmed.split("\n").slice(1).join("\n").trim();
+                    const type = firstLine.replace(":::", "").trim();
+                    const configs: Record<string, { bg: string; border: string; icon: string; label: string }> = {
+                      note:  { bg: "bg-blue-50",   border: "border-blue-400",  icon: "💡", label: "ポイント" },
+                      warn:  { bg: "bg-amber-50",  border: "border-amber-400", icon: "⚠️", label: "注意" },
+                      check: { bg: "bg-green-50",  border: "border-green-400", icon: "✅", label: "まとめ" },
+                      data:  { bg: "bg-gray-50",   border: "border-gray-400",  icon: "📊", label: "データ・根拠" },
+                      case:  { bg: "bg-purple-50", border: "border-purple-400",icon: "👤", label: "ケーススタディ" },
+                    };
+                    const cfg = configs[type] || configs.note;
+                    const bodyHtml = rest
+                      .replace(/\n/g, "<br />")
+                      .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
+                      .replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2" class="text-primary-600 hover:underline">$1</a>');
+                    return (
+                      <div key={j} className={`my-4 rounded-lg border-l-4 ${cfg.border} ${cfg.bg} p-4`}>
+                        <p className="text-xs font-bold text-gray-600 mb-1">{cfg.icon} {cfg.label}</p>
+                        <div className="text-sm text-gray-700 leading-relaxed" dangerouslySetInnerHTML={{ __html: bodyHtml }} />
+                      </div>
+                    );
+                  }
+
                   // Bullet list
                   const listLines = trimmed.split("\n");
                   if (listLines.some(l => l.trim().startsWith("- "))) {
@@ -243,6 +286,19 @@ export default async function GuidePage({
                           .replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2" class="text-primary-600 hover:underline">$1</a>');
                         return `<li>${item}</li>`;
                       }).join("")}</ul>`;
+                    return <div key={j} dangerouslySetInnerHTML={{ __html: listHtml }} />;
+                  }
+
+                  // Numbered list
+                  if (listLines.some(l => /^\d+\.\s/.test(l.trim()))) {
+                    const listHtml = `<ol class="list-decimal pl-6 mb-3 space-y-1 text-gray-700">${listLines
+                      .filter(l => /^\d+\.\s/.test(l.trim()))
+                      .map(l => {
+                        const item = l.trim().replace(/^\d+\.\s/, "")
+                          .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
+                          .replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2" class="text-primary-600 hover:underline">$1</a>');
+                        return `<li>${item}</li>`;
+                      }).join("")}</ol>`;
                     return <div key={j} dangerouslySetInnerHTML={{ __html: listHtml }} />;
                   }
 
