@@ -32,11 +32,11 @@ export async function generateMetadata({
         : "全国平均と同水準の"
     : "";
   return {
-    title: `${name}のFIREシミュレーション | 必要資産・達成年を無料計算`,
+    title: `${name}でFIRE達成に必要な資産はいくら？年収・生活費から無料計算`,
     description: `${name}在住の方向けFIREシミュレーション。${costDesc}生活費水準を反映し、FIRE達成に必要な資産額と年数を無料で計算。家族構成・年収・住居別の比較も。`,
     alternates: { canonical: `/fire/${pref}/` },
     openGraph: {
-      title: `${name}のFIREシミュレーション`,
+      title: `${name}でFIRE達成に必要な資産額 | 無料シミュレーション`,
       description: `${name}の生活費に基づくFIRE必要資産と達成年を無料で計算`,
       url: `/fire/${pref}/`,
       siteName: "FIREシミュレーター",

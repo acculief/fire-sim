@@ -7,14 +7,14 @@ import JsonLd from "@/components/JsonLd";
 import RelatedContent from "@/components/RelatedContent";
 
 export const metadata: Metadata = {
-  title: "FIREガイド | 経済的自立・早期退職の完全ガイド",
+  title: "FIREガイド51本 | 4%ルール・必要資産・節税・地域別シミュレーション",
   description:
-    "FIRE（経済的自立・早期退職）に関する包括的なガイド記事。4%ルール、必要資産の計算方法、地域別戦略、税制活用法などを解説。",
+    "FIREを目指す人向けガイド記事51本。4%ルール・必要資産の計算・節税・地域別シミュレーション・バリスタFIREまで完全網羅。今すぐ読む！",
   alternates: { canonical: "/guide/" },
   openGraph: {
-    title: "FIREガイド | 経済的自立・早期退職の完全ガイド",
+    title: "FIREガイド51本 | 4%ルール・必要資産・節税・地域別シミュレーション",
     description:
-      "FIRE（経済的自立・早期退職）に関する包括的なガイド記事。4%ルール、必要資産の計算方法、地域別戦略、税制活用法などを解説。",
+      "FIREを目指す人向けガイド記事51本。4%ルール・必要資産・節税・地域別シミュレーション・バリスタFIREまで完全網羅。",
     type: "website",
     url: "/guide/",
     siteName: "FIREシミュレーター",
