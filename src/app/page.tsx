@@ -99,15 +99,15 @@ export default function HomePage() {
         <h2 className="mb-4 text-center text-lg font-bold text-gray-900">便利なツール</h2>
         <div className="grid gap-3 sm:grid-cols-3">
           <Link href="/withdraw/" className="link-card">
-            <p className="font-bold text-gray-800">🔢 取り崩しシミュレーション</p>
+            <p className="font-bold text-gray-800">取り崩しシミュレーション</p>
             <p className="mt-1 text-xs text-gray-600">FIRE後の資産が何歳まで持つか計算</p>
           </Link>
           <Link href="/compound/" className="link-card">
-            <p className="font-bold text-gray-800">📈 複利計算シミュレーション</p>
+            <p className="font-bold text-gray-800">複利計算シミュレーション</p>
             <p className="mt-1 text-xs text-gray-600">積立投資の将来額を複利で計算</p>
           </Link>
           <Link href="/income/" className="link-card">
-            <p className="font-bold text-gray-800">💴 手取り早見表</p>
+            <p className="font-bold text-gray-800">手取り早見表</p>
             <p className="mt-1 text-xs text-gray-600">年収別の手取り額・税金・社会保険料</p>
           </Link>
         </div>
@@ -195,23 +195,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 監修者・信頼性シグナル（E-E-A-T） */}
-      <section className="mt-12">
-        <div className="rounded-lg border border-gray-200 bg-gray-50 p-4 flex flex-col sm:flex-row items-start sm:items-center gap-3">
-          <div className="text-3xl shrink-0">🏔️</div>
-          <div className="flex-1 min-w-0">
-            <p className="text-xs text-gray-500">コンテンツ監修</p>
-            <p className="text-sm font-bold text-gray-900">山本 健太（FIRE研究家・資産運用歴15年以上）</p>
-            <p className="text-xs text-gray-600 mt-0.5">セミFIRE達成。インデックス投資・不動産を軸に、再現性の高いFIRE計画を研究・発信。</p>
-          </div>
-          <Link
-            href="/about/author/"
-            className="text-xs text-primary-600 hover:text-primary-500 hover:underline shrink-0"
-          >
-            プロフィール →
-          </Link>
-        </div>
-      </section>
 
       {/* CTA */}
       <section className="mt-12 text-center">
