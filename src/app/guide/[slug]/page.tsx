@@ -80,9 +80,9 @@ export default async function GuidePage({
     dateModified: article.updatedAt ?? article.publishedAt,
     inLanguage: "ja",
     author: {
-      "@type": "Organization",
-      name: "FIREシミュレーター",
-      url: SITE_URL,
+      "@type": "Person",
+      name: "山本 健太",
+      url: `${SITE_URL}/about/author/`,
     },
     publisher: {
       "@type": "Organization",
@@ -102,10 +102,24 @@ export default async function GuidePage({
     ],
   };
 
+  const faqSchema = article.faqs && article.faqs.length > 0 ? {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: article.faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.q,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.a,
+      },
+    })),
+  } : null;
+
   return (
     <div className="mx-auto max-w-3xl px-4 py-8">
       <JsonLd data={structuredData} />
       <JsonLd data={breadcrumbData} />
+      {faqSchema && <JsonLd data={faqSchema} />}
 
       <Breadcrumb
         items={[
@@ -120,12 +134,19 @@ export default async function GuidePage({
           {article.title}
         </h1>
         <p className="mt-3 text-gray-600">{article.description}</p>
-        <time
-          dateTime={article.publishedAt}
-          className="mt-2 block text-sm text-gray-600"
-        >
-          {article.publishedAt}
-        </time>
+        <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-gray-500">
+          <time dateTime={article.updatedAt ?? article.publishedAt}>
+            更新: {article.updatedAt ?? article.publishedAt}
+          </time>
+          <span>｜</span>
+          <Link
+            href="/about/author/"
+            className="flex items-center gap-1.5 hover:text-blue-600 transition-colors"
+          >
+            <span className="text-base">🏔️</span>
+            <span>監修: 山本 健太（FIRE研究家）</span>
+          </Link>
+        </div>
 
         {article.heroImage && (
           <GuideImage image={article.heroImage} priority />
@@ -291,6 +312,30 @@ export default async function GuidePage({
           おすすめツール・書籍を見る →
         </Link>
       </div>
+
+      {/* よくある質問（FAQ） */}
+      {article.faqs && article.faqs.length > 0 && (
+        <div className="mt-12">
+          <h2 className="text-xl font-bold text-gray-900 mb-4">よくある質問</h2>
+          <div className="space-y-4">
+            {article.faqs.map((faq, i) => (
+              <details key={i} className="group border border-gray-200 rounded-lg overflow-hidden">
+                <summary className="flex items-start justify-between gap-3 px-5 py-4 cursor-pointer bg-gray-50 hover:bg-gray-100 transition-colors list-none">
+                  <span className="flex items-start gap-2 font-medium text-gray-900 text-sm leading-relaxed">
+                    <span className="text-blue-500 font-bold shrink-0">Q</span>
+                    {faq.q}
+                  </span>
+                  <span className="text-gray-400 group-open:rotate-180 transition-transform shrink-0 mt-0.5">▼</span>
+                </summary>
+                <div className="px-5 py-4 bg-white text-sm text-gray-700 leading-relaxed border-t border-gray-100">
+                  <span className="text-blue-600 font-bold mr-2">A</span>
+                  {faq.a}
+                </div>
+              </details>
+            ))}
+          </div>
+        </div>
+      )}
 
       <BrokerCtaSection />
 
