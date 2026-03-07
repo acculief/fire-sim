@@ -59,10 +59,10 @@ export default function HomePage() {
         <SimulationCounter />
       </section>
 
-      {/* ツール一覧 */}
+      {/* 診断セクション */}
       <section className="mt-12">
-        {/* 診断2本バナー */}
-        <div className="mb-4 grid gap-3 sm:grid-cols-2">
+        <h2 className="mb-4 text-center text-lg font-bold text-gray-900">まずは診断してみよう</h2>
+        <div className="grid gap-3 sm:grid-cols-2">
           {/* FIRE達成度診断 */}
           <Link
             href="/diagnose/"
@@ -92,61 +92,46 @@ export default function HomePage() {
             </svg>
           </Link>
         </div>
-        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-          <Link
-            href="/withdraw/"
-            className="link-card"
-          >
-            <p className="font-bold text-gray-800">取り崩しシミュレーション</p>
-            <p className="mt-1 text-xs text-gray-600">FIRE後の資産寿命を計算</p>
+      </section>
+
+      {/* 便利なツール */}
+      <section className="mt-10">
+        <h2 className="mb-4 text-center text-lg font-bold text-gray-900">便利なツール</h2>
+        <div className="grid gap-3 sm:grid-cols-3">
+          <Link href="/withdraw/" className="link-card">
+            <p className="font-bold text-gray-800">🔢 取り崩しシミュレーション</p>
+            <p className="mt-1 text-xs text-gray-600">FIRE後の資産が何歳まで持つか計算</p>
           </Link>
-          <Link
-            href="/compound/"
-            className="link-card"
-          >
-            <p className="font-bold text-gray-800">複利計算シミュレーション</p>
-            <p className="mt-1 text-xs text-gray-600">積立投資の将来額を計算</p>
+          <Link href="/compound/" className="link-card">
+            <p className="font-bold text-gray-800">📈 複利計算シミュレーション</p>
+            <p className="mt-1 text-xs text-gray-600">積立投資の将来額を複利で計算</p>
           </Link>
-          <Link
-            href="/recommend/"
-            className="link-card"
-          >
-            <p className="font-bold text-gray-800">おすすめ証券口座</p>
-            <p className="mt-1 text-xs text-gray-600">ネット証券を徹底比較</p>
+          <Link href="/income/" className="link-card">
+            <p className="font-bold text-gray-800">💴 手取り早見表</p>
+            <p className="mt-1 text-xs text-gray-600">年収別の手取り額・税金・社会保険料</p>
           </Link>
         </div>
       </section>
 
-      {/* モデルケース・プラン・FAQ */}
-      <section className="mt-12">
+      {/* 関連情報 */}
+      <section className="mt-10">
+        <h2 className="mb-4 text-center text-lg font-bold text-gray-900">もっと詳しく</h2>
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-          <Link
-            href="/income/"
-            className="link-card"
-          >
-            <p className="font-bold text-gray-800">手取り早見表</p>
-            <p className="mt-1 text-xs text-gray-600">年収別の手取り額・税金・社会保険料を一覧で確認</p>
-          </Link>
-          <Link
-            href="/cases/"
-            className="link-card"
-          >
+          <Link href="/cases/" className="link-card">
             <p className="font-bold text-gray-800">モデルケース</p>
-            <p className="mt-1 text-xs text-gray-600">年収・家族構成別のFIRE達成事例を紹介</p>
+            <p className="mt-1 text-xs text-gray-600">年収・家族構成別のFIRE達成事例</p>
           </Link>
-          <Link
-            href="/plan/"
-            className="link-card"
-          >
+          <Link href="/plan/" className="link-card">
             <p className="font-bold text-gray-800">年収×年代別プラン</p>
             <p className="mt-1 text-xs text-gray-600">あなたの年収と年齢に最適なFIRE戦略</p>
           </Link>
-          <Link
-            href="/faq/"
-            className="link-card"
-          >
+          <Link href="/faq/" className="link-card">
             <p className="font-bold text-gray-800">よくある質問</p>
-            <p className="mt-1 text-xs text-gray-600">FIREの基礎知識・4%ルール・新NISAなど</p>
+            <p className="mt-1 text-xs text-gray-600">FIREの基礎知識・4%ルール・新NISA</p>
+          </Link>
+          <Link href="/recommend/" className="link-card">
+            <p className="font-bold text-gray-800">おすすめ証券口座</p>
+            <p className="mt-1 text-xs text-gray-600">FIRE向けネット証券を徹底比較</p>
           </Link>
         </div>
       </section>
