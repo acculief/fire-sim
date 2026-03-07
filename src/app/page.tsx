@@ -68,7 +68,6 @@ export default function HomePage() {
             href="/diagnose/"
             className="flex items-center gap-4 rounded-2xl border-2 border-primary-200 bg-gradient-to-r from-primary-50 to-blue-50 px-5 py-4 hover:border-primary-400 hover:shadow-sm transition-all group"
           >
-            <span className="text-4xl">📊</span>
             <div className="flex-1 min-w-0">
               <p className="font-bold text-gray-900 group-hover:text-primary-700">FIRE達成度診断</p>
               <p className="text-xs text-gray-500 mt-0.5">9問でFIRE偏差値・達成年齢を診断</p>
@@ -82,7 +81,6 @@ export default function HomePage() {
             href="/diagnose/type/"
             className="flex items-center gap-4 rounded-2xl border-2 border-orange-200 bg-gradient-to-r from-orange-50 to-amber-50 px-5 py-4 hover:border-orange-300 hover:shadow-sm transition-all group"
           >
-            <span className="text-4xl">🔥</span>
             <div className="flex-1 min-w-0">
               <p className="font-bold text-gray-900 group-hover:text-orange-700">FIREタイプ診断</p>
               <p className="text-xs text-gray-500 mt-0.5">8問であなたのFIREスタイルを診断 → Xでシェア</p>
